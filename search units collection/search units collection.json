@@ -223,7 +223,24 @@
         "",
         "=== ORDENAMIENTO ===",
         "sortColumn valores permitidos: id, name, nodeName, unitTypeName",
-        "sortDirection: asc (ascendente) o desc (descendente)"
+        "sortDirection: asc (ascendente) o desc (descendente)",
+        "",
+        "=== SEGURIDAD - SERVICIO AL CLIENTE ===",
+        "Esta herramienta está diseñada para servicio al cliente de empresas de alquiler.",
+        "IMPORTANTE: NO usar ni mostrar los siguientes campos a clientes:",
+        "  - streetAddress, extendedAddress, postal (direcciones exactas)",
+        "  - latitude, longitude (coordenadas exactas)",
+        "  - directions (instrucciones de cómo llegar)",
+        "  - localOffice (información de oficina local)",
+        "",
+        "Campos SEGUROS para usar con clientes:",
+        "  - Información básica: id, name, unitCode, shortName",
+        "  - Ubicación general: locality (ciudad), region (estado), country (país)",
+        "  - Características: bedrooms, bathrooms, maxOccupancy, amenities, etc.",
+        "  - Políticas: petsFriendly, smokingAllowed, houseRules, etc.",
+        "  - Check-in/out: checkinTime, checkoutTime, timezone",
+        "",
+        "Ver output_spec para lista completa de campos seguros."
       ]
     },
     "io": {
@@ -269,12 +286,12 @@
         { "name": "unitStatus", "label": "Estado de Unidad", "help": "Filtrar por estado de unidad. Valores: clean, dirty, occupied, inspection, inprogress", "type": "text", "default": "", "required": false, "multiline": false }
       ],
       "output_spec": [
-        { "name": "units", "label": "Unidades", "help": "Array de unidades (contiene objetos completos con información detallada)", "type": "text", "default": "", "required": false, "multiline": false },
-        { "name": "page", "label": "Página Actual", "help": "Página actual", "type": "text", "default": "", "required": false, "multiline": false },
-        { "name": "page_count", "label": "Total de Páginas", "help": "Cantidad de páginas", "type": "text", "default": "", "required": false, "multiline": false },
-        { "name": "page_size", "label": "Tamaño de Página", "help": "Tamaño de página", "type": "text", "default": "", "required": false, "multiline": false },
-        { "name": "total_items", "label": "Total de Items", "help": "Total de items", "type": "text", "default": "", "required": false, "multiline": false },
-        { "name": "next_href", "label": "Siguiente Enlace", "help": "Siguiente enlace (para scroll/paginación)", "type": "text", "default": "", "required": false, "multiline": false }
+        { "name": "units", "label": "Unidades", "help": "Array de unidades con información completa. Para servicio al cliente, usar los siguientes campos SEGUROS (NO usar direcciones ni coordenadas):\n\n- Información básica: id, name, unitCode, shortName\n- Ubicación general: locality (ciudad), region (estado), country (país) - NO usar streetAddress, extendedAddress, postal, latitude, longitude\n- Características: bedrooms, fullBathrooms, halfBathrooms, maxOccupancy, area, floors\n- Check-in/out: checkinTime, checkoutTime, timezone, hasEarlyCheckin, earlyCheckinTime, hasLateCheckout, lateCheckoutTime\n- Políticas: petsFriendly, maxPets, smokingAllowed, childrenAllowed, minimumAgeLimit, isAccessible, houseRules\n- Amenities: amenities (array), amenityDescription\n- Descripciones: shortDescription, longDescription, headline\n- Estado: isBookable, isActive, unitStatus\n- Contacto: phone, website (si es público)\n- Tipos: lodgingType (objeto con id, name), unitType (objeto con id, name)\n\n⚠️ CAMPOS EXCLUIDOS POR SEGURIDAD: streetAddress, extendedAddress, postal, latitude, longitude, directions, localOffice", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "page", "label": "Página Actual", "help": "Página actual de resultados", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "page_count", "label": "Total de Páginas", "help": "Cantidad total de páginas disponibles", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "page_size", "label": "Tamaño de Página", "help": "Tamaño de página (número de unidades por página)", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "total_items", "label": "Total de Items", "help": "Total de unidades encontradas", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "next_href", "label": "Siguiente Enlace", "help": "Enlace para obtener la siguiente página (para scroll/paginación)", "type": "text", "default": "", "required": false, "multiline": false }
       ]
     }
   }

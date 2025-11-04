@@ -108,26 +108,66 @@ Los valores booleanos en la API de units aceptan `1` o `0` (no `true`/`false`):
 
 La respuesta incluye:
 
-- **`units`**: Array de unidades con información detallada (id, name, descripciones, características, amenities, etc.)
+- **`units`**: Array de unidades con información detallada
 - **`page`**: Página actual
 - **`page_count`**: Total de páginas
 - **`page_size`**: Tamaño de página
 - **`total_items`**: Total de items
 - **`next_href`**: Siguiente enlace (para scroll/paginación)
 
-### Ejemplo de Unidad
+### Campos Disponibles en Cada Unidad
 
-Cada unidad en el array incluye información completa como:
+#### ✅ Campos Seguros para Servicio al Cliente
 
-- Información básica: `id`, `name`, `shortName`, `unitCode`, `headline`
-- Descripciones: `shortDescription`, `longDescription`, `houseRules`
-- Ubicación: `streetAddress`, `locality`, `region`, `postal`, `country`, `latitude`, `longitude`
-- Características: `bedrooms`, `fullBathrooms`, `halfBathrooms`, `maxOccupancy`, `area`
-- Políticas: `petsFriendly`, `smokingAllowed`, `childrenAllowed`, `minimumAgeLimit`
-- Tiempos: `checkinTime`, `checkoutTime`, `timezone`
-- Amenities: Array de amenities con grupos
-- Habitaciones: Array de habitaciones con configuraciones de camas (si aplica)
-- Enlaces: `_links` con referencias a imágenes, políticas, etc.
+**Información básica:**
+- `id`, `name`, `shortName`, `unitCode`, `headline`
+
+**Ubicación general (sin direcciones específicas):**
+- `locality` (ciudad)
+- `region` (estado/provincia)
+- `country` (país)
+- `timezone`
+
+**Características físicas:**
+- `bedrooms`, `fullBathrooms`, `halfBathrooms`, `maxOccupancy`, `area`, `floors`
+
+**Información de check-in/checkout:**
+- `checkinTime`, `checkoutTime`, `timezone`
+- `hasEarlyCheckin`, `earlyCheckinTime`
+- `hasLateCheckout`, `lateCheckoutTime`
+
+**Políticas y reglas:**
+- `petsFriendly`, `maxPets`, `smokingAllowed`, `childrenAllowed`
+- `minimumAgeLimit`, `isAccessible`, `houseRules`
+
+**Amenities:**
+- `amenities` (array con objetos `{id, name, group}`)
+- `amenityDescription`
+
+**Descripciones:**
+- `shortDescription`, `longDescription`, `headline`
+
+**Estado y disponibilidad:**
+- `isBookable`, `isActive`, `unitStatus`
+
+**Información de contacto:**
+- `phone`, `website` (si es público)
+
+**Tipos:**
+- `lodgingType` (objeto con `id`, `name`)
+- `unitType` (objeto con `id`, `name`)
+
+#### ⚠️ Campos Excluidos por Seguridad
+
+**NO usar estos campos en servicio al cliente:**
+- `streetAddress` - Dirección exacta de la calle
+- `extendedAddress` - Dirección extendida
+- `postal` - Código postal
+- `latitude`, `longitude` - Coordenadas exactas
+- `directions` - Instrucciones de cómo llegar
+- `localOffice` - Información de oficina local
+
+Estos campos están presentes en la respuesta de la API pero **NO deben ser utilizados ni mostrados a clientes** por razones de seguridad y privacidad.
 
 ## 🔍 Ejemplos de Uso
 

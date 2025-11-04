@@ -366,6 +366,341 @@ results.append(make_request(
     test_name="32. Filtro por nodeId (nodeId=1)"
 ))
 
+# ============================================
+# TESTS COMPLEJOS - CASOS DE USO REALES
+# ============================================
+
+# Test 33: Búsqueda compleja: texto + rango dormitorios + baños + mascotas + activo + ordenamiento
+results.append(make_request(
+    params={
+        'search': 'Townhome',
+        'minBedrooms': 2,
+        'maxBedrooms': 4,
+        'minBathrooms': 2,
+        'petsFriendly': 1,
+        'isActive': 1,
+        'isBookable': 1,
+        'sortColumn': 'name',
+        'sortDirection': 'asc',
+        'size': 5
+    },
+    test_name="33. Búsqueda compleja: texto + rango dormitorios/baños + mascotas + activo + ordenamiento"
+))
+
+# Test 34: Disponibilidad + características físicas + estado
+arrival_test = (datetime.now() + timedelta(days=60)).strftime('%Y-%m-%d')
+departure_test = (datetime.now() + timedelta(days=67)).strftime('%Y-%m-%d')
+results.append(make_request(
+    params={
+        'arrival': arrival_test,
+        'departure': departure_test,
+        'bedrooms': 3,
+        'bathrooms': 2,
+        'isBookable': 1,
+        'unitStatus': 'clean',
+        'size': 5
+    },
+    test_name=f"34. Disponibilidad ({arrival_test} a {departure_test}) + 3 dorm/2 baños + limpio"
+))
+
+# Test 35: Múltiples filtros booleanos + rango de características
+results.append(make_request(
+    params={
+        'minBedrooms': 2,
+        'maxBedrooms': 5,
+        'minBathrooms': 1,
+        'maxBathrooms': 3,
+        'petsFriendly': 1,
+        'isActive': 1,
+        'isBookable': 1,
+        'includeDescriptions': 1,
+        'size': 5
+    },
+    test_name="35. Múltiples booleanos + rangos de dormitorios/baños + descripciones"
+))
+
+# Test 36: Búsqueda por código con wildcard + filtros de características
+results.append(make_request(
+    params={
+        'unitCode': 'TH%',
+        'minBedrooms': 2,
+        'petsFriendly': 1,
+        'isActive': 1,
+        'sortColumn': 'id',
+        'sortDirection': 'desc',
+        'page': 1,
+        'size': 5
+    },
+    test_name="36. Wildcard unitCode (TH%) + filtros + ordenamiento descendente"
+))
+
+# Test 37: Búsqueda por término + múltiples IDs (simulando CSV)
+# Nota: Probamos con nodeId múltiple (formato CSV)
+results.append(make_request(
+    params={
+        'term': 'TH',
+        'isActive': 1,
+        'isBookable': 1,
+        'sortColumn': 'unitTypeName',
+        'sortDirection': 'asc',
+        'size': 5
+    },
+    test_name="37. Búsqueda por término + filtros de estado + ordenamiento por tipo"
+))
+
+# Test 38: Combinación extrema: búsqueda + fechas + características + booleanos + ordenamiento
+arrival_extreme = (datetime.now() + timedelta(days=90)).strftime('%Y-%m-%d')
+departure_extreme = (datetime.now() + timedelta(days=97)).strftime('%Y-%m-%d')
+results.append(make_request(
+    params={
+        'search': 'Townhome',
+        'arrival': arrival_extreme,
+        'departure': departure_extreme,
+        'minBedrooms': 2,
+        'maxBedrooms': 4,
+        'minBathrooms': 2,
+        'petsFriendly': 1,
+        'isActive': 1,
+        'isBookable': 1,
+        'unitStatus': 'clean',
+        'includeDescriptions': 1,
+        'sortColumn': 'name',
+        'sortDirection': 'asc',
+        'page': 1,
+        'size': 3
+    },
+    test_name=f"38. Combinación extrema: búsqueda + fechas ({arrival_extreme}) + múltiples filtros + ordenamiento"
+))
+
+# Test 39: Búsqueda con contentUpdatedSince + filtros de características
+three_months_ago = (datetime.now() - timedelta(days=90)).strftime('%Y-%m-%dT00:00:00Z')
+results.append(make_request(
+    params={
+        'contentUpdatedSince': three_months_ago,
+        'isActive': 1,
+        'minBedrooms': 2,
+        'includeDescriptions': 1,
+        'size': 5
+    },
+    test_name=f"39. Unidades actualizadas desde {three_months_ago[:10]} + filtros"
+))
+
+# Test 40: Filtro por amenityId (múltiples) + características + estado
+results.append(make_request(
+    params={
+        'minBedrooms': 2,
+        'petsFriendly': 1,
+        'isActive': 1,
+        'isBookable': 1,
+        'sortColumn': 'name',
+        'sortDirection': 'asc',
+        'size': 5
+    },
+    test_name="40. Filtros combinados: dormitorios + mascotas + activo + reservable + ordenamiento"
+))
+
+# Test 41: Búsqueda por shortName con wildcard + rango de dormitorios + booleanos
+results.append(make_request(
+    params={
+        'shortName': 'TH%',
+        'minBedrooms': 3,
+        'maxBedrooms': 5,
+        'petsFriendly': 1,
+        'isActive': 1,
+        'sortColumn': 'nodeName',
+        'sortDirection': 'asc',
+        'page': 1,
+        'size': 4
+    },
+    test_name="41. ShortName wildcard + rango dormitorios (3-5) + mascotas + ordenamiento por nodo"
+))
+
+# Test 42: Caso edge: Rango muy específico (mínimo = máximo)
+results.append(make_request(
+    params={
+        'minBedrooms': 3,
+        'maxBedrooms': 3,
+        'minBathrooms': 2,
+        'maxBathrooms': 2,
+        'isActive': 1,
+        'size': 5
+    },
+    test_name="42. Caso edge: Rango específico (exactamente 3 dorm/2 baños)"
+))
+
+# Test 43: Combinación de búsqueda + fechas cercanas + características
+arrival_near = (datetime.now() + timedelta(days=7)).strftime('%Y-%m-%d')
+departure_near = (datetime.now() + timedelta(days=14)).strftime('%Y-%m-%d')
+results.append(make_request(
+    params={
+        'term': 'TH',
+        'arrival': arrival_near,
+        'departure': departure_near,
+        'bedrooms': 2,
+        'isBookable': 1,
+        'includeDescriptions': 1,
+        'size': 5
+    },
+    test_name=f"43. Fechas cercanas ({arrival_near}) + término + características + descripciones"
+))
+
+# Test 44: Búsqueda con múltiples términos de búsqueda (search + term) + filtros
+results.append(make_request(
+    params={
+        'search': 'Townhome',
+        'term': 'TH',
+        'minBedrooms': 2,
+        'petsFriendly': 1,
+        'isActive': 1,
+        'sortColumn': 'id',
+        'sortDirection': 'desc',
+        'size': 5
+    },
+    test_name="44. Múltiples búsquedas (search + term) + filtros + ordenamiento descendente"
+))
+
+# Test 45: Filtro por unitStatus + características + computed + inherited
+results.append(make_request(
+    params={
+        'unitStatus': 'clean',
+        'minBedrooms': 2,
+        'petsFriendly': 1,
+        'isActive': 1,
+        'computed': 1,
+        'inherited': 1,
+        'includeDescriptions': 1,
+        'size': 3
+    },
+    test_name="45. Estado limpio + características + atributos computados/heredados + descripciones"
+))
+
+# Test 46: Búsqueda por código exacto + código con wildcard (combinando ambos tipos)
+results.append(make_request(
+    params={
+        'unitCode': 'TH%',
+        'isActive': 1,
+        'isBookable': 1,
+        'sortColumn': 'unitTypeName',
+        'sortDirection': 'desc',
+        'page': 1,
+        'size': 5
+    },
+    test_name="46. UnitCode wildcard + estado + ordenamiento descendente por tipo"
+))
+
+# Test 47: Caso complejo: fechas + múltiples rangos + múltiples booleanos + ordenamiento
+arrival_complex = (datetime.now() + timedelta(days=45)).strftime('%Y-%m-%d')
+departure_complex = (datetime.now() + timedelta(days=52)).strftime('%Y-%m-%d')
+results.append(make_request(
+    params={
+        'arrival': arrival_complex,
+        'departure': departure_complex,
+        'minBedrooms': 2,
+        'maxBedrooms': 6,
+        'minBathrooms': 1,
+        'maxBathrooms': 4,
+        'petsFriendly': 1,
+        'isActive': 1,
+        'isBookable': 1,
+        'unitStatus': 'clean',
+        'includeDescriptions': 1,
+        'sortColumn': 'name',
+        'sortDirection': 'asc',
+        'page': 1,
+        'size': 3
+    },
+    test_name=f"47. Caso complejo completo: fechas ({arrival_complex}) + todos los rangos + booleanos + ordenamiento"
+))
+
+# Test 48: Búsqueda con contentUpdatedSince reciente + filtros activos
+one_week_ago = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%dT00:00:00Z')
+results.append(make_request(
+    params={
+        'contentUpdatedSince': one_week_ago,
+        'search': 'Townhome',
+        'isActive': 1,
+        'minBedrooms': 2,
+        'includeDescriptions': 1,
+        'sortColumn': 'name',
+        'size': 5
+    },
+    test_name=f"48. Actualizaciones recientes ({one_week_ago[:10]}) + búsqueda + filtros"
+))
+
+# Test 49: Caso edge: Rango imposible (min > max) - debería devolver 0 resultados
+results.append(make_request(
+    params={
+        'minBedrooms': 5,
+        'maxBedrooms': 2,
+        'isActive': 1,
+        'size': 5
+    },
+    test_name="49. Caso edge: Rango imposible (minBedrooms=5 > maxBedrooms=2) - debería devolver 0"
+))
+
+# Test 50: Búsqueda con múltiples parámetros de texto simultáneos
+results.append(make_request(
+    params={
+        'search': 'Townhome',
+        'term': 'TH',
+        'unitCode': 'TH%',
+        'shortName': 'TH%',
+        'isActive': 1,
+        'size': 5
+    },
+    test_name="50. Múltiples búsquedas de texto simultáneas (search + term + unitCode + shortName)"
+))
+
+# Test 51: Filtro por múltiples estados booleanos + rangos + ordenamiento
+results.append(make_request(
+    params={
+        'minBedrooms': 2,
+        'maxBedrooms': 4,
+        'petsFriendly': 1,
+        'isActive': 1,
+        'isBookable': 1,
+        'computed': 1,
+        'inherited': 1,
+        'includeDescriptions': 1,
+        'sortColumn': 'nodeName',
+        'sortDirection': 'asc',
+        'page': 2,
+        'size': 5
+    },
+    test_name="51. Múltiples booleanos + rangos + ordenamiento + página 2"
+))
+
+# Test 52: Búsqueda extrema: todas las opciones posibles combinadas
+arrival_all = (datetime.now() + timedelta(days=120)).strftime('%Y-%m-%d')
+departure_all = (datetime.now() + timedelta(days=127)).strftime('%Y-%m-%d')
+one_year_ago = (datetime.now() - timedelta(days=365)).strftime('%Y-%m-%dT00:00:00Z')
+results.append(make_request(
+    params={
+        'search': 'Townhome',
+        'term': 'TH',
+        'unitCode': 'TH%',
+        'minBedrooms': 2,
+        'maxBedrooms': 5,
+        'minBathrooms': 1,
+        'maxBathrooms': 3,
+        'arrival': arrival_all,
+        'departure': departure_all,
+        'contentUpdatedSince': one_year_ago,
+        'petsFriendly': 1,
+        'isActive': 1,
+        'isBookable': 1,
+        'unitStatus': 'clean',
+        'computed': 1,
+        'inherited': 1,
+        'includeDescriptions': 1,
+        'sortColumn': 'name',
+        'sortDirection': 'asc',
+        'page': 1,
+        'size': 2
+    },
+    test_name=f"52. BÚSQUEDA EXTREMA: Todos los parámetros combinados (fechas {arrival_all})"
+))
+
 # RESUMEN DE RESULTADOS
 print("\n" + "=" * 80)
 print("RESUMEN DE RESULTADOS")
