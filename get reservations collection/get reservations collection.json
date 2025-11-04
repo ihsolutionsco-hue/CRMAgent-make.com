@@ -1,0 +1,265 @@
+{
+    "name": "search reservations v2 (scroll + pagination)",
+    "flow": [
+      {
+        "id": 1,
+        "module": "http:ActionSendData",
+        "version": 3,
+        "parameters": {
+          "handleErrors": true,
+          "useNewZLibDeCompress": true
+        },
+        "mapper": {
+          "url": "https://ihmvacations.trackhs.com/api/v2/pms/reservations",
+          "serializeUrl": false,
+          "method": "get",
+          "headers": [
+            { "name": "Accept", "value": "application/json" }
+          ],
+          "qs": [
+            { "name": "search", "value": "{{ifempty(var.input.search; null)}}" },
+            { "name": "tags", "value": "{{ifempty(var.input.tags; null)}}" },
+            { "name": "status", "value": "{{ifempty(var.input.status; null)}}" },
+            { "name": "nodeId", "value": "{{ifempty(var.input.nodeId; null)}}" },
+            { "name": "unitId", "value": "{{ifempty(var.input.unitId; null)}}" },
+            { "name": "reservationTypeId", "value": "{{ifempty(var.input.reservationTypeId; null)}}" },
+            { "name": "contactId", "value": "{{ifempty(var.input.contactId; null)}}" },
+            { "name": "travelAgentId", "value": "{{ifempty(var.input.travelAgentId; null)}}" },
+            { "name": "userId", "value": "{{ifempty(var.input.userId; null)}}" },
+            { "name": "unitTypeId", "value": "{{ifempty(var.input.unitTypeId; null)}}" },
+            { "name": "rateTypeId", "value": "{{ifempty(var.input.rateTypeId; null)}}" },
+            { "name": "inHouseToday", "value": "{{ifempty(var.input.inHouseToday; null)}}" },
+  
+            { "name": "bookedStart", "value": "{{ifempty(var.input.bookedStart; null)}}" },
+            { "name": "bookedEnd", "value": "{{ifempty(var.input.bookedEnd; null)}}" },
+  
+            { "name": "arrivalStart", "value": "{{ifempty(var.input.arrivalStart; null)}}" },
+            { "name": "arrivalEnd", "value": "{{ifempty(var.input.arrivalEnd; null)}}" },
+  
+            { "name": "departureStart", "value": "{{ifempty(var.input.departureStart; null)}}" },
+            { "name": "departureEnd", "value": "{{ifempty(var.input.departureEnd; null)}}" },
+  
+            { "name": "updatedSince", "value": "{{ifempty(var.input.updatedSince; null)}}" },
+  
+            {
+              "name": "page",
+              "value": "{{if( lower(ifempty(var.input.mode; \"page\")) = \"page\"; ifempty(var.input.page; 1); null)}}"
+            },
+            {
+              "name": "size",
+              "value": "{{if( lower(ifempty(var.input.mode; \"page\")) = \"page\"; ifempty(var.input.size; 5); null)}}"
+            },
+  
+            {
+              "name": "scroll",
+              "value": "{{if( lower(ifempty(var.input.mode; \"page\")) = \"scroll\"; ifempty(toString(var.input.scroll); \"1\"); null)}}"
+            },
+  
+            {
+              "name": "sortColumn",
+              "value": "{{if( lower(ifempty(var.input.mode; \"page\")) = \"page\"; ifempty(var.input.sortColumn; null); null)}}"
+            },
+            {
+              "name": "sortDirection",
+              "value": "{{if( lower(ifempty(var.input.mode; \"page\")) = \"page\"; ifempty(var.input.sortDirection; null); null)}}"
+            }
+          ],
+          "bodyType": "",
+          "parseResponse": true,
+  
+          "authUser": "{{var.auth.user}}",
+          "authPass": "{{var.auth.pass}}",
+  
+          "timeout": "",
+          "shareCookies": false,
+          "ca": "",
+          "rejectUnauthorized": true,
+          "followRedirect": true,
+          "useQuerystring": false,
+          "gzip": true,
+          "useMtls": false,
+          "followAllRedirects": false
+        },
+        "metadata": {
+          "designer": { "x": 0, "y": 0, "name": "api:searchReservationsV2" },
+          "restore": {
+            "expect": {
+              "method": { "mode": "chose", "label": "GET" },
+              "headers": { "mode": "chose", "items": [ null ] },
+              "qs": { "mode": "chose", "items": [ null ] },
+              "bodyType": { "label": "Empty" }
+            }
+          },
+          "parameters": [
+            { "name": "handleErrors", "type": "boolean", "label": "Evaluate all states as errors (except for 2xx and 3xx )", "required": true },
+            { "name": "useNewZLibDeCompress", "type": "hidden" }
+          ],
+          "expect": [
+            { "name": "url", "type": "url", "label": "URL", "required": true },
+            { "name": "serializeUrl", "type": "boolean", "label": "Serialize URL", "required": true },
+            {
+              "name": "method",
+              "type": "select",
+              "label": "Method",
+              "required": true,
+              "validate": { "enum": [ "get", "head", "post", "put", "patch", "delete", "options" ] }
+            },
+            {
+              "name": "headers",
+              "type": "array",
+              "label": "Headers",
+              "spec": [
+                { "name": "name", "label": "Name", "type": "text", "required": true },
+                { "name": "value", "label": "Value", "type": "text" }
+              ]
+            },
+            {
+              "name": "qs",
+              "type": "array",
+              "label": "Query String",
+              "spec": [
+                { "name": "name", "label": "Name", "type": "text", "required": true },
+                { "name": "value", "label": "Value", "type": "text" }
+              ]
+            },
+            { "name": "bodyType", "type": "select", "label": "Body type", "validate": { "enum": [ "raw", "x_www_form_urlencoded", "multipart_form_data" ] } },
+            { "name": "parseResponse", "type": "boolean", "label": "Parse response", "required": true },
+            { "name": "authUser", "type": "text", "label": "User name" },
+            { "name": "authPass", "type": "password", "label": "Password" },
+            { "name": "timeout", "type": "uinteger", "label": "Timeout", "validate": { "max": 300, "min": 1 } },
+            { "name": "shareCookies", "type": "boolean", "label": "Share cookies with other HTTP modules", "required": true },
+            { "name": "ca", "type": "cert", "label": "Self-signed certificate" },
+            { "name": "rejectUnauthorized", "type": "boolean", "label": "Reject connections that are using unverified (self-signed) certificates", "required": true },
+            { "name": "followRedirect", "type": "boolean", "label": "Follow redirect", "required": true },
+            { "name": "useQuerystring", "type": "boolean", "label": "Disable serialization of multiple same query string keys as arrays", "required": true },
+            { "name": "gzip", "type": "boolean", "label": "Request compressed content", "required": true },
+            { "name": "useMtls", "type": "boolean", "label": "Use Mutual TLS", "required": true },
+            { "name": "followAllRedirects", "type": "boolean", "label": "Follow all redirect", "required": true }
+          ],
+          "advanced": true
+        }
+      },
+      {
+        "id": 2,
+        "module": "scenario-service:ReturnData",
+        "version": 2,
+        "parameters": {},
+        "mapper": {
+          "reservations": "{{1.data.`_embedded`.reservations}}",
+          "page": "{{1.data.page}}",
+          "page_count": "{{1.data.page_count}}",
+          "page_size": "{{1.data.page_size}}",
+          "total_items": "{{1.data.total_items}}",
+          "next_href": "{{1.data.`_links`.next.href}}"
+        },
+        "metadata": {
+          "designer": { "x": 300, "y": 0 },
+          "restore": {},
+          "expect": [
+            { "name": "reservations", "type": "text", "label": "" },
+            { "name": "page", "type": "text", "label": "" },
+            { "name": "page_count", "type": "text", "label": "" },
+            { "name": "page_size", "type": "text", "label": "" },
+            { "name": "total_items", "type": "text", "label": "" },
+            { "name": "next_href", "type": "text", "label": "" }
+          ]
+        }
+      }
+    ],
+    "metadata": {
+      "instant": false,
+      "version": 1,
+      "scenario": {
+        "roundtrips": 1,
+        "maxErrors": 3,
+        "autoCommit": true,
+        "autoCommitTriggerLast": true,
+        "sequential": false,
+        "slots": null,
+        "confidential": false,
+        "dataloss": false,
+        "dlq": false,
+        "freshVariables": false
+      },
+      "designer": { "orphans": [] },
+      "zone": "us2.make.com",
+      "notes": [
+        "=== CONFIGURACIÓN DE AUTENTICACIÓN ===",
+        "IMPORTANTE: Configurar autenticación Basic Auth en el módulo HTTP",
+        "El módulo HTTP debe tener configurado:",
+        "  - Username: Tu usuario de TrackHS (ej: aba99777416466b6bdc1a25223192ccb)",
+        "  - Password: Tu contraseña de TrackHS",
+        "Si recibes error 403 Forbidden, verifica que las credenciales estén correctamente configuradas",
+        "",
+        "=== LÍMITES DE TAMAÑO ===",
+        "Make.com tiene límite de 200,000 tokens por respuesta",
+        "  - Usar size=1-5 para evitar exceder el límite (default: 5)",
+        "  - Tamaños grandes (10+) pueden causar error 400: \"This model's maximum context length is 200000 tokens\"",
+        "  - Para grandes volúmenes, usar paginación (múltiples llamadas con page incrementando)",
+        "",
+        "=== FILTROS DE FECHA - FORMATO REQUERIDO ===",
+        "arrivalStart y arrivalEnd:",
+        "  - FUNCIONAN pero SOLO con formato YYYY-MM-DD (sin hora)",
+        "  - Ejemplo VÁLIDO: arrivalStart=2025-10-27, arrivalEnd=2025-10-31",
+        "  - Ejemplo INVÁLIDO (NO funciona): arrivalStart=2025-10-27T00:00:00Z",
+        "  - La API ignora completamente el formato ISO-8601 completo (con T y Z)",
+        "  - Si necesitas filtrar por hora específica, usa bookedStart/bookedEnd en su lugar",
+        "",
+        "bookedStart y bookedEnd:",
+        "  - RECOMENDADOS: Funcionan correctamente con ambos formatos",
+        "  - Aceptan formato ISO-8601 completo (2025-10-27T00:00:00Z) o fecha sola (2025-10-27)",
+        "",
+        "departureStart y departureEnd:",
+        "  - Pueden tener comportamiento similar a arrivalStart/arrivalEnd",
+        "  - Si hay problemas, probar con formato fecha sola (YYYY-MM-DD)",
+        "",
+        "=== PRUEBAS REALIZADAS ===",
+        "Ver RESULTADOS_TEST_ARRIVAL.md para detalles completos de las pruebas realizadas",
+        "Las pruebas confirmaron que arrivalStart/arrivalEnd con formato ISO-8601 completo devuelven",
+        "35,417 items (sin filtrar) mientras que con formato fecha solo devuelven 495 items (filtrado correcto)"
+      ]
+    },
+    "io": {
+      "input_spec": [
+        { "name": "mode", "label": "Modo de Paginación", "help": "page | scroll", "type": "text", "default": "page", "required": false, "multiline": false },
+        { "name": "page", "label": "Número de Página", "help": "Página (1-based, mínimo 1). page=0 devuelve 400 Bad Request. Cuando mode=page", "type": "number", "default": 1, "required": false },
+        { "name": "size", "label": "Tamaño de Página", "help": "Tamaño de página cuando mode=page. Recomendado: 1-5 (respuestas grandes pueden exceder límite de tokens). Máximo API: 100. Default: 5", "type": "number", "default": 5, "required": false },
+        { "name": "scroll", "label": "Token de Scroll", "help": "Para scroll: \"1\" en primera llamada, luego el token/índice devuelto", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "sortColumn", "label": "Columna de Ordenamiento", "help": "Ordenar por columna (solo page mode). Valores: name, status, altConf, agreementStatus, type, guest, guests, unit, units, checkin, checkout, nights", "type": "text", "default": "name", "required": false, "multiline": false },
+        { "name": "sortDirection", "label": "Dirección de Ordenamiento", "help": "Dirección de ordenamiento (solo page mode). asc | desc. Default: asc", "type": "text", "default": "asc", "required": false, "multiline": false },
+  
+        { "name": "search", "label": "Búsqueda", "help": "Búsqueda por subcadena en nombre o descripciones", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "tags", "label": "Tags (IDs)", "help": "ID(s) de tags. CSV para múltiples valores", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "status", "label": "Estado de Reserva", "help": "Estado(s): Hold, Confirmed, Checked Out, Checked In, Cancelled. CSV para múltiples", "type": "text", "default": "", "required": false, "multiline": false },
+  
+        { "name": "nodeId", "label": "Node ID(s)", "help": "nodeId(s). CSV para múltiples valores", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "unitId", "label": "Unit ID(s)", "help": "unitId(s). CSV para múltiples valores", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "reservationTypeId", "label": "Tipo de Reserva ID(s)", "help": "reservationTypeId(s). CSV para múltiples valores", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "contactId", "label": "Contact ID(s)", "help": "contactId(s). CSV para múltiples valores", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "travelAgentId", "label": "Travel Agent ID(s)", "help": "travelAgentId(s). CSV para múltiples valores", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "userId", "label": "User ID(s)", "help": "userId(s). CSV para múltiples valores", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "unitTypeId", "label": "Unit Type ID(s)", "help": "unitTypeId(s). CSV para múltiples valores", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "rateTypeId", "label": "Rate Type ID(s)", "help": "rateTypeId(s). CSV para múltiples valores", "type": "text", "default": "", "required": false, "multiline": false },
+  
+        { "name": "bookedStart", "label": "Fecha Inicio de Reserva (Recomendado)", "help": "[RECOMENDADO] Fecha inicio de reserva. Acepta formato ISO-8601 completo (2025-10-27T00:00:00Z) o fecha sola (2025-10-27). Funciona correctamente con ambos formatos.", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "bookedEnd", "label": "Fecha Fin de Reserva (Recomendado)", "help": "[RECOMENDADO] Fecha fin de reserva. Acepta formato ISO-8601 completo (2025-10-31T23:59:59Z) o fecha sola (2025-10-31). Funciona correctamente con ambos formatos.", "type": "text", "default": "", "required": false, "multiline": false },
+  
+        { "name": "arrivalStart", "label": "Fecha Inicio de Llegada (Formato Requerido)", "help": "[FORMATO REQUERIDO] Fecha inicio de llegada. SOLO formato YYYY-MM-DD (sin hora). Ejemplo válido: 2025-10-27. Ejemplo inválido (NO funciona): 2025-10-27T00:00:00Z. La API ignora completamente el formato ISO-8601 completo. Si necesitas filtrar por hora específica, usa bookedStart en su lugar.", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "arrivalEnd", "label": "Fecha Fin de Llegada (Formato Requerido)", "help": "[FORMATO REQUERIDO] Fecha fin de llegada. SOLO formato YYYY-MM-DD (sin hora). Ejemplo válido: 2025-10-31. Ejemplo inválido (NO funciona): 2025-10-31T23:59:59Z. La API ignora completamente el formato ISO-8601 completo. Si necesitas filtrar por hora específica, usa bookedEnd en su lugar.", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "departureStart", "label": "Fecha Inicio de Salida", "help": "Fecha inicio de salida. Formatos: ISO-8601 completo (2025-10-27T00:00:00Z) o fecha sola (2025-10-27). Nota: Puede tener comportamiento similar a arrivalStart/arrivalEnd - usar formato fecha sola si hay problemas.", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "departureEnd", "label": "Fecha Fin de Salida", "help": "Fecha fin de salida. Formatos: ISO-8601 completo (2025-10-31T23:59:59Z) o fecha sola (2025-10-31). Nota: Puede tener comportamiento similar a arrivalStart/arrivalEnd - usar formato fecha sola si hay problemas.", "type": "text", "default": "", "required": false, "multiline": false },
+  
+        { "name": "updatedSince", "label": "Actualizado Desde", "help": "Filtrar por actualizaciones desde fecha (ISO-8601). Ej: 2025-01-01T00:00:00Z", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "inHouseToday", "label": "In House Hoy", "help": "Filtrar por in house hoy. 1=Sí, 0=No", "type": "text", "default": "", "required": false, "multiline": false }
+      ],
+      "output_spec": [
+        { "name": "reservations", "label": "Reservas", "help": "Array de reservas (contiene objetos completos con información detallada)", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "page", "label": "Página Actual", "help": "Página actual", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "page_count", "label": "Total de Páginas", "help": "Cantidad de páginas", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "page_size", "label": "Tamaño de Página", "help": "Tamaño de página", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "total_items", "label": "Total de Items", "help": "Total de items", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "next_href", "label": "Siguiente Enlace", "help": "Siguiente enlace (para scroll/paginación)", "type": "text", "default": "", "required": false, "multiline": false }
+      ]
+    }
+  }
+  
