@@ -1,0 +1,268 @@
+{
+  "timestamp": "2025-11-04T17:10:27.484552",
+  "endpoint": "http://localhost:5000/api/crm/contacts",
+  "total_tests": 12,
+  "successful_tests": 12,
+  "results": [
+    {
+      "success": true,
+      "data": {
+        "_links": {
+          "self": {
+            "href": "/api/crm/contacts/1"
+          }
+        },
+        "anniversary": null,
+        "birthdate": null,
+        "cellPhone": "+1234567890",
+        "country": null,
+        "createdAt": "2025-11-04T22:10:04.788033Z",
+        "createdBy": "mock_user",
+        "customValues": {},
+        "extendedAddress": null,
+        "fax": null,
+        "firstName": "Juan",
+        "homePhone": null,
+        "id": 1,
+        "isBlacklist": false,
+        "isVip": false,
+        "lastName": "Pérez",
+        "locality": null,
+        "noIdentity": false,
+        "notes": null,
+        "otherPhone": null,
+        "postalCode": null,
+        "primaryEmail": "juan.perez@example.com",
+        "references": [],
+        "region": null,
+        "secondaryEmail": null,
+        "streetAddress": null,
+        "tags": [],
+        "taxId": null,
+        "updatedAt": "2025-11-04T22:10:04.788033Z",
+        "updatedBy": "mock_user",
+        "workPhone": null
+      },
+      "status_code": 201
+    },
+    {
+      "success": true,
+      "data": {
+        "_links": {
+          "self": {
+            "href": "/api/crm/contacts/2"
+          }
+        },
+        "anniversary": "06-15",
+        "birthdate": "03-20",
+        "cellPhone": "+1234567892",
+        "country": "US",
+        "createdAt": "2025-11-04T22:10:06.852670Z",
+        "createdBy": "mock_user",
+        "customValues": {
+          "custom_1": "valor1",
+          "custom_2": [
+            "valor2",
+            "valor3"
+          ]
+        },
+        "extendedAddress": "Apt 4B",
+        "fax": "+1234567895",
+        "firstName": "María",
+        "homePhone": "+1234567891",
+        "id": 2,
+        "isBlacklist": false,
+        "isVip": false,
+        "lastName": "González",
+        "locality": "Los Angeles",
+        "noIdentity": false,
+        "notes": "Cliente preferente",
+        "otherPhone": "+1234567894",
+        "postalCode": "12345",
+        "primaryEmail": "maria.gonzalez@example.com",
+        "references": [
+          {
+            "channelId": 456,
+            "reference": "REF001",
+            "salesLinkId": 123
+          }
+        ],
+        "region": "CA",
+        "secondaryEmail": "maria.alternativo@example.com",
+        "streetAddress": "123 Main St",
+        "tags": [
+          {
+            "id": 1
+          }
+        ],
+        "taxId": null,
+        "updatedAt": "2025-11-04T22:10:06.852670Z",
+        "updatedBy": "mock_user",
+        "workPhone": "+1234567893"
+      },
+      "status_code": 201
+    },
+    {
+      "success": true,
+      "status_code": 400,
+      "error": "primaryEmail must be a valid email format"
+    },
+    {
+      "success": true,
+      "status_code": 400,
+      "error": "cellPhone must be in E.164 format"
+    },
+    {
+      "success": true,
+      "status_code": 400,
+      "error": "At least one of the following is required: cellPhone, homePhone, otherPhone, primaryEmail or secondaryEmail"
+    },
+    {
+      "success": true,
+      "status_code": 400,
+      "error": "anniversary must be in MM-DD format"
+    },
+    {
+      "success": true,
+      "status_code": 400,
+      "error": "country must be a 2-character ISO country code"
+    },
+    {
+      "success": true,
+      "status_code": 400,
+      "error": "achRoutingNumber must be exactly 9 digits"
+    },
+    {
+      "success": true,
+      "status_code": 400,
+      "error": "firstName exceeds maximum length of 32 characters"
+    },
+    {
+      "success": true,
+      "data": {
+        "_links": {
+          "self": {
+            "href": "/api/crm/contacts/3"
+          }
+        },
+        "anniversary": null,
+        "birthdate": null,
+        "cellPhone": "+1234567890",
+        "country": null,
+        "createdAt": "2025-11-04T22:10:23.363573Z",
+        "createdBy": "mock_user",
+        "customValues": {},
+        "extendedAddress": null,
+        "fax": null,
+        "firstName": "Pedro",
+        "homePhone": null,
+        "id": 3,
+        "isBlacklist": false,
+        "isVip": false,
+        "lastName": "Martínez",
+        "locality": null,
+        "noIdentity": false,
+        "notes": null,
+        "otherPhone": null,
+        "postalCode": null,
+        "primaryEmail": "pedro.martinez@example.com",
+        "references": [],
+        "region": null,
+        "secondaryEmail": null,
+        "streetAddress": null,
+        "tags": [
+          {
+            "id": 1
+          }
+        ],
+        "taxId": null,
+        "updatedAt": "2025-11-04T22:10:23.363573Z",
+        "updatedBy": "mock_user",
+        "workPhone": null
+      },
+      "status_code": 201
+    },
+    {
+      "success": true,
+      "data": {
+        "_links": {
+          "self": {
+            "href": "/api/crm/contacts/4"
+          }
+        },
+        "anniversary": null,
+        "birthdate": null,
+        "cellPhone": null,
+        "country": null,
+        "createdAt": "2025-11-04T22:10:25.414654Z",
+        "createdBy": "mock_user",
+        "customValues": {},
+        "extendedAddress": null,
+        "fax": null,
+        "firstName": "Ana",
+        "homePhone": null,
+        "id": 4,
+        "isBlacklist": false,
+        "isVip": false,
+        "lastName": "López",
+        "locality": null,
+        "noIdentity": false,
+        "notes": null,
+        "otherPhone": null,
+        "postalCode": null,
+        "primaryEmail": "ana.lopez@example.com",
+        "references": [],
+        "region": null,
+        "secondaryEmail": null,
+        "streetAddress": null,
+        "tags": [],
+        "taxId": null,
+        "updatedAt": "2025-11-04T22:10:25.414654Z",
+        "updatedBy": "mock_user",
+        "workPhone": null
+      },
+      "status_code": 201
+    },
+    {
+      "success": true,
+      "data": {
+        "_links": {
+          "self": {
+            "href": "/api/crm/contacts/5"
+          }
+        },
+        "anniversary": null,
+        "birthdate": null,
+        "cellPhone": "+1234567890",
+        "country": null,
+        "createdAt": "2025-11-04T22:10:27.472258Z",
+        "createdBy": "mock_user",
+        "customValues": {},
+        "extendedAddress": null,
+        "fax": null,
+        "firstName": "Carlos",
+        "homePhone": null,
+        "id": 5,
+        "isBlacklist": false,
+        "isVip": false,
+        "lastName": "Rodríguez",
+        "locality": null,
+        "noIdentity": false,
+        "notes": null,
+        "otherPhone": null,
+        "postalCode": null,
+        "primaryEmail": null,
+        "references": [],
+        "region": null,
+        "secondaryEmail": null,
+        "streetAddress": null,
+        "tags": [],
+        "taxId": null,
+        "updatedAt": "2025-11-04T22:10:27.472258Z",
+        "updatedBy": "mock_user",
+        "workPhone": null
+      },
+      "status_code": 201
+    }
+  ]
+}

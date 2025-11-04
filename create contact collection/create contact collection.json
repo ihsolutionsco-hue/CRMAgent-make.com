@@ -1,0 +1,398 @@
+{
+    "name": "Create Contact (TrackHS CRM)",
+    "flow": [
+        {
+            "id": 1,
+            "module": "http:ActionSendData",
+            "version": 3,
+            "parameters": {
+                "handleErrors": true,
+                "useNewZLibDeCompress": true
+            },
+            "mapper": {
+                "ca": "",
+                "qs": [
+                    { "name": "firstName", "value": "{{ifempty(var.input.firstName; null)}}" },
+                    { "name": "lastName", "value": "{{ifempty(var.input.lastName; null)}}" },
+                    { "name": "primaryEmail", "value": "{{ifempty(var.input.primaryEmail; null)}}" },
+                    { "name": "secondaryEmail", "value": "{{ifempty(var.input.secondaryEmail; null)}}" },
+                    { "name": "proxyEmail", "value": "{{ifempty(var.input.proxyEmail; null)}}" },
+                    { "name": "homePhone", "value": "{{ifempty(var.input.homePhone; null)}}" },
+                    { "name": "cellPhone", "value": "{{ifempty(var.input.cellPhone; null)}}" },
+                    { "name": "workPhone", "value": "{{ifempty(var.input.workPhone; null)}}" },
+                    { "name": "otherPhone", "value": "{{ifempty(var.input.otherPhone; null)}}" },
+                    { "name": "fax", "value": "{{ifempty(var.input.fax; null)}}" },
+                    { "name": "streetAddress", "value": "{{ifempty(var.input.streetAddress; null)}}" },
+                    { "name": "country", "value": "{{ifempty(var.input.country; null)}}" },
+                    { "name": "postalCode", "value": "{{ifempty(var.input.postalCode; null)}}" },
+                    { "name": "region", "value": "{{ifempty(var.input.region; null)}}" },
+                    { "name": "locality", "value": "{{ifempty(var.input.locality; null)}}" },
+                    { "name": "extendedAddress", "value": "{{ifempty(var.input.extendedAddress; null)}}" },
+                    { "name": "notes", "value": "{{ifempty(var.input.notes; null)}}" },
+                    { "name": "anniversary", "value": "{{ifempty(var.input.anniversary; null)}}" },
+                    { "name": "birthdate", "value": "{{ifempty(var.input.birthdate; null)}}" },
+                    { "name": "isBlacklist", "value": "{{ifempty(var.input.isBlacklist; null)}}" },
+                    { "name": "taxId", "value": "{{ifempty(var.input.taxId; null)}}" },
+                    { "name": "references", "value": "{{ifempty(var.input.references; null)}}" },
+                    { "name": "tags", "value": "{{ifempty(var.input.tags; null)}}" },
+                    { "name": "customValues", "value": "{{ifempty(var.input.customValues; null)}}" }
+                ],
+                "url": "https://ihmvacations.trackhs.com/api/crm/contacts",
+                "gzip": true,
+                "method": "post",
+                "headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "timeout": "120",
+                "useMtls": false,
+                "authPass": "{{var.auth.pass}}",
+                "authUser": "{{var.auth.user}}",
+                "bodyType": "",
+                "contentType": "",
+                "serializeUrl": false,
+                "shareCookies": false,
+                "parseResponse": true,
+                "followRedirect": true,
+                "useQuerystring": false,
+                "followAllRedirects": false,
+                "rejectUnauthorized": true
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0,
+                    "name": "api:createContact"
+                },
+                "advanced": true,
+                "restore": {
+                    "expect": {
+                        "qs": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "method": {
+                            "mode": "chose",
+                            "label": "POST"
+                        },
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "bodyType": {
+                            "label": "Empty"
+                        },
+                        "contentType": {
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "handleErrors",
+                        "type": "boolean",
+                        "label": "Evaluate all states as errors (except for 2xx and 3xx )",
+                        "required": true
+                    },
+                    {
+                        "name": "useNewZLibDeCompress",
+                        "type": "hidden"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "serializeUrl",
+                        "type": "boolean",
+                        "label": "Serialize URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "get",
+                                "head",
+                                "post",
+                                "put",
+                                "patch",
+                                "delete",
+                                "options"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Headers"
+                    },
+                    {
+                        "name": "qs",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Query String"
+                    },
+                    {
+                        "name": "bodyType",
+                        "type": "select",
+                        "label": "Body type",
+                        "validate": {
+                            "enum": [
+                                "raw",
+                                "x_www_form_urlencoded",
+                                "multipart_form_data"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "parseResponse",
+                        "type": "boolean",
+                        "label": "Parse response",
+                        "required": true
+                    },
+                    {
+                        "name": "authUser",
+                        "type": "text",
+                        "label": "User name"
+                    },
+                    {
+                        "name": "authPass",
+                        "type": "password",
+                        "label": "Password"
+                    },
+                    {
+                        "name": "timeout",
+                        "type": "uinteger",
+                        "label": "Timeout",
+                        "validate": {
+                            "max": 300,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "shareCookies",
+                        "type": "boolean",
+                        "label": "Share cookies with other HTTP modules",
+                        "required": true
+                    },
+                    {
+                        "name": "ca",
+                        "type": "cert",
+                        "label": "Self-signed certificate"
+                    },
+                    {
+                        "name": "rejectUnauthorized",
+                        "type": "boolean",
+                        "label": "Reject connections that are using unverified (self-signed) certificates",
+                        "required": true
+                    },
+                    {
+                        "name": "followRedirect",
+                        "type": "boolean",
+                        "label": "Follow redirect",
+                        "required": true
+                    },
+                    {
+                        "name": "useQuerystring",
+                        "type": "boolean",
+                        "label": "Disable serialization of multiple same query string keys as arrays",
+                        "required": true
+                    },
+                    {
+                        "name": "gzip",
+                        "type": "boolean",
+                        "label": "Request compressed content",
+                        "required": true
+                    },
+                    {
+                        "name": "useMtls",
+                        "type": "boolean",
+                        "label": "Use Mutual TLS",
+                        "required": true
+                    },
+                    {
+                        "name": "contentType",
+                        "type": "select",
+                        "label": "Content type",
+                        "validate": {
+                            "enum": [
+                                "text/plain",
+                                "application/json",
+                                "application/xml",
+                                "text/xml",
+                                "text/html",
+                                "custom"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "data",
+                        "type": "buffer",
+                        "label": "Request content"
+                    },
+                    {
+                        "name": "followAllRedirects",
+                        "type": "boolean",
+                        "label": "Follow all redirect",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "scenario-service:ReturnData",
+            "version": 2,
+            "mapper": {
+                "confirmationId": "{{1.data.id}}",
+                "success": true,
+                "message": "Contacto creado exitosamente. El contacto ya puede realizar reservas.",
+                "contactId": "{{1.data.id}}",
+                "contactName": "{{ifempty(1.data.firstName; \"\") + \" \" + ifempty(1.data.lastName; \"\")}}",
+                "primaryEmail": "{{1.data.primaryEmail}}",
+                "primaryPhone": "{{ifempty(1.data.cellPhone; ifempty(1.data.homePhone; ifempty(1.data.otherPhone; \"\")))}}",
+                "secondaryEmail": "{{ifempty(1.data.secondaryEmail; \"\")}}",
+                "createdAt": "{{1.data.createdAt}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {},
+                "expect": [
+                    { "name": "confirmationId", "type": "text", "label": "" },
+                    { "name": "success", "type": "text", "label": "" },
+                    { "name": "message", "type": "text", "label": "" },
+                    { "name": "contactId", "type": "text", "label": "" },
+                    { "name": "contactName", "type": "text", "label": "" },
+                    { "name": "primaryEmail", "type": "text", "label": "" },
+                    { "name": "primaryPhone", "type": "text", "label": "" },
+                    { "name": "secondaryEmail", "type": "text", "label": "" },
+                    { "name": "createdAt", "type": "text", "label": "" }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": [
+            "=== CONFIGURACIÓN DE AUTENTICACIÓN ===",
+            "IMPORTANTE: Configurar autenticación Basic Auth en el módulo HTTP",
+            "El módulo HTTP debe tener configurado:",
+            "  - Username: Tu usuario de TrackHS (ej: aba99777416466b6bdc1a25223192ccb)",
+            "  - Password: Tu contraseña de TrackHS",
+            "Si recibes error 403 Forbidden, verifica que las credenciales estén correctamente configuradas",
+            "",
+            "=== CAMPOS REQUERIDOS ===",
+            "Al menos uno de los siguientes campos es requerido:",
+            "  - cellPhone, homePhone, otherPhone, primaryEmail o secondaryEmail",
+            "",
+            "=== FORMATOS IMPORTANTES ===",
+            "- Teléfonos: Usar formato E.164. Números no compatibles se procesarán en locale US",
+            "- Fechas (anniversary, birthdate): Formato MM-DD (ej: 01-15 para 15 de enero)",
+            "- Country: Código ISO de 2 caracteres (ej: US)",
+            "- Email: Debe ser único entre primary y secondary emails de todos los contactos",
+            "- Teléfonos: Deben ser únicos entre home, cell y other phones de todos los contactos",
+            "",
+            "=== MÉTODO DE ENVÍO ===",
+            "Los datos se envían como parámetros de query string (querystring) en lugar de body JSON."
+        ]
+    },
+    "io": {
+        "input_spec": [
+            { "name": "firstName", "label": "First Name", "help": "First Name (máximo 32 caracteres). Requerido según documentación pero puede ser opcional si se proporciona otro identificador.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "lastName", "label": "Last Name", "help": "Last Name (máximo 32 caracteres). Requerido según documentación pero puede ser opcional si se proporciona otro identificador.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "primaryEmail", "label": "Primary Email", "help": "Email primario asignado al contacto. Debe ser único entre primary y secondary emails de todos los contactos (máximo 100 caracteres, formato email). Al menos uno de: cellPhone, homePhone, otherPhone, primaryEmail o secondaryEmail es requerido.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "secondaryEmail", "label": "Secondary Email", "help": "Email secundario asignado al contacto. Debe ser único entre primary y secondary emails de todos los contactos (máximo 100 caracteres, formato email).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "proxyEmail", "label": "Proxy Email", "help": "Email proxy asignado al contacto. No se usará aún, pero será en el futuro. Debe ser único entre primary y secondary emails de todos los contactos (máximo 100 caracteres, formato email).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "homePhone", "label": "Home Phone", "help": "Teléfono de casa. Usar formato E.164. Números no compatibles se procesarán en locale US. Debe ser único entre home, cell y other phones de todos los contactos (máximo 16 caracteres). Al menos uno de: cellPhone, homePhone, otherPhone, primaryEmail o secondaryEmail es requerido.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "cellPhone", "label": "Cell Phone", "help": "Teléfono celular. Usar formato E.164. Números no compatibles se procesarán en locale US. Debe ser único entre home, cell y other phones de todos los contactos (máximo 16 caracteres). Al menos uno de: cellPhone, homePhone, otherPhone, primaryEmail o secondaryEmail es requerido.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "workPhone", "label": "Work Phone", "help": "Teléfono de trabajo. Usar formato E.164. Números no compatibles se procesarán en locale US (máximo 16 caracteres).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "otherPhone", "label": "Other Phone", "help": "Otro teléfono. Usar formato E.164. Números no compatibles se procesarán en locale US. Debe ser único entre home, cell y other phones de todos los contactos (máximo 16 caracteres). Al menos uno de: cellPhone, homePhone, otherPhone, primaryEmail o secondaryEmail es requerido.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "fax", "label": "Fax", "help": "Número de fax. Usar formato E.164. Números no compatibles se procesarán en locale US (máximo 16 caracteres).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "streetAddress", "label": "Street Address", "help": "Dirección de calle (máximo 255 caracteres).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "country", "label": "Country", "help": "Código ISO de 2 caracteres del país (ej: US). Longitud exacta: 2 caracteres.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "postalCode", "label": "Postal Code", "help": "Código postal (máximo 16 caracteres).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "region", "label": "Region", "help": "Región o estado.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "locality", "label": "Locality", "help": "Localidad o ciudad.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "extendedAddress", "label": "Extended Address", "help": "Dirección extendida (ej: apartamento, suite) (máximo 255 caracteres).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "notes", "label": "Notes", "help": "Notas sobre el contacto (máximo 4000 caracteres).", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "anniversary", "label": "Anniversary", "help": "Fecha de aniversario en formato MM-DD (ej: 01-15 para 15 de enero). Patrón: ^(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|30|31)$", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "birthdate", "label": "Birthdate", "help": "Fecha de nacimiento en formato MM-DD (ej: 01-15 para 15 de enero). Patrón: ^(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|30|31)$", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "isBlacklist", "label": "Is Blacklist", "help": "Indica si el contacto está en la lista negra (blacklist).", "type": "boolean", "default": false, "required": false },
+            { "name": "taxId", "label": "Tax ID", "help": "ID de impuestos 1099 (Restricted) (máximo 16 caracteres).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "references", "label": "References", "help": "Array de referencias. Cada referencia puede contener: reference (string), salesLinkId (integer, nullable), channelId (integer, nullable). Formato: JSON array string.", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "tags", "label": "Tags", "help": "Array de tags. Cada tag debe contener: id (number). Formato: JSON array string.", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "customValues", "label": "Custom Values", "help": "Objeto con valores personalizados. Las claves son determinadas por el cliente. Los valores pueden ser string o array dependiendo del tipo. Formato: JSON object string.", "type": "text", "default": "", "required": false, "multiline": true }
+        ],
+        "output_spec": [
+            { "name": "confirmationId", "label": "ID de Confirmación", "help": "ID único de confirmación del contacto creado. Este es el número de identificación que confirma que el contacto fue creado exitosamente en el sistema.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "success", "label": "Éxito", "help": "Indica si la operación fue exitosa (true/false)", "type": "boolean", "default": true, "required": false },
+            { "name": "message", "label": "Mensaje de Confirmación", "help": "Mensaje que confirma que el contacto fue creado exitosamente y que ya puede realizar reservas.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "contactId", "label": "ID del Contacto", "help": "ID del contacto en el sistema (mismo que confirmationId). Puede usarse para referencias futuras o consultas.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "contactName", "label": "Nombre del Contacto", "help": "Nombre completo del contacto creado (nombre y apellido combinados).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "primaryEmail", "label": "Email Primario", "help": "Email primario del contacto creado. Útil para confirmación o comunicación con el contacto.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "primaryPhone", "label": "Teléfono Principal", "help": "Teléfono principal del contacto (celular si está disponible, sino teléfono de casa, sino otro teléfono).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "secondaryEmail", "label": "Email Secundario", "help": "Email secundario del contacto si fue proporcionado.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "createdAt", "label": "Fecha de Creación", "help": "Fecha y hora en que se creó el contacto (formato ISO 8601).", "type": "text", "default": "", "required": false, "multiline": false }
+        ]
+    }
+}
+
