@@ -355,7 +355,7 @@ results.append(make_request(
 # Test 22: Combinación completa de parámetros
 results.append(make_request(
     params={
-        'page': 0,
+        'page': 1,
         'size': 5,
         'sortColumn': 'name',
         'sortDirection': 'asc',
