@@ -1,0 +1,281 @@
+{
+    "name": "search units (scroll + pagination)",
+    "flow": [
+      {
+        "id": 1,
+        "module": "http:ActionSendData",
+        "version": 3,
+        "parameters": {
+          "handleErrors": true,
+          "useNewZLibDeCompress": true
+        },
+        "mapper": {
+          "url": "https://ihmvacations.trackhs.com/api/pms/units",
+          "serializeUrl": false,
+          "method": "get",
+          "headers": [
+            { "name": "Accept", "value": "application/json" }
+          ],
+          "qs": [
+            { "name": "search", "value": "{{ifempty(var.input.search; null)}}" },
+            { "name": "term", "value": "{{ifempty(var.input.term; null)}}" },
+            { "name": "unitCode", "value": "{{ifempty(var.input.unitCode; null)}}" },
+            { "name": "shortName", "value": "{{ifempty(var.input.shortName; null)}}" },
+            { "name": "nodeId", "value": "{{ifempty(var.input.nodeId; null)}}" },
+            { "name": "amenityId", "value": "{{ifempty(var.input.amenityId; null)}}" },
+            { "name": "unitTypeId", "value": "{{ifempty(var.input.unitTypeId; null)}}" },
+            { "name": "id", "value": "{{ifempty(var.input.id; null)}}" },
+            { "name": "calendarId", "value": "{{ifempty(var.input.calendarId; null)}}" },
+            { "name": "roleId", "value": "{{ifempty(var.input.roleId; null)}}" },
+            { "name": "contentUpdatedSince", "value": "{{ifempty(var.input.contentUpdatedSince; null)}}" },
+            { "name": "arrival", "value": "{{ifempty(var.input.arrival; null)}}" },
+            { "name": "departure", "value": "{{ifempty(var.input.departure; null)}}" },
+            { "name": "minBedrooms", "value": "{{ifempty(var.input.minBedrooms; null)}}" },
+            { "name": "maxBedrooms", "value": "{{ifempty(var.input.maxBedrooms; null)}}" },
+            { "name": "bedrooms", "value": "{{ifempty(var.input.bedrooms; null)}}" },
+            { "name": "minBathrooms", "value": "{{ifempty(var.input.minBathrooms; null)}}" },
+            { "name": "maxBathrooms", "value": "{{ifempty(var.input.maxBathrooms; null)}}" },
+            { "name": "bathrooms", "value": "{{ifempty(var.input.bathrooms; null)}}" },
+            { "name": "petsFriendly", "value": "{{ifempty(var.input.petsFriendly; null)}}" },
+            { "name": "allowUnitRates", "value": "{{ifempty(var.input.allowUnitRates; null)}}" },
+            { "name": "computed", "value": "{{ifempty(var.input.computed; null)}}" },
+            { "name": "inherited", "value": "{{ifempty(var.input.inherited; null)}}" },
+            { "name": "limited", "value": "{{ifempty(var.input.limited; null)}}" },
+            { "name": "isBookable", "value": "{{ifempty(var.input.isBookable; null)}}" },
+            { "name": "includeDescriptions", "value": "{{ifempty(var.input.includeDescriptions; null)}}" },
+            { "name": "isActive", "value": "{{ifempty(var.input.isActive; null)}}" },
+            { "name": "unitStatus", "value": "{{ifempty(var.input.unitStatus; null)}}" },
+            {
+              "name": "page",
+              "value": "{{if( lower(ifempty(var.input.mode; \"page\")) = \"page\"; ifempty(var.input.page; 1); null)}}"
+            },
+            {
+              "name": "size",
+              "value": "{{if( lower(ifempty(var.input.mode; \"page\")) = \"page\"; ifempty(var.input.size; 5); null)}}"
+            },
+            {
+              "name": "scroll",
+              "value": "{{if( lower(ifempty(var.input.mode; \"page\")) = \"scroll\"; ifempty(toString(var.input.scroll); \"1\"); null)}}"
+            },
+            {
+              "name": "sortColumn",
+              "value": "{{if( lower(ifempty(var.input.mode; \"page\")) = \"page\"; ifempty(var.input.sortColumn; null); null)}}"
+            },
+            {
+              "name": "sortDirection",
+              "value": "{{if( lower(ifempty(var.input.mode; \"page\")) = \"page\"; ifempty(var.input.sortDirection; null); null)}}"
+            }
+          ],
+          "bodyType": "",
+          "parseResponse": true,
+  
+          "authUser": "{{var.auth.user}}",
+          "authPass": "{{var.auth.pass}}",
+  
+          "timeout": "",
+          "shareCookies": false,
+          "ca": "",
+          "rejectUnauthorized": true,
+          "followRedirect": true,
+          "useQuerystring": false,
+          "gzip": true,
+          "useMtls": false,
+          "followAllRedirects": false
+        },
+        "metadata": {
+          "designer": { "x": 0, "y": 0, "name": "api:searchUnits" },
+          "restore": {
+            "expect": {
+              "method": { "mode": "chose", "label": "GET" },
+              "headers": { "mode": "chose", "items": [ null ] },
+              "qs": { "mode": "chose", "items": [ null ] },
+              "bodyType": { "label": "Empty" }
+            }
+          },
+          "parameters": [
+            { "name": "handleErrors", "type": "boolean", "label": "Evaluate all states as errors (except for 2xx and 3xx )", "required": true },
+            { "name": "useNewZLibDeCompress", "type": "hidden" }
+          ],
+          "expect": [
+            { "name": "url", "type": "url", "label": "URL", "required": true },
+            { "name": "serializeUrl", "type": "boolean", "label": "Serialize URL", "required": true },
+            {
+              "name": "method",
+              "type": "select",
+              "label": "Method",
+              "required": true,
+              "validate": { "enum": [ "get", "head", "post", "put", "patch", "delete", "options" ] }
+            },
+            {
+              "name": "headers",
+              "type": "array",
+              "label": "Headers",
+              "spec": [
+                { "name": "name", "label": "Name", "type": "text", "required": true },
+                { "name": "value", "label": "Value", "type": "text" }
+              ]
+            },
+            {
+              "name": "qs",
+              "type": "array",
+              "label": "Query String",
+              "spec": [
+                { "name": "name", "label": "Name", "type": "text", "required": true },
+                { "name": "value", "label": "Value", "type": "text" }
+              ]
+            },
+            { "name": "bodyType", "type": "select", "label": "Body type", "validate": { "enum": [ "raw", "x_www_form_urlencoded", "multipart_form_data" ] } },
+            { "name": "parseResponse", "type": "boolean", "label": "Parse response", "required": true },
+            { "name": "authUser", "type": "text", "label": "User name" },
+            { "name": "authPass", "type": "password", "label": "Password" },
+            { "name": "timeout", "type": "uinteger", "label": "Timeout", "validate": { "max": 300, "min": 1 } },
+            { "name": "shareCookies", "type": "boolean", "label": "Share cookies with other HTTP modules", "required": true },
+            { "name": "ca", "type": "cert", "label": "Self-signed certificate" },
+            { "name": "rejectUnauthorized", "type": "boolean", "label": "Reject connections that are using unverified (self-signed) certificates", "required": true },
+            { "name": "followRedirect", "type": "boolean", "label": "Follow redirect", "required": true },
+            { "name": "useQuerystring", "type": "boolean", "label": "Disable serialization of multiple same query string keys as arrays", "required": true },
+            { "name": "gzip", "type": "boolean", "label": "Request compressed content", "required": true },
+            { "name": "useMtls", "type": "boolean", "label": "Use Mutual TLS", "required": true },
+            { "name": "followAllRedirects", "type": "boolean", "label": "Follow all redirect", "required": true }
+          ],
+          "advanced": true
+        }
+      },
+      {
+        "id": 2,
+        "module": "scenario-service:ReturnData",
+        "version": 2,
+        "parameters": {},
+        "mapper": {
+          "units": "{{1.data.`_embedded`.units}}",
+          "page": "{{1.data.page}}",
+          "page_count": "{{1.data.page_count}}",
+          "page_size": "{{1.data.page_size}}",
+          "total_items": "{{1.data.total_items}}",
+          "next_href": "{{1.data.`_links`.next.href}}"
+        },
+        "metadata": {
+          "designer": { "x": 300, "y": 0 },
+          "restore": {},
+          "expect": [
+            { "name": "units", "type": "text", "label": "" },
+            { "name": "page", "type": "text", "label": "" },
+            { "name": "page_count", "type": "text", "label": "" },
+            { "name": "page_size", "type": "text", "label": "" },
+            { "name": "total_items", "type": "text", "label": "" },
+            { "name": "next_href", "type": "text", "label": "" }
+          ]
+        }
+      }
+    ],
+    "metadata": {
+      "instant": false,
+      "version": 1,
+      "scenario": {
+        "roundtrips": 1,
+        "maxErrors": 3,
+        "autoCommit": true,
+        "autoCommitTriggerLast": true,
+        "sequential": false,
+        "slots": null,
+        "confidential": false,
+        "dataloss": false,
+        "dlq": false,
+        "freshVariables": false
+      },
+      "designer": { "orphans": [] },
+      "zone": "us2.make.com",
+      "notes": [
+        "=== CONFIGURACIÓN DE AUTENTICACIÓN ===",
+        "IMPORTANTE: Configurar autenticación Basic Auth en el módulo HTTP",
+        "El módulo HTTP debe tener configurado:",
+        "  - Username: Tu usuario de TrackHS (ej: aba99777416466b6bdc1a25223192ccb)",
+        "  - Password: Tu contraseña de TrackHS",
+        "Si recibes error 403 Forbidden, verifica que las credenciales estén correctamente configuradas",
+        "",
+        "=== LÍMITES DE TAMAÑO ===",
+        "Make.com tiene límite de 200,000 tokens por respuesta",
+        "  - Usar size=1-5 para evitar exceder el límite (default: 5)",
+        "  - Tamaños grandes (10+) pueden causar error 400: \"This model's maximum context length is 200000 tokens\"",
+        "  - Para grandes volúmenes, usar paginación (múltiples llamadas con page incrementando)",
+        "",
+        "=== FILTROS BOOLEANOS ===",
+        "Los valores booleanos en la API de units aceptan 1 o 0 (no true/false):",
+        "  - petsFriendly: 1 (sí) o 0 (no)",
+        "  - allowUnitRates: 1 (sí) o 0 (no)",
+        "  - computed: 1 (sí) o 0 (no)",
+        "  - inherited: 1 (sí) o 0 (no)",
+        "  - limited: 1 (sí) o 0 (no)",
+        "  - isBookable: 1 (sí) o 0 (no)",
+        "  - includeDescriptions: 1 (sí) o 0 (no)",
+        "  - isActive: 1 (activo), 0 (inactivo), o null (todos)",
+        "",
+        "=== FILTROS DE FECHA ===",
+        "arrival y departure:",
+        "  - Usan formato date (YYYY-MM-DD), no date-time",
+        "  - Ejemplo válido: arrival=2025-10-27, departure=2025-10-31",
+        "  - Devuelven unidades disponibles entre estas fechas",
+        "",
+        "contentUpdatedSince:",
+        "  - Usa formato date-time (ISO-8601)",
+        "  - Ejemplo: contentUpdatedSince=2025-01-01T00:00:00Z",
+        "  - Devuelve unidades con cambios de contenido desde esta fecha",
+        "",
+        "=== ORDENAMIENTO ===",
+        "sortColumn valores permitidos: id, name, nodeName, unitTypeName",
+        "sortDirection: asc (ascendente) o desc (descendente)"
+      ]
+    },
+    "io": {
+      "input_spec": [
+        { "name": "mode", "label": "Modo de Paginación", "help": "page | scroll", "type": "text", "default": "page", "required": false, "multiline": false },
+        { "name": "page", "label": "Número de Página", "help": "Página (1-based, mínimo 1). page=0 devuelve 400 Bad Request. Cuando mode=page", "type": "number", "default": 1, "required": false },
+        { "name": "size", "label": "Tamaño de Página", "help": "Tamaño de página cuando mode=page. Recomendado: 1-5 (respuestas grandes pueden exceder límite de tokens). Máximo API: 100. Default: 5", "type": "number", "default": 5, "required": false },
+        { "name": "scroll", "label": "Token de Scroll", "help": "Para scroll: \"1\" en primera llamada, luego el token/índice devuelto", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "sortColumn", "label": "Columna de Ordenamiento", "help": "Ordenar por columna (solo page mode). Valores: id, name, nodeName, unitTypeName", "type": "text", "default": "name", "required": false, "multiline": false },
+        { "name": "sortDirection", "label": "Dirección de Ordenamiento", "help": "Dirección de ordenamiento (solo page mode). asc | desc. Default: asc", "type": "text", "default": "asc", "required": false, "multiline": false },
+  
+        { "name": "search", "label": "Búsqueda", "help": "Búsqueda por subcadena en nombre o descripciones", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "term", "label": "Término de Búsqueda", "help": "Búsqueda por subcadena en término", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "unitCode", "label": "Código de Unidad", "help": "Búsqueda por código de unidad. Coincidencia exacta o agregar % para wildcard", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "shortName", "label": "Nombre Corto", "help": "Búsqueda por nombre corto. Coincidencia exacta o agregar % para wildcard", "type": "text", "default": "", "required": false, "multiline": false },
+  
+        { "name": "nodeId", "label": "Node ID(s)", "help": "nodeId(s). CSV para múltiples valores. Devuelve unidades descendientes del nodo específico", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "amenityId", "label": "Amenity ID(s)", "help": "amenityId(s). CSV para múltiples valores. Devuelve unidades con estos amenity IDs", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "unitTypeId", "label": "Unit Type ID(s)", "help": "unitTypeId(s). CSV para múltiples valores. Devuelve unidades del tipo específico", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "id", "label": "Unit ID(s)", "help": "Unit ID(s). Array de IDs de unidades específicas", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "calendarId", "label": "Calendar ID", "help": "Devuelve unidades del tipo que coinciden con este calendar group id", "type": "number", "default": null, "required": false },
+        { "name": "roleId", "label": "Role ID", "help": "Devuelve unidades por roleId específico", "type": "number", "default": null, "required": false },
+  
+        { "name": "contentUpdatedSince", "label": "Actualizado Desde (Contenido)", "help": "Fecha en formato ISO 8601. Devuelve unidades con cambios de contenido desde esta fecha", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "arrival", "label": "Fecha de Llegada", "help": "Fecha en formato YYYY-MM-DD. Devuelve unidades disponibles entre arrival y departure", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "departure", "label": "Fecha de Salida", "help": "Fecha en formato YYYY-MM-DD. Devuelve unidades disponibles entre arrival y departure", "type": "text", "default": "", "required": false, "multiline": false },
+  
+        { "name": "minBedrooms", "label": "Mínimo de Dormitorios", "help": "Devuelve unidades con este número o más de dormitorios", "type": "number", "default": null, "required": false },
+        { "name": "maxBedrooms", "label": "Máximo de Dormitorios", "help": "Devuelve unidades con este número o menos de dormitorios", "type": "number", "default": null, "required": false },
+        { "name": "bedrooms", "label": "Dormitorios Exactos", "help": "Devuelve unidades con este número exacto de dormitorios", "type": "number", "default": null, "required": false },
+        { "name": "minBathrooms", "label": "Mínimo de Baños", "help": "Devuelve unidades con este número o más de baños", "type": "number", "default": null, "required": false },
+        { "name": "maxBathrooms", "label": "Máximo de Baños", "help": "Devuelve unidades con este número o menos de baños", "type": "number", "default": null, "required": false },
+        { "name": "bathrooms", "label": "Baños Exactos", "help": "Devuelve unidades con este número exacto de baños", "type": "number", "default": null, "required": false },
+  
+        { "name": "petsFriendly", "label": "Permite Mascotas", "help": "Devuelve unidades que permiten mascotas. Valores: 1 (sí) o 0 (no)", "type": "number", "default": null, "required": false },
+        { "name": "allowUnitRates", "label": "Permite Tarifas de Unidad", "help": "Devuelve unidades cuyo tipo permite tarifas de unidad. Valores: 1 (sí) o 0 (no)", "type": "number", "default": null, "required": false },
+        { "name": "computed", "label": "Valores Computados", "help": "Devuelve atributos adicionales computados basados en atributos heredados. Valores: 1 (sí) o 0 (no)", "type": "number", "default": null, "required": false },
+        { "name": "inherited", "label": "Atributos Heredados", "help": "Devuelve atributos adicionales heredados. Valores: 1 (sí) o 0 (no)", "type": "number", "default": null, "required": false },
+        { "name": "limited", "label": "Atributos Limitados", "help": "Devuelve atributos muy limitados (id, name, longitude, latitude, isActive). Valores: 1 (sí) o 0 (no)", "type": "number", "default": null, "required": false },
+        { "name": "isBookable", "label": "Reservable", "help": "Devuelve unidades reservables. Valores: 1 (sí) o 0 (no)", "type": "number", "default": null, "required": false },
+        { "name": "includeDescriptions", "label": "Incluir Descripciones", "help": "Devuelve descripciones de unidades, pueden ser heredadas del nodo si se establece en inherited. Valores: 1 (sí) o 0 (no). Si se usan channel keys, las descripciones siempre se devuelven", "type": "number", "default": null, "required": false },
+        { "name": "isActive", "label": "Activo", "help": "Devuelve unidades activas (1), inactivas (0), o todas (null)", "type": "number", "default": null, "required": false },
+        { "name": "unitStatus", "label": "Estado de Unidad", "help": "Filtrar por estado de unidad. Valores: clean, dirty, occupied, inspection, inprogress", "type": "text", "default": "", "required": false, "multiline": false }
+      ],
+      "output_spec": [
+        { "name": "units", "label": "Unidades", "help": "Array de unidades (contiene objetos completos con información detallada)", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "page", "label": "Página Actual", "help": "Página actual", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "page_count", "label": "Total de Páginas", "help": "Cantidad de páginas", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "page_size", "label": "Tamaño de Página", "help": "Tamaño de página", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "total_items", "label": "Total de Items", "help": "Total de items", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "next_href", "label": "Siguiente Enlace", "help": "Siguiente enlace (para scroll/paginación)", "type": "text", "default": "", "required": false, "multiline": false }
+      ]
+    }
+  }
+
