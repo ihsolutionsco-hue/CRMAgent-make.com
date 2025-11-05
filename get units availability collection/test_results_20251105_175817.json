@@ -1,0 +1,204 @@
+{
+  "timestamp": "2025-11-05T17:58:17.095433",
+  "endpoint": "https://ihmvacations.trackhs.com/api/pms/units/search",
+  "total_tests": 15,
+  "successful_tests": 15,
+  "expected_errors": 4,
+  "failed_tests": 0,
+  "optional_params_working": {
+    "useSoftDates": true,
+    "exclude": true,
+    "unitTypeId": true,
+    "nodeId": true
+  },
+  "results": [
+    {
+      "success": true,
+      "status_code": null,
+      "expected_status": null,
+      "expected_error": false,
+      "count": 2,
+      "results_count": 2,
+      "params": {
+        "arrival": "2025-11-12",
+        "departure": "2025-12-05"
+      }
+    },
+    {
+      "success": true,
+      "status_code": 422,
+      "expected_status": null,
+      "expected_error": true,
+      "count": null,
+      "results_count": 0,
+      "params": {},
+      "error": "{'type': 'http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html', 'title': 'Unprocessable Entity', 'status': 422, 'detail': 'Arrival and departure dates are required in ISO 8601 format (YYYY-MM-DD)'}"
+    },
+    {
+      "success": true,
+      "status_code": 422,
+      "expected_status": null,
+      "expected_error": true,
+      "count": null,
+      "results_count": 0,
+      "params": {
+        "arrival": "2025-11-12"
+      },
+      "error": "{'type': 'http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html', 'title': 'Unprocessable Entity', 'status': 422, 'detail': 'Arrival and departure dates are required in ISO 8601 format (YYYY-MM-DD)'}"
+    },
+    {
+      "success": true,
+      "status_code": 422,
+      "expected_status": null,
+      "expected_error": true,
+      "count": null,
+      "results_count": 0,
+      "params": {
+        "departure": "2025-12-05"
+      },
+      "error": "{'type': 'http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html', 'title': 'Unprocessable Entity', 'status': 422, 'detail': 'Arrival and departure dates are required in ISO 8601 format (YYYY-MM-DD)'}"
+    },
+    {
+      "success": true,
+      "status_code": 422,
+      "expected_status": null,
+      "expected_error": true,
+      "count": null,
+      "results_count": 0,
+      "params": {
+        "arrival": "2025/10/27",
+        "departure": "2025-12-05"
+      },
+      "error": "{'type': 'http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html', 'title': 'Unprocessable Entity', 'status': 422, 'detail': 'Arrival and departure dates are required in ISO 8601 format (YYYY-MM-DD)'}"
+    },
+    {
+      "success": true,
+      "status_code": null,
+      "expected_status": null,
+      "expected_error": false,
+      "count": 2,
+      "results_count": 2,
+      "params": {
+        "arrival": "2025-11-12",
+        "departure": "2025-12-05",
+        "useSoftDates": 0
+      }
+    },
+    {
+      "success": true,
+      "status_code": null,
+      "expected_status": null,
+      "expected_error": false,
+      "count": 2,
+      "results_count": 2,
+      "params": {
+        "arrival": "2025-11-12",
+        "departure": "2025-12-05",
+        "useSoftDates": 1
+      }
+    },
+    {
+      "success": true,
+      "status_code": null,
+      "expected_status": null,
+      "expected_error": false,
+      "count": 2,
+      "results_count": 2,
+      "params": {
+        "arrival": "2025-11-12",
+        "departure": "2025-12-05",
+        "exclude": "123,456,789"
+      }
+    },
+    {
+      "success": true,
+      "status_code": null,
+      "expected_status": null,
+      "expected_error": false,
+      "count": 2,
+      "results_count": 2,
+      "params": {
+        "arrival": "2025-11-12",
+        "departure": "2025-12-05",
+        "unitTypeId": "3"
+      }
+    },
+    {
+      "success": true,
+      "status_code": null,
+      "expected_status": null,
+      "expected_error": false,
+      "count": 2,
+      "results_count": 2,
+      "params": {
+        "arrival": "2025-11-12",
+        "departure": "2025-12-05",
+        "nodeId": "2"
+      }
+    },
+    {
+      "success": true,
+      "status_code": null,
+      "expected_status": null,
+      "expected_error": false,
+      "count": 2,
+      "results_count": 2,
+      "params": {
+        "arrival": "2025-11-12",
+        "departure": "2025-12-05",
+        "useSoftDates": "1",
+        "exclude": "123,456",
+        "unitTypeId": "2",
+        "nodeId": "1"
+      }
+    },
+    {
+      "success": true,
+      "status_code": null,
+      "expected_status": null,
+      "expected_error": false,
+      "count": 44,
+      "results_count": 44,
+      "params": {
+        "arrival": "2025-11-06",
+        "departure": "2025-11-07"
+      }
+    },
+    {
+      "success": true,
+      "status_code": null,
+      "expected_status": null,
+      "expected_error": false,
+      "count": 14,
+      "results_count": 14,
+      "params": {
+        "arrival": "2025-10-06",
+        "departure": "2025-10-16"
+      }
+    },
+    {
+      "success": true,
+      "status_code": null,
+      "expected_status": null,
+      "expected_error": false,
+      "count": 95,
+      "results_count": 95,
+      "params": {
+        "arrival": "2026-05-04",
+        "departure": "2026-05-14"
+      }
+    },
+    {
+      "success": true,
+      "status_code": null,
+      "expected_status": null,
+      "expected_error": false,
+      "count": 2,
+      "results_count": 2,
+      "params": {
+        "arrival": "2025-11-12",
+        "departure": "2025-12-05"
+      }
+    }
+  ]
+}
