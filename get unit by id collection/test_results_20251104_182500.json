@@ -1,0 +1,6149 @@
+{
+  "timestamp": "2025-11-04T18:25:00.353402",
+  "endpoint": "https://ihmvacations.trackhs.com/api/pms/units",
+  "total_tests": 12,
+  "successful_tests": 11,
+  "failed_tests": 0,
+  "expected_failures": 1,
+  "sample_unit_ids": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "results": [
+    {
+      "success": true,
+      "data": {
+        "id": 1,
+        "isLimited": false,
+        "isActive": false,
+        "cleanStatusId": 1,
+        "coverImage": null,
+        "roles": [
+          {
+            "roleId": 2,
+            "userId": 10
+          }
+        ],
+        "composites": [],
+        "bedTypes": [],
+        "custom": {
+          "pms_units_wifi_name": null,
+          "pms_units_wifi_password": null,
+          "pms_units_source_unit_id": null
+        },
+        "createdAt": "2022-09-08T13:17:09+00:00",
+        "createdBy": "bwurster@tnsinc.com",
+        "updatedAt": "2024-10-24T17:07:18+00:00",
+        "updatedBy": "process:availability:sync",
+        "name": "test",
+        "shortName": "",
+        "unitCode": "t1",
+        "maxPets": 2,
+        "minimumAgeLimit": 21,
+        "phone": null,
+        "websiteUrl": null,
+        "streetAddress": null,
+        "extendedAddress": null,
+        "locality": null,
+        "region": null,
+        "postal": null,
+        "country": "US",
+        "maxDiscount": null,
+        "area": null,
+        "floors": null,
+        "maxOccupancy": null,
+        "bedrooms": 1,
+        "fullBathrooms": 1,
+        "threeQuarterBathrooms": null,
+        "halfBathrooms": null,
+        "timezone": "America/New_York",
+        "longitude": null,
+        "latitude": null,
+        "maintenanceMessage": null,
+        "housekeepingMessage": null,
+        "housekeepingNotes": null,
+        "taxId": null,
+        "systemId": null,
+        "systemAppend": null,
+        "housekeepingStop": null,
+        "maintenanceStop": null,
+        "availabilityOrder": 999999999,
+        "securityDeposit": null,
+        "petFriendly": true,
+        "smokingAllowed": false,
+        "childrenAllowed": true,
+        "eventsAllowed": false,
+        "isAccessible": false,
+        "hasEarlyCheckin": true,
+        "hasLateCheckout": true,
+        "quickCheckin": true,
+        "quickCheckout": true,
+        "useRoomConfiguration": false,
+        "useBedTypes": true,
+        "isBookable": false,
+        "folioException": false,
+        "checkinTime": "16:00",
+        "checkoutTime": "10:00",
+        "earlyCheckinTime": "12:00",
+        "lateCheckoutTime": "16:30",
+        "nodeId": 7,
+        "typeId": 1,
+        "lodgingTypeId": null,
+        "taxDistrictId": null,
+        "localOfficeId": 1,
+        "housekeepingZoneId": null,
+        "maintenanceZoneId": 7,
+        "travelInsuranceProductId": null,
+        "cancellationPoliciesIds": [
+          82
+        ],
+        "guaranteePoliciesIds": [
+          4
+        ],
+        "documentsIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "gatewaysIds": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "insuranceProductsIds": [],
+        "amenitiesIds": [
+          77,
+          63,
+          72,
+          84,
+          101,
+          115,
+          118,
+          138,
+          140,
+          174,
+          180,
+          198,
+          220,
+          221,
+          229,
+          1,
+          9,
+          13,
+          18,
+          19,
+          20,
+          26,
+          38,
+          40,
+          41,
+          42,
+          43,
+          44,
+          47,
+          51,
+          55,
+          57,
+          61,
+          62,
+          66,
+          78,
+          80,
+          86,
+          87,
+          90,
+          91,
+          95,
+          96,
+          98,
+          102,
+          103,
+          105,
+          108,
+          109,
+          117,
+          119,
+          120,
+          123,
+          127,
+          131,
+          144,
+          145,
+          147,
+          152,
+          158,
+          165,
+          166,
+          182,
+          188,
+          225,
+          227,
+          228,
+          230,
+          232,
+          239,
+          240,
+          244,
+          247,
+          252,
+          253,
+          255,
+          256
+        ],
+        "_embedded": {
+          "node": {
+            "id": 7,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "custom": [],
+            "createdAt": "2022-09-08T13:07:30+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-06-17T15:35:17+00:00",
+            "updatedBy": "2-richardmedina0",
+            "name": "Reunion",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "housekeepingNotes": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "parentId": 2,
+            "typeId": 3,
+            "taxDistrictId": null,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "cancellationPoliciesIds": [
+              20,
+              82
+            ],
+            "guaranteePoliciesIds": [
+              4
+            ],
+            "documentsIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "gatewaysIds": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              63,
+              72,
+              84,
+              101,
+              115,
+              118,
+              138,
+              140,
+              174,
+              180,
+              198,
+              220,
+              221,
+              229,
+              1,
+              9,
+              13,
+              18,
+              19,
+              20,
+              26,
+              38,
+              40,
+              41,
+              42,
+              43,
+              44,
+              47,
+              51,
+              55,
+              57,
+              61,
+              62,
+              66,
+              77,
+              78,
+              80,
+              86,
+              87,
+              90,
+              91,
+              95,
+              96,
+              98,
+              102,
+              103,
+              105,
+              108,
+              109,
+              117,
+              119,
+              120,
+              123,
+              127,
+              131,
+              144,
+              145,
+              147,
+              152,
+              158,
+              165,
+              166,
+              182,
+              188,
+              225,
+              227,
+              228,
+              230,
+              232,
+              239,
+              240,
+              244,
+              247,
+              252,
+              253,
+              255,
+              256
+            ],
+            "_embedded": {
+              "parent": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/2/"
+                  }
+                }
+              },
+              "type": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/types/3/"
+                  }
+                }
+              },
+              "localOffice": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+                  }
+                }
+              },
+              "maintenanceZone": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/nodes/7/"
+              }
+            }
+          },
+          "type": {
+            "id": 1,
+            "isActive": true,
+            "roles": [],
+            "bedTypes": [],
+            "custom": [],
+            "updated": {
+              "availability": "2022-08-25T19:37:46+00:00",
+              "content": "2022-12-16T18:38:35+00:00",
+              "pricing": "2025-11-04T20:44:03+00:00"
+            },
+            "createdAt": null,
+            "createdBy": "",
+            "updatedAt": "2022-12-16T18:38:35+00:00",
+            "updatedBy": "5-trocha",
+            "name": "1 Bedroom",
+            "shortName": null,
+            "typeCode": null,
+            "maxPets": null,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": null,
+            "maxDiscount": null,
+            "area": null,
+            "websiteUrl": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 1,
+            "fullBathrooms": 1,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": null,
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "oversellLimit": null,
+            "securityDeposit": null,
+            "petFriendly": false,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": true,
+            "hasEarlyCheckin": false,
+            "hasLateCheckout": false,
+            "quickCheckin": false,
+            "quickCheckout": false,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": true,
+            "allowUnitRates": true,
+            "allowOversell": false,
+            "folioException": false,
+            "checkinTime": null,
+            "checkoutTime": null,
+            "earlyCheckinTime": null,
+            "lateCheckoutTime": null,
+            "nodeId": null,
+            "lodgingTypeId": null,
+            "calendarGroupId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": null,
+            "localOfficeId": null,
+            "taxDistrictId": null,
+            "travelInsuranceProductId": null,
+            "cancellationPoliciesIds": [],
+            "guaranteePoliciesIds": [],
+            "documentsIds": [],
+            "gatewaysIds": [],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              152
+            ],
+            "_embedded": {
+              "calendarGroup": {
+                "id": 1,
+                "name": "Default",
+                "createdAt": "2022-08-25T15:37:27-04:00",
+                "createdBy": "1-system",
+                "updatedAt": "2022-08-25T15:37:27-04:00",
+                "updatedBy": "1-system",
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/rates/calendars/1/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/types/1/"
+              }
+            }
+          },
+          "localOffice": {
+            "id": 1,
+            "createdAt": "2022-02-28T09:52:21-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-08T10:01:17-04:00",
+            "updatedBy": "bwurster@tnsinc.com",
+            "name": "Main Office",
+            "phone": "+14074402812",
+            "email": "reservations@ihmvacations.com",
+            "directions": "",
+            "latitude": null,
+            "longitude": null,
+            "streetAddress": "10345 Orangewood Blvd # B Suite 100",
+            "extendedAddress": "",
+            "locality": "Orlando ",
+            "region": "FL",
+            "postalCode": "32821",
+            "country": "US",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+              }
+            }
+          },
+          "maintenanceZone": {
+            "id": 7,
+            "name": "Ricardo Medina",
+            "isActive": true,
+            "type": "maintenance",
+            "createdAt": "2022-10-27T15:43:33-04:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2022-10-27T15:46:07-04:00",
+            "updatedBy": "4-cmachado",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+              }
+            }
+          },
+          "cleanStatus": {
+            "id": 1,
+            "isActive": true,
+            "name": "Clean",
+            "code": "C",
+            "type": "clean",
+            "_links": []
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/"
+          },
+          "images": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/images/"
+          },
+          "policies": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/policies/"
+          },
+          "rooms": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/rooms/"
+          }
+        }
+      },
+      "unit_id": 1,
+      "missing_required": [
+        "petsFriendly",
+        "amenities"
+      ]
+    },
+    {
+      "success": true,
+      "data": {
+        "id": 1,
+        "isLimited": false,
+        "isActive": false,
+        "cleanStatusId": 1,
+        "coverImage": null,
+        "roles": [
+          {
+            "roleId": 2,
+            "userId": 10
+          }
+        ],
+        "composites": [],
+        "bedTypes": [],
+        "custom": {
+          "pms_units_wifi_name": null,
+          "pms_units_wifi_password": null,
+          "pms_units_source_unit_id": null
+        },
+        "createdAt": "2022-09-08T13:17:09+00:00",
+        "createdBy": "bwurster@tnsinc.com",
+        "updatedAt": "2024-10-24T17:07:18+00:00",
+        "updatedBy": "process:availability:sync",
+        "name": "test",
+        "shortName": "",
+        "unitCode": "t1",
+        "maxPets": 2,
+        "minimumAgeLimit": 21,
+        "phone": null,
+        "websiteUrl": null,
+        "streetAddress": null,
+        "extendedAddress": null,
+        "locality": null,
+        "region": null,
+        "postal": null,
+        "country": "US",
+        "maxDiscount": null,
+        "area": null,
+        "floors": null,
+        "maxOccupancy": null,
+        "bedrooms": 1,
+        "fullBathrooms": 1,
+        "threeQuarterBathrooms": null,
+        "halfBathrooms": null,
+        "timezone": "America/New_York",
+        "longitude": null,
+        "latitude": null,
+        "maintenanceMessage": null,
+        "housekeepingMessage": null,
+        "housekeepingNotes": null,
+        "taxId": null,
+        "systemId": null,
+        "systemAppend": null,
+        "housekeepingStop": null,
+        "maintenanceStop": null,
+        "availabilityOrder": 999999999,
+        "securityDeposit": null,
+        "petFriendly": true,
+        "smokingAllowed": false,
+        "childrenAllowed": true,
+        "eventsAllowed": false,
+        "isAccessible": false,
+        "hasEarlyCheckin": true,
+        "hasLateCheckout": true,
+        "quickCheckin": true,
+        "quickCheckout": true,
+        "useRoomConfiguration": false,
+        "useBedTypes": true,
+        "isBookable": false,
+        "folioException": false,
+        "checkinTime": "16:00",
+        "checkoutTime": "10:00",
+        "earlyCheckinTime": "12:00",
+        "lateCheckoutTime": "16:30",
+        "nodeId": 7,
+        "typeId": 1,
+        "lodgingTypeId": null,
+        "taxDistrictId": null,
+        "localOfficeId": 1,
+        "housekeepingZoneId": null,
+        "maintenanceZoneId": 7,
+        "travelInsuranceProductId": null,
+        "cancellationPoliciesIds": [
+          82
+        ],
+        "guaranteePoliciesIds": [
+          4
+        ],
+        "documentsIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "gatewaysIds": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "insuranceProductsIds": [],
+        "amenitiesIds": [
+          77,
+          63,
+          72,
+          84,
+          101,
+          115,
+          118,
+          138,
+          140,
+          174,
+          180,
+          198,
+          220,
+          221,
+          229,
+          1,
+          9,
+          13,
+          18,
+          19,
+          20,
+          26,
+          38,
+          40,
+          41,
+          42,
+          43,
+          44,
+          47,
+          51,
+          55,
+          57,
+          61,
+          62,
+          66,
+          78,
+          80,
+          86,
+          87,
+          90,
+          91,
+          95,
+          96,
+          98,
+          102,
+          103,
+          105,
+          108,
+          109,
+          117,
+          119,
+          120,
+          123,
+          127,
+          131,
+          144,
+          145,
+          147,
+          152,
+          158,
+          165,
+          166,
+          182,
+          188,
+          225,
+          227,
+          228,
+          230,
+          232,
+          239,
+          240,
+          244,
+          247,
+          252,
+          253,
+          255,
+          256
+        ],
+        "_embedded": {
+          "node": {
+            "id": 7,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "custom": [],
+            "createdAt": "2022-09-08T13:07:30+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-06-17T15:35:17+00:00",
+            "updatedBy": "2-richardmedina0",
+            "name": "Reunion",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "housekeepingNotes": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "parentId": 2,
+            "typeId": 3,
+            "taxDistrictId": null,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "cancellationPoliciesIds": [
+              20,
+              82
+            ],
+            "guaranteePoliciesIds": [
+              4
+            ],
+            "documentsIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "gatewaysIds": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              63,
+              72,
+              84,
+              101,
+              115,
+              118,
+              138,
+              140,
+              174,
+              180,
+              198,
+              220,
+              221,
+              229,
+              1,
+              9,
+              13,
+              18,
+              19,
+              20,
+              26,
+              38,
+              40,
+              41,
+              42,
+              43,
+              44,
+              47,
+              51,
+              55,
+              57,
+              61,
+              62,
+              66,
+              77,
+              78,
+              80,
+              86,
+              87,
+              90,
+              91,
+              95,
+              96,
+              98,
+              102,
+              103,
+              105,
+              108,
+              109,
+              117,
+              119,
+              120,
+              123,
+              127,
+              131,
+              144,
+              145,
+              147,
+              152,
+              158,
+              165,
+              166,
+              182,
+              188,
+              225,
+              227,
+              228,
+              230,
+              232,
+              239,
+              240,
+              244,
+              247,
+              252,
+              253,
+              255,
+              256
+            ],
+            "_embedded": {
+              "parent": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/2/"
+                  }
+                }
+              },
+              "type": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/types/3/"
+                  }
+                }
+              },
+              "localOffice": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+                  }
+                }
+              },
+              "maintenanceZone": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/nodes/7/"
+              }
+            }
+          },
+          "type": {
+            "id": 1,
+            "isActive": true,
+            "roles": [],
+            "bedTypes": [],
+            "custom": [],
+            "updated": {
+              "availability": "2022-08-25T19:37:46+00:00",
+              "content": "2022-12-16T18:38:35+00:00",
+              "pricing": "2025-11-04T20:44:03+00:00"
+            },
+            "createdAt": null,
+            "createdBy": "",
+            "updatedAt": "2022-12-16T18:38:35+00:00",
+            "updatedBy": "5-trocha",
+            "name": "1 Bedroom",
+            "shortName": null,
+            "typeCode": null,
+            "maxPets": null,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": null,
+            "maxDiscount": null,
+            "area": null,
+            "websiteUrl": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 1,
+            "fullBathrooms": 1,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": null,
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "oversellLimit": null,
+            "securityDeposit": null,
+            "petFriendly": false,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": true,
+            "hasEarlyCheckin": false,
+            "hasLateCheckout": false,
+            "quickCheckin": false,
+            "quickCheckout": false,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": true,
+            "allowUnitRates": true,
+            "allowOversell": false,
+            "folioException": false,
+            "checkinTime": null,
+            "checkoutTime": null,
+            "earlyCheckinTime": null,
+            "lateCheckoutTime": null,
+            "nodeId": null,
+            "lodgingTypeId": null,
+            "calendarGroupId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": null,
+            "localOfficeId": null,
+            "taxDistrictId": null,
+            "travelInsuranceProductId": null,
+            "cancellationPoliciesIds": [],
+            "guaranteePoliciesIds": [],
+            "documentsIds": [],
+            "gatewaysIds": [],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              152
+            ],
+            "_embedded": {
+              "calendarGroup": {
+                "id": 1,
+                "name": "Default",
+                "createdAt": "2022-08-25T15:37:27-04:00",
+                "createdBy": "1-system",
+                "updatedAt": "2022-08-25T15:37:27-04:00",
+                "updatedBy": "1-system",
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/rates/calendars/1/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/types/1/"
+              }
+            }
+          },
+          "localOffice": {
+            "id": 1,
+            "createdAt": "2022-02-28T09:52:21-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-08T10:01:17-04:00",
+            "updatedBy": "bwurster@tnsinc.com",
+            "name": "Main Office",
+            "phone": "+14074402812",
+            "email": "reservations@ihmvacations.com",
+            "directions": "",
+            "latitude": null,
+            "longitude": null,
+            "streetAddress": "10345 Orangewood Blvd # B Suite 100",
+            "extendedAddress": "",
+            "locality": "Orlando ",
+            "region": "FL",
+            "postalCode": "32821",
+            "country": "US",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+              }
+            }
+          },
+          "maintenanceZone": {
+            "id": 7,
+            "name": "Ricardo Medina",
+            "isActive": true,
+            "type": "maintenance",
+            "createdAt": "2022-10-27T15:43:33-04:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2022-10-27T15:46:07-04:00",
+            "updatedBy": "4-cmachado",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+              }
+            }
+          },
+          "cleanStatus": {
+            "id": 1,
+            "isActive": true,
+            "name": "Clean",
+            "code": "C",
+            "type": "clean",
+            "_links": []
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/"
+          },
+          "images": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/images/"
+          },
+          "policies": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/policies/"
+          },
+          "rooms": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/rooms/"
+          }
+        }
+      },
+      "unit_id": 1,
+      "missing_required": [
+        "petsFriendly",
+        "amenities"
+      ]
+    },
+    {
+      "success": true,
+      "data": {
+        "id": 1,
+        "isLimited": false,
+        "isActive": false,
+        "cleanStatusId": 1,
+        "coverImage": null,
+        "roles": [
+          {
+            "roleId": 2,
+            "userId": 10
+          }
+        ],
+        "composites": [],
+        "bedTypes": [],
+        "custom": {
+          "pms_units_wifi_name": null,
+          "pms_units_wifi_password": null,
+          "pms_units_source_unit_id": null
+        },
+        "createdAt": "2022-09-08T13:17:09+00:00",
+        "createdBy": "bwurster@tnsinc.com",
+        "updatedAt": "2024-10-24T17:07:18+00:00",
+        "updatedBy": "process:availability:sync",
+        "name": "test",
+        "shortName": "",
+        "unitCode": "t1",
+        "maxPets": 2,
+        "minimumAgeLimit": 21,
+        "phone": null,
+        "websiteUrl": null,
+        "streetAddress": null,
+        "extendedAddress": null,
+        "locality": null,
+        "region": null,
+        "postal": null,
+        "country": "US",
+        "maxDiscount": null,
+        "area": null,
+        "floors": null,
+        "maxOccupancy": null,
+        "bedrooms": 1,
+        "fullBathrooms": 1,
+        "threeQuarterBathrooms": null,
+        "halfBathrooms": null,
+        "timezone": "America/New_York",
+        "longitude": null,
+        "latitude": null,
+        "maintenanceMessage": null,
+        "housekeepingMessage": null,
+        "housekeepingNotes": null,
+        "taxId": null,
+        "systemId": null,
+        "systemAppend": null,
+        "housekeepingStop": null,
+        "maintenanceStop": null,
+        "availabilityOrder": 999999999,
+        "securityDeposit": null,
+        "petFriendly": true,
+        "smokingAllowed": false,
+        "childrenAllowed": true,
+        "eventsAllowed": false,
+        "isAccessible": false,
+        "hasEarlyCheckin": true,
+        "hasLateCheckout": true,
+        "quickCheckin": true,
+        "quickCheckout": true,
+        "useRoomConfiguration": false,
+        "useBedTypes": true,
+        "isBookable": false,
+        "folioException": false,
+        "checkinTime": "16:00",
+        "checkoutTime": "10:00",
+        "earlyCheckinTime": "12:00",
+        "lateCheckoutTime": "16:30",
+        "nodeId": 7,
+        "typeId": 1,
+        "lodgingTypeId": null,
+        "taxDistrictId": null,
+        "localOfficeId": 1,
+        "housekeepingZoneId": null,
+        "maintenanceZoneId": 7,
+        "travelInsuranceProductId": null,
+        "cancellationPoliciesIds": [
+          82
+        ],
+        "guaranteePoliciesIds": [
+          4
+        ],
+        "documentsIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "gatewaysIds": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "insuranceProductsIds": [],
+        "amenitiesIds": [
+          77,
+          63,
+          72,
+          84,
+          101,
+          115,
+          118,
+          138,
+          140,
+          174,
+          180,
+          198,
+          220,
+          221,
+          229,
+          1,
+          9,
+          13,
+          18,
+          19,
+          20,
+          26,
+          38,
+          40,
+          41,
+          42,
+          43,
+          44,
+          47,
+          51,
+          55,
+          57,
+          61,
+          62,
+          66,
+          78,
+          80,
+          86,
+          87,
+          90,
+          91,
+          95,
+          96,
+          98,
+          102,
+          103,
+          105,
+          108,
+          109,
+          117,
+          119,
+          120,
+          123,
+          127,
+          131,
+          144,
+          145,
+          147,
+          152,
+          158,
+          165,
+          166,
+          182,
+          188,
+          225,
+          227,
+          228,
+          230,
+          232,
+          239,
+          240,
+          244,
+          247,
+          252,
+          253,
+          255,
+          256
+        ],
+        "_embedded": {
+          "node": {
+            "id": 7,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "custom": [],
+            "createdAt": "2022-09-08T13:07:30+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-06-17T15:35:17+00:00",
+            "updatedBy": "2-richardmedina0",
+            "name": "Reunion",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "housekeepingNotes": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "parentId": 2,
+            "typeId": 3,
+            "taxDistrictId": null,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "cancellationPoliciesIds": [
+              20,
+              82
+            ],
+            "guaranteePoliciesIds": [
+              4
+            ],
+            "documentsIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "gatewaysIds": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              63,
+              72,
+              84,
+              101,
+              115,
+              118,
+              138,
+              140,
+              174,
+              180,
+              198,
+              220,
+              221,
+              229,
+              1,
+              9,
+              13,
+              18,
+              19,
+              20,
+              26,
+              38,
+              40,
+              41,
+              42,
+              43,
+              44,
+              47,
+              51,
+              55,
+              57,
+              61,
+              62,
+              66,
+              77,
+              78,
+              80,
+              86,
+              87,
+              90,
+              91,
+              95,
+              96,
+              98,
+              102,
+              103,
+              105,
+              108,
+              109,
+              117,
+              119,
+              120,
+              123,
+              127,
+              131,
+              144,
+              145,
+              147,
+              152,
+              158,
+              165,
+              166,
+              182,
+              188,
+              225,
+              227,
+              228,
+              230,
+              232,
+              239,
+              240,
+              244,
+              247,
+              252,
+              253,
+              255,
+              256
+            ],
+            "_embedded": {
+              "parent": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/2/"
+                  }
+                }
+              },
+              "type": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/types/3/"
+                  }
+                }
+              },
+              "localOffice": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+                  }
+                }
+              },
+              "maintenanceZone": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/nodes/7/"
+              }
+            }
+          },
+          "type": {
+            "id": 1,
+            "isActive": true,
+            "roles": [],
+            "bedTypes": [],
+            "custom": [],
+            "updated": {
+              "availability": "2022-08-25T19:37:46+00:00",
+              "content": "2022-12-16T18:38:35+00:00",
+              "pricing": "2025-11-04T20:44:03+00:00"
+            },
+            "createdAt": null,
+            "createdBy": "",
+            "updatedAt": "2022-12-16T18:38:35+00:00",
+            "updatedBy": "5-trocha",
+            "name": "1 Bedroom",
+            "shortName": null,
+            "typeCode": null,
+            "maxPets": null,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": null,
+            "maxDiscount": null,
+            "area": null,
+            "websiteUrl": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 1,
+            "fullBathrooms": 1,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": null,
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "oversellLimit": null,
+            "securityDeposit": null,
+            "petFriendly": false,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": true,
+            "hasEarlyCheckin": false,
+            "hasLateCheckout": false,
+            "quickCheckin": false,
+            "quickCheckout": false,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": true,
+            "allowUnitRates": true,
+            "allowOversell": false,
+            "folioException": false,
+            "checkinTime": null,
+            "checkoutTime": null,
+            "earlyCheckinTime": null,
+            "lateCheckoutTime": null,
+            "nodeId": null,
+            "lodgingTypeId": null,
+            "calendarGroupId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": null,
+            "localOfficeId": null,
+            "taxDistrictId": null,
+            "travelInsuranceProductId": null,
+            "cancellationPoliciesIds": [],
+            "guaranteePoliciesIds": [],
+            "documentsIds": [],
+            "gatewaysIds": [],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              152
+            ],
+            "_embedded": {
+              "calendarGroup": {
+                "id": 1,
+                "name": "Default",
+                "createdAt": "2022-08-25T15:37:27-04:00",
+                "createdBy": "1-system",
+                "updatedAt": "2022-08-25T15:37:27-04:00",
+                "updatedBy": "1-system",
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/rates/calendars/1/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/types/1/"
+              }
+            }
+          },
+          "localOffice": {
+            "id": 1,
+            "createdAt": "2022-02-28T09:52:21-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-08T10:01:17-04:00",
+            "updatedBy": "bwurster@tnsinc.com",
+            "name": "Main Office",
+            "phone": "+14074402812",
+            "email": "reservations@ihmvacations.com",
+            "directions": "",
+            "latitude": null,
+            "longitude": null,
+            "streetAddress": "10345 Orangewood Blvd # B Suite 100",
+            "extendedAddress": "",
+            "locality": "Orlando ",
+            "region": "FL",
+            "postalCode": "32821",
+            "country": "US",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+              }
+            }
+          },
+          "maintenanceZone": {
+            "id": 7,
+            "name": "Ricardo Medina",
+            "isActive": true,
+            "type": "maintenance",
+            "createdAt": "2022-10-27T15:43:33-04:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2022-10-27T15:46:07-04:00",
+            "updatedBy": "4-cmachado",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+              }
+            }
+          },
+          "cleanStatus": {
+            "id": 1,
+            "isActive": true,
+            "name": "Clean",
+            "code": "C",
+            "type": "clean",
+            "_links": []
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/"
+          },
+          "images": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/images/"
+          },
+          "policies": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/policies/"
+          },
+          "rooms": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/rooms/"
+          }
+        }
+      },
+      "unit_id": 1,
+      "missing_required": [
+        "petsFriendly",
+        "amenities"
+      ]
+    },
+    {
+      "success": true,
+      "data": {
+        "id": 1,
+        "isLimited": false,
+        "isActive": false,
+        "cleanStatusId": 1,
+        "coverImage": null,
+        "roles": [
+          {
+            "roleId": 2,
+            "userId": 10
+          }
+        ],
+        "composites": [],
+        "bedTypes": [],
+        "custom": {
+          "pms_units_wifi_name": null,
+          "pms_units_wifi_password": null,
+          "pms_units_source_unit_id": null
+        },
+        "createdAt": "2022-09-08T13:17:09+00:00",
+        "createdBy": "bwurster@tnsinc.com",
+        "updatedAt": "2024-10-24T17:07:18+00:00",
+        "updatedBy": "process:availability:sync",
+        "shortDescription": null,
+        "longDescription": null,
+        "directions": null,
+        "checkinDetails": "Keyless Entry, Self Checkin",
+        "notes": null,
+        "amenityDescription": "",
+        "houseRules": null,
+        "channelHeadline": null,
+        "channelDescription": null,
+        "name": "test",
+        "shortName": "",
+        "unitCode": "t1",
+        "maxPets": 2,
+        "minimumAgeLimit": 21,
+        "phone": null,
+        "websiteUrl": null,
+        "streetAddress": null,
+        "extendedAddress": null,
+        "locality": null,
+        "region": null,
+        "postal": null,
+        "country": "US",
+        "maxDiscount": null,
+        "area": null,
+        "floors": null,
+        "maxOccupancy": null,
+        "bedrooms": 1,
+        "fullBathrooms": 1,
+        "threeQuarterBathrooms": null,
+        "halfBathrooms": null,
+        "timezone": "America/New_York",
+        "longitude": null,
+        "latitude": null,
+        "maintenanceMessage": null,
+        "housekeepingMessage": null,
+        "housekeepingNotes": null,
+        "taxId": null,
+        "systemId": null,
+        "systemAppend": null,
+        "housekeepingStop": null,
+        "maintenanceStop": null,
+        "availabilityOrder": 999999999,
+        "securityDeposit": null,
+        "petFriendly": true,
+        "smokingAllowed": false,
+        "childrenAllowed": true,
+        "eventsAllowed": false,
+        "isAccessible": false,
+        "hasEarlyCheckin": true,
+        "hasLateCheckout": true,
+        "quickCheckin": true,
+        "quickCheckout": true,
+        "useRoomConfiguration": false,
+        "useBedTypes": true,
+        "isBookable": false,
+        "folioException": false,
+        "checkinTime": "16:00",
+        "checkoutTime": "10:00",
+        "earlyCheckinTime": "12:00",
+        "lateCheckoutTime": "16:30",
+        "nodeId": 7,
+        "typeId": 1,
+        "lodgingTypeId": null,
+        "taxDistrictId": null,
+        "localOfficeId": 1,
+        "housekeepingZoneId": null,
+        "maintenanceZoneId": 7,
+        "travelInsuranceProductId": null,
+        "cancellationPoliciesIds": [
+          82
+        ],
+        "guaranteePoliciesIds": [
+          4
+        ],
+        "documentsIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "gatewaysIds": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "insuranceProductsIds": [],
+        "amenitiesIds": [
+          77,
+          63,
+          72,
+          84,
+          101,
+          115,
+          118,
+          138,
+          140,
+          174,
+          180,
+          198,
+          220,
+          221,
+          229,
+          1,
+          9,
+          13,
+          18,
+          19,
+          20,
+          26,
+          38,
+          40,
+          41,
+          42,
+          43,
+          44,
+          47,
+          51,
+          55,
+          57,
+          61,
+          62,
+          66,
+          78,
+          80,
+          86,
+          87,
+          90,
+          91,
+          95,
+          96,
+          98,
+          102,
+          103,
+          105,
+          108,
+          109,
+          117,
+          119,
+          120,
+          123,
+          127,
+          131,
+          144,
+          145,
+          147,
+          152,
+          158,
+          165,
+          166,
+          182,
+          188,
+          225,
+          227,
+          228,
+          230,
+          232,
+          239,
+          240,
+          244,
+          247,
+          252,
+          253,
+          255,
+          256
+        ],
+        "_embedded": {
+          "node": {
+            "id": 7,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "custom": [],
+            "createdAt": "2022-09-08T13:07:30+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-06-17T15:35:17+00:00",
+            "updatedBy": "2-richardmedina0",
+            "shortDescription": null,
+            "longDescription": null,
+            "directions": null,
+            "checkinDetails": null,
+            "houseRules": null,
+            "name": "Reunion",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "housekeepingNotes": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "parentId": 2,
+            "typeId": 3,
+            "taxDistrictId": null,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "cancellationPoliciesIds": [
+              20,
+              82
+            ],
+            "guaranteePoliciesIds": [
+              4
+            ],
+            "documentsIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "gatewaysIds": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              63,
+              72,
+              84,
+              101,
+              115,
+              118,
+              138,
+              140,
+              174,
+              180,
+              198,
+              220,
+              221,
+              229,
+              1,
+              9,
+              13,
+              18,
+              19,
+              20,
+              26,
+              38,
+              40,
+              41,
+              42,
+              43,
+              44,
+              47,
+              51,
+              55,
+              57,
+              61,
+              62,
+              66,
+              77,
+              78,
+              80,
+              86,
+              87,
+              90,
+              91,
+              95,
+              96,
+              98,
+              102,
+              103,
+              105,
+              108,
+              109,
+              117,
+              119,
+              120,
+              123,
+              127,
+              131,
+              144,
+              145,
+              147,
+              152,
+              158,
+              165,
+              166,
+              182,
+              188,
+              225,
+              227,
+              228,
+              230,
+              232,
+              239,
+              240,
+              244,
+              247,
+              252,
+              253,
+              255,
+              256
+            ],
+            "_embedded": {
+              "parent": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/2/"
+                  }
+                }
+              },
+              "type": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/types/3/"
+                  }
+                }
+              },
+              "localOffice": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+                  }
+                }
+              },
+              "maintenanceZone": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/nodes/7/"
+              }
+            }
+          },
+          "type": {
+            "id": 1,
+            "isActive": true,
+            "roles": [],
+            "bedTypes": [],
+            "custom": [],
+            "updated": {
+              "availability": "2022-08-25T19:37:46+00:00",
+              "content": "2022-12-16T18:38:35+00:00",
+              "pricing": "2025-11-04T20:44:03+00:00"
+            },
+            "createdAt": null,
+            "createdBy": "",
+            "updatedAt": "2022-12-16T18:38:35+00:00",
+            "updatedBy": "5-trocha",
+            "shortDescription": null,
+            "longDescription": null,
+            "houseRules": null,
+            "directions": null,
+            "checkinDetails": null,
+            "notes": null,
+            "amenityDescription": "",
+            "name": "1 Bedroom",
+            "shortName": null,
+            "typeCode": null,
+            "maxPets": null,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": null,
+            "maxDiscount": null,
+            "area": null,
+            "websiteUrl": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 1,
+            "fullBathrooms": 1,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": null,
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "oversellLimit": null,
+            "securityDeposit": null,
+            "petFriendly": false,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": true,
+            "hasEarlyCheckin": false,
+            "hasLateCheckout": false,
+            "quickCheckin": false,
+            "quickCheckout": false,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": true,
+            "allowUnitRates": true,
+            "allowOversell": false,
+            "folioException": false,
+            "checkinTime": null,
+            "checkoutTime": null,
+            "earlyCheckinTime": null,
+            "lateCheckoutTime": null,
+            "nodeId": null,
+            "lodgingTypeId": null,
+            "calendarGroupId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": null,
+            "localOfficeId": null,
+            "taxDistrictId": null,
+            "travelInsuranceProductId": null,
+            "cancellationPoliciesIds": [],
+            "guaranteePoliciesIds": [],
+            "documentsIds": [],
+            "gatewaysIds": [],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              152
+            ],
+            "_embedded": {
+              "calendarGroup": {
+                "id": 1,
+                "name": "Default",
+                "createdAt": "2022-08-25T15:37:27-04:00",
+                "createdBy": "1-system",
+                "updatedAt": "2022-08-25T15:37:27-04:00",
+                "updatedBy": "1-system",
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/rates/calendars/1/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/types/1/"
+              }
+            }
+          },
+          "localOffice": {
+            "id": 1,
+            "createdAt": "2022-02-28T09:52:21-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-08T10:01:17-04:00",
+            "updatedBy": "bwurster@tnsinc.com",
+            "name": "Main Office",
+            "phone": "+14074402812",
+            "email": "reservations@ihmvacations.com",
+            "directions": "",
+            "latitude": null,
+            "longitude": null,
+            "streetAddress": "10345 Orangewood Blvd # B Suite 100",
+            "extendedAddress": "",
+            "locality": "Orlando ",
+            "region": "FL",
+            "postalCode": "32821",
+            "country": "US",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+              }
+            }
+          },
+          "maintenanceZone": {
+            "id": 7,
+            "name": "Ricardo Medina",
+            "isActive": true,
+            "type": "maintenance",
+            "createdAt": "2022-10-27T15:43:33-04:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2022-10-27T15:46:07-04:00",
+            "updatedBy": "4-cmachado",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+              }
+            }
+          },
+          "cleanStatus": {
+            "id": 1,
+            "isActive": true,
+            "name": "Clean",
+            "code": "C",
+            "type": "clean",
+            "_links": []
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/"
+          },
+          "images": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/images/"
+          },
+          "policies": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/policies/"
+          },
+          "rooms": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/rooms/"
+          }
+        }
+      },
+      "unit_id": 1,
+      "missing_required": [
+        "petsFriendly",
+        "amenities"
+      ]
+    },
+    {
+      "success": true,
+      "data": {
+        "id": 1,
+        "isLimited": false,
+        "isActive": false,
+        "cleanStatusId": 1,
+        "coverImage": null,
+        "roles": [
+          {
+            "roleId": 2,
+            "userId": 10
+          }
+        ],
+        "composites": [],
+        "bedTypes": [],
+        "custom": {
+          "pms_units_wifi_name": null,
+          "pms_units_wifi_password": null,
+          "pms_units_source_unit_id": null
+        },
+        "createdAt": "2022-09-08T13:17:09+00:00",
+        "createdBy": "bwurster@tnsinc.com",
+        "updatedAt": "2024-10-24T17:07:18+00:00",
+        "updatedBy": "process:availability:sync",
+        "shortDescription": null,
+        "longDescription": null,
+        "directions": null,
+        "checkinDetails": "Keyless Entry, Self Checkin",
+        "notes": null,
+        "amenityDescription": "",
+        "houseRules": null,
+        "channelHeadline": null,
+        "channelDescription": null,
+        "name": "test",
+        "shortName": "",
+        "unitCode": "t1",
+        "maxPets": 2,
+        "minimumAgeLimit": 21,
+        "phone": null,
+        "websiteUrl": null,
+        "streetAddress": null,
+        "extendedAddress": null,
+        "locality": null,
+        "region": null,
+        "postal": null,
+        "country": "US",
+        "maxDiscount": null,
+        "area": null,
+        "floors": null,
+        "maxOccupancy": null,
+        "bedrooms": 1,
+        "fullBathrooms": 1,
+        "threeQuarterBathrooms": null,
+        "halfBathrooms": null,
+        "timezone": "America/New_York",
+        "longitude": null,
+        "latitude": null,
+        "maintenanceMessage": null,
+        "housekeepingMessage": null,
+        "housekeepingNotes": null,
+        "taxId": null,
+        "systemId": null,
+        "systemAppend": null,
+        "housekeepingStop": null,
+        "maintenanceStop": null,
+        "availabilityOrder": 999999999,
+        "securityDeposit": null,
+        "petFriendly": true,
+        "smokingAllowed": false,
+        "childrenAllowed": true,
+        "eventsAllowed": false,
+        "isAccessible": false,
+        "hasEarlyCheckin": true,
+        "hasLateCheckout": true,
+        "quickCheckin": true,
+        "quickCheckout": true,
+        "useRoomConfiguration": false,
+        "useBedTypes": true,
+        "isBookable": false,
+        "folioException": false,
+        "checkinTime": "16:00",
+        "checkoutTime": "10:00",
+        "earlyCheckinTime": "12:00",
+        "lateCheckoutTime": "16:30",
+        "nodeId": 7,
+        "typeId": 1,
+        "lodgingTypeId": null,
+        "taxDistrictId": null,
+        "localOfficeId": 1,
+        "housekeepingZoneId": null,
+        "maintenanceZoneId": 7,
+        "travelInsuranceProductId": null,
+        "cancellationPoliciesIds": [
+          82
+        ],
+        "guaranteePoliciesIds": [
+          4
+        ],
+        "documentsIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "gatewaysIds": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "insuranceProductsIds": [],
+        "amenitiesIds": [
+          77,
+          63,
+          72,
+          84,
+          101,
+          115,
+          118,
+          138,
+          140,
+          174,
+          180,
+          198,
+          220,
+          221,
+          229,
+          1,
+          9,
+          13,
+          18,
+          19,
+          20,
+          26,
+          38,
+          40,
+          41,
+          42,
+          43,
+          44,
+          47,
+          51,
+          55,
+          57,
+          61,
+          62,
+          66,
+          78,
+          80,
+          86,
+          87,
+          90,
+          91,
+          95,
+          96,
+          98,
+          102,
+          103,
+          105,
+          108,
+          109,
+          117,
+          119,
+          120,
+          123,
+          127,
+          131,
+          144,
+          145,
+          147,
+          152,
+          158,
+          165,
+          166,
+          182,
+          188,
+          225,
+          227,
+          228,
+          230,
+          232,
+          239,
+          240,
+          244,
+          247,
+          252,
+          253,
+          255,
+          256
+        ],
+        "_embedded": {
+          "node": {
+            "id": 7,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "custom": [],
+            "createdAt": "2022-09-08T13:07:30+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-06-17T15:35:17+00:00",
+            "updatedBy": "2-richardmedina0",
+            "shortDescription": null,
+            "longDescription": null,
+            "directions": null,
+            "checkinDetails": null,
+            "houseRules": null,
+            "name": "Reunion",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "housekeepingNotes": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "parentId": 2,
+            "typeId": 3,
+            "taxDistrictId": null,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "cancellationPoliciesIds": [
+              20,
+              82
+            ],
+            "guaranteePoliciesIds": [
+              4
+            ],
+            "documentsIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "gatewaysIds": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              63,
+              72,
+              84,
+              101,
+              115,
+              118,
+              138,
+              140,
+              174,
+              180,
+              198,
+              220,
+              221,
+              229,
+              1,
+              9,
+              13,
+              18,
+              19,
+              20,
+              26,
+              38,
+              40,
+              41,
+              42,
+              43,
+              44,
+              47,
+              51,
+              55,
+              57,
+              61,
+              62,
+              66,
+              77,
+              78,
+              80,
+              86,
+              87,
+              90,
+              91,
+              95,
+              96,
+              98,
+              102,
+              103,
+              105,
+              108,
+              109,
+              117,
+              119,
+              120,
+              123,
+              127,
+              131,
+              144,
+              145,
+              147,
+              152,
+              158,
+              165,
+              166,
+              182,
+              188,
+              225,
+              227,
+              228,
+              230,
+              232,
+              239,
+              240,
+              244,
+              247,
+              252,
+              253,
+              255,
+              256
+            ],
+            "_embedded": {
+              "parent": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/2/"
+                  }
+                }
+              },
+              "type": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/types/3/"
+                  }
+                }
+              },
+              "localOffice": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+                  }
+                }
+              },
+              "maintenanceZone": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/nodes/7/"
+              }
+            }
+          },
+          "type": {
+            "id": 1,
+            "isActive": true,
+            "roles": [],
+            "bedTypes": [],
+            "custom": [],
+            "updated": {
+              "availability": "2022-08-25T19:37:46+00:00",
+              "content": "2022-12-16T18:38:35+00:00",
+              "pricing": "2025-11-04T20:44:03+00:00"
+            },
+            "createdAt": null,
+            "createdBy": "",
+            "updatedAt": "2022-12-16T18:38:35+00:00",
+            "updatedBy": "5-trocha",
+            "shortDescription": null,
+            "longDescription": null,
+            "houseRules": null,
+            "directions": null,
+            "checkinDetails": null,
+            "notes": null,
+            "amenityDescription": "",
+            "name": "1 Bedroom",
+            "shortName": null,
+            "typeCode": null,
+            "maxPets": null,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": null,
+            "maxDiscount": null,
+            "area": null,
+            "websiteUrl": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 1,
+            "fullBathrooms": 1,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": null,
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "oversellLimit": null,
+            "securityDeposit": null,
+            "petFriendly": false,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": true,
+            "hasEarlyCheckin": false,
+            "hasLateCheckout": false,
+            "quickCheckin": false,
+            "quickCheckout": false,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": true,
+            "allowUnitRates": true,
+            "allowOversell": false,
+            "folioException": false,
+            "checkinTime": null,
+            "checkoutTime": null,
+            "earlyCheckinTime": null,
+            "lateCheckoutTime": null,
+            "nodeId": null,
+            "lodgingTypeId": null,
+            "calendarGroupId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": null,
+            "localOfficeId": null,
+            "taxDistrictId": null,
+            "travelInsuranceProductId": null,
+            "cancellationPoliciesIds": [],
+            "guaranteePoliciesIds": [],
+            "documentsIds": [],
+            "gatewaysIds": [],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              152
+            ],
+            "_embedded": {
+              "calendarGroup": {
+                "id": 1,
+                "name": "Default",
+                "createdAt": "2022-08-25T15:37:27-04:00",
+                "createdBy": "1-system",
+                "updatedAt": "2022-08-25T15:37:27-04:00",
+                "updatedBy": "1-system",
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/rates/calendars/1/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/types/1/"
+              }
+            }
+          },
+          "localOffice": {
+            "id": 1,
+            "createdAt": "2022-02-28T09:52:21-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-08T10:01:17-04:00",
+            "updatedBy": "bwurster@tnsinc.com",
+            "name": "Main Office",
+            "phone": "+14074402812",
+            "email": "reservations@ihmvacations.com",
+            "directions": "",
+            "latitude": null,
+            "longitude": null,
+            "streetAddress": "10345 Orangewood Blvd # B Suite 100",
+            "extendedAddress": "",
+            "locality": "Orlando ",
+            "region": "FL",
+            "postalCode": "32821",
+            "country": "US",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+              }
+            }
+          },
+          "maintenanceZone": {
+            "id": 7,
+            "name": "Ricardo Medina",
+            "isActive": true,
+            "type": "maintenance",
+            "createdAt": "2022-10-27T15:43:33-04:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2022-10-27T15:46:07-04:00",
+            "updatedBy": "4-cmachado",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+              }
+            }
+          },
+          "cleanStatus": {
+            "id": 1,
+            "isActive": true,
+            "name": "Clean",
+            "code": "C",
+            "type": "clean",
+            "_links": []
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/"
+          },
+          "images": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/images/"
+          },
+          "policies": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/policies/"
+          },
+          "rooms": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/rooms/"
+          }
+        }
+      },
+      "unit_id": 1,
+      "missing_required": [
+        "petsFriendly",
+        "amenities"
+      ]
+    },
+    {
+      "success": true,
+      "data": {
+        "id": 1,
+        "isLimited": false,
+        "isActive": false,
+        "cleanStatusId": 1,
+        "coverImage": null,
+        "roles": [],
+        "composites": [],
+        "bedTypes": [],
+        "custom": {
+          "pms_units_wifi_name": null,
+          "pms_units_wifi_password": null,
+          "pms_units_source_unit_id": null
+        },
+        "createdAt": "2022-09-08T13:17:09+00:00",
+        "createdBy": "bwurster@tnsinc.com",
+        "updatedAt": "2024-10-24T17:07:18+00:00",
+        "updatedBy": "process:availability:sync",
+        "name": "test",
+        "shortName": "",
+        "unitCode": "t1",
+        "maxPets": null,
+        "minimumAgeLimit": null,
+        "phone": null,
+        "websiteUrl": null,
+        "streetAddress": null,
+        "extendedAddress": null,
+        "locality": null,
+        "region": null,
+        "postal": null,
+        "country": null,
+        "maxDiscount": null,
+        "area": null,
+        "floors": null,
+        "maxOccupancy": null,
+        "bedrooms": null,
+        "fullBathrooms": null,
+        "threeQuarterBathrooms": null,
+        "halfBathrooms": null,
+        "timezone": null,
+        "longitude": null,
+        "latitude": null,
+        "maintenanceMessage": null,
+        "housekeepingMessage": null,
+        "housekeepingNotes": null,
+        "taxId": null,
+        "systemId": null,
+        "systemAppend": null,
+        "housekeepingStop": null,
+        "maintenanceStop": null,
+        "availabilityOrder": 999999999,
+        "securityDeposit": null,
+        "petFriendly": false,
+        "smokingAllowed": false,
+        "childrenAllowed": false,
+        "eventsAllowed": false,
+        "isAccessible": false,
+        "hasEarlyCheckin": false,
+        "hasLateCheckout": false,
+        "quickCheckin": false,
+        "quickCheckout": false,
+        "useRoomConfiguration": false,
+        "useBedTypes": true,
+        "isBookable": false,
+        "folioException": false,
+        "checkinTime": null,
+        "checkoutTime": null,
+        "earlyCheckinTime": null,
+        "lateCheckoutTime": null,
+        "nodeId": 7,
+        "typeId": 1,
+        "lodgingTypeId": null,
+        "taxDistrictId": null,
+        "localOfficeId": null,
+        "housekeepingZoneId": null,
+        "maintenanceZoneId": null,
+        "travelInsuranceProductId": null,
+        "cancellationPoliciesIds": [],
+        "guaranteePoliciesIds": [],
+        "documentsIds": [],
+        "gatewaysIds": [],
+        "insuranceProductsIds": [],
+        "amenitiesIds": [],
+        "_embedded": {
+          "node": {
+            "id": 7,
+            "roles": [],
+            "custom": [],
+            "createdAt": "2022-09-08T13:07:30+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-06-17T15:35:17+00:00",
+            "updatedBy": "2-richardmedina0",
+            "name": "Reunion",
+            "maxPets": null,
+            "minimumAgeLimit": null,
+            "phone": null,
+            "websiteUrl": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": null,
+            "maxDiscount": null,
+            "timezone": null,
+            "longitude": null,
+            "latitude": null,
+            "housekeepingNotes": null,
+            "petFriendly": false,
+            "smokingAllowed": false,
+            "childrenAllowed": false,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": false,
+            "hasLateCheckout": false,
+            "quickCheckin": false,
+            "quickCheckout": false,
+            "checkinTime": null,
+            "checkoutTime": null,
+            "earlyCheckinTime": null,
+            "lateCheckoutTime": null,
+            "parentId": 2,
+            "typeId": 3,
+            "taxDistrictId": null,
+            "localOfficeId": null,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": null,
+            "cancellationPoliciesIds": [
+              82
+            ],
+            "guaranteePoliciesIds": [],
+            "documentsIds": [],
+            "gatewaysIds": [],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              77
+            ],
+            "_embedded": {
+              "parent": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/2/"
+                  }
+                }
+              },
+              "type": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/types/3/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/nodes/7/"
+              }
+            }
+          },
+          "type": {
+            "id": 1,
+            "isActive": true,
+            "roles": [],
+            "bedTypes": [],
+            "custom": [],
+            "updated": {
+              "availability": "2022-08-25T19:37:46+00:00",
+              "content": "2022-12-16T18:38:35+00:00",
+              "pricing": "2025-11-04T20:44:03+00:00"
+            },
+            "createdAt": null,
+            "createdBy": "",
+            "updatedAt": "2022-12-16T18:38:35+00:00",
+            "updatedBy": "5-trocha",
+            "name": "1 Bedroom",
+            "shortName": null,
+            "typeCode": null,
+            "maxPets": null,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": null,
+            "maxDiscount": null,
+            "area": null,
+            "websiteUrl": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 1,
+            "fullBathrooms": 1,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": null,
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "oversellLimit": null,
+            "securityDeposit": null,
+            "petFriendly": false,
+            "smokingAllowed": false,
+            "childrenAllowed": false,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": false,
+            "hasLateCheckout": false,
+            "quickCheckin": false,
+            "quickCheckout": false,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": true,
+            "allowUnitRates": true,
+            "allowOversell": false,
+            "folioException": false,
+            "checkinTime": null,
+            "checkoutTime": null,
+            "earlyCheckinTime": null,
+            "lateCheckoutTime": null,
+            "nodeId": null,
+            "lodgingTypeId": null,
+            "calendarGroupId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": null,
+            "localOfficeId": null,
+            "taxDistrictId": null,
+            "travelInsuranceProductId": null,
+            "cancellationPoliciesIds": [],
+            "guaranteePoliciesIds": [],
+            "documentsIds": [],
+            "gatewaysIds": [],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              152
+            ],
+            "_embedded": {
+              "calendarGroup": {
+                "id": 1,
+                "name": "Default",
+                "createdAt": "2022-08-25T15:37:27-04:00",
+                "createdBy": "1-system",
+                "updatedAt": "2022-08-25T15:37:27-04:00",
+                "updatedBy": "1-system",
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/rates/calendars/1/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/types/1/"
+              }
+            }
+          },
+          "cleanStatus": {
+            "id": 1,
+            "isActive": true,
+            "name": "Clean",
+            "code": "C",
+            "type": "clean",
+            "_links": []
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/"
+          },
+          "images": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/images/"
+          },
+          "policies": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/policies/"
+          },
+          "rooms": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/rooms/"
+          }
+        }
+      },
+      "unit_id": 1,
+      "missing_required": [
+        "petsFriendly",
+        "amenities"
+      ]
+    },
+    {
+      "success": true,
+      "data": {
+        "id": 1,
+        "isLimited": false,
+        "isActive": false,
+        "cleanStatusId": 1,
+        "coverImage": null,
+        "roles": [
+          {
+            "roleId": 2,
+            "userId": 10
+          }
+        ],
+        "composites": [],
+        "bedTypes": [],
+        "custom": {
+          "pms_units_wifi_name": null,
+          "pms_units_wifi_password": null,
+          "pms_units_source_unit_id": null
+        },
+        "createdAt": "2022-09-08T13:17:09+00:00",
+        "createdBy": "bwurster@tnsinc.com",
+        "updatedAt": "2024-10-24T17:07:18+00:00",
+        "updatedBy": "process:availability:sync",
+        "name": "test",
+        "shortName": "",
+        "unitCode": "t1",
+        "maxPets": 2,
+        "minimumAgeLimit": 21,
+        "phone": null,
+        "websiteUrl": null,
+        "streetAddress": null,
+        "extendedAddress": null,
+        "locality": null,
+        "region": null,
+        "postal": null,
+        "country": "US",
+        "maxDiscount": null,
+        "area": null,
+        "floors": null,
+        "maxOccupancy": null,
+        "bedrooms": 1,
+        "fullBathrooms": 1,
+        "threeQuarterBathrooms": null,
+        "halfBathrooms": null,
+        "timezone": "America/New_York",
+        "longitude": null,
+        "latitude": null,
+        "maintenanceMessage": null,
+        "housekeepingMessage": null,
+        "housekeepingNotes": null,
+        "taxId": null,
+        "systemId": null,
+        "systemAppend": null,
+        "housekeepingStop": null,
+        "maintenanceStop": null,
+        "availabilityOrder": 999999999,
+        "securityDeposit": null,
+        "petFriendly": true,
+        "smokingAllowed": false,
+        "childrenAllowed": true,
+        "eventsAllowed": false,
+        "isAccessible": false,
+        "hasEarlyCheckin": true,
+        "hasLateCheckout": true,
+        "quickCheckin": true,
+        "quickCheckout": true,
+        "useRoomConfiguration": false,
+        "useBedTypes": true,
+        "isBookable": false,
+        "folioException": false,
+        "checkinTime": "16:00",
+        "checkoutTime": "10:00",
+        "earlyCheckinTime": "12:00",
+        "lateCheckoutTime": "16:30",
+        "nodeId": 7,
+        "typeId": 1,
+        "lodgingTypeId": null,
+        "taxDistrictId": null,
+        "localOfficeId": 1,
+        "housekeepingZoneId": null,
+        "maintenanceZoneId": 7,
+        "travelInsuranceProductId": null,
+        "cancellationPoliciesIds": [
+          82
+        ],
+        "guaranteePoliciesIds": [
+          4
+        ],
+        "documentsIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "gatewaysIds": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "insuranceProductsIds": [],
+        "amenitiesIds": [
+          77,
+          63,
+          72,
+          84,
+          101,
+          115,
+          118,
+          138,
+          140,
+          174,
+          180,
+          198,
+          220,
+          221,
+          229,
+          1,
+          9,
+          13,
+          18,
+          19,
+          20,
+          26,
+          38,
+          40,
+          41,
+          42,
+          43,
+          44,
+          47,
+          51,
+          55,
+          57,
+          61,
+          62,
+          66,
+          78,
+          80,
+          86,
+          87,
+          90,
+          91,
+          95,
+          96,
+          98,
+          102,
+          103,
+          105,
+          108,
+          109,
+          117,
+          119,
+          120,
+          123,
+          127,
+          131,
+          144,
+          145,
+          147,
+          152,
+          158,
+          165,
+          166,
+          182,
+          188,
+          225,
+          227,
+          228,
+          230,
+          232,
+          239,
+          240,
+          244,
+          247,
+          252,
+          253,
+          255,
+          256
+        ],
+        "_embedded": {
+          "node": {
+            "id": 7,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "custom": [],
+            "createdAt": "2022-09-08T13:07:30+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-06-17T15:35:17+00:00",
+            "updatedBy": "2-richardmedina0",
+            "name": "Reunion",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "housekeepingNotes": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "parentId": 2,
+            "typeId": 3,
+            "taxDistrictId": null,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "cancellationPoliciesIds": [
+              20,
+              82
+            ],
+            "guaranteePoliciesIds": [
+              4
+            ],
+            "documentsIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "gatewaysIds": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              63,
+              72,
+              84,
+              101,
+              115,
+              118,
+              138,
+              140,
+              174,
+              180,
+              198,
+              220,
+              221,
+              229,
+              1,
+              9,
+              13,
+              18,
+              19,
+              20,
+              26,
+              38,
+              40,
+              41,
+              42,
+              43,
+              44,
+              47,
+              51,
+              55,
+              57,
+              61,
+              62,
+              66,
+              77,
+              78,
+              80,
+              86,
+              87,
+              90,
+              91,
+              95,
+              96,
+              98,
+              102,
+              103,
+              105,
+              108,
+              109,
+              117,
+              119,
+              120,
+              123,
+              127,
+              131,
+              144,
+              145,
+              147,
+              152,
+              158,
+              165,
+              166,
+              182,
+              188,
+              225,
+              227,
+              228,
+              230,
+              232,
+              239,
+              240,
+              244,
+              247,
+              252,
+              253,
+              255,
+              256
+            ],
+            "_embedded": {
+              "parent": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/2/"
+                  }
+                }
+              },
+              "type": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/types/3/"
+                  }
+                }
+              },
+              "localOffice": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+                  }
+                }
+              },
+              "maintenanceZone": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/nodes/7/"
+              }
+            }
+          },
+          "type": {
+            "id": 1,
+            "isActive": true,
+            "roles": [],
+            "bedTypes": [],
+            "custom": [],
+            "updated": {
+              "availability": "2022-08-25T19:37:46+00:00",
+              "content": "2022-12-16T18:38:35+00:00",
+              "pricing": "2025-11-04T20:44:03+00:00"
+            },
+            "createdAt": null,
+            "createdBy": "",
+            "updatedAt": "2022-12-16T18:38:35+00:00",
+            "updatedBy": "5-trocha",
+            "name": "1 Bedroom",
+            "shortName": null,
+            "typeCode": null,
+            "maxPets": null,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": null,
+            "maxDiscount": null,
+            "area": null,
+            "websiteUrl": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 1,
+            "fullBathrooms": 1,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": null,
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "oversellLimit": null,
+            "securityDeposit": null,
+            "petFriendly": false,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": true,
+            "hasEarlyCheckin": false,
+            "hasLateCheckout": false,
+            "quickCheckin": false,
+            "quickCheckout": false,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": true,
+            "allowUnitRates": true,
+            "allowOversell": false,
+            "folioException": false,
+            "checkinTime": null,
+            "checkoutTime": null,
+            "earlyCheckinTime": null,
+            "lateCheckoutTime": null,
+            "nodeId": null,
+            "lodgingTypeId": null,
+            "calendarGroupId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": null,
+            "localOfficeId": null,
+            "taxDistrictId": null,
+            "travelInsuranceProductId": null,
+            "cancellationPoliciesIds": [],
+            "guaranteePoliciesIds": [],
+            "documentsIds": [],
+            "gatewaysIds": [],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              152
+            ],
+            "_embedded": {
+              "calendarGroup": {
+                "id": 1,
+                "name": "Default",
+                "createdAt": "2022-08-25T15:37:27-04:00",
+                "createdBy": "1-system",
+                "updatedAt": "2022-08-25T15:37:27-04:00",
+                "updatedBy": "1-system",
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/rates/calendars/1/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/types/1/"
+              }
+            }
+          },
+          "localOffice": {
+            "id": 1,
+            "createdAt": "2022-02-28T09:52:21-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-08T10:01:17-04:00",
+            "updatedBy": "bwurster@tnsinc.com",
+            "name": "Main Office",
+            "phone": "+14074402812",
+            "email": "reservations@ihmvacations.com",
+            "directions": "",
+            "latitude": null,
+            "longitude": null,
+            "streetAddress": "10345 Orangewood Blvd # B Suite 100",
+            "extendedAddress": "",
+            "locality": "Orlando ",
+            "region": "FL",
+            "postalCode": "32821",
+            "country": "US",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+              }
+            }
+          },
+          "maintenanceZone": {
+            "id": 7,
+            "name": "Ricardo Medina",
+            "isActive": true,
+            "type": "maintenance",
+            "createdAt": "2022-10-27T15:43:33-04:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2022-10-27T15:46:07-04:00",
+            "updatedBy": "4-cmachado",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+              }
+            }
+          },
+          "cleanStatus": {
+            "id": 1,
+            "isActive": true,
+            "name": "Clean",
+            "code": "C",
+            "type": "clean",
+            "_links": []
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/"
+          },
+          "images": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/images/"
+          },
+          "policies": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/policies/"
+          },
+          "rooms": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/rooms/"
+          }
+        }
+      },
+      "unit_id": 1,
+      "missing_required": [
+        "petsFriendly",
+        "amenities"
+      ]
+    },
+    {
+      "success": true,
+      "data": {
+        "id": 1,
+        "isLimited": false,
+        "isActive": false,
+        "cleanStatusId": 1,
+        "coverImage": null,
+        "roles": [
+          {
+            "roleId": 2,
+            "userId": 10
+          }
+        ],
+        "composites": [],
+        "bedTypes": [],
+        "custom": {
+          "pms_units_wifi_name": null,
+          "pms_units_wifi_password": null,
+          "pms_units_source_unit_id": null
+        },
+        "createdAt": "2022-09-08T13:17:09+00:00",
+        "createdBy": "bwurster@tnsinc.com",
+        "updatedAt": "2024-10-24T17:07:18+00:00",
+        "updatedBy": "process:availability:sync",
+        "name": "test",
+        "shortName": "",
+        "unitCode": "t1",
+        "maxPets": 2,
+        "minimumAgeLimit": 21,
+        "phone": null,
+        "websiteUrl": null,
+        "streetAddress": null,
+        "extendedAddress": null,
+        "locality": null,
+        "region": null,
+        "postal": null,
+        "country": "US",
+        "maxDiscount": null,
+        "area": null,
+        "floors": null,
+        "maxOccupancy": null,
+        "bedrooms": 1,
+        "fullBathrooms": 1,
+        "threeQuarterBathrooms": null,
+        "halfBathrooms": null,
+        "timezone": "America/New_York",
+        "longitude": null,
+        "latitude": null,
+        "maintenanceMessage": null,
+        "housekeepingMessage": null,
+        "housekeepingNotes": null,
+        "taxId": null,
+        "systemId": null,
+        "systemAppend": null,
+        "housekeepingStop": null,
+        "maintenanceStop": null,
+        "availabilityOrder": 999999999,
+        "securityDeposit": null,
+        "petFriendly": true,
+        "smokingAllowed": false,
+        "childrenAllowed": true,
+        "eventsAllowed": false,
+        "isAccessible": false,
+        "hasEarlyCheckin": true,
+        "hasLateCheckout": true,
+        "quickCheckin": true,
+        "quickCheckout": true,
+        "useRoomConfiguration": false,
+        "useBedTypes": true,
+        "isBookable": false,
+        "folioException": false,
+        "checkinTime": "16:00",
+        "checkoutTime": "10:00",
+        "earlyCheckinTime": "12:00",
+        "lateCheckoutTime": "16:30",
+        "nodeId": 7,
+        "typeId": 1,
+        "lodgingTypeId": null,
+        "taxDistrictId": null,
+        "localOfficeId": 1,
+        "housekeepingZoneId": null,
+        "maintenanceZoneId": 7,
+        "travelInsuranceProductId": null,
+        "cancellationPoliciesIds": [
+          82
+        ],
+        "guaranteePoliciesIds": [
+          4
+        ],
+        "documentsIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "gatewaysIds": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "insuranceProductsIds": [],
+        "amenitiesIds": [
+          77,
+          63,
+          72,
+          84,
+          101,
+          115,
+          118,
+          138,
+          140,
+          174,
+          180,
+          198,
+          220,
+          221,
+          229,
+          1,
+          9,
+          13,
+          18,
+          19,
+          20,
+          26,
+          38,
+          40,
+          41,
+          42,
+          43,
+          44,
+          47,
+          51,
+          55,
+          57,
+          61,
+          62,
+          66,
+          78,
+          80,
+          86,
+          87,
+          90,
+          91,
+          95,
+          96,
+          98,
+          102,
+          103,
+          105,
+          108,
+          109,
+          117,
+          119,
+          120,
+          123,
+          127,
+          131,
+          144,
+          145,
+          147,
+          152,
+          158,
+          165,
+          166,
+          182,
+          188,
+          225,
+          227,
+          228,
+          230,
+          232,
+          239,
+          240,
+          244,
+          247,
+          252,
+          253,
+          255,
+          256
+        ],
+        "_embedded": {
+          "node": {
+            "id": 7,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "custom": [],
+            "createdAt": "2022-09-08T13:07:30+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-06-17T15:35:17+00:00",
+            "updatedBy": "2-richardmedina0",
+            "name": "Reunion",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "housekeepingNotes": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "parentId": 2,
+            "typeId": 3,
+            "taxDistrictId": null,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "cancellationPoliciesIds": [
+              20,
+              82
+            ],
+            "guaranteePoliciesIds": [
+              4
+            ],
+            "documentsIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "gatewaysIds": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              63,
+              72,
+              84,
+              101,
+              115,
+              118,
+              138,
+              140,
+              174,
+              180,
+              198,
+              220,
+              221,
+              229,
+              1,
+              9,
+              13,
+              18,
+              19,
+              20,
+              26,
+              38,
+              40,
+              41,
+              42,
+              43,
+              44,
+              47,
+              51,
+              55,
+              57,
+              61,
+              62,
+              66,
+              77,
+              78,
+              80,
+              86,
+              87,
+              90,
+              91,
+              95,
+              96,
+              98,
+              102,
+              103,
+              105,
+              108,
+              109,
+              117,
+              119,
+              120,
+              123,
+              127,
+              131,
+              144,
+              145,
+              147,
+              152,
+              158,
+              165,
+              166,
+              182,
+              188,
+              225,
+              227,
+              228,
+              230,
+              232,
+              239,
+              240,
+              244,
+              247,
+              252,
+              253,
+              255,
+              256
+            ],
+            "_embedded": {
+              "parent": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/2/"
+                  }
+                }
+              },
+              "type": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/types/3/"
+                  }
+                }
+              },
+              "localOffice": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+                  }
+                }
+              },
+              "maintenanceZone": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/nodes/7/"
+              }
+            }
+          },
+          "type": {
+            "id": 1,
+            "isActive": true,
+            "roles": [],
+            "bedTypes": [],
+            "custom": [],
+            "updated": {
+              "availability": "2022-08-25T19:37:46+00:00",
+              "content": "2022-12-16T18:38:35+00:00",
+              "pricing": "2025-11-04T20:44:03+00:00"
+            },
+            "createdAt": null,
+            "createdBy": "",
+            "updatedAt": "2022-12-16T18:38:35+00:00",
+            "updatedBy": "5-trocha",
+            "name": "1 Bedroom",
+            "shortName": null,
+            "typeCode": null,
+            "maxPets": null,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": null,
+            "maxDiscount": null,
+            "area": null,
+            "websiteUrl": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 1,
+            "fullBathrooms": 1,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": null,
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "oversellLimit": null,
+            "securityDeposit": null,
+            "petFriendly": false,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": true,
+            "hasEarlyCheckin": false,
+            "hasLateCheckout": false,
+            "quickCheckin": false,
+            "quickCheckout": false,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": true,
+            "allowUnitRates": true,
+            "allowOversell": false,
+            "folioException": false,
+            "checkinTime": null,
+            "checkoutTime": null,
+            "earlyCheckinTime": null,
+            "lateCheckoutTime": null,
+            "nodeId": null,
+            "lodgingTypeId": null,
+            "calendarGroupId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": null,
+            "localOfficeId": null,
+            "taxDistrictId": null,
+            "travelInsuranceProductId": null,
+            "cancellationPoliciesIds": [],
+            "guaranteePoliciesIds": [],
+            "documentsIds": [],
+            "gatewaysIds": [],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              152
+            ],
+            "_embedded": {
+              "calendarGroup": {
+                "id": 1,
+                "name": "Default",
+                "createdAt": "2022-08-25T15:37:27-04:00",
+                "createdBy": "1-system",
+                "updatedAt": "2022-08-25T15:37:27-04:00",
+                "updatedBy": "1-system",
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/rates/calendars/1/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/types/1/"
+              }
+            }
+          },
+          "localOffice": {
+            "id": 1,
+            "createdAt": "2022-02-28T09:52:21-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-08T10:01:17-04:00",
+            "updatedBy": "bwurster@tnsinc.com",
+            "name": "Main Office",
+            "phone": "+14074402812",
+            "email": "reservations@ihmvacations.com",
+            "directions": "",
+            "latitude": null,
+            "longitude": null,
+            "streetAddress": "10345 Orangewood Blvd # B Suite 100",
+            "extendedAddress": "",
+            "locality": "Orlando ",
+            "region": "FL",
+            "postalCode": "32821",
+            "country": "US",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+              }
+            }
+          },
+          "maintenanceZone": {
+            "id": 7,
+            "name": "Ricardo Medina",
+            "isActive": true,
+            "type": "maintenance",
+            "createdAt": "2022-10-27T15:43:33-04:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2022-10-27T15:46:07-04:00",
+            "updatedBy": "4-cmachado",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+              }
+            }
+          },
+          "cleanStatus": {
+            "id": 1,
+            "isActive": true,
+            "name": "Clean",
+            "code": "C",
+            "type": "clean",
+            "_links": []
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/"
+          },
+          "images": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/images/"
+          },
+          "policies": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/policies/"
+          },
+          "rooms": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/1/rooms/"
+          }
+        }
+      },
+      "unit_id": 1,
+      "missing_required": [
+        "petsFriendly",
+        "amenities"
+      ]
+    },
+    {
+      "success": true,
+      "data": {
+        "id": 2,
+        "isLimited": false,
+        "isActive": true,
+        "cleanStatusId": 4,
+        "coverImage": null,
+        "roles": [
+          {
+            "roleId": 2,
+            "userId": 13
+          }
+        ],
+        "composites": [],
+        "bedTypes": [],
+        "custom": {
+          "pms_units_wifi_name": "Myspectrumwifi00-2G / 5G",
+          "pms_units_wifi_password": "sleepydeer820",
+          "pms_units_source_unit_id": "333835"
+        },
+        "createdAt": "2022-09-30T13:54:22+00:00",
+        "createdBy": "system",
+        "updatedAt": "2025-08-29T13:31:21+00:00",
+        "updatedBy": "42-estephania",
+        "name": "Luxury 9 bd/5 Bath with private Pool and Spa 140",
+        "shortName": "8808 Cruden Bay Court",
+        "unitCode": "140",
+        "maxPets": 2,
+        "minimumAgeLimit": 21,
+        "phone": null,
+        "websiteUrl": "www.ihmvacations.com",
+        "streetAddress": "8808 Cruden Bay Court",
+        "extendedAddress": null,
+        "locality": "Four Corners",
+        "region": "FL",
+        "postal": "34747",
+        "country": "US",
+        "maxDiscount": null,
+        "area": 3812,
+        "floors": null,
+        "maxOccupancy": 23,
+        "bedrooms": 9,
+        "fullBathrooms": 5,
+        "threeQuarterBathrooms": 0,
+        "halfBathrooms": 0,
+        "timezone": "America/New_York",
+        "longitude": "-81.64167920",
+        "latitude": "28.28711490",
+        "maintenanceMessage": null,
+        "housekeepingMessage": null,
+        "housekeepingNotes": null,
+        "taxId": null,
+        "systemId": "3BFCD9C57FE511EDB8730E6BC86C97F5",
+        "systemAppend": null,
+        "housekeepingStop": null,
+        "maintenanceStop": null,
+        "availabilityOrder": 999999999,
+        "securityDeposit": "0.00",
+        "petFriendly": true,
+        "smokingAllowed": false,
+        "childrenAllowed": true,
+        "eventsAllowed": false,
+        "isAccessible": false,
+        "hasEarlyCheckin": true,
+        "hasLateCheckout": true,
+        "quickCheckin": true,
+        "quickCheckout": true,
+        "useRoomConfiguration": true,
+        "useBedTypes": false,
+        "isBookable": true,
+        "folioException": false,
+        "checkinTime": "16:00",
+        "checkoutTime": "10:00",
+        "earlyCheckinTime": "12:00",
+        "lateCheckoutTime": "16:30",
+        "nodeId": 3,
+        "typeId": 9,
+        "lodgingTypeId": 1,
+        "taxDistrictId": 1,
+        "localOfficeId": 1,
+        "housekeepingZoneId": null,
+        "maintenanceZoneId": 13,
+        "travelInsuranceProductId": null,
+        "cancellationPoliciesIds": [
+          82
+        ],
+        "guaranteePoliciesIds": [
+          4
+        ],
+        "documentsIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          11
+        ],
+        "gatewaysIds": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "insuranceProductsIds": [],
+        "amenitiesIds": [
+          1,
+          66,
+          77,
+          96,
+          97,
+          101,
+          166,
+          189,
+          243,
+          63,
+          72,
+          84,
+          115,
+          118,
+          138,
+          140,
+          174,
+          180,
+          198,
+          220,
+          221,
+          229,
+          9,
+          13,
+          18,
+          19,
+          20,
+          26,
+          38,
+          40,
+          41,
+          42,
+          43,
+          44,
+          47,
+          51,
+          55,
+          57,
+          61,
+          62,
+          78,
+          80,
+          86,
+          87,
+          90,
+          91,
+          95,
+          98,
+          102,
+          103,
+          105,
+          108,
+          109,
+          117,
+          119,
+          120,
+          123,
+          127,
+          131,
+          144,
+          145,
+          147,
+          152,
+          158,
+          165,
+          182,
+          183,
+          184,
+          186,
+          188,
+          225,
+          227,
+          228,
+          230,
+          232,
+          239,
+          240,
+          244,
+          247,
+          252,
+          253,
+          255,
+          256
+        ],
+        "_embedded": {
+          "node": {
+            "id": 3,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "custom": [],
+            "createdAt": "2022-09-08T13:04:38+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-07-01T16:00:49+00:00",
+            "updatedBy": "3-cwwilbraham",
+            "name": "Champions Gate",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": "www.ihmvacations.com",
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "housekeepingNotes": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "parentId": 2,
+            "typeId": 5,
+            "taxDistrictId": 1,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "cancellationPoliciesIds": [
+              20,
+              82
+            ],
+            "guaranteePoliciesIds": [
+              4
+            ],
+            "documentsIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "gatewaysIds": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              63,
+              72,
+              84,
+              97,
+              101,
+              115,
+              118,
+              138,
+              140,
+              174,
+              180,
+              198,
+              220,
+              221,
+              229,
+              1,
+              9,
+              13,
+              18,
+              19,
+              20,
+              26,
+              38,
+              40,
+              41,
+              42,
+              43,
+              44,
+              47,
+              51,
+              55,
+              57,
+              61,
+              62,
+              66,
+              77,
+              78,
+              80,
+              86,
+              87,
+              90,
+              91,
+              95,
+              96,
+              98,
+              102,
+              103,
+              105,
+              108,
+              109,
+              117,
+              119,
+              120,
+              123,
+              127,
+              131,
+              144,
+              145,
+              147,
+              152,
+              158,
+              165,
+              166,
+              182,
+              188,
+              189,
+              225,
+              227,
+              228,
+              230,
+              232,
+              239,
+              240,
+              244,
+              247,
+              252,
+              253,
+              255,
+              256,
+              243
+            ],
+            "_embedded": {
+              "parent": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/2/"
+                  }
+                }
+              },
+              "type": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/types/5/"
+                  }
+                }
+              },
+              "taxDistrict": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/tax-districts/1/"
+                  }
+                }
+              },
+              "localOffice": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+                  }
+                }
+              },
+              "maintenanceZone": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/nodes/3/"
+              }
+            }
+          },
+          "type": {
+            "id": 9,
+            "isActive": true,
+            "roles": [],
+            "bedTypes": [],
+            "custom": [],
+            "updated": {
+              "availability": "2022-09-23T13:54:12+00:00",
+              "content": "2023-03-14T13:48:34+00:00",
+              "pricing": "2025-11-04T20:44:08+00:00"
+            },
+            "createdAt": "2022-09-23T13:54:12+00:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2023-03-14T13:48:34+00:00",
+            "updatedBy": "jmiller@tnsinc.com",
+            "name": "9 Bedrooms",
+            "shortName": null,
+            "typeCode": null,
+            "maxPets": null,
+            "minimumAgeLimit": null,
+            "phone": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": null,
+            "maxDiscount": null,
+            "area": null,
+            "websiteUrl": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 9,
+            "fullBathrooms": 5,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": null,
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "oversellLimit": 0,
+            "securityDeposit": "0.00",
+            "petFriendly": false,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": true,
+            "hasEarlyCheckin": false,
+            "hasLateCheckout": false,
+            "quickCheckin": false,
+            "quickCheckout": false,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": true,
+            "allowUnitRates": true,
+            "allowOversell": false,
+            "folioException": false,
+            "checkinTime": null,
+            "checkoutTime": null,
+            "earlyCheckinTime": null,
+            "lateCheckoutTime": null,
+            "nodeId": null,
+            "lodgingTypeId": null,
+            "calendarGroupId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": null,
+            "localOfficeId": null,
+            "taxDistrictId": null,
+            "travelInsuranceProductId": null,
+            "cancellationPoliciesIds": [],
+            "guaranteePoliciesIds": [],
+            "documentsIds": [],
+            "gatewaysIds": [],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              87,
+              117,
+              183,
+              184,
+              186,
+              232
+            ],
+            "_embedded": {
+              "calendarGroup": {
+                "id": 1,
+                "name": "Default",
+                "createdAt": "2022-08-25T15:37:27-04:00",
+                "createdBy": "1-system",
+                "updatedAt": "2022-08-25T15:37:27-04:00",
+                "updatedBy": "1-system",
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/rates/calendars/1/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/types/9/"
+              }
+            }
+          },
+          "lodgingType": {
+            "id": 1,
+            "name": "House",
+            "code": "H",
+            "homeawayType": "PROPERTY_TYPE_HOUSE",
+            "airbnbTypeGroup": "houses",
+            "airbnbTypeCategory": "house",
+            "airbnbRoomType": "entire_home",
+            "marriottType": "house",
+            "bookingDotComType": 29,
+            "isActive": true,
+            "createdAt": "2022-02-28T09:57:04-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2025-05-09T14:36:14-04:00",
+            "updatedBy": "27-aagudelo",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/lodging-types/1/"
+              }
+            }
+          },
+          "taxDistrict": {
+            "id": 1,
+            "isActive": true,
+            "name": "Osceola County ",
+            "shortTermPolicyId": 1,
+            "longTermPolicyId": 4,
+            "hasBreakpoint": true,
+            "breakpoint": 181,
+            "salesTaxPolicyId": null,
+            "salesTaxPolicy": null,
+            "taxMarkup": false,
+            "createdAt": "2022-03-01T09:36:54-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-13T09:36:43-04:00",
+            "updatedBy": "ccase@tnsinc.com",
+            "_embedded": {
+              "shortTermPolicy": {
+                "id": 1,
+                "isActive": true,
+                "name": "Osceola County Policy",
+                "description": "",
+                "taxIds": [
+                  1,
+                  2
+                ],
+                "createdAt": "2022-03-01T09:36:25-05:00",
+                "createdBy": "jlefevers@tnsinc.com",
+                "updatedAt": "2022-09-13T09:35:29-04:00",
+                "updatedBy": "ccase@tnsinc.com",
+                "_embedded": {
+                  "taxes": [
+                    {
+                      "_links": {
+                        "self": {
+                          "href": "https://ihmvacations.trackhs.com/api/pms/taxes/1/"
+                        }
+                      }
+                    },
+                    {
+                      "_links": {
+                        "self": {
+                          "href": "https://ihmvacations.trackhs.com/api/pms/taxes/2/"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/tax-policies/1/"
+                  }
+                }
+              },
+              "longTermPolicy": {
+                "id": 4,
+                "isActive": true,
+                "name": "Long Term Policy",
+                "description": "",
+                "taxIds": [],
+                "createdAt": "2022-09-13T09:36:14-04:00",
+                "createdBy": "ccase@tnsinc.com",
+                "updatedAt": "2022-09-13T09:36:14-04:00",
+                "updatedBy": "ccase@tnsinc.com",
+                "_embedded": {
+                  "taxes": []
+                },
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/tax-policies/4/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/tax-districts/1/"
+              }
+            }
+          },
+          "localOffice": {
+            "id": 1,
+            "createdAt": "2022-02-28T09:52:21-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-08T10:01:17-04:00",
+            "updatedBy": "bwurster@tnsinc.com",
+            "name": "Main Office",
+            "phone": "+14074402812",
+            "email": "reservations@ihmvacations.com",
+            "directions": "",
+            "latitude": null,
+            "longitude": null,
+            "streetAddress": "10345 Orangewood Blvd # B Suite 100",
+            "extendedAddress": "",
+            "locality": "Orlando ",
+            "region": "FL",
+            "postalCode": "32821",
+            "country": "US",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+              }
+            }
+          },
+          "maintenanceZone": {
+            "id": 13,
+            "name": "Alejandro Pupo",
+            "isActive": true,
+            "type": "maintenance",
+            "createdAt": "2022-10-27T15:45:53-04:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2022-10-27T15:45:53-04:00",
+            "updatedBy": "4-cmachado",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/13/"
+              }
+            }
+          },
+          "system": {
+            "id": 1,
+            "type": "virtualkey",
+            "name": "Lynx",
+            "isActive": true,
+            "params": [],
+            "createdAt": "2023-01-11T11:32:41-05:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2023-01-11T11:32:41-05:00",
+            "updatedBy": "4-cmachado",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/access-control/accounts/1/"
+              }
+            }
+          },
+          "cleanStatus": {
+            "id": 4,
+            "isActive": true,
+            "name": "Dirty",
+            "code": "D",
+            "type": "dirty",
+            "_links": []
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/2/"
+          },
+          "images": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/2/images/"
+          },
+          "policies": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/2/policies/"
+          },
+          "rooms": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/2/rooms/"
+          }
+        }
+      },
+      "unit_id": 2,
+      "missing_required": [
+        "petsFriendly",
+        "amenities"
+      ]
+    },
+    {
+      "success": true,
+      "data": {
+        "id": 3,
+        "isLimited": false,
+        "isActive": true,
+        "cleanStatusId": 4,
+        "coverImage": null,
+        "roles": [],
+        "composites": [],
+        "bedTypes": [],
+        "custom": {
+          "pms_units_wifi_name": "MySpectrumWIFIe0-2G",
+          "pms_units_wifi_password": "lighttree989",
+          "pms_units_source_unit_id": "338823"
+        },
+        "createdAt": "2022-09-30T13:54:23+00:00",
+        "createdBy": "system",
+        "updatedAt": "2025-10-03T16:17:19+00:00",
+        "updatedBy": "42-estephania",
+        "name": "Luxury 9 bd/5 Bath private Pool/Spa 171",
+        "shortName": "8852 Cabot Cliffs Drive",
+        "unitCode": "171",
+        "maxPets": 2,
+        "minimumAgeLimit": 21,
+        "phone": null,
+        "websiteUrl": "www.ihmvacations.com",
+        "streetAddress": "8852 Cabot Cliffs Drive",
+        "extendedAddress": null,
+        "locality": "Reunion",
+        "region": "FL",
+        "postal": "34747",
+        "country": "US",
+        "maxDiscount": null,
+        "area": 3812,
+        "floors": null,
+        "maxOccupancy": 23,
+        "bedrooms": 9,
+        "fullBathrooms": 5,
+        "threeQuarterBathrooms": 0,
+        "halfBathrooms": 0,
+        "timezone": "America/New_York",
+        "longitude": "-81.64184100",
+        "latitude": "28.28434830",
+        "maintenanceMessage": null,
+        "housekeepingMessage": null,
+        "housekeepingNotes": null,
+        "taxId": null,
+        "systemId": "3C07BD807FE511EDB8730E6BC86C97F5",
+        "systemAppend": null,
+        "housekeepingStop": null,
+        "maintenanceStop": null,
+        "availabilityOrder": 999999999,
+        "securityDeposit": "0.00",
+        "petFriendly": true,
+        "smokingAllowed": false,
+        "childrenAllowed": true,
+        "eventsAllowed": false,
+        "isAccessible": false,
+        "hasEarlyCheckin": true,
+        "hasLateCheckout": true,
+        "quickCheckin": true,
+        "quickCheckout": true,
+        "useRoomConfiguration": true,
+        "useBedTypes": false,
+        "isBookable": true,
+        "folioException": false,
+        "checkinTime": "16:00",
+        "checkoutTime": "10:00",
+        "earlyCheckinTime": "12:00",
+        "lateCheckoutTime": "16:30",
+        "nodeId": 3,
+        "typeId": 9,
+        "lodgingTypeId": 1,
+        "taxDistrictId": 1,
+        "localOfficeId": 1,
+        "housekeepingZoneId": null,
+        "maintenanceZoneId": 18,
+        "travelInsuranceProductId": null,
+        "cancellationPoliciesIds": [
+          82
+        ],
+        "guaranteePoliciesIds": [
+          4
+        ],
+        "documentsIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          11
+        ],
+        "gatewaysIds": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "insuranceProductsIds": [],
+        "amenitiesIds": [
+          1,
+          66,
+          77,
+          96,
+          97,
+          101,
+          166,
+          189,
+          243,
+          63,
+          72,
+          84,
+          115,
+          118,
+          138,
+          140,
+          174,
+          180,
+          198,
+          220,
+          221,
+          229,
+          9,
+          13,
+          18,
+          19,
+          20,
+          26,
+          38,
+          40,
+          41,
+          42,
+          43,
+          44,
+          47,
+          51,
+          55,
+          57,
+          61,
+          62,
+          78,
+          80,
+          86,
+          87,
+          90,
+          91,
+          95,
+          98,
+          102,
+          103,
+          105,
+          108,
+          109,
+          117,
+          119,
+          120,
+          123,
+          127,
+          131,
+          144,
+          145,
+          147,
+          152,
+          158,
+          165,
+          182,
+          183,
+          184,
+          186,
+          188,
+          225,
+          227,
+          228,
+          230,
+          232,
+          239,
+          240,
+          244,
+          247,
+          252,
+          253,
+          255,
+          256
+        ],
+        "_embedded": {
+          "node": {
+            "id": 3,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "custom": [],
+            "createdAt": "2022-09-08T13:04:38+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-07-01T16:00:49+00:00",
+            "updatedBy": "3-cwwilbraham",
+            "name": "Champions Gate",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": "www.ihmvacations.com",
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "housekeepingNotes": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "parentId": 2,
+            "typeId": 5,
+            "taxDistrictId": 1,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "cancellationPoliciesIds": [
+              20,
+              82
+            ],
+            "guaranteePoliciesIds": [
+              4
+            ],
+            "documentsIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "gatewaysIds": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              63,
+              72,
+              84,
+              97,
+              101,
+              115,
+              118,
+              138,
+              140,
+              174,
+              180,
+              198,
+              220,
+              221,
+              229,
+              1,
+              9,
+              13,
+              18,
+              19,
+              20,
+              26,
+              38,
+              40,
+              41,
+              42,
+              43,
+              44,
+              47,
+              51,
+              55,
+              57,
+              61,
+              62,
+              66,
+              77,
+              78,
+              80,
+              86,
+              87,
+              90,
+              91,
+              95,
+              96,
+              98,
+              102,
+              103,
+              105,
+              108,
+              109,
+              117,
+              119,
+              120,
+              123,
+              127,
+              131,
+              144,
+              145,
+              147,
+              152,
+              158,
+              165,
+              166,
+              182,
+              188,
+              189,
+              225,
+              227,
+              228,
+              230,
+              232,
+              239,
+              240,
+              244,
+              247,
+              252,
+              253,
+              255,
+              256,
+              243
+            ],
+            "_embedded": {
+              "parent": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/2/"
+                  }
+                }
+              },
+              "type": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/types/5/"
+                  }
+                }
+              },
+              "taxDistrict": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/tax-districts/1/"
+                  }
+                }
+              },
+              "localOffice": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+                  }
+                }
+              },
+              "maintenanceZone": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/nodes/3/"
+              }
+            }
+          },
+          "type": {
+            "id": 9,
+            "isActive": true,
+            "roles": [],
+            "bedTypes": [],
+            "custom": [],
+            "updated": {
+              "availability": "2022-09-23T13:54:12+00:00",
+              "content": "2023-03-14T13:48:34+00:00",
+              "pricing": "2025-11-04T20:44:08+00:00"
+            },
+            "createdAt": "2022-09-23T13:54:12+00:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2023-03-14T13:48:34+00:00",
+            "updatedBy": "jmiller@tnsinc.com",
+            "name": "9 Bedrooms",
+            "shortName": null,
+            "typeCode": null,
+            "maxPets": null,
+            "minimumAgeLimit": null,
+            "phone": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": null,
+            "maxDiscount": null,
+            "area": null,
+            "websiteUrl": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 9,
+            "fullBathrooms": 5,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": null,
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "oversellLimit": 0,
+            "securityDeposit": "0.00",
+            "petFriendly": false,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": true,
+            "hasEarlyCheckin": false,
+            "hasLateCheckout": false,
+            "quickCheckin": false,
+            "quickCheckout": false,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": true,
+            "allowUnitRates": true,
+            "allowOversell": false,
+            "folioException": false,
+            "checkinTime": null,
+            "checkoutTime": null,
+            "earlyCheckinTime": null,
+            "lateCheckoutTime": null,
+            "nodeId": null,
+            "lodgingTypeId": null,
+            "calendarGroupId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": null,
+            "localOfficeId": null,
+            "taxDistrictId": null,
+            "travelInsuranceProductId": null,
+            "cancellationPoliciesIds": [],
+            "guaranteePoliciesIds": [],
+            "documentsIds": [],
+            "gatewaysIds": [],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              232,
+              87,
+              117,
+              183,
+              184,
+              186
+            ],
+            "_embedded": {
+              "calendarGroup": {
+                "id": 1,
+                "name": "Default",
+                "createdAt": "2022-08-25T15:37:27-04:00",
+                "createdBy": "1-system",
+                "updatedAt": "2022-08-25T15:37:27-04:00",
+                "updatedBy": "1-system",
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/rates/calendars/1/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/types/9/"
+              }
+            }
+          },
+          "lodgingType": {
+            "id": 1,
+            "name": "House",
+            "code": "H",
+            "homeawayType": "PROPERTY_TYPE_HOUSE",
+            "airbnbTypeGroup": "houses",
+            "airbnbTypeCategory": "house",
+            "airbnbRoomType": "entire_home",
+            "marriottType": "house",
+            "bookingDotComType": 29,
+            "isActive": true,
+            "createdAt": "2022-02-28T09:57:04-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2025-05-09T14:36:14-04:00",
+            "updatedBy": "27-aagudelo",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/lodging-types/1/"
+              }
+            }
+          },
+          "taxDistrict": {
+            "id": 1,
+            "isActive": true,
+            "name": "Osceola County ",
+            "shortTermPolicyId": 1,
+            "longTermPolicyId": 4,
+            "hasBreakpoint": true,
+            "breakpoint": 181,
+            "salesTaxPolicyId": null,
+            "salesTaxPolicy": null,
+            "taxMarkup": false,
+            "createdAt": "2022-03-01T09:36:54-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-13T09:36:43-04:00",
+            "updatedBy": "ccase@tnsinc.com",
+            "_embedded": {
+              "shortTermPolicy": {
+                "id": 1,
+                "isActive": true,
+                "name": "Osceola County Policy",
+                "description": "",
+                "taxIds": [
+                  1,
+                  2
+                ],
+                "createdAt": "2022-03-01T09:36:25-05:00",
+                "createdBy": "jlefevers@tnsinc.com",
+                "updatedAt": "2022-09-13T09:35:29-04:00",
+                "updatedBy": "ccase@tnsinc.com",
+                "_embedded": {
+                  "taxes": [
+                    {
+                      "_links": {
+                        "self": {
+                          "href": "https://ihmvacations.trackhs.com/api/pms/taxes/1/"
+                        }
+                      }
+                    },
+                    {
+                      "_links": {
+                        "self": {
+                          "href": "https://ihmvacations.trackhs.com/api/pms/taxes/2/"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/tax-policies/1/"
+                  }
+                }
+              },
+              "longTermPolicy": {
+                "id": 4,
+                "isActive": true,
+                "name": "Long Term Policy",
+                "description": "",
+                "taxIds": [],
+                "createdAt": "2022-09-13T09:36:14-04:00",
+                "createdBy": "ccase@tnsinc.com",
+                "updatedAt": "2022-09-13T09:36:14-04:00",
+                "updatedBy": "ccase@tnsinc.com",
+                "_embedded": {
+                  "taxes": []
+                },
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/tax-policies/4/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/tax-districts/1/"
+              }
+            }
+          },
+          "localOffice": {
+            "id": 1,
+            "createdAt": "2022-02-28T09:52:21-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-08T10:01:17-04:00",
+            "updatedBy": "bwurster@tnsinc.com",
+            "name": "Main Office",
+            "phone": "+14074402812",
+            "email": "reservations@ihmvacations.com",
+            "directions": "",
+            "latitude": null,
+            "longitude": null,
+            "streetAddress": "10345 Orangewood Blvd # B Suite 100",
+            "extendedAddress": "",
+            "locality": "Orlando ",
+            "region": "FL",
+            "postalCode": "32821",
+            "country": "US",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+              }
+            }
+          },
+          "maintenanceZone": {
+            "id": 18,
+            "name": "Irving Santiago",
+            "isActive": true,
+            "type": "maintenance",
+            "createdAt": "2023-01-06T12:26:47-05:00",
+            "createdBy": "2-richardmedina0",
+            "updatedAt": "2023-01-27T11:16:39-05:00",
+            "updatedBy": "35-irvins",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/18/"
+              }
+            }
+          },
+          "system": {
+            "id": 1,
+            "type": "virtualkey",
+            "name": "Lynx",
+            "isActive": true,
+            "params": [],
+            "createdAt": "2023-01-11T11:32:41-05:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2023-01-11T11:32:41-05:00",
+            "updatedBy": "4-cmachado",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/access-control/accounts/1/"
+              }
+            }
+          },
+          "cleanStatus": {
+            "id": 4,
+            "isActive": true,
+            "name": "Dirty",
+            "code": "D",
+            "type": "dirty",
+            "_links": []
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/3/"
+          },
+          "images": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/3/images/"
+          },
+          "policies": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/3/policies/"
+          },
+          "rooms": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/3/rooms/"
+          }
+        }
+      },
+      "unit_id": 3,
+      "missing_required": [
+        "petsFriendly",
+        "amenities"
+      ]
+    },
+    {
+      "success": true,
+      "data": {
+        "id": 4,
+        "isLimited": false,
+        "isActive": true,
+        "cleanStatusId": 4,
+        "coverImage": null,
+        "roles": [],
+        "composites": [],
+        "bedTypes": [],
+        "custom": {
+          "pms_units_wifi_name": "SpectrumSetup-DOCE",
+          "pms_units_wifi_password": "southmusic916",
+          "pms_units_source_unit_id": "339085"
+        },
+        "createdAt": "2022-09-30T13:54:24+00:00",
+        "createdBy": "system",
+        "updatedAt": "2025-08-29T12:58:00+00:00",
+        "updatedBy": "42-estephania",
+        "name": "Golf Course View 9 bd/5 Bath private Pool/Spa 183",
+        "shortName": "8856 Cabot Cliffs Drive",
+        "unitCode": "183",
+        "maxPets": 2,
+        "minimumAgeLimit": 21,
+        "phone": null,
+        "websiteUrl": "www.ihmvacations.com",
+        "streetAddress": "8856 Cabot Cliffs Drive",
+        "extendedAddress": null,
+        "locality": "Reunion",
+        "region": "FL",
+        "postal": "34747",
+        "country": "US",
+        "maxDiscount": null,
+        "area": 3812,
+        "floors": null,
+        "maxOccupancy": 24,
+        "bedrooms": 9,
+        "fullBathrooms": 5,
+        "threeQuarterBathrooms": 0,
+        "halfBathrooms": 0,
+        "timezone": "America/New_York",
+        "longitude": "-81.64184100",
+        "latitude": "28.28434830",
+        "maintenanceMessage": null,
+        "housekeepingMessage": null,
+        "housekeepingNotes": null,
+        "taxId": null,
+        "systemId": "3C1346B87FE511EDB8730E6BC86C97F5",
+        "systemAppend": null,
+        "housekeepingStop": null,
+        "maintenanceStop": null,
+        "availabilityOrder": 999999999,
+        "securityDeposit": "0.00",
+        "petFriendly": true,
+        "smokingAllowed": false,
+        "childrenAllowed": true,
+        "eventsAllowed": false,
+        "isAccessible": false,
+        "hasEarlyCheckin": true,
+        "hasLateCheckout": true,
+        "quickCheckin": true,
+        "quickCheckout": true,
+        "useRoomConfiguration": true,
+        "useBedTypes": false,
+        "isBookable": true,
+        "folioException": false,
+        "checkinTime": "16:00",
+        "checkoutTime": "10:00",
+        "earlyCheckinTime": "12:00",
+        "lateCheckoutTime": "16:30",
+        "nodeId": 3,
+        "typeId": 9,
+        "lodgingTypeId": 1,
+        "taxDistrictId": 1,
+        "localOfficeId": 1,
+        "housekeepingZoneId": null,
+        "maintenanceZoneId": 18,
+        "travelInsuranceProductId": null,
+        "cancellationPoliciesIds": [
+          82
+        ],
+        "guaranteePoliciesIds": [
+          4
+        ],
+        "documentsIds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          11
+        ],
+        "gatewaysIds": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "insuranceProductsIds": [],
+        "amenitiesIds": [
+          1,
+          66,
+          77,
+          96,
+          97,
+          101,
+          166,
+          189,
+          243,
+          63,
+          72,
+          84,
+          115,
+          118,
+          138,
+          140,
+          174,
+          180,
+          198,
+          220,
+          221,
+          229,
+          9,
+          13,
+          18,
+          19,
+          20,
+          26,
+          38,
+          40,
+          41,
+          42,
+          43,
+          44,
+          47,
+          51,
+          55,
+          57,
+          61,
+          62,
+          78,
+          80,
+          86,
+          87,
+          90,
+          91,
+          95,
+          98,
+          102,
+          103,
+          105,
+          108,
+          109,
+          117,
+          119,
+          120,
+          123,
+          127,
+          131,
+          144,
+          145,
+          147,
+          152,
+          158,
+          165,
+          182,
+          183,
+          184,
+          186,
+          188,
+          225,
+          227,
+          228,
+          230,
+          232,
+          239,
+          240,
+          244,
+          247,
+          252,
+          253,
+          255,
+          256
+        ],
+        "_embedded": {
+          "node": {
+            "id": 3,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "custom": [],
+            "createdAt": "2022-09-08T13:04:38+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-07-01T16:00:49+00:00",
+            "updatedBy": "3-cwwilbraham",
+            "name": "Champions Gate",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": "www.ihmvacations.com",
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "housekeepingNotes": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "parentId": 2,
+            "typeId": 5,
+            "taxDistrictId": 1,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "cancellationPoliciesIds": [
+              20,
+              82
+            ],
+            "guaranteePoliciesIds": [
+              4
+            ],
+            "documentsIds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "gatewaysIds": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              63,
+              72,
+              84,
+              97,
+              101,
+              115,
+              118,
+              138,
+              140,
+              174,
+              180,
+              198,
+              220,
+              221,
+              229,
+              1,
+              9,
+              13,
+              18,
+              19,
+              20,
+              26,
+              38,
+              40,
+              41,
+              42,
+              43,
+              44,
+              47,
+              51,
+              55,
+              57,
+              61,
+              62,
+              66,
+              77,
+              78,
+              80,
+              86,
+              87,
+              90,
+              91,
+              95,
+              96,
+              98,
+              102,
+              103,
+              105,
+              108,
+              109,
+              117,
+              119,
+              120,
+              123,
+              127,
+              131,
+              144,
+              145,
+              147,
+              152,
+              158,
+              165,
+              166,
+              182,
+              188,
+              189,
+              225,
+              227,
+              228,
+              230,
+              232,
+              239,
+              240,
+              244,
+              247,
+              252,
+              253,
+              255,
+              256,
+              243
+            ],
+            "_embedded": {
+              "parent": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/2/"
+                  }
+                }
+              },
+              "type": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/nodes/types/5/"
+                  }
+                }
+              },
+              "taxDistrict": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/tax-districts/1/"
+                  }
+                }
+              },
+              "localOffice": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+                  }
+                }
+              },
+              "maintenanceZone": {
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/7/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/nodes/3/"
+              }
+            }
+          },
+          "type": {
+            "id": 9,
+            "isActive": true,
+            "roles": [],
+            "bedTypes": [],
+            "custom": [],
+            "updated": {
+              "availability": "2022-09-23T13:54:12+00:00",
+              "content": "2023-03-14T13:48:34+00:00",
+              "pricing": "2025-11-04T20:44:08+00:00"
+            },
+            "createdAt": "2022-09-23T13:54:12+00:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2023-03-14T13:48:34+00:00",
+            "updatedBy": "jmiller@tnsinc.com",
+            "name": "9 Bedrooms",
+            "shortName": null,
+            "typeCode": null,
+            "maxPets": null,
+            "minimumAgeLimit": null,
+            "phone": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": null,
+            "maxDiscount": null,
+            "area": null,
+            "websiteUrl": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 9,
+            "fullBathrooms": 5,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": null,
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "oversellLimit": 0,
+            "securityDeposit": "0.00",
+            "petFriendly": false,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": true,
+            "hasEarlyCheckin": false,
+            "hasLateCheckout": false,
+            "quickCheckin": false,
+            "quickCheckout": false,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": true,
+            "allowUnitRates": true,
+            "allowOversell": false,
+            "folioException": false,
+            "checkinTime": null,
+            "checkoutTime": null,
+            "earlyCheckinTime": null,
+            "lateCheckoutTime": null,
+            "nodeId": null,
+            "lodgingTypeId": null,
+            "calendarGroupId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": null,
+            "localOfficeId": null,
+            "taxDistrictId": null,
+            "travelInsuranceProductId": null,
+            "cancellationPoliciesIds": [],
+            "guaranteePoliciesIds": [],
+            "documentsIds": [],
+            "gatewaysIds": [],
+            "insuranceProductsIds": [],
+            "amenitiesIds": [
+              87,
+              117,
+              183,
+              184,
+              186,
+              232
+            ],
+            "_embedded": {
+              "calendarGroup": {
+                "id": 1,
+                "name": "Default",
+                "createdAt": "2022-08-25T15:37:27-04:00",
+                "createdBy": "1-system",
+                "updatedAt": "2022-08-25T15:37:27-04:00",
+                "updatedBy": "1-system",
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/rates/calendars/1/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/types/9/"
+              }
+            }
+          },
+          "lodgingType": {
+            "id": 1,
+            "name": "House",
+            "code": "H",
+            "homeawayType": "PROPERTY_TYPE_HOUSE",
+            "airbnbTypeGroup": "houses",
+            "airbnbTypeCategory": "house",
+            "airbnbRoomType": "entire_home",
+            "marriottType": "house",
+            "bookingDotComType": 29,
+            "isActive": true,
+            "createdAt": "2022-02-28T09:57:04-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2025-05-09T14:36:14-04:00",
+            "updatedBy": "27-aagudelo",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/lodging-types/1/"
+              }
+            }
+          },
+          "taxDistrict": {
+            "id": 1,
+            "isActive": true,
+            "name": "Osceola County ",
+            "shortTermPolicyId": 1,
+            "longTermPolicyId": 4,
+            "hasBreakpoint": true,
+            "breakpoint": 181,
+            "salesTaxPolicyId": null,
+            "salesTaxPolicy": null,
+            "taxMarkup": false,
+            "createdAt": "2022-03-01T09:36:54-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-13T09:36:43-04:00",
+            "updatedBy": "ccase@tnsinc.com",
+            "_embedded": {
+              "shortTermPolicy": {
+                "id": 1,
+                "isActive": true,
+                "name": "Osceola County Policy",
+                "description": "",
+                "taxIds": [
+                  1,
+                  2
+                ],
+                "createdAt": "2022-03-01T09:36:25-05:00",
+                "createdBy": "jlefevers@tnsinc.com",
+                "updatedAt": "2022-09-13T09:35:29-04:00",
+                "updatedBy": "ccase@tnsinc.com",
+                "_embedded": {
+                  "taxes": [
+                    {
+                      "_links": {
+                        "self": {
+                          "href": "https://ihmvacations.trackhs.com/api/pms/taxes/1/"
+                        }
+                      }
+                    },
+                    {
+                      "_links": {
+                        "self": {
+                          "href": "https://ihmvacations.trackhs.com/api/pms/taxes/2/"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/tax-policies/1/"
+                  }
+                }
+              },
+              "longTermPolicy": {
+                "id": 4,
+                "isActive": true,
+                "name": "Long Term Policy",
+                "description": "",
+                "taxIds": [],
+                "createdAt": "2022-09-13T09:36:14-04:00",
+                "createdBy": "ccase@tnsinc.com",
+                "updatedAt": "2022-09-13T09:36:14-04:00",
+                "updatedBy": "ccase@tnsinc.com",
+                "_embedded": {
+                  "taxes": []
+                },
+                "_links": {
+                  "self": {
+                    "href": "https://ihmvacations.trackhs.com/api/pms/tax-policies/4/"
+                  }
+                }
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/tax-districts/1/"
+              }
+            }
+          },
+          "localOffice": {
+            "id": 1,
+            "createdAt": "2022-02-28T09:52:21-05:00",
+            "createdBy": "jlefevers@tnsinc.com",
+            "updatedAt": "2022-09-08T10:01:17-04:00",
+            "updatedBy": "bwurster@tnsinc.com",
+            "name": "Main Office",
+            "phone": "+14074402812",
+            "email": "reservations@ihmvacations.com",
+            "directions": "",
+            "latitude": null,
+            "longitude": null,
+            "streetAddress": "10345 Orangewood Blvd # B Suite 100",
+            "extendedAddress": "",
+            "locality": "Orlando ",
+            "region": "FL",
+            "postalCode": "32821",
+            "country": "US",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/local-offices/1/"
+              }
+            }
+          },
+          "maintenanceZone": {
+            "id": 18,
+            "name": "Irving Santiago",
+            "isActive": true,
+            "type": "maintenance",
+            "createdAt": "2023-01-06T12:26:47-05:00",
+            "createdBy": "2-richardmedina0",
+            "updatedAt": "2023-01-27T11:16:39-05:00",
+            "updatedBy": "35-irvins",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/housekeeping/zones/18/"
+              }
+            }
+          },
+          "system": {
+            "id": 1,
+            "type": "virtualkey",
+            "name": "Lynx",
+            "isActive": true,
+            "params": [],
+            "createdAt": "2023-01-11T11:32:41-05:00",
+            "createdBy": "4-cmachado",
+            "updatedAt": "2023-01-11T11:32:41-05:00",
+            "updatedBy": "4-cmachado",
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/access-control/accounts/1/"
+              }
+            }
+          },
+          "cleanStatus": {
+            "id": 4,
+            "isActive": true,
+            "name": "Dirty",
+            "code": "D",
+            "type": "dirty",
+            "_links": []
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/4/"
+          },
+          "images": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/4/images/"
+          },
+          "policies": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/4/policies/"
+          },
+          "rooms": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/units/4/rooms/"
+          }
+        }
+      },
+      "unit_id": 4,
+      "missing_required": [
+        "petsFriendly",
+        "amenities"
+      ]
+    },
+    {
+      "success": false,
+      "status_code": 404,
+      "error": "Not Found"
+    }
+  ]
+}

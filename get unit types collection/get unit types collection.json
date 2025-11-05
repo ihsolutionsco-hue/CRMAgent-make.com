@@ -17,8 +17,8 @@
           { "name": "Accept", "value": "application/json" }
         ],
         "qs": [
-          { "name": "page", "value": "{{ifempty(var.input.page; 1)}}" },
-          { "name": "size", "value": "{{ifempty(var.input.size; null)}}" },
+          { "name": "page", "value": "{{if(var.input.page; if(var.input.page < 1; 1; var.input.page); 1)}}" },
+          { "name": "size", "value": "{{if(var.input.size; if(var.input.size > 0; var.input.size; null); null)}}" },
           { "name": "sortColumn", "value": "{{ifempty(var.input.sortColumn; \"name\")}}" },
           { "name": "sortDirection", "value": "{{ifempty(var.input.sortDirection; \"asc\")}}" },
           { "name": "nodeId", "value": "{{ifempty(var.input.nodeId; null)}}" },
@@ -108,13 +108,13 @@
       "version": 2,
       "parameters": {},
       "mapper": {
-        "unitTypes": "{{1.data.`_embedded`.units}}",
+        "unitTypes": "{{1.data.`_embedded`.unitTypes}}",
         "page": "{{1.data.page}}",
         "page_count": "{{1.data.page_count}}",
         "page_size": "{{1.data.page_size}}",
         "total_items": "{{1.data.total_items}}",
-        "next_href": "{{1.data.`_links`.next.href}}",
-        "prev_href": "{{1.data.`_links`.prev.href}}",
+        "next_href": "{{ifempty(1.data.`_links`.next.href; null)}}",
+        "prev_href": "{{ifempty(1.data.`_links`.prev.href; null)}}",
         "first_href": "{{1.data.`_links`.first.href}}",
         "last_href": "{{1.data.`_links`.last.href}}"
       },
