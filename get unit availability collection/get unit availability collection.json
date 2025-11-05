@@ -1,0 +1,257 @@
+{
+  "name": "get unit availability collection",
+  "flow": [
+    {
+      "id": 1,
+      "module": "http:ActionSendData",
+      "version": 3,
+      "parameters": {
+        "handleErrors": true,
+        "useNewZLibDeCompress": true
+      },
+      "mapper": {
+        "url": "https://ihmvacations.trackhs.com/api/v2/pms/units/{{var.input.unitId}}/availability",
+        "serializeUrl": false,
+        "method": "get",
+        "headers": [
+          { "name": "Accept", "value": "application/json" }
+        ],
+        "qs": [
+          { "name": "endDate", "value": "{{ifempty(var.input.endDate; null)}}" },
+          { "name": "startDate", "value": "{{ifempty(var.input.startDate; null)}}" },
+          { "name": "useSoftDates", "value": "{{ifempty(var.input.useSoftDates; null)}}" }
+        ],
+        "bodyType": "",
+        "parseResponse": true,
+        "authUser": "{{var.organization.user}}",
+        "authPass": "{{var.organization.password}}",
+        "timeout": "",
+        "shareCookies": false,
+        "ca": "",
+        "rejectUnauthorized": true,
+        "followRedirect": true,
+        "useQuerystring": false,
+        "gzip": true,
+        "useMtls": false,
+        "followAllRedirects": false
+      },
+      "metadata": {
+        "designer": { "x": 0, "y": 0, "name": "api:getUnitAvailability" },
+        "restore": {
+          "expect": {
+            "method": { "mode": "chose", "label": "GET" },
+            "headers": { "mode": "chose", "items": [ null ] },
+            "qs": { "mode": "chose", "items": [ null ] },
+            "bodyType": { "label": "Empty" }
+          }
+        },
+        "parameters": [
+          { "name": "handleErrors", "type": "boolean", "label": "Evaluate all states as errors (except for 2xx and 3xx )", "required": true },
+          { "name": "useNewZLibDeCompress", "type": "hidden" }
+        ],
+        "expect": [
+          { "name": "url", "type": "url", "label": "URL", "required": true },
+          { "name": "serializeUrl", "type": "boolean", "label": "Serialize URL", "required": true },
+          {
+            "name": "method",
+            "type": "select",
+            "label": "Method",
+            "required": true,
+            "validate": { "enum": [ "get", "head", "post", "put", "patch", "delete", "options" ] }
+          },
+          {
+            "name": "headers",
+            "type": "array",
+            "label": "Headers",
+            "spec": [
+              { "name": "name", "label": "Name", "type": "text", "required": true },
+              { "name": "value", "label": "Value", "type": "text" }
+            ]
+          },
+          {
+            "name": "qs",
+            "type": "array",
+            "label": "Query String",
+            "spec": [
+              { "name": "name", "label": "Name", "type": "text", "required": true },
+              { "name": "value", "label": "Value", "type": "text" }
+            ]
+          },
+          { "name": "bodyType", "type": "select", "label": "Body type", "validate": { "enum": [ "raw", "x_www_form_urlencoded", "multipart_form_data" ] } },
+          { "name": "parseResponse", "type": "boolean", "label": "Parse response", "required": true },
+          { "name": "authUser", "type": "text", "label": "User name" },
+          { "name": "authPass", "type": "password", "label": "Password" },
+          { "name": "timeout", "type": "uinteger", "label": "Timeout", "validate": { "max": 300, "min": 1 } },
+          { "name": "shareCookies", "type": "boolean", "label": "Share cookies with other HTTP modules", "required": true },
+          { "name": "ca", "type": "cert", "label": "Self-signed certificate" },
+          { "name": "rejectUnauthorized", "type": "boolean", "label": "Reject connections that are using unverified (self-signed) certificates", "required": true },
+          { "name": "followRedirect", "type": "boolean", "label": "Follow redirect", "required": true },
+          { "name": "useQuerystring", "type": "boolean", "label": "Disable serialization of multiple same query string keys as arrays", "required": true },
+          { "name": "gzip", "type": "boolean", "label": "Request compressed content", "required": true },
+          { "name": "useMtls", "type": "boolean", "label": "Use Mutual TLS", "required": true },
+          { "name": "followAllRedirects", "type": "boolean", "label": "Follow all redirect", "required": true }
+        ],
+        "advanced": true
+      }
+    },
+    {
+      "id": 2,
+      "module": "scenario-service:ReturnData",
+      "version": 2,
+      "parameters": {},
+      "mapper": {
+        "availability": "{{1.data}}"
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "restore": {},
+        "expect": [
+          { "name": "availability", "type": "text", "label": "" }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "slots": null,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": { "orphans": [] },
+    "zone": "us2.make.com",
+    "notes": [
+      "=== CONFIGURACIÓN DE AUTENTICACIÓN ===",
+      "IMPORTANTE: Configurar autenticación Basic Auth en el módulo HTTP",
+      "El módulo HTTP debe tener configurado:",
+      "  - Username: Tu usuario de TrackHS (ej: aba99777416466b6bdc1a25223192ccb)",
+      "  - Password: Tu contraseña de TrackHS",
+      "Si recibes error 403 Forbidden, verifica que las credenciales estén correctamente configuradas",
+      "",
+      "=== ENDPOINT DE DISPONIBILIDAD V2 ===",
+      "Este endpoint devuelve la disponibilidad de una unidad específica.",
+      "A diferencia del endpoint V1 (/pms/units/search), este endpoint:",
+      "  - Se enfoca en UNA unidad específica (identificada por unitId)",
+      "  - Devuelve disponibilidad día por día desde hoy hasta la ventana máxima de reserva por defecto",
+      "  - NO está afectado por tarifas, solo devuelve si la unidad está disponible a menos que esté bloqueada/reservada",
+      "  - Respuesta: Array de objetos con fecha y conteo de disponibilidad",
+      "",
+      "=== PARÁMETRO REQUERIDO ===",
+      "unitId:",
+      "  - ID de la unidad (integer) - REQUERIDO",
+      "  - Se incluye en la URL como parámetro de path",
+      "  - Ejemplo: /api/v2/pms/units/2892/availability",
+      "",
+      "=== PARÁMETROS OPCIONALES (QUERY STRING) ===",
+      "startDate:",
+      "  - Fecha de inicio para filtrar disponibilidad (ISO 8601 format: YYYY-MM-DD)",
+      "  - Si no se especifica, comienza desde hoy",
+      "  - Ejemplo: startDate=2025-10-27",
+      "",
+      "endDate:",
+      "  - Fecha de fin para filtrar disponibilidad (ISO 8601 format: YYYY-MM-DD)",
+      "  - Si no se especifica, va hasta la ventana máxima de reserva",
+      "  - Debe usarse junto con startDate",
+      "  - Ejemplo: endDate=2025-10-31",
+      "",
+      "useSoftDates:",
+      "  - Integer: 0 o 1",
+      "  - 0: Usa fechas duras (hard dates) - las fechas no pueden superponerse",
+      "  - 1: Usa fechas suaves (soft dates) - permite superposición",
+      "  - Default: null (sin especificar)",
+      "",
+      "=== RESPUESTA ===",
+      "La respuesta es un array de objetos con la siguiente estructura:",
+      "  - date: Fecha en formato ISO 8601 (YYYY-MM-DD)",
+      "  - count: Número de unidades disponibles para esa fecha (integer)",
+      "",
+      "Ejemplo de respuesta:",
+      "  [",
+      "    { \"date\": \"2025-10-27\", \"count\": 1 },",
+      "    { \"date\": \"2025-10-28\", \"count\": 1 },",
+      "    { \"date\": \"2025-10-29\", \"count\": 0 },",
+      "    { \"date\": \"2025-10-30\", \"count\": 1 }",
+      "  ]",
+      "",
+      "=== CASOS DE USO ===",
+      "1. Obtener disponibilidad completa de una unidad (desde hoy hasta ventana máxima):",
+      "   Input: { \"unitId\": 2892 }",
+      "",
+      "2. Obtener disponibilidad para un rango de fechas específico:",
+      "   Input: { \"unitId\": 2892, \"startDate\": \"2025-10-27\", \"endDate\": \"2025-10-31\" }",
+      "",
+      "3. Obtener disponibilidad usando fechas suaves:",
+      "   Input: { \"unitId\": 2892, \"startDate\": \"2025-10-27\", \"endDate\": \"2025-10-31\", \"useSoftDates\": 1 }",
+      "",
+      "=== NOTAS IMPORTANTES ===",
+      "- Este endpoint devuelve disponibilidad día por día, no por rango",
+      "- El campo 'count' indica cuántas unidades están disponibles para esa fecha específica",
+      "- Si count es 0, la unidad NO está disponible para esa fecha (bloqueada o reservada)",
+      "- Si count es mayor a 0, la unidad está disponible",
+      "- La disponibilidad NO está afectada por tarifas, solo por bloqueos y reservas",
+      "- Por defecto, devuelve disponibilidad desde hoy hasta la ventana máxima de reserva",
+      "- Si se especifica startDate sin endDate, devuelve desde startDate hasta la ventana máxima",
+      "- Si se especifica endDate sin startDate, puede comportarse de manera inesperada",
+      "- Formato de fecha: YYYY-MM-DD (ej: 2025-10-27), NO incluir hora ni zona horaria",
+      "- Este endpoint es parte de la API V2, usa /v2/pms/units/ en lugar de /pms/units/"
+    ]
+  },
+  "io": {
+    "input_spec": [
+      {
+        "name": "unitId",
+        "label": "Unit ID",
+        "help": "ID de la unidad para consultar disponibilidad (integer, requerido). Se incluye en la URL como parámetro de path.",
+        "type": "number",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "startDate",
+        "label": "Fecha de Inicio",
+        "help": "Fecha de inicio para filtrar disponibilidad en formato ISO 8601 (YYYY-MM-DD). OPCIONAL. Si no se especifica, comienza desde hoy. Ejemplo: 2025-10-27",
+        "type": "text",
+        "default": "",
+        "required": false,
+        "multiline": false
+      },
+      {
+        "name": "endDate",
+        "label": "Fecha de Fin",
+        "help": "Fecha de fin para filtrar disponibilidad en formato ISO 8601 (YYYY-MM-DD). OPCIONAL. Si no se especifica, va hasta la ventana máxima de reserva. Debe usarse junto con startDate. Ejemplo: 2025-10-31",
+        "type": "text",
+        "default": "",
+        "required": false,
+        "multiline": false
+      },
+      {
+        "name": "useSoftDates",
+        "label": "Usar Fechas Suaves",
+        "help": "Usar fechas suaves (soft dates) en lugar de duras (hard dates). Valores: 0 (fechas duras, no pueden superponerse) o 1 (fechas suaves, permiten superposición). Tipo: integer según OpenAPI. OPCIONAL.",
+        "type": "number",
+        "default": null,
+        "required": false
+      }
+    ],
+    "output_spec": [
+      {
+        "name": "availability",
+        "label": "Disponibilidad",
+        "help": "Array de objetos con disponibilidad día por día. Cada objeto incluye:\n\n- date: Fecha en formato ISO 8601 (YYYY-MM-DD)\n- count: Número de unidades disponibles para esa fecha (integer)\n\nSi count es 0, la unidad NO está disponible para esa fecha (bloqueada o reservada).\nSi count es mayor a 0, la unidad está disponible.\n\nNOTA: La disponibilidad NO está afectada por tarifas, solo por bloqueos y reservas. Por defecto, devuelve disponibilidad desde hoy hasta la ventana máxima de reserva, a menos que se especifiquen startDate y endDate.",
+        "type": "text",
+        "default": "",
+        "required": false,
+        "multiline": false
+      }
+    ]
+  }
+}
+

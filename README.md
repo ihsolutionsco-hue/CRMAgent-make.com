@@ -5,6 +5,7 @@ Colección de blueprints y herramientas para Make.com que integran con la API de
 ## 📋 Índice
 
 - [Descripción General](#descripción-general)
+- [Resumen de Herramientas](#resumen-de-herramientas)
 - [Herramientas Disponibles](#herramientas-disponibles)
   - [CRM - Gestión de Contactos](#crm---gestión-de-contactos)
   - [PMS - Gestión de Unidades](#pms---gestión-de-unidades)
@@ -12,6 +13,7 @@ Colección de blueprints y herramientas para Make.com que integran con la API de
   - [PMS - Gestión de Cotizaciones](#pms---gestión-de-cotizaciones)
   - [PMS - Mantenimiento](#pms---mantenimiento)
   - [PMS - Housekeeping](#pms---housekeeping)
+  - [Herramientas Auxiliares](#herramientas-auxiliares)
 - [Configuración General](#configuración-general)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 
@@ -23,6 +25,41 @@ Este repositorio contiene una colección de blueprints para Make.com que permite
 - Todas las herramientas requieren **Basic Authentication** con credenciales de TrackHS
 - Username: Tu usuario de TrackHS
 - Password: Tu contraseña de TrackHS
+
+## Resumen de Herramientas
+
+Este proyecto contiene **14 colecciones de Make.com** y **1 herramienta auxiliar**:
+
+### CRM (3 herramientas)
+- ✅ Create Contact Collection - Crear contactos
+- ✅ Get Contact Collection - Obtener contacto por ID
+- ✅ Get Contacts Collection - Buscar/listar contactos
+
+### PMS - Unidades (5 herramientas)
+- ✅ Search Units Collection - Buscar unidades con filtros
+- ✅ Get Unit By ID Collection - Obtener detalles de unidad
+- ✅ Get Unit Types Collection - Obtener tipos de unidades
+- ✅ Get Unit Availability Collection - Disponibilidad de una unidad
+- ✅ Get Units Availability Collection - Buscar unidades disponibles por fechas
+
+### PMS - Reservas (2 herramientas)
+- ✅ Create Reservation Collection - Crear reservas
+- ✅ Get Reservations Collection - Buscar/listar reservas
+
+### PMS - Cotizaciones (2 herramientas)
+- ✅ Get Quote Collection - Obtener cotizaciones
+- ✅ Create Quote V2 Collection - Crear cotizaciones V2
+
+### PMS - Mantenimiento (1 herramienta)
+- ✅ Create Maintenance Work Order Collection - Crear órdenes de mantenimiento
+
+### PMS - Housekeeping (1 herramienta)
+- ✅ Create Housekeeping Work Order Collection - Crear órdenes de limpieza
+
+### Herramientas Auxiliares (1 herramienta)
+- ✅ Get Clean Types Script - Script Python para consultar tipos de limpieza
+
+---
 
 ## Herramientas Disponibles
 
@@ -146,6 +183,43 @@ Obtiene todos los tipos de unidades (unit types) en TrackHS (`GET /api/pms/units
 **Archivos:**
 - Blueprint: `get unit types collection.json`
 - Documentación: `get unit types.md`
+- Descripción: `description.md`
+- Tests: `test_api.py`
+
+---
+
+#### 📅 Get Unit Availability Collection
+**Ubicación:** `get unit availability collection/`
+
+Obtiene la disponibilidad día por día de una unidad específica en TrackHS (`GET /api/v2/pms/units/{unitId}/availability`).
+
+**Funcionalidades:**
+- Devuelve un array con fecha y conteo de disponibilidad
+- Parámetros opcionales: startDate, endDate (ISO 8601), useSoftDates (0|1)
+- No está afectado por tarifas, solo por bloqueos y reservas
+- Información de disponibilidad granular día por día
+
+**Archivos:**
+- Blueprint: `get unit availability collection.json`
+- Documentación: `get unit availability collection.md`
+- Descripción: `description.md`
+
+---
+
+#### 📊 Get Units Availability Collection
+**Ubicación:** `get units availability collection/`
+
+Busca unidades disponibles en TrackHS para un rango de fechas (`GET /api/pms/units/search`).
+
+**Funcionalidades:**
+- Parámetros requeridos: arrival, departure (ISO 8601)
+- Parámetros opcionales: useSoftDates, exclude, unitTypeId, nodeId
+- Búsqueda de múltiples unidades disponibles en un rango de fechas
+- Retorna información de disponibilidad y unidades
+
+**Archivos:**
+- Blueprint: `get units availability collection.json`
+- Documentación: `get units availability collection.md`
 - Descripción: `description.md`
 - Tests: `test_api.py`
 
@@ -308,6 +382,35 @@ Crea órdenes de trabajo de housekeeping (limpieza e inspecciones) en TrackHS PM
 
 ---
 
+## Herramientas Auxiliares
+
+### 🛠️ Get Clean Types Script
+**Ubicación:** `get_clean_types.py` (raíz del proyecto)
+
+Script Python para obtener los tipos de limpieza (clean types) desde la API de TrackHS PMS (`GET /api/pms/housekeeping/clean-types`).
+
+**Funcionalidades:**
+- Hace una petición GET real al endpoint de clean types
+- Muestra información detallada de cada tipo de limpieza
+- Útil para consultar los IDs de clean types disponibles antes de crear órdenes de housekeeping
+
+**Uso:**
+```bash
+# Configurar variables de entorno en .env
+TRACKHS_API_URL=https://tu-dominio.trackhs.com
+TRACKHS_USERNAME=tu_usuario
+TRACKHS_PASSWORD=tu_contraseña
+
+# Ejecutar script
+python get_clean_types.py
+```
+
+**Requisitos:**
+- Python 3.x
+- Librerías: `requests`, `python-dotenv`
+
+---
+
 ## Configuración General
 
 ### Autenticación en Make.com
@@ -354,6 +457,7 @@ TRACKHS_PASSWORD=tu_contraseña
 ```
 make.com/
 ├── README.md (este archivo)
+├── get_clean_types.py (herramienta auxiliar)
 │
 ├── create contact collection/
 │   ├── create contact collection.json
@@ -403,6 +507,18 @@ make.com/
 │   ├── description.md
 │   └── test_api.py
 │
+├── get unit availability collection/
+│   ├── get unit availability collection.json
+│   ├── get unit availability collection.md
+│   └── description.md
+│
+├── get units availability collection/
+│   ├── get units availability collection.json
+│   ├── get units availability collection.md
+│   ├── description.md
+│   ├── requirements.txt
+│   └── test_api.py
+│
 ├── get quote collection/
 │   ├── get quote collection.json
 │   ├── get quote collection.md
@@ -443,4 +559,4 @@ Si encuentras problemas con alguna de las herramientas o la API de TrackHS, revi
 
 ---
 
-**Última actualización:** Enero 2025
+**Última actualización:** Noviembre 2025
