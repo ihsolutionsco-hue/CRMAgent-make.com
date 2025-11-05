@@ -11,6 +11,7 @@ Colección de blueprints y herramientas para Make.com que integran con la API de
   - [PMS - Gestión de Reservas](#pms---gestión-de-reservas)
   - [PMS - Gestión de Cotizaciones](#pms---gestión-de-cotizaciones)
   - [PMS - Mantenimiento](#pms---mantenimiento)
+  - [PMS - Housekeeping](#pms---housekeeping)
 - [Configuración General](#configuración-general)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 
@@ -265,10 +266,45 @@ Crea órdenes de trabajo de mantenimiento en TrackHS PMS.
 - Incluye prioridad, estado, costos y tiempo estimados
 
 **Archivos:**
-- Blueprint: `create maintenance work order collection.json`
+- Blueprint: `Create Maintenance Work Order (TrackHS PMS).blueprint.json`
 - Documentación: `create maintenance work order doc.md`
 - Descripción: `description.md`
-- Tests: `test_create_maintenance_work_order.py`
+
+---
+
+### PMS - Housekeeping
+
+#### 🧹 Create Housekeeping Work Order Collection
+**Ubicación:** `create housekeeping work order collection/`
+
+Crea órdenes de trabajo de housekeeping (limpieza e inspecciones) en TrackHS PMS.
+
+**Campos Requeridos:**
+- `scheduledAt` - Fecha programada en formato ISO 8601 (YYYY-MM-DD)
+- `unitId` - ID de la unidad donde se realizará el trabajo
+- `status` - Estado inicial (pending, not-started, in-progress, completed, processed, cancelled, exception)
+- `isInspection` O `cleanTypeId` - Uno de los dos es obligatorio
+
+**Campos Opcionales:**
+- `unitBlockId` - ID de bloqueo de unidad
+- `userId` - ID del usuario/staff asignado
+- `reservationId` - ID de reserva asociada
+- `vendorId` - ID del proveedor externo
+- `isTurn` - Indica si es un turno (limpieza entre huéspedes)
+- `chargeOwner` - Indica si se cobra al propietario
+- `comments` - Comentarios adicionales
+- `cost` - Costo de la orden
+
+**Funcionalidades:**
+- Soporte para inspecciones (`isInspection=true`) y tipos de limpieza (`cleanTypeId`)
+- Tipos de limpieza disponibles: Inspection (ID 3), Departure Clean (ID 4), Deep Clean (ID 5), Pre-Arrival Inspection (ID 6), Refresh Clean (ID 7), Carpet Cleaning (ID 8), Guest Request (ID 9), Pack and Play (ID 10)
+- Retorna información completa de la orden creada: workOrderId, status, scheduledAt, unitId, cleanTypeId, isInspection
+
+**Archivos:**
+- Blueprint: `Create Housekeeping Work Order.blueprint.json`
+- Documentación: `create housekeeping work order doc.md`
+- Tests: `test_create_housekeeping.py`
+- Requirements: `requirements.txt`
 
 ---
 
@@ -377,11 +413,17 @@ make.com/
 │   ├── create quote v2 collection.json
 │   └── create quote V2 doc.md
 │
-└── create maintenance work order collection/
-    ├── create maintenance work order collection.json
-    ├── create maintenance work order doc.md
-    ├── description.md
-    └── test_create_maintenance_work_order.py
+├── create maintenance work order collection/
+│   ├── Create Maintenance Work Order (TrackHS PMS).blueprint.json
+│   ├── create maintenance work order doc.md
+│   └── description.md
+│
+└── create housekeeping work order collection/
+    ├── Create Housekeeping Work Order.blueprint.json
+    ├── create housekeeping work order doc.md
+    ├── README.md
+    ├── requirements.txt
+    └── test_create_housekeeping.py
 ```
 
 ---
@@ -401,4 +443,4 @@ Si encuentras problemas con alguna de las herramientas o la API de TrackHS, revi
 
 ---
 
-**Última actualización:** 2025
+**Última actualización:** Enero 2025
