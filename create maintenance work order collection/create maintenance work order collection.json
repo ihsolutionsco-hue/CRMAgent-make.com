@@ -1,0 +1,456 @@
+{
+    "name": "Create Maintenance Work Order (TrackHS PMS)",
+    "description": "Crea una orden de trabajo de mantenimiento con prioridad, estado, costos estimados y asignaciones. Retorna la orden creada con toda su información.",
+    "flow": [
+        {
+            "id": 1,
+            "module": "http:ActionSendData",
+            "version": 3,
+            "parameters": {
+                "handleErrors": true,
+                "useNewZLibDeCompress": true
+            },
+            "mapper": {
+                "ca": "",
+                "qs": [
+                    { "name": "dateReceived", "value": "{{var.input.dateReceived}}" },
+                    { "name": "priority", "value": "{{var.input.priority}}" },
+                    { "name": "status", "value": "{{ifempty(var.input.status; \"open\")}}" },
+                    { "name": "summary", "value": "{{var.input.summary}}" },
+                    { "name": "estimatedCost", "value": "{{var.input.estimatedCost}}" },
+                    { "name": "estimatedTime", "value": "{{var.input.estimatedTime}}" },
+                    { "name": "unitId", "value": "{{var.input.unitId}}" },
+                    { "name": "dateScheduled", "value": "{{ifempty(var.input.dateScheduled; null)}}" },
+                    { "name": "userId", "value": "{{ifempty(var.input.userId; null)}}" },
+                    { "name": "vendorId", "value": "{{ifempty(var.input.vendorId; null)}}" },
+                    { "name": "reservationId", "value": "{{ifempty(var.input.reservationId; null)}}" },
+                    { "name": "referenceNumber", "value": "{{ifempty(var.input.referenceNumber; null)}}" },
+                    { "name": "description", "value": "{{ifempty(var.input.description; null)}}" },
+                    { "name": "workPerformed", "value": "{{ifempty(var.input.workPerformed; null)}}" },
+                    { "name": "source", "value": "{{ifempty(var.input.source; null)}}" },
+                    { "name": "sourceName", "value": "{{ifempty(var.input.sourceName; null)}}" },
+                    { "name": "sourcePhone", "value": "{{ifempty(var.input.sourcePhone; null)}}" },
+                    { "name": "actualTime", "value": "{{ifempty(var.input.actualTime; null)}}" },
+                    { "name": "blockCheckin", "value": "{{ifempty(var.input.blockCheckin; null)}}" }
+                ],
+                "url": "https://ihmvacations.trackhs.com/api/pms/maintenance/work-orders",
+                "gzip": true,
+                "method": "post",
+                "headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "timeout": "120",
+                "useMtls": false,
+                "authUser": "{{var.organization.user}}",
+                "authPass": "{{var.organization.password}}",
+                "bodyType": "",
+                "contentType": "",
+                "serializeUrl": false,
+                "shareCookies": false,
+                "parseResponse": true,
+                "followRedirect": true,
+                "useQuerystring": false,
+                "followAllRedirects": false,
+                "rejectUnauthorized": true
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0,
+                    "name": "api:createMaintenanceWorkOrder"
+                },
+                "advanced": true,
+                "restore": {
+                    "expect": {
+                        "qs": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "method": {
+                            "mode": "chose",
+                            "label": "POST"
+                        },
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "bodyType": {
+                            "label": "Empty"
+                        },
+                        "contentType": {
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "handleErrors",
+                        "type": "boolean",
+                        "label": "Evaluate all states as errors (except for 2xx and 3xx )",
+                        "required": true
+                    },
+                    {
+                        "name": "useNewZLibDeCompress",
+                        "type": "hidden"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "serializeUrl",
+                        "type": "boolean",
+                        "label": "Serialize URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "get",
+                                "head",
+                                "post",
+                                "put",
+                                "patch",
+                                "delete",
+                                "options"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Headers"
+                    },
+                    {
+                        "name": "qs",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Query String"
+                    },
+                    {
+                        "name": "bodyType",
+                        "type": "select",
+                        "label": "Body type",
+                        "validate": {
+                            "enum": [
+                                "raw",
+                                "x_www_form_urlencoded",
+                                "multipart_form_data"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "parseResponse",
+                        "type": "boolean",
+                        "label": "Parse response",
+                        "required": true
+                    },
+                    {
+                        "name": "authUser",
+                        "type": "text",
+                        "label": "User name"
+                    },
+                    {
+                        "name": "authPass",
+                        "type": "password",
+                        "label": "Password"
+                    },
+                    {
+                        "name": "timeout",
+                        "type": "uinteger",
+                        "label": "Timeout",
+                        "validate": {
+                            "max": 300,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "shareCookies",
+                        "type": "boolean",
+                        "label": "Share cookies with other HTTP modules",
+                        "required": true
+                    },
+                    {
+                        "name": "ca",
+                        "type": "cert",
+                        "label": "Self-signed certificate"
+                    },
+                    {
+                        "name": "rejectUnauthorized",
+                        "type": "boolean",
+                        "label": "Reject connections that are using unverified (self-signed) certificates",
+                        "required": true
+                    },
+                    {
+                        "name": "followRedirect",
+                        "type": "boolean",
+                        "label": "Follow redirect",
+                        "required": true
+                    },
+                    {
+                        "name": "useQuerystring",
+                        "type": "boolean",
+                        "label": "Disable serialization of multiple same query string keys as arrays",
+                        "required": true
+                    },
+                    {
+                        "name": "gzip",
+                        "type": "boolean",
+                        "label": "Request compressed content",
+                        "required": true
+                    },
+                    {
+                        "name": "useMtls",
+                        "type": "boolean",
+                        "label": "Use Mutual TLS",
+                        "required": true
+                    },
+                    {
+                        "name": "contentType",
+                        "type": "select",
+                        "label": "Content type",
+                        "validate": {
+                            "enum": [
+                                "text/plain",
+                                "application/json",
+                                "application/xml",
+                                "text/xml",
+                                "text/html",
+                                "custom"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "data",
+                        "type": "buffer",
+                        "label": "Request content"
+                    },
+                    {
+                        "name": "followAllRedirects",
+                        "type": "boolean",
+                        "label": "Follow all redirect",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "scenario-service:ReturnData",
+            "version": 2,
+            "parameters": {},
+            "mapper": {
+                "workOrderId": "{{1.data.id}}",
+                "success": true,
+                "message": "Orden de trabajo de mantenimiento creada exitosamente.",
+                "summary": "{{1.data.summary}}",
+                "priority": "{{1.data.priority}}",
+                "priorityLabel": "{{if(1.data.priority == 1; \"trivial\"; if(1.data.priority == 2; \"low\"; if(1.data.priority == 3; \"medium\"; if(1.data.priority == 4; \"high\"; if(1.data.priority == 5; \"critical\"; \"unknown\")))))}}",
+                "status": "{{1.data.status}}",
+                "dateReceived": "{{1.data.dateReceived}}",
+                "dateScheduled": "{{1.data.dateScheduled}}",
+                "dateCompleted": "{{1.data.dateCompleted}}",
+                "estimatedCost": "{{1.data.estimatedCost}}",
+                "estimatedTime": "{{1.data.estimatedTime}}",
+                "actualTime": "{{1.data.actualTime}}",
+                "unitId": "{{1.data.unitId}}",
+                "referenceNumber": "{{1.data.referenceNumber}}",
+                "description": "{{1.data.description}}",
+                "createdAt": "{{1.data.createdAt}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {},
+                "expect": [
+                    { "name": "workOrderId", "type": "text", "label": "" },
+                    { "name": "success", "type": "boolean", "label": "" },
+                    { "name": "message", "type": "text", "label": "" },
+                    { "name": "summary", "type": "text", "label": "" },
+                    { "name": "priority", "type": "text", "label": "" },
+                    { "name": "priorityLabel", "type": "text", "label": "" },
+                    { "name": "status", "type": "text", "label": "" },
+                    { "name": "dateReceived", "type": "text", "label": "" },
+                    { "name": "dateScheduled", "type": "text", "label": "" },
+                    { "name": "dateCompleted", "type": "text", "label": "" },
+                    { "name": "estimatedCost", "type": "text", "label": "" },
+                    { "name": "estimatedTime", "type": "text", "label": "" },
+                    { "name": "actualTime", "type": "text", "label": "" },
+                    { "name": "unitId", "type": "text", "label": "" },
+                    { "name": "referenceNumber", "type": "text", "label": "" },
+                    { "name": "description", "type": "text", "label": "" },
+                    { "name": "createdAt", "type": "text", "label": "" }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": [
+            "=== CONFIGURACIÓN DE AUTENTICACIÓN ===",
+            "IMPORTANTE: Configurar autenticación Basic Auth en el módulo HTTP",
+            "El módulo HTTP debe tener configurado:",
+            "  - Username: Tu usuario de TrackHS (ej: aba99777416466b6bdc1a25223192ccb)",
+            "  - Password: Tu contraseña de TrackHS",
+            "Si recibes error 403 Forbidden, verifica que las credenciales estén correctamente configuradas",
+            "",
+            "=== CAMPOS REQUERIDOS ===",
+            "Campos obligatorios para crear una orden de trabajo:",
+            "  - dateReceived (string): Fecha de recepción en formato ISO 8601 (YYYY-MM-DD)",
+            "  - priority (number): Nivel de prioridad. Valores: 1 (trivial), 2 (low), 3 (medium), 4 (high), 5 (critical)",
+            "  - status (string): Estado de la orden. Valores: open, not-started, in-progress, completed, processed, vendor-not-start, vendor-assigned, vendor-declined, vendor-completed, user-completed, cancelled. Por defecto: open",
+            "  - summary (string): Resumen de la orden de trabajo",
+            "  - estimatedCost (number): Costo estimado (float)",
+            "  - estimatedTime (integer): Tiempo estimado en minutos",
+            "  - unitId (number): ID de la unidad asociada. Campo obligatorio.",
+            "",
+            "=== PRIORIDADES ===",
+            "priority: Nivel de prioridad de la orden de trabajo (number)",
+            "La API acepta números 1-5 que se mapean a los siguientes valores:",
+            "  - 1: trivial (Trivial)",
+            "  - 2: low (Baja)",
+            "  - 3: medium (Media)",
+            "  - 4: high (Alta)",
+            "  - 5: critical (Crítica)",
+            "",
+            "=== ESTADOS ===",
+            "status: Estado de la orden de trabajo",
+            "  - open: Abierta",
+            "  - not-started: No iniciada",
+            "  - in-progress: En progreso",
+            "  - completed: Completada",
+            "  - processed: Procesada",
+            "  - vendor-not-start: Proveedor no iniciado",
+            "  - vendor-assigned: Proveedor asignado",
+            "  - vendor-declined: Proveedor rechazado",
+            "  - vendor-completed: Proveedor completado",
+            "  - user-completed: Usuario completado",
+            "  - cancelled: Cancelada",
+            "",
+            "=== FORMATOS IMPORTANTES ===",
+            "- Fechas (dateReceived, dateScheduled): Formato ISO 8601 sin timestamp (YYYY-MM-DD). Ejemplo: 2024-12-25",
+            "- estimatedTime: Tiempo en minutos (integer)",
+            "- actualTime: Tiempo total gastado en minutos (number). Requiere time tracking BETA",
+            "- blockCheckin: Boolean. Indica si esta orden previene el check-in de reservas para la fecha programada",
+            "",
+            "=== ASIGNACIONES ===",
+            "- userId: ID del usuario asignado (nullable)",
+            "- vendorId: ID del proveedor asignado (nullable)",
+            "- unitId: ID de la unidad asociada (nullable)",
+            "- reservationId: ID de la reserva asociada (nullable)",
+            "",
+            "=== FUENTE ===",
+            "Información sobre la fuente de la orden de trabajo:",
+            "  - source: Origen de la orden (string)",
+            "  - sourceName: Nombre de la fuente (string)",
+            "  - sourcePhone: Teléfono de la fuente (string)",
+            "",
+            "=== MÉTODO DE ENVÍO ===",
+            "Los datos se envían como parámetros de query string (querystring) en lugar de body JSON.",
+            "IMPORTANTE: La API requiere unitId aunque la documentación lo marca como nullable.",
+            "Todos los campos se envían como query parameters en la URL."
+        ]
+    },
+    "io": {
+        "input_spec": [
+            { "name": "dateReceived", "label": "Date Received", "help": "Fecha de recepción en formato ISO 8601 sin timestamp (YYYY-MM-DD). Ejemplo: 2024-12-25. Campo obligatorio.", "type": "text", "default": "", "required": true, "multiline": false },
+            { "name": "priority", "label": "Priority", "help": "Nivel de prioridad de la orden de trabajo. Valores: 1 (trivial), 2 (low), 3 (medium), 4 (high), 5 (critical). Campo obligatorio.", "type": "select", "default": 3, "required": true, "validate": { "enum": [1, 2, 3, 4, 5] } },
+            { "name": "status", "label": "Status", "help": "Estado de la orden de trabajo. Valores: open, not-started, in-progress, completed, processed, vendor-not-start, vendor-assigned, vendor-declined, vendor-completed, user-completed, cancelled. Por defecto: open. Campo obligatorio.", "type": "select", "default": "open", "required": true, "validate": { "enum": ["open", "not-started", "in-progress", "completed", "processed", "vendor-not-start", "vendor-assigned", "vendor-declined", "vendor-completed", "user-completed", "cancelled"] } },
+            { "name": "summary", "label": "Summary", "help": "Resumen de la orden de trabajo (string). Campo obligatorio.", "type": "text", "default": "", "required": true, "multiline": false },
+            { "name": "estimatedCost", "label": "Estimated Cost", "help": "Costo estimado de la orden de trabajo (float). Campo obligatorio.", "type": "number", "default": "", "required": true },
+            { "name": "estimatedTime", "label": "Estimated Time", "help": "Tiempo estimado en minutos (integer). Campo obligatorio.", "type": "number", "default": "", "required": true },
+            { "name": "dateScheduled", "label": "Date Scheduled", "help": "Fecha programada en formato ISO 8601 sin timestamp (YYYY-MM-DD). Ejemplo: 2024-12-25.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "userId", "label": "User ID", "help": "ID del usuario asignado a la orden de trabajo (number, nullable).", "type": "number", "default": "", "required": false },
+            { "name": "vendorId", "label": "Vendor ID", "help": "ID del proveedor asignado a la orden de trabajo (number, nullable).", "type": "number", "default": "", "required": false },
+            { "name": "unitId", "label": "Unit ID", "help": "ID de la unidad asociada a la orden de trabajo (number). Campo requerido por la API aunque la documentación lo marca como nullable.", "type": "number", "default": "", "required": true },
+            { "name": "reservationId", "label": "Reservation ID", "help": "ID de la reserva asociada a la orden de trabajo (number, nullable).", "type": "number", "default": "", "required": false },
+            { "name": "referenceNumber", "label": "Reference Number", "help": "Número de referencia de la orden de trabajo (string).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "description", "label": "Description", "help": "Descripción detallada de la orden de trabajo (string).", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "workPerformed", "label": "Work Performed", "help": "Descripción del trabajo realizado (string).", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "source", "label": "Source", "help": "Origen de la orden de trabajo (string).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "sourceName", "label": "Source Name", "help": "Nombre de la fuente de la orden de trabajo (string).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "sourcePhone", "label": "Source Phone", "help": "Teléfono de la fuente de la orden de trabajo (string).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "actualTime", "label": "Actual Time", "help": "Tiempo total gastado en minutos (number). Requiere time tracking BETA.", "type": "number", "default": "", "required": false },
+            { "name": "blockCheckin", "label": "Block Check-in", "help": "Indica si esta orden de trabajo previene el check-in de reservas para la fecha programada proporcionada (boolean).", "type": "boolean", "default": false, "required": false }
+        ],
+        "output_spec": [
+            { "name": "workOrderId", "label": "Work Order ID", "help": "ID único de la orden de trabajo creada.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "success", "label": "Éxito", "help": "Indica si la operación fue exitosa (true/false).", "type": "boolean", "default": true, "required": false },
+            { "name": "message", "label": "Mensaje", "help": "Mensaje de confirmación de la orden de trabajo creada.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "summary", "label": "Summary", "help": "Resumen de la orden de trabajo.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "priority", "label": "Priority", "help": "Nivel de prioridad de la orden de trabajo (1=trivial, 2=low, 3=medium, 4=high, 5=critical).", "type": "number", "default": "", "required": false },
+            { "name": "priorityLabel", "label": "Priority Label", "help": "Etiqueta de prioridad legible (trivial, low, medium, high, critical).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "status", "label": "Status", "help": "Estado actual de la orden de trabajo.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "dateReceived", "label": "Date Received", "help": "Fecha de recepción de la orden de trabajo (formato ISO 8601).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "dateScheduled", "label": "Date Scheduled", "help": "Fecha programada de la orden de trabajo (formato ISO 8601).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "dateCompleted", "label": "Date Completed", "help": "Fecha de finalización de la orden de trabajo (formato ISO 8601).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "estimatedCost", "label": "Estimated Cost", "help": "Costo estimado de la orden de trabajo.", "type": "number", "default": "", "required": false },
+            { "name": "estimatedTime", "label": "Estimated Time", "help": "Tiempo estimado en minutos.", "type": "number", "default": "", "required": false },
+            { "name": "actualTime", "label": "Actual Time", "help": "Tiempo real gastado en minutos (si está disponible).", "type": "number", "default": "", "required": false },
+            { "name": "unitId", "label": "Unit ID", "help": "ID de la unidad asociada a la orden de trabajo.", "type": "number", "default": "", "required": false },
+            { "name": "referenceNumber", "label": "Reference Number", "help": "Número de referencia de la orden de trabajo (si fue proporcionado).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "description", "label": "Description", "help": "Descripción detallada de la orden de trabajo (si fue proporcionada).", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "createdAt", "label": "Created At", "help": "Fecha y hora en que se creó la orden de trabajo (formato ISO 8601).", "type": "text", "default": "", "required": false, "multiline": false }
+        ]
+    }
+}
+

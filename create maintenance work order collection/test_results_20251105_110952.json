@@ -1,0 +1,443 @@
+{
+  "timestamp": "2025-11-05T11:09:52.597225",
+  "endpoint": "https://ihmvacations.trackhs.com/api/pms/maintenance/work-orders",
+  "total_tests": 3,
+  "successful_tests": 3,
+  "results": [
+    {
+      "success": true,
+      "data": {
+        "id": 10285,
+        "status": "open",
+        "referenceNumber": null,
+        "dateScheduled": null,
+        "description": null,
+        "summary": "Reparación de aire acondicionado - Test básico",
+        "dateReceived": "2025-11-05T00:00:00-05:00",
+        "dateCompleted": null,
+        "dateProcessed": null,
+        "assignees": [],
+        "userId": null,
+        "priority": 3,
+        "workPerformed": null,
+        "source": null,
+        "blockCheckin": false,
+        "sourceName": null,
+        "sourcePhone": null,
+        "estimatedCost": "150.00",
+        "estimatedTime": 120,
+        "actualTime": null,
+        "completedById": null,
+        "processedById": null,
+        "problems": [],
+        "unitId": 1,
+        "vendorId": null,
+        "vendor": null,
+        "ownerId": null,
+        "owner": null,
+        "reservationId": null,
+        "createdAt": "2025-11-05T11:09:49-05:00",
+        "updatedAt": "2025-11-05T11:09:49-05:00",
+        "createdBy": "system",
+        "updatedBy": "system",
+        "_embedded": {
+          "unit": {
+            "id": 1,
+            "isLimited": true,
+            "isActive": false,
+            "cleanStatusId": 1,
+            "coverImage": null,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "composites": [],
+            "bedTypes": [],
+            "custom": {
+              "pms_units_wifi_name": null,
+              "pms_units_wifi_password": null,
+              "pms_units_source_unit_id": null
+            },
+            "createdAt": "2022-09-08T13:17:09+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-10-24T17:07:18+00:00",
+            "updatedBy": "process:availability:sync",
+            "name": "test",
+            "shortName": "",
+            "unitCode": "t1",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "area": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 1,
+            "fullBathrooms": 1,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "taxId": null,
+            "systemId": null,
+            "systemAppend": null,
+            "housekeepingStop": null,
+            "maintenanceStop": null,
+            "availabilityOrder": 999999999,
+            "securityDeposit": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": false,
+            "folioException": false,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "nodeId": 7,
+            "typeId": 1,
+            "lodgingTypeId": null,
+            "taxDistrictId": null,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "travelInsuranceProductId": null,
+            "_embedded": {
+              "cleanStatus": {
+                "_links": []
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/1/"
+              }
+            }
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/maintenance/work-orders/10285/"
+          },
+          "tasks": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/maintenance/work-orders/10285/tasks/"
+          },
+          "cancel": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/maintenance/work-orders/10285/cancel/"
+          }
+        }
+      },
+      "status_code": 201
+    },
+    {
+      "success": true,
+      "data": {
+        "id": 10286,
+        "status": "open",
+        "referenceNumber": "WO-TEST-20251105110949",
+        "dateScheduled": "2025-11-12",
+        "description": "Descripción detallada del trabajo a realizar. Incluye revisión de sistemas eléctricos, plomería y limpieza profunda.",
+        "summary": "Mantenimiento completo de unidad - Test completo",
+        "dateReceived": "2025-11-05T00:00:00-05:00",
+        "dateCompleted": null,
+        "dateProcessed": null,
+        "assignees": [],
+        "userId": null,
+        "priority": 5,
+        "workPerformed": null,
+        "source": "API Test",
+        "blockCheckin": false,
+        "sourceName": "Sistema de Pruebas",
+        "sourcePhone": "+1234567890",
+        "estimatedCost": "500.75",
+        "estimatedTime": 240,
+        "actualTime": null,
+        "completedById": null,
+        "processedById": null,
+        "problems": [],
+        "unitId": 1,
+        "vendorId": null,
+        "vendor": null,
+        "ownerId": null,
+        "owner": null,
+        "reservationId": null,
+        "createdAt": "2025-11-05T11:09:50-05:00",
+        "updatedAt": "2025-11-05T11:09:50-05:00",
+        "createdBy": "system",
+        "updatedBy": "system",
+        "_embedded": {
+          "unit": {
+            "id": 1,
+            "isLimited": true,
+            "isActive": false,
+            "cleanStatusId": 1,
+            "coverImage": null,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "composites": [],
+            "bedTypes": [],
+            "custom": {
+              "pms_units_wifi_name": null,
+              "pms_units_wifi_password": null,
+              "pms_units_source_unit_id": null
+            },
+            "createdAt": "2022-09-08T13:17:09+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-10-24T17:07:18+00:00",
+            "updatedBy": "process:availability:sync",
+            "name": "test",
+            "shortName": "",
+            "unitCode": "t1",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "area": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 1,
+            "fullBathrooms": 1,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "taxId": null,
+            "systemId": null,
+            "systemAppend": null,
+            "housekeepingStop": null,
+            "maintenanceStop": null,
+            "availabilityOrder": 999999999,
+            "securityDeposit": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": false,
+            "folioException": false,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "nodeId": 7,
+            "typeId": 1,
+            "lodgingTypeId": null,
+            "taxDistrictId": null,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "travelInsuranceProductId": null,
+            "_embedded": {
+              "cleanStatus": {
+                "_links": []
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/1/"
+              }
+            }
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/maintenance/work-orders/10286/"
+          },
+          "tasks": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/maintenance/work-orders/10286/tasks/"
+          },
+          "cancel": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/maintenance/work-orders/10286/cancel/"
+          }
+        }
+      },
+      "status_code": 201
+    },
+    {
+      "success": true,
+      "data": {
+        "id": 10287,
+        "status": "open",
+        "referenceNumber": null,
+        "dateScheduled": null,
+        "description": "Limpieza general de la unidad después de la salida del huésped.",
+        "summary": "Limpieza rutinaria - Test prioridad baja",
+        "dateReceived": "2025-11-05T00:00:00-05:00",
+        "dateCompleted": null,
+        "dateProcessed": null,
+        "assignees": [],
+        "userId": null,
+        "priority": 1,
+        "workPerformed": "Trabajo ya iniciado - limpieza en progreso",
+        "source": "Front Desk",
+        "blockCheckin": false,
+        "sourceName": null,
+        "sourcePhone": null,
+        "estimatedCost": "50.00",
+        "estimatedTime": 60,
+        "actualTime": 30,
+        "completedById": null,
+        "processedById": null,
+        "problems": [],
+        "unitId": 1,
+        "vendorId": null,
+        "vendor": null,
+        "ownerId": null,
+        "owner": null,
+        "reservationId": null,
+        "createdAt": "2025-11-05T11:09:52-05:00",
+        "updatedAt": "2025-11-05T11:09:52-05:00",
+        "createdBy": "system",
+        "updatedBy": "system",
+        "_embedded": {
+          "unit": {
+            "id": 1,
+            "isLimited": true,
+            "isActive": false,
+            "cleanStatusId": 1,
+            "coverImage": null,
+            "roles": [
+              {
+                "roleId": 2,
+                "userId": 10
+              }
+            ],
+            "composites": [],
+            "bedTypes": [],
+            "custom": {
+              "pms_units_wifi_name": null,
+              "pms_units_wifi_password": null,
+              "pms_units_source_unit_id": null
+            },
+            "createdAt": "2022-09-08T13:17:09+00:00",
+            "createdBy": "bwurster@tnsinc.com",
+            "updatedAt": "2024-10-24T17:07:18+00:00",
+            "updatedBy": "process:availability:sync",
+            "name": "test",
+            "shortName": "",
+            "unitCode": "t1",
+            "maxPets": 2,
+            "minimumAgeLimit": 21,
+            "phone": null,
+            "websiteUrl": null,
+            "streetAddress": null,
+            "extendedAddress": null,
+            "locality": null,
+            "region": null,
+            "postal": null,
+            "country": "US",
+            "maxDiscount": null,
+            "area": null,
+            "floors": null,
+            "maxOccupancy": null,
+            "bedrooms": 1,
+            "fullBathrooms": 1,
+            "threeQuarterBathrooms": null,
+            "halfBathrooms": null,
+            "timezone": "America/New_York",
+            "longitude": null,
+            "latitude": null,
+            "maintenanceMessage": null,
+            "housekeepingMessage": null,
+            "housekeepingNotes": null,
+            "taxId": null,
+            "systemId": null,
+            "systemAppend": null,
+            "housekeepingStop": null,
+            "maintenanceStop": null,
+            "availabilityOrder": 999999999,
+            "securityDeposit": null,
+            "petFriendly": true,
+            "smokingAllowed": false,
+            "childrenAllowed": true,
+            "eventsAllowed": false,
+            "isAccessible": false,
+            "hasEarlyCheckin": true,
+            "hasLateCheckout": true,
+            "quickCheckin": true,
+            "quickCheckout": true,
+            "useRoomConfiguration": false,
+            "useBedTypes": true,
+            "isBookable": false,
+            "folioException": false,
+            "checkinTime": "16:00",
+            "checkoutTime": "10:00",
+            "earlyCheckinTime": "12:00",
+            "lateCheckoutTime": "16:30",
+            "nodeId": 7,
+            "typeId": 1,
+            "lodgingTypeId": null,
+            "taxDistrictId": null,
+            "localOfficeId": 1,
+            "housekeepingZoneId": null,
+            "maintenanceZoneId": 7,
+            "travelInsuranceProductId": null,
+            "_embedded": {
+              "cleanStatus": {
+                "_links": []
+              }
+            },
+            "_links": {
+              "self": {
+                "href": "https://ihmvacations.trackhs.com/api/pms/units/1/"
+              }
+            }
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/maintenance/work-orders/10287/"
+          },
+          "tasks": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/maintenance/work-orders/10287/tasks/"
+          },
+          "cancel": {
+            "href": "https://ihmvacations.trackhs.com/api/pms/maintenance/work-orders/10287/cancel/"
+          }
+        }
+      },
+      "status_code": 201
+    }
+  ]
+}
