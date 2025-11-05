@@ -116,3 +116,5 @@ payment={"amount":100,"paymentCard":{"cardNumber":"4111111111111111",...}}
 - El servidor mock valida contra la especificación OpenAPI
 - Los IDs de reserva son incrementales y se reinician al reiniciar el servidor
 
+
+
