@@ -1,0 +1,236 @@
+{
+  "name": "get quote collection",
+  "flow": [
+    {
+      "id": 1,
+      "module": "http:ActionSendData",
+      "version": 3,
+      "parameters": {
+        "handleErrors": true,
+        "useNewZLibDeCompress": true
+      },
+      "mapper": {
+        "url": "https://ihmvacations.trackhs.com/api/v2/pms/quotes",
+        "serializeUrl": false,
+        "method": "get",
+        "headers": [
+          { "name": "Accept", "value": "application/json" }
+        ],
+        "qs": [
+          { "name": "page", "value": "{{if(var.input.page; if(var.input.page < 1; 1; var.input.page); 1)}}" },
+          { "name": "size", "value": "{{if(var.input.size; if(var.input.size > 0; var.input.size; null); null)}}" },
+          { "name": "sortColumn", "value": "{{ifempty(var.input.sortColumn; \"order\")}}" },
+          { "name": "sortDirection", "value": "{{ifempty(var.input.sortDirection; \"asc\")}}" },
+          { "name": "search", "value": "{{ifempty(var.input.search; null)}}" },
+          { "name": "contactId", "value": "{{ifempty(var.input.contactId; null)}}" },
+          { "name": "unitId", "value": "{{ifempty(var.input.unitId; null)}}" },
+          { "name": "unitTypeId", "value": "{{ifempty(var.input.unitTypeId; null)}}" },
+          { "name": "futureQuotes", "value": "{{ifempty(var.input.futureQuotes; null)}}" },
+          { "name": "activeQuotes", "value": "{{ifempty(var.input.activeQuotes; null)}}" }
+        ],
+        "bodyType": "",
+        "parseResponse": true,
+        "authUser": "{{var.auth.user}}",
+        "authPass": "{{var.auth.pass}}",
+        "timeout": "",
+        "shareCookies": false,
+        "ca": "",
+        "rejectUnauthorized": true,
+        "followRedirect": true,
+        "useQuerystring": false,
+        "gzip": true,
+        "useMtls": false,
+        "followAllRedirects": false
+      },
+      "metadata": {
+        "designer": { "x": 0, "y": 0, "name": "api:getQuotes" },
+        "restore": {
+          "expect": {
+            "method": { "mode": "chose", "label": "GET" },
+            "headers": { "mode": "chose", "items": [ null ] },
+            "qs": { "mode": "chose", "items": [ null ] },
+            "bodyType": { "label": "Empty" }
+          }
+        },
+        "parameters": [
+          { "name": "handleErrors", "type": "boolean", "label": "Evaluate all states as errors (except for 2xx and 3xx )", "required": true },
+          { "name": "useNewZLibDeCompress", "type": "hidden" }
+        ],
+        "expect": [
+          { "name": "url", "type": "url", "label": "URL", "required": true },
+          { "name": "serializeUrl", "type": "boolean", "label": "Serialize URL", "required": true },
+          {
+            "name": "method",
+            "type": "select",
+            "label": "Method",
+            "required": true,
+            "validate": { "enum": [ "get", "head", "post", "put", "patch", "delete", "options" ] }
+          },
+          {
+            "name": "headers",
+            "type": "array",
+            "label": "Headers",
+            "spec": [
+              { "name": "name", "label": "Name", "type": "text", "required": true },
+              { "name": "value", "label": "Value", "type": "text" }
+            ]
+          },
+          {
+            "name": "qs",
+            "type": "array",
+            "label": "Query String",
+            "spec": [
+              { "name": "name", "label": "Name", "type": "text", "required": true },
+              { "name": "value", "label": "Value", "type": "text" }
+            ]
+          },
+          { "name": "bodyType", "type": "select", "label": "Body type", "validate": { "enum": [ "raw", "x_www_form_urlencoded", "multipart_form_data" ] } },
+          { "name": "parseResponse", "type": "boolean", "label": "Parse response", "required": true },
+          { "name": "authUser", "type": "text", "label": "User name" },
+          { "name": "authPass", "type": "password", "label": "Password" },
+          { "name": "timeout", "type": "uinteger", "label": "Timeout", "validate": { "max": 300, "min": 1 } },
+          { "name": "shareCookies", "type": "boolean", "label": "Share cookies with other HTTP modules", "required": true },
+          { "name": "ca", "type": "cert", "label": "Self-signed certificate" },
+          { "name": "rejectUnauthorized", "type": "boolean", "label": "Reject connections that are using unverified (self-signed) certificates", "required": true },
+          { "name": "followRedirect", "type": "boolean", "label": "Follow redirect", "required": true },
+          { "name": "useQuerystring", "type": "boolean", "label": "Disable serialization of multiple same query string keys as arrays", "required": true },
+          { "name": "gzip", "type": "boolean", "label": "Request compressed content", "required": true },
+          { "name": "useMtls", "type": "boolean", "label": "Use Mutual TLS", "required": true },
+          { "name": "followAllRedirects", "type": "boolean", "label": "Follow all redirect", "required": true }
+        ],
+        "advanced": true
+      }
+    },
+    {
+      "id": 2,
+      "module": "scenario-service:ReturnData",
+      "version": 2,
+      "parameters": {},
+      "mapper": {
+        "quotes": "{{1.data.`_embedded`.quotes}}",
+        "page": "{{1.data.page}}",
+        "page_count": "{{1.data.page_count}}",
+        "page_size": "{{1.data.page_size}}",
+        "total_items": "{{1.data.total_items}}",
+        "next_href": "{{ifempty(1.data.`_links`.next.href; null)}}",
+        "prev_href": "{{ifempty(1.data.`_links`.prev.href; null)}}",
+        "first_href": "{{1.data.`_links`.first.href}}",
+        "last_href": "{{1.data.`_links`.last.href}}"
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "restore": {},
+        "expect": [
+          { "name": "quotes", "type": "text", "label": "" },
+          { "name": "page", "type": "text", "label": "" },
+          { "name": "page_count", "type": "text", "label": "" },
+          { "name": "page_size", "type": "text", "label": "" },
+          { "name": "total_items", "type": "text", "label": "" },
+          { "name": "next_href", "type": "text", "label": "" },
+          { "name": "prev_href", "type": "text", "label": "" },
+          { "name": "first_href", "type": "text", "label": "" },
+          { "name": "last_href", "type": "text", "label": "" }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "slots": null,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": { "orphans": [] },
+    "zone": "us2.make.com",
+    "notes": [
+      "=== CONFIGURACIÓN DE AUTENTICACIÓN ===",
+      "IMPORTANTE: Configurar autenticación Basic Auth en el módulo HTTP",
+      "El módulo HTTP debe tener configurado:",
+      "  - Username: Tu usuario de TrackHS (ej: aba99777416466b6bdc1a25223192ccb)",
+      "  - Password: Tu contraseña de TrackHS",
+      "Si recibes error 403 Forbidden, verifica que las credenciales estén correctamente configuradas",
+      "",
+      "=== LÍMITES DE TAMAÑO ===",
+      "Make.com tiene límite de 200,000 tokens por respuesta",
+      "  - Usar size=1-5 para evitar exceder el límite (default: null = sin límite)",
+      "  - Tamaños grandes (10+) pueden causar error 400: \"This model's maximum context length is 200000 tokens\"",
+      "  - Para grandes volúmenes, usar paginación (múltiples llamadas con page incrementando)",
+      "",
+      "=== PAGINACIÓN ===",
+      "page:",
+      "  - Número de página (1-based, mínimo 1)",
+      "  - Default: 1 (primera página)",
+      "  - NOTA: La API rechaza page=0 con error \"Page must be a positive integer\"",
+      "  - La documentación OpenAPI está incorrecta (dice minimum: 0, maximum: 0)",
+      "",
+      "size:",
+      "  - Tamaño de página (número de quotes por página)",
+      "  - Default: null (sin límite, pero recomendado usar valores pequeños para evitar exceder límites de tokens)",
+      "",
+      "=== ORDENAMIENTO ===",
+      "sortColumn valores permitidos: id, order, isPublic, publicSearchable, isFilterable, createdAt",
+      "sortDirection: asc (ascendente) o desc (descendente)",
+      "Default: sortColumn=order, sortDirection=asc",
+      "",
+      "=== FILTROS DE BÚSQUEDA ===",
+      "search:",
+      "  - Búsqueda por subcadena en id y/o name",
+      "  - Coincidencia parcial",
+      "",
+      "contactId:",
+      "  - Número (integer)",
+      "  - Filtra quotes por ID de contacto",
+      "",
+      "unitId:",
+      "  - Número (integer)",
+      "  - Filtra quotes por ID de unidad",
+      "",
+      "unitTypeId:",
+      "  - Número (integer)",
+      "  - Filtra quotes por ID de tipo de unidad",
+      "",
+      "futureQuotes:",
+      "  - Integer (1 o 0)",
+      "  - Filtra quotes futuras",
+      "",
+      "activeQuotes:",
+      "  - Número",
+      "  - Filtra quotes activas"
+    ]
+  },
+  "io": {
+    "input_spec": [
+      { "name": "page", "label": "Número de Página", "help": "Página (1-based, mínimo 1). La API rechaza page=0. Default: 1", "type": "number", "default": 1, "required": false },
+      { "name": "size", "label": "Tamaño de Página", "help": "Tamaño de página (número de quotes por página). Default: null (sin límite). Recomendado: 1-5 para evitar exceder límite de tokens. Máximo API: limitado por 10k total results", "type": "number", "default": null, "required": false },
+      { "name": "sortColumn", "label": "Columna de Ordenamiento", "help": "Ordenar por columna. Valores: id, order, isPublic, publicSearchable, isFilterable, createdAt. Default: order", "type": "text", "default": "order", "required": false, "multiline": false },
+      { "name": "sortDirection", "label": "Dirección de Ordenamiento", "help": "Dirección de ordenamiento. asc | desc. Default: asc", "type": "text", "default": "asc", "required": false, "multiline": false },
+      { "name": "search", "label": "Búsqueda", "help": "Búsqueda por subcadena en id y/o name", "type": "text", "default": "", "required": false, "multiline": false },
+      { "name": "contactId", "label": "Contact ID", "help": "Filtra quotes por ID de contacto", "type": "number", "default": null, "required": false },
+      { "name": "unitId", "label": "Unit ID", "help": "Filtra quotes por ID de unidad", "type": "number", "default": null, "required": false },
+      { "name": "unitTypeId", "label": "Unit Type ID", "help": "Filtra quotes por ID de tipo de unidad", "type": "number", "default": null, "required": false },
+          { "name": "futureQuotes", "label": "Future Quotes", "help": "Filtra quotes futuras. Valores: 1 (sí) o 0 (no)", "type": "integer", "default": null, "required": false },
+      { "name": "activeQuotes", "label": "Active Quotes", "help": "Filtra quotes activas", "type": "number", "default": null, "required": false }
+    ],
+    "output_spec": [
+      { "name": "quotes", "label": "Quotes", "help": "Array de quotes con información completa. Cada quote incluye:\n\n- Validación: isValid, error, warnings, isAvailable\n- Información de reserva: reservationId, arrivalDate, departureDate\n- Unidad: unitId, unitTypeId, typeId\n- Políticas: guaranteePolicyId, cancellationPolicyId, guaranteePolicy, cancellationPolicy\n- Tarifas: grossRent, discount, netRent, rateTypeId, rateType, rates, additionalRates\n- Precios: guestNetDisplayRent, guestGrossDisplayRent, totalGuestFees, totalRentFees, totalItemizedFees, totalTaxFees, totalServiceFees, totalRentTaxes, totalGuestRentTaxes, totalFeeTaxes, totalGuestFeeTaxes, totalTaxes, total\n- ADR: actualAdr, guestAdr\n- Otros: currency, securityDeposit, promoCodeId, promoValue, discountTotal\n- Ocupantes: occupants (array)\n- Tarifas de huésped: guestFees, additionalGuestFees\n- Tarifas de propietario: ownerFees, ownerAdditionalFees\n- Impuestos: taxes (array)\n- Plan de pago: paymentPlan (array)\n- Productos de seguro: insuranceProducts (array)", "type": "text", "default": "", "required": false, "multiline": false },
+      { "name": "page", "label": "Página Actual", "help": "Página actual de resultados", "type": "text", "default": "", "required": false, "multiline": false },
+      { "name": "page_count", "label": "Total de Páginas", "help": "Cantidad total de páginas disponibles", "type": "text", "default": "", "required": false, "multiline": false },
+      { "name": "page_size", "label": "Tamaño de Página", "help": "Tamaño de página (número de quotes por página)", "type": "text", "default": "", "required": false, "multiline": false },
+      { "name": "total_items", "label": "Total de Items", "help": "Total de quotes encontrados", "type": "text", "default": "", "required": false, "multiline": false },
+      { "name": "next_href", "label": "Siguiente Enlace", "help": "Enlace para obtener la siguiente página (si existe)", "type": "text", "default": "", "required": false, "multiline": false },
+      { "name": "prev_href", "label": "Enlace Anterior", "help": "Enlace para obtener la página anterior (si existe)", "type": "text", "default": "", "required": false, "multiline": false },
+      { "name": "first_href", "label": "Primera Página", "help": "Enlace para obtener la primera página", "type": "text", "default": "", "required": false, "multiline": false },
+      { "name": "last_href", "label": "Última Página", "help": "Enlace para obtener la última página", "type": "text", "default": "", "required": false, "multiline": false }
+    ]
+  }
+}
+
