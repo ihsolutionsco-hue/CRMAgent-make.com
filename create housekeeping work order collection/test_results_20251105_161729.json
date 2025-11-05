@@ -1,0 +1,34 @@
+{
+  "timestamp": "2025-11-05T16:17:29.960044",
+  "endpoint": "https://ihmvacations.trackhs.com",
+  "total_tests": 5,
+  "successful_tests": 0,
+  "failed_tests": 5,
+  "results": [
+    {
+      "success": false,
+      "status_code": 200,
+      "error": "Invalid JSON response: <!DOCTYPE html><html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Login - Track Software</title>\n        <meta name=\"viewport\" content=\"width&#x3D;device-width,&#x20;initial-sca"
+    },
+    {
+      "success": false,
+      "status_code": 200,
+      "error": "Invalid JSON response: <!DOCTYPE html><html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Login - Track Software</title>\n        <meta name=\"viewport\" content=\"width&#x3D;device-width,&#x20;initial-sca"
+    },
+    {
+      "success": false,
+      "status_code": 200,
+      "error": "Invalid JSON response: <!DOCTYPE html><html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Login - Track Software</title>\n        <meta name=\"viewport\" content=\"width&#x3D;device-width,&#x20;initial-sca"
+    },
+    {
+      "success": false,
+      "status_code": 200,
+      "error": "Invalid JSON response: <!DOCTYPE html><html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Login - Track Software</title>\n        <meta name=\"viewport\" content=\"width&#x3D;device-width,&#x20;initial-sca"
+    },
+    {
+      "success": false,
+      "status_code": 200,
+      "error": "Invalid JSON response: <!DOCTYPE html><html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Login - Track Software</title>\n        <meta name=\"viewport\" content=\"width&#x3D;device-width,&#x20;initial-sca"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-11-05T16:17:57.764008",
+  "endpoint": "https://ihmvacations.trackhs.com/api/pms/housekeeping/work-orders",
+  "total_tests": 5,
+  "successful_tests": 0,
+  "failed_tests": 5,
+  "results": [
+    {
+      "success": false,
+      "status_code": 201,
+      "error": "{\"id\":36212,\"scheduledAt\":\"2025-11-06\",\"originalScheduledAt\":\"2025-11-06\",\"completedAt\":null,\"completedById\":null,\"processedAt\":null,\"processedById\":null,\"cost\":null,\"comments\":null,\"unitId\":1,\"userId\":null,\"assignees\":[],\"vendorId\":null,\"vendor\":null,\"status\":\"not-started\",\"cleanTypeId\":null,\"cleanType\":null,\"isInspection\":true,\"isTurn\":false,\"isManual\":true,\"chargeOwner\":false,\"timeEstimate\":null,\"actualTime\":null,\"unitBlockId\":null,\"reservationId\":null,\"nextReservationId\":null,\"createdAt\":\"2025-11-05T21:17:52+00:00\",\"updatedAt\":\"2025-11-05T21:17:52+00:00\",\"createdBy\":\"system\",\"updatedBy\":\"system\",\"ownerId\":null,\"_embedded\":{\"unit\":{\"id\":1,\"isLimited\":true,\"isActive\":false,\"cleanStatusId\":1,\"coverImage\":null,\"roles\":[{\"roleId\":2,\"userId\":10}],\"composites\":[],\"bedTypes\":[],\"custom\":{\"pms_units_wifi_name\":null,\"pms_units_wifi_password\":null,\"pms_units_source_unit_id\":null},\"createdAt\":\"2022-09-08T13:17:09+00:00\",\"createdBy\":\"bwurster@tnsinc.com\",\"updatedAt\":\"2024-10-24T17:07:18+00:00\",\"updatedBy\":\"process:availability:sync\",\"name\":\"test\",\"shortName\":\"\",\"unitCode\":\"t1\",\"maxPets\":2,\"minimumAgeLimit\":21,\"phone\":null,\"websiteUrl\":null,\"streetAddress\":null,\"extendedAddress\":null,\"locality\":null,\"region\":null,\"postal\":null,\"country\":\"US\",\"maxDiscount\":null,\"area\":null,\"floors\":null,\"maxOccupancy\":null,\"bedrooms\":1,\"fullBathrooms\":1,\"threeQuarterBathrooms\":null,\"halfBathrooms\":null,\"timezone\":\"America\\/New_York\",\"longitude\":null,\"latitude\":null,\"maintenanceMessage\":null,\"housekeepingMessage\":null,\"housekeepingNotes\":null,\"taxId\":null,\"systemId\":null,\"systemAppend\":null,\"housekeepingStop\":null,\"maintenanceStop\":null,\"availabilityOrder\":999999999,\"securityDeposit\":null,\"petFriendly\":true,\"smokingAllowed\":false,\"childrenAllowed\":true,\"eventsAllowed\":false,\"isAccessible\":false,\"hasEarlyCheckin\":true,\"hasLateCheckout\":true,\"quickCheckin\":true,\"quickCheckout\":true,\"useRoomConfiguration\":false,\"useBedTypes\":true,\"isBookable\":false,\"folioException\":false,\"checkinTime\":\"16:00\",\"checkoutTime\":\"10:00\",\"earlyCheckinTime\":\"12:00\",\"lateCheckoutTime\":\"16:30\",\"nodeId\":7,\"typeId\":1,\"lodgingTypeId\":null,\"taxDistrictId\":null,\"localOfficeId\":1,\"housekeepingZoneId\":null,\"maintenanceZoneId\":7,\"travelInsuranceProductId\":null,\"_embedded\":{\"cleanStatus\":{\"_links\":[]}},\"_links\":{\"self\":{\"href\":\"https:\\/\\/ihmvacations.trackhs.com\\/api\\/pms\\/units\\/1\\/\"}}}},\"_links\":{\"self\":{\"href\":\"https:\\/\\/ihmvacations.trackhs.com\\/api\\/pms\\/housekeeping\\/work-orders\\/36212\\/\"},\"tasks\":{\"href\":\"https:\\/\\/ihmvacations.trackhs.com\\/api\\/pms\\/housekeeping\\/work-orders\\/36212\\/tasks\\/\"}}}"
+    },
+    {
+      "success": false,
+      "status_code": 422,
+      "error": "Validation error(s) have occurred while saving the work order."
+    },
+    {
+      "success": false,
+      "status_code": 422,
+      "error": "Validation error(s) have occurred while saving the work order."
+    },
+    {
+      "success": false,
+      "error": "[Errno 22] Invalid argument"
+    },
+    {
+      "success": false,
+      "status_code": 422,
+      "error": "Validation error(s) have occurred while saving the work order."
+    }
+  ]
+}
