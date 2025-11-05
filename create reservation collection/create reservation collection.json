@@ -1,0 +1,437 @@
+{
+    "name": "Create Reservation (TrackHS PMS)",
+    "flow": [
+        {
+            "id": 1,
+            "module": "http:ActionSendData",
+            "version": 3,
+            "parameters": {
+                "handleErrors": true,
+                "useNewZLibDeCompress": true
+            },
+            "mapper": {
+                "ca": "",
+                "qs": [
+                    { "name": "unitId", "value": "{{var.input.unitId}}" },
+                    { "name": "arrivalDate", "value": "{{var.input.arrivalDate}}" },
+                    { "name": "departureDate", "value": "{{var.input.departureDate}}" },
+                    { "name": "contactId", "value": "{{ifempty(var.input.contactId; null)}}" },
+                    { "name": "contact", "value": "{{ifempty(var.input.contact; null)}}" },
+                    { "name": "rateTypeId", "value": "{{ifempty(var.input.rateTypeId; null)}}" },
+                    { "name": "guaranteePolicyId", "value": "{{ifempty(var.input.guaranteePolicyId; null)}}" },
+                    { "name": "reservationTypeId", "value": "{{ifempty(var.input.reservationTypeId; null)}}" },
+                    { "name": "ignoreLos", "value": "{{ifempty(var.input.ignoreLos; null)}}" },
+                    { "name": "breakdown", "value": "{{ifempty(var.input.breakdown; null)}}" },
+                    { "name": "occupants", "value": "{{ifempty(var.input.occupants; null)}}" },
+                    { "name": "addOns", "value": "{{ifempty(var.input.addOns; null)}}" },
+                    { "name": "promoCode", "value": "{{ifempty(var.input.promoCode; null)}}" },
+                    { "name": "confirmationNumber", "value": "{{ifempty(var.input.confirmationNumber; null)}}" },
+                    { "name": "travelInsurance", "value": "{{ifempty(var.input.travelInsurance; null)}}" },
+                    { "name": "notes", "value": "{{ifempty(var.input.notes; null)}}" },
+                    { "name": "payment", "value": "{{ifempty(var.input.payment; null)}}" },
+                    { "name": "isTaxable", "value": "{{ifempty(var.input.isTaxable; null)}}" },
+                    { "name": "campaignId", "value": "{{ifempty(var.input.campaignId; null)}}" },
+                    { "name": "campaignToken", "value": "{{ifempty(var.input.campaignToken; null)}}" },
+                    { "name": "status", "value": "{{ifempty(var.input.status; null)}}" },
+                    { "name": "subChannel", "value": "{{ifempty(var.input.subChannel; null)}}" },
+                    { "name": "clientIPAddress", "value": "{{ifempty(var.input.clientIPAddress; null)}}" },
+                    { "name": "session", "value": "{{ifempty(var.input.session; null)}}" }
+                ],
+                "url": "https://ihmvacations.trackhs.com/api/pms/reservations",
+                "gzip": true,
+                "method": "post",
+                "headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "timeout": "120",
+                "useMtls": false,
+                "authPass": "{{var.auth.pass}}",
+                "authUser": "{{var.auth.user}}",
+                "bodyType": "",
+                "contentType": "",
+                "serializeUrl": false,
+                "shareCookies": false,
+                "parseResponse": true,
+                "followRedirect": true,
+                "useQuerystring": false,
+                "followAllRedirects": false,
+                "rejectUnauthorized": true
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0,
+                    "name": "api:createReservation"
+                },
+                "advanced": true,
+                "restore": {
+                    "expect": {
+                        "qs": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "method": {
+                            "mode": "chose",
+                            "label": "POST"
+                        },
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "bodyType": {
+                            "label": "Empty"
+                        },
+                        "contentType": {
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "handleErrors",
+                        "type": "boolean",
+                        "label": "Evaluate all states as errors (except for 2xx and 3xx )",
+                        "required": true
+                    },
+                    {
+                        "name": "useNewZLibDeCompress",
+                        "type": "hidden"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "serializeUrl",
+                        "type": "boolean",
+                        "label": "Serialize URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "get",
+                                "head",
+                                "post",
+                                "put",
+                                "patch",
+                                "delete",
+                                "options"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Headers"
+                    },
+                    {
+                        "name": "qs",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Query String"
+                    },
+                    {
+                        "name": "bodyType",
+                        "type": "select",
+                        "label": "Body type",
+                        "validate": {
+                            "enum": [
+                                "raw",
+                                "x_www_form_urlencoded",
+                                "multipart_form_data"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "parseResponse",
+                        "type": "boolean",
+                        "label": "Parse response",
+                        "required": true
+                    },
+                    {
+                        "name": "authUser",
+                        "type": "text",
+                        "label": "User name"
+                    },
+                    {
+                        "name": "authPass",
+                        "type": "password",
+                        "label": "Password"
+                    },
+                    {
+                        "name": "timeout",
+                        "type": "uinteger",
+                        "label": "Timeout",
+                        "validate": {
+                            "max": 300,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "shareCookies",
+                        "type": "boolean",
+                        "label": "Share cookies with other HTTP modules",
+                        "required": true
+                    },
+                    {
+                        "name": "ca",
+                        "type": "cert",
+                        "label": "Self-signed certificate"
+                    },
+                    {
+                        "name": "rejectUnauthorized",
+                        "type": "boolean",
+                        "label": "Reject connections that are using unverified (self-signed) certificates",
+                        "required": true
+                    },
+                    {
+                        "name": "followRedirect",
+                        "type": "boolean",
+                        "label": "Follow redirect",
+                        "required": true
+                    },
+                    {
+                        "name": "useQuerystring",
+                        "type": "boolean",
+                        "label": "Disable serialization of multiple same query string keys as arrays",
+                        "required": true
+                    },
+                    {
+                        "name": "gzip",
+                        "type": "boolean",
+                        "label": "Request compressed content",
+                        "required": true
+                    },
+                    {
+                        "name": "useMtls",
+                        "type": "boolean",
+                        "label": "Use Mutual TLS",
+                        "required": true
+                    },
+                    {
+                        "name": "contentType",
+                        "type": "select",
+                        "label": "Content type",
+                        "validate": {
+                            "enum": [
+                                "text/plain",
+                                "application/json",
+                                "application/xml",
+                                "text/xml",
+                                "text/html",
+                                "custom"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "data",
+                        "type": "buffer",
+                        "label": "Request content"
+                    },
+                    {
+                        "name": "followAllRedirects",
+                        "type": "boolean",
+                        "label": "Follow all redirect",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "scenario-service:ReturnData",
+            "version": 2,
+            "parameters": {},
+            "mapper": {
+                "reservationId": "{{1.data.id}}",
+                "success": true,
+                "message": "Reserva creada exitosamente.",
+                "altConf": "{{ifempty(1.data.altConf; \"\")}}",
+                "unitId": "{{1.data.unitId}}",
+                "arrivalDate": "{{1.data.arrivalDate}}",
+                "departureDate": "{{1.data.departureDate}}",
+                "nights": "{{1.data.nights}}",
+                "status": "{{1.data.status}}",
+                "contactId": "{{1.data.contactId}}",
+                "folioId": "{{1.data.folioId}}",
+                "uuid": "{{1.data.uuid}}",
+                "quoteBreakdown": "{{1.data.quoteBreakdown}}",
+                "folioBreakdown": "{{1.data.folioBreakdown}}",
+                "createdAt": "{{1.data.createdAt}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {},
+                "expect": [
+                    { "name": "reservationId", "type": "text", "label": "" },
+                    { "name": "success", "type": "boolean", "label": "" },
+                    { "name": "message", "type": "text", "label": "" },
+                    { "name": "altConf", "type": "text", "label": "" },
+                    { "name": "unitId", "type": "text", "label": "" },
+                    { "name": "arrivalDate", "type": "text", "label": "" },
+                    { "name": "departureDate", "type": "text", "label": "" },
+                    { "name": "nights", "type": "text", "label": "" },
+                    { "name": "status", "type": "text", "label": "" },
+                    { "name": "contactId", "type": "text", "label": "" },
+                    { "name": "folioId", "type": "text", "label": "" },
+                    { "name": "uuid", "type": "text", "label": "" },
+                    { "name": "quoteBreakdown", "type": "text", "label": "" },
+                    { "name": "folioBreakdown", "type": "text", "label": "" },
+                    { "name": "createdAt", "type": "text", "label": "" }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": [
+            "=== CONFIGURACIÓN DE AUTENTICACIÓN ===",
+            "IMPORTANTE: Configurar autenticación Basic Auth en el módulo HTTP",
+            "El módulo HTTP debe tener configurado:",
+            "  - Username: Tu usuario de TrackHS (ej: aba99777416466b6bdc1a25223192ccb)",
+            "  - Password: Tu contraseña de TrackHS",
+            "Si recibes error 403 Forbidden, verifica que las credenciales estén correctamente configuradas",
+            "",
+            "=== CAMPOS REQUERIDOS ===",
+            "Campos obligatorios para crear una reserva:",
+            "  - unitId (integer): ID de la unidad a reservar",
+            "  - arrivalDate (string): Fecha de llegada en formato ISO 8601 (YYYY-MM-DD)",
+            "  - departureDate (string): Fecha de salida en formato ISO 8601 (YYYY-MM-DD)",
+            "",
+            "=== CONTACTO ===",
+            "Se debe proporcionar contactId O contact (objeto JSON):",
+            "  - contactId: ID de un contacto existente",
+            "  - contact: Objeto JSON con información del contacto. Al menos uno de: cellPhone, homePhone, otherPhone, primaryEmail o secondaryEmail es requerido",
+            "    Ejemplo: {\"firstName\":\"John\",\"lastName\":\"Doe\",\"primaryEmail\":\"john@example.com\"}",
+            "",
+            "=== FORMATOS IMPORTANTES ===",
+            "- Fechas: Formato ISO 8601 sin timestamp (YYYY-MM-DD). Ejemplo: 2024-12-25",
+            "- contact: Objeto JSON como string. Incluir: firstName, lastName, primaryEmail, cellPhone, etc.",
+            "- occupants: Objeto JSON como string. Ejemplo: {\"adults\":2,\"children\":1,\"pets\":0}",
+            "- breakdown: Objeto JSON como string. Solo para Server Keys o Channel Keys con custom pricing habilitado",
+            "- addOns: Array JSON como string. Ejemplo: [{\"id\":1,\"quantity\":2}]",
+            "- notes: Array JSON como string. Ejemplo: [{\"note\":\"Nota\",\"isPublic\":true}]",
+            "- payment: Objeto JSON como string. Soporta paymentCard, bankAccount, paymentMethod, netCommission",
+            "",
+            "=== ESTADOS DE RESERVA ===",
+            "status: Hold (default), Confirmed, Checked Out, Checked In, Cancelled",
+            "  - Hold: Si no hay método de pago, se crea como Hold",
+            "  - Confirmed: Requiere método de pago. Channel Keys solo permiten métodos electrónicos",
+            "",
+            "=== POLÍTICAS ===",
+            "- guaranteePolicyId: Override automático de política de garantía (solo Channel Keys)",
+            "- cancellationPolicyId: Se asigna automáticamente",
+            "",
+            "=== MÉTODO DE ENVÍO ===",
+            "Los datos se envían como parámetros de query string (querystring) en lugar de body JSON.",
+            "Los objetos complejos (contact, payment, breakdown, etc.) se deben enviar como strings JSON."
+        ]
+    },
+    "io": {
+        "input_spec": [
+            { "name": "unitId", "label": "Unit ID", "help": "ID de la unidad a reservar (integer). Campo obligatorio.", "type": "number", "default": "", "required": true },
+            { "name": "arrivalDate", "label": "Arrival Date", "help": "Fecha de llegada en formato ISO 8601 sin timestamp (YYYY-MM-DD). Ejemplo: 2024-12-25. Campo obligatorio.", "type": "text", "default": "", "required": true, "multiline": false },
+            { "name": "departureDate", "label": "Departure Date", "help": "Fecha de salida en formato ISO 8601 sin timestamp (YYYY-MM-DD). Ejemplo: 2024-12-28. Campo obligatorio.", "type": "text", "default": "", "required": true, "multiline": false },
+            { "name": "contactId", "label": "Contact ID", "help": "ID de un contacto existente. Requerido si no se proporciona contact. Debe ser contactId O contact, no ambos.", "type": "number", "default": "", "required": false },
+            { "name": "contact", "label": "Contact (JSON)", "help": "Objeto JSON con información del contacto. Al menos uno de: cellPhone, homePhone, otherPhone, primaryEmail o secondaryEmail es requerido. Ejemplo: {\"firstName\":\"John\",\"lastName\":\"Doe\",\"primaryEmail\":\"john@example.com\",\"cellPhone\":\"+1234567890\"}. Formato: JSON object string.", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "rateTypeId", "label": "Rate Type ID", "help": "Override del Best Available Rate automático. Si el rate no se encuentra o no está activo, se lanzará error 422.", "type": "number", "default": "", "required": false },
+            { "name": "guaranteePolicyId", "label": "Guarantee Policy ID", "help": "Override de la selección automática de política de garantía. Solo disponible para Channel Keys. Debe ser una política activa y aplicada a la unidad.", "type": "number", "default": "", "required": false },
+            { "name": "reservationTypeId", "label": "Reservation Type ID", "help": "Tipo de reserva. Solo disponible para server/unit keys. Por defecto es typeId 1.", "type": "number", "default": "", "required": false },
+            { "name": "ignoreLos", "label": "Ignore Length of Stay", "help": "Ignorar restricciones de longitud de estancia (length of stay) al verificar disponibilidad.", "type": "boolean", "default": false, "required": false },
+            { "name": "breakdown", "label": "Breakdown (JSON)", "help": "Objeto JSON para override de cálculo automático. Solo disponible para Server Keys o Channel Keys con custom pricing habilitado. Incluye: rates, occupantRates, fees, total. Formato: JSON object string.", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "occupants", "label": "Occupants (JSON)", "help": "Objeto JSON con ocupantes. Solo disponible si no se usa breakdown. Usar claves string (adults, children, pets) o integer IDs. Ejemplo: {\"adults\":2,\"children\":1,\"pets\":0} o {\"1\":2,\"2\":1,\"3\":0}. Formato: JSON object string.", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "addOns", "label": "Add Ons (JSON)", "help": "Array JSON con add-ons. Solo disponible si no se usa breakdown. Cada elemento debe tener: id (integer) y quantity (number). Ejemplo: [{\"id\":1,\"quantity\":2}]. Formato: JSON array string.", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "promoCode", "label": "Promo Code", "help": "Código promocional o cupón (mínimo 1, máximo 16 caracteres).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "confirmationNumber", "label": "Confirmation Number", "help": "Número de confirmación alternativo para la reserva. Para reservas de canal, este campo se bloquea después de la creación y no puede cambiarse desde el PMS. Usar /api/pms/reservations/:reservation_id/altconf para cambiar vía API.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "travelInsurance", "label": "Travel Insurance", "help": "Incluir seguro de viaje. La unidad debe tener un proveedor de seguro configurado.", "type": "boolean", "default": false, "required": false },
+            { "name": "notes", "label": "Notes (JSON)", "help": "Array JSON con notas. Cada nota debe tener: note (string) y isPublic (boolean). Ejemplo: [{\"note\":\"Nota importante\",\"isPublic\":false}]. Formato: JSON array string.", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "payment", "label": "Payment (JSON)", "help": "Objeto JSON con información de pago. Soporta: amount (number), paymentCard (objeto), bankAccount (objeto), paymentMethod (objeto), netCommission (objeto). Si amount es 0, solo procesa como HOLD. Ejemplo con tarjeta: {\"amount\":100,\"paymentCard\":{\"cardNumber\":\"4111111111111111\",\"cardName\":\"John Doe\",\"cardExp\":\"12-2024\",\"cardCvv\":\"123\",\"saveCard\":true}}. Formato: JSON object string.", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "isTaxable", "label": "Is Taxable", "help": "Establecer a false si está exento de impuestos. Por defecto es true.", "type": "boolean", "default": true, "required": false },
+            { "name": "campaignId", "label": "Campaign ID", "help": "ID de campaña que sobrescribe un Token.", "type": "number", "default": "", "required": false },
+            { "name": "campaignToken", "label": "Campaign Token", "help": "Token de campaña. Se puede usar si no se proporciona Campaign ID.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "status", "label": "Status", "help": "Estado de la reserva. Valores: Hold (default), Confirmed, Checked Out, Checked In, Cancelled. Usar con EXTREMA CAUTELA. Puede forzar una reserva de Confirmed a Hold.", "type": "select", "default": "Hold", "required": false, "validate": { "enum": ["Hold", "Confirmed", "Checked Out", "Checked In", "Cancelled"] } },
+            { "name": "subChannel", "label": "Sub Channel", "help": "Subcanal de donde proviene la reserva (string).", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "clientIPAddress", "label": "Client IP Address", "help": "Dirección IP del cliente que realiza la reserva. Se usa para detección de fraude.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "session", "label": "Session", "help": "Datos de sesión usando SEON v6 agent para crear system fingerprint. Se usa para detección de fraude. Ver: https://docs.seon.io/api-reference/fraud-api#javascript-agent-v6", "type": "text", "default": "", "required": false, "multiline": true }
+        ],
+        "output_spec": [
+            { "name": "reservationId", "label": "Reservation ID", "help": "ID único de la reserva creada.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "success", "label": "Éxito", "help": "Indica si la operación fue exitosa (true/false).", "type": "boolean", "default": true, "required": false },
+            { "name": "message", "label": "Mensaje", "help": "Mensaje de confirmación de la reserva creada.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "altConf", "label": "Alternate Confirmation", "help": "Número de confirmación alternativo si fue proporcionado.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "unitId", "label": "Unit ID", "help": "ID de la unidad reservada.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "arrivalDate", "label": "Arrival Date", "help": "Fecha de llegada de la reserva.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "departureDate", "label": "Departure Date", "help": "Fecha de salida de la reserva.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "nights", "label": "Nights", "help": "Número de noches de la reserva.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "status", "label": "Status", "help": "Estado actual de la reserva.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "contactId", "label": "Contact ID", "help": "ID del contacto asociado a la reserva.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "folioId", "label": "Folio ID", "help": "ID del folio asociado a la reserva.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "uuid", "label": "UUID", "help": "UUID único de la reserva.", "type": "text", "default": "", "required": false, "multiline": false },
+            { "name": "quoteBreakdown", "label": "Quote Breakdown", "help": "Desglose de cotización de la reserva (objeto JSON).", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "folioBreakdown", "label": "Folio Breakdown", "help": "Desglose del folio de la reserva (objeto JSON).", "type": "text", "default": "", "required": false, "multiline": true },
+            { "name": "createdAt", "label": "Created At", "help": "Fecha y hora en que se creó la reserva (formato ISO 8601).", "type": "text", "default": "", "required": false, "multiline": false }
+        ]
+    }
+}
+
