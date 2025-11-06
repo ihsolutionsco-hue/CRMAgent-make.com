@@ -11,9 +11,9 @@ Colección de blueprints y herramientas para Make.com que integran con la API de
   - [PMS - Gestión de Unidades](#pms---gestión-de-unidades)
   - [PMS - Gestión de Reservas](#pms---gestión-de-reservas)
   - [PMS - Gestión de Cotizaciones](#pms---gestión-de-cotizaciones)
+  - [PMS - Gestión de Precios](#pms---gestión-de-precios)
   - [PMS - Mantenimiento](#pms---mantenimiento)
   - [PMS - Housekeeping](#pms---housekeeping)
-  - [Herramientas Auxiliares](#herramientas-auxiliares)
 - [Configuración General](#configuración-general)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 
@@ -28,36 +28,34 @@ Este repositorio contiene una colección de blueprints para Make.com que permite
 
 ## Resumen de Herramientas
 
-Este proyecto contiene **14 colecciones de Make.com** y **1 herramienta auxiliar**:
+Este proyecto contiene **15 colecciones de Make.com**:
 
 ### CRM (3 herramientas)
-- ✅ Create Contact Collection - Crear contactos
-- ✅ Get Contact Collection - Obtener contacto por ID
-- ✅ Get Contacts Collection - Buscar/listar contactos
+- ✅ `create_guest` - Crear contactos
+- ✅ `get_guest_profile` - Obtener contacto por ID
+- ✅ `search_guests` - Buscar/listar contactos
 
-### PMS - Unidades (5 herramientas)
-- ✅ Search Units Collection - Buscar unidades con filtros
-- ✅ Get Unit By ID Collection - Obtener detalles de unidad
-- ✅ Get Unit Types Collection - Obtener tipos de unidades
-- ✅ Get Unit Availability Collection - Disponibilidad de una unidad
-- ✅ Get Units Availability Collection - Buscar unidades disponibles por fechas
+### PMS - Unidades (6 herramientas)
+- ✅ `search_properties` - Buscar unidades con filtros
+- ✅ `get_property_details` - Obtener detalles de unidad
+- ✅ `list_property_types` - Obtener tipos de unidades
+- ✅ `get_availability_calendar` - Disponibilidad de una unidad
+- ✅ `find_available_properties` - Buscar unidades disponibles por fechas
+- ✅ `get_daily_pricing` - Obtener tarifas diarias de una unidad
 
 ### PMS - Reservas (2 herramientas)
-- ✅ Create Reservation Collection - Crear reservas
-- ✅ Get Reservations Collection - Buscar/listar reservas
+- ✅ `create_booking` - Crear reservas
+- ✅ `search_bookings` - Buscar/listar reservas
 
 ### PMS - Cotizaciones (2 herramientas)
-- ✅ Get Quote Collection - Obtener cotizaciones
-- ✅ Create Quote V2 Collection - Crear cotizaciones V2
+- ✅ `search_quotes` - Obtener cotizaciones
+- ✅ `calculate_rate` - Crear cotizaciones V2
 
 ### PMS - Mantenimiento (1 herramienta)
-- ✅ Create Maintenance Work Order Collection - Crear órdenes de mantenimiento
+- ✅ `schedule_maintenance` - Crear órdenes de mantenimiento
 
 ### PMS - Housekeeping (1 herramienta)
-- ✅ Create Housekeeping Work Order Collection - Crear órdenes de limpieza
-
-### Herramientas Auxiliares (1 herramienta)
-- ✅ Get Clean Types Script - Script Python para consultar tipos de limpieza
+- ✅ `schedule_housekeeping` - Crear órdenes de limpieza
 
 ---
 
@@ -65,8 +63,9 @@ Este proyecto contiene **14 colecciones de Make.com** y **1 herramienta auxiliar
 
 ### CRM - Gestión de Contactos
 
-#### 📝 Create Contact Collection
-**Ubicación:** `create contact collection/`
+#### 📝 create_guest
+**Nombre Oficial:** Create Contact  
+**Ubicación:** `create_guest/`
 
 Crea contactos en TrackHS CRM validando datos según OpenAPI. 
 
@@ -82,15 +81,15 @@ Crea contactos en TrackHS CRM validando datos según OpenAPI.
 - Campos personalizados
 
 **Archivos:**
-- Blueprint: `create contact collection.json`
-- Documentación: `createContact.md`
+- Blueprint: `create_guest.json`
+- Documentación: `Create Contact.md`
 - Descripción: `description.md`
-- Tests: `test_create_contact.py`
 
 ---
 
-#### 🔍 Get Contact Collection
-**Ubicación:** `get contact collection/`
+#### 🔍 get_guest_profile
+**Nombre Oficial:** Get a Contact  
+**Ubicación:** `get_guest_profile/`
 
 Obtiene la información completa de un contacto específico en TrackHS CRM (`GET /api/crm/contacts/{contactId}`).
 
@@ -101,13 +100,15 @@ Obtiene la información completa de un contacto específico en TrackHS CRM (`GET
 - Valores personalizados
 
 **Archivos:**
-- Blueprint: `get contact collection.json`
+- Blueprint: `get_guest_profile.json`
+- Documentación: `Get a Contact.md`
 - Descripción: `description.md`
 
 ---
 
-#### 📋 Get Contacts Collection
-**Ubicación:** `get contacts collection/`
+#### 📋 search_guests
+**Nombre Oficial:** Get All Contacts  
+**Ubicación:** `search_guests/`
 
 Obtiene una colección de contactos con soporte para paginación, filtros y búsqueda.
 
@@ -118,16 +119,17 @@ Obtiene una colección de contactos con soporte para paginación, filtros y bús
 - Múltiples resultados
 
 **Archivos:**
-- Blueprint: `get contacts collection.json`
-- Documentación: `getContactsCollection.md`
-- Tests: `test_api.py`
+- Blueprint: `search_guests.json`
+- Documentación: `Get All Contacts.md`
+- Readme: `readme.md`
 
 ---
 
 ### PMS - Gestión de Unidades
 
-#### 🔎 Search Units Collection
-**Ubicación:** `search units collection/`
+#### 🔎 search_properties
+**Nombre Oficial:** Unit  
+**Ubicación:** `search_properties/`
 
 Busca unidades en TrackHS usando la API de Unit Collection (`GET /api/pms/units`). Diseñada para servicio al cliente de empresas de alquiler de casas.
 
@@ -139,15 +141,16 @@ Busca unidades en TrackHS usando la API de Unit Collection (`GET /api/pms/units`
 - **Seguridad:** Excluye información sensible de direcciones (streetAddress, coordenadas)
 
 **Archivos:**
-- Blueprint: `search units collection.json`
-- Documentación: `search units collection.md`
+- Blueprint: `search_properties.json`
+- Documentación: `Unit.md`
 - Descripción: `description.md`
-- Tests: `test_api.py`
+- Readme: `readme.md`
 
 ---
 
-#### 🏠 Get Unit By ID Collection
-**Ubicación:** `get unit by id collection/`
+#### 🏠 get_property_details
+**Nombre Oficial:** Get Unit  
+**Ubicación:** `get_property_details/`
 
 Obtiene los detalles completos de una unidad específica en TrackHS (`GET /api/pms/units/{unitId}`).
 
@@ -158,14 +161,14 @@ Obtiene los detalles completos de una unidad específica en TrackHS (`GET /api/p
 - Datos completos de la unidad
 
 **Archivos:**
-- Blueprint: `get unit by id collection.json`
+- Blueprint: `get_property_details.json`
 - Descripción: `description.md`
-- Tests: `test_api.py`
 
 ---
 
-#### 🏗️ Get Unit Types Collection
-**Ubicación:** `get unit types collection/`
+#### 🏗️ list_property_types
+**Nombre Oficial:** Get all Unit Types  
+**Ubicación:** `list_property_types/`
 
 Obtiene todos los tipos de unidades (unit types) en TrackHS (`GET /api/pms/units/types`).
 
@@ -181,15 +184,15 @@ Obtiene todos los tipos de unidades (unit types) en TrackHS (`GET /api/pms/units
 **Nota:** Puedes llamar la herramienta con `{}` (objeto vacío) y funcionará con valores por defecto.
 
 **Archivos:**
-- Blueprint: `get unit types collection.json`
-- Documentación: `get unit types.md`
+- Blueprint: `list_property_types.json`
+- Documentación: `Get all Unit Types.md`
 - Descripción: `description.md`
-- Tests: `test_api.py`
 
 ---
 
-#### 📅 Get Unit Availability Collection
-**Ubicación:** `get unit availability collection/`
+#### 📅 get_availability_calendar
+**Nombre Oficial:** V2 Unit Availability  
+**Ubicación:** `get_availability_calendar/`
 
 Obtiene la disponibilidad día por día de una unidad específica en TrackHS (`GET /api/v2/pms/units/{unitId}/availability`).
 
@@ -200,14 +203,15 @@ Obtiene la disponibilidad día por día de una unidad específica en TrackHS (`G
 - Información de disponibilidad granular día por día
 
 **Archivos:**
-- Blueprint: `get unit availability collection.json`
-- Documentación: `get unit availability collection.md`
+- Blueprint: `get_availability_calendar.json`
+- Documentación: `V2 Unit Availability.md`
 - Descripción: `description.md`
 
 ---
 
-#### 📊 Get Units Availability Collection
-**Ubicación:** `get units availability collection/`
+#### 📊 find_available_properties
+**Nombre Oficial:** Unit Availability Search  
+**Ubicación:** `find_available_properties/`
 
 Busca unidades disponibles en TrackHS para un rango de fechas (`GET /api/pms/units/search`).
 
@@ -218,17 +222,35 @@ Busca unidades disponibles en TrackHS para un rango de fechas (`GET /api/pms/uni
 - Retorna información de disponibilidad y unidades
 
 **Archivos:**
-- Blueprint: `get units availability collection.json`
-- Documentación: `get units availability collection.md`
+- Blueprint: `find_available_properties.json`
+- Documentación: `Unit Availability Search.md`
 - Descripción: `description.md`
-- Tests: `test_api.py`
+
+---
+
+#### 💰 get_daily_pricing
+**Nombre Oficial:** V2 Get Daily-Pricing on Unit  
+**Ubicación:** `get_daily_pricing/`
+
+Obtiene la tarifa diaria detallada de una unidad específica, incluyendo fechas y cambios, para mejorar la gestión de precios y maximizar el ingreso.
+
+**Funcionalidades:**
+- Obtiene tarifas diarias detalladas
+- Incluye información de fechas y cambios de precios
+- Útil para análisis de precios y optimización de ingresos
+
+**Archivos:**
+- Blueprint: `get_daily_pricing.json`
+- Documentación: `V2 Get Daily-Pricing on Unit.md`
+- Descripción: `description.md`
 
 ---
 
 ### PMS - Gestión de Reservas
 
-#### 📅 Create Reservation Collection
-**Ubicación:** `create reservation collection/`
+#### 📅 create_booking
+**Nombre Oficial:** Create Reservation  
+**Ubicación:** `create_booking/`
 
 Crea una nueva reserva en TrackHS PMS.
 
@@ -251,15 +273,15 @@ Crea una nueva reserva en TrackHS PMS.
 - Maneja políticas de garantía y cancelación automáticamente
 
 **Archivos:**
-- Blueprint: `create reservation collection.json`
-- Documentación: `create reservation collection.md`
+- Blueprint: `create_booking.json`
+- Documentación: `Create Reservation.md`
 - Descripción: `description.md`
-- Tests: `test_create_reservation.py`
 
 ---
 
-#### 📊 Get Reservations Collection
-**Ubicación:** `get reservations collection/`
+#### 📊 search_bookings
+**Nombre Oficial:** Search Reservations V2  
+**Ubicación:** `search_bookings/`
 
 Blueprint para Make.com que integra la API de TrackHS Search Reservations V2 (`GET /api/v2/pms/reservations`).
 
@@ -281,16 +303,17 @@ Blueprint para Make.com que integra la API de TrackHS Search Reservations V2 (`G
 - Tamaños grandes (10+) pueden causar error 400
 
 **Archivos:**
-- Blueprint: `get reservations collection.json`
-- Documentación: `get reservations collection.md`
-- Descripción: `readme.md` (contiene guía detallada de formatos de fecha)
+- Blueprint: `search_bookings.json`
+- Documentación: `Search Reservations V2.md`
+- Readme: `readme.md`
 
 ---
 
 ### PMS - Gestión de Cotizaciones
 
-#### 💰 Get Quote Collection
-**Ubicación:** `get quote collection/`
+#### 💰 search_quotes
+**Nombre Oficial:** Quote V2 Reservation  
+**Ubicación:** `search_quotes/`
 
 Obtiene cotizaciones (quotes) para unidades habilitadas en TrackHS.
 
@@ -301,28 +324,34 @@ Obtiene cotizaciones (quotes) para unidades habilitadas en TrackHS.
 - **Validaciones:** page mínimo 1
 
 **Archivos:**
-- Blueprint: `get quote collection.json`
-- Documentación: `get quote collection.md`
+- Blueprint: `search_quotes.json`
+- Documentación: `Quote V2 Reservation.md`
 - Descripción: `description.md`
-- Tests: `test_api.py`
 
 ---
 
-#### 📄 Create Quote V2 Collection
-**Ubicación:** `create quote v2 collection/`
+#### 📄 calculate_rate
+**Nombre Oficial:** Create Quote V2  
+**Ubicación:** `calculate_rate/`
 
 Crea cotizaciones en TrackHS (versión V2).
 
+**Funcionalidades:**
+- Crea cotizaciones V2 para unidades
+- Calcula tarifas y precios
+- Incluye políticas y restricciones
+
 **Archivos:**
-- Blueprint: `create quote v2 collection.json`
-- Documentación: `create quote V2 doc.md`
+- Blueprint: `calculate_rate.json`
+- Documentación: `Create Quote V2.md`
 
 ---
 
 ### PMS - Mantenimiento
 
-#### 🔧 Create Maintenance Work Order Collection
-**Ubicación:** `create maintenance work order collection/`
+#### 🔧 schedule_maintenance
+**Nombre Oficial:** Create Maintenance Work Order  
+**Ubicación:** `schedule_maintenance/`
 
 Crea órdenes de trabajo de mantenimiento en TrackHS PMS.
 
@@ -340,16 +369,17 @@ Crea órdenes de trabajo de mantenimiento en TrackHS PMS.
 - Incluye prioridad, estado, costos y tiempo estimados
 
 **Archivos:**
-- Blueprint: `Create Maintenance Work Order (TrackHS PMS).blueprint.json`
-- Documentación: `create maintenance work order doc.md`
+- Blueprint: `schedule_maintenance.json`
+- Documentación: `Create Maintenance Work Order.md`
 - Descripción: `description.md`
 
 ---
 
 ### PMS - Housekeeping
 
-#### 🧹 Create Housekeeping Work Order Collection
-**Ubicación:** `create housekeeping work order collection/`
+#### 🧹 schedule_housekeeping
+**Nombre Oficial:** Create Housekeeping Work Order  
+**Ubicación:** `schedule_housekeeping/`
 
 Crea órdenes de trabajo de housekeeping (limpieza e inspecciones) en TrackHS PMS.
 
@@ -375,39 +405,9 @@ Crea órdenes de trabajo de housekeeping (limpieza e inspecciones) en TrackHS PM
 - Retorna información completa de la orden creada: workOrderId, status, scheduledAt, unitId, cleanTypeId, isInspection
 
 **Archivos:**
-- Blueprint: `Create Housekeeping Work Order.blueprint.json`
-- Documentación: `create housekeeping work order doc.md`
-- Tests: `test_create_housekeeping.py`
-- Requirements: `requirements.txt`
-
----
-
-## Herramientas Auxiliares
-
-### 🛠️ Get Clean Types Script
-**Ubicación:** `get_clean_types.py` (raíz del proyecto)
-
-Script Python para obtener los tipos de limpieza (clean types) desde la API de TrackHS PMS (`GET /api/pms/housekeeping/clean-types`).
-
-**Funcionalidades:**
-- Hace una petición GET real al endpoint de clean types
-- Muestra información detallada de cada tipo de limpieza
-- Útil para consultar los IDs de clean types disponibles antes de crear órdenes de housekeeping
-
-**Uso:**
-```bash
-# Configurar variables de entorno en .env
-TRACKHS_API_URL=https://tu-dominio.trackhs.com
-TRACKHS_USERNAME=tu_usuario
-TRACKHS_PASSWORD=tu_contraseña
-
-# Ejecutar script
-python get_clean_types.py
-```
-
-**Requisitos:**
-- Python 3.x
-- Librerías: `requests`, `python-dotenv`
+- Blueprint: `schedule_housekeeping.json`
+- Documentación: `Create Housekeeping Work Order.md`
+- Readme: `README.md`
 
 ---
 
@@ -429,27 +429,6 @@ Todas las herramientas requieren **Basic Authentication** configurada en el mód
 - **Tamaños grandes (10+) pueden causar errores**: "This model's maximum context length is 200000 tokens"
 - **Paginación**: Para grandes volúmenes de datos, implementar paginación con múltiples llamadas incrementando `page`
 
-### Testing Local
-
-Muchas herramientas incluyen scripts de prueba en Python. Para ejecutarlos:
-
-```bash
-# Instalar dependencias
-pip install -r requirements.txt
-
-# Ejecutar tests (si están disponibles)
-python test_api.py
-# o
-python run_tests.py
-```
-
-Crea un archivo `.env` con tus credenciales:
-```env
-TRACKHS_API_URL=https://tu-dominio.trackhs.com
-TRACKHS_USERNAME=tu_usuario
-TRACKHS_PASSWORD=tu_contraseña
-```
-
 ---
 
 ## Estructura del Proyecto
@@ -457,89 +436,81 @@ TRACKHS_PASSWORD=tu_contraseña
 ```
 make.com/
 ├── README.md (este archivo)
-├── get_clean_types.py (herramienta auxiliar)
 │
-├── create contact collection/
-│   ├── create contact collection.json
-│   ├── createContact.md
+├── create_guest/
+│   ├── create_guest.json
+│   ├── Create Contact.md
 │   ├── description.md
-│   ├── requirements.txt
-│   └── test_create_contact.py
+│   └── README.md
 │
-├── get contact collection/
-│   ├── get contact collection.json
+├── get_guest_profile/
+│   ├── get_guest_profile.json
+│   ├── Get a Contact.md
 │   └── description.md
 │
-├── get contacts collection/
-│   ├── get contacts collection.json
-│   ├── getContactsCollection.md
-│   ├── readme.md
-│   ├── requirements.txt
-│   └── test_api.py
-│
-├── create reservation collection/
-│   ├── create reservation collection.json
-│   ├── create reservation collection.md
-│   ├── description.md
-│   ├── requirements.txt
-│   └── test_create_reservation.py
-│
-├── get reservations collection/
-│   ├── get reservations collection.json
-│   ├── get reservations collection.md
+├── search_guests/
+│   ├── search_guests.json
+│   ├── Get All Contacts.md
 │   └── readme.md
 │
-├── search units collection/
-│   ├── search units collection.json
-│   ├── search units collection.md
+├── search_properties/
+│   ├── search_properties.json
+│   ├── Unit.md
 │   ├── description.md
-│   ├── requirements.txt
-│   └── test_api.py
+│   └── readme.md
 │
-├── get unit by id collection/
-│   ├── get unit by id collection.json
-│   ├── description.md
-│   └── test_api.py
-│
-├── get unit types collection/
-│   ├── get unit types collection.json
-│   ├── get unit types.md
-│   ├── description.md
-│   └── test_api.py
-│
-├── get unit availability collection/
-│   ├── get unit availability collection.json
-│   ├── get unit availability collection.md
+├── get_property_details/
+│   ├── get_property_details.json
 │   └── description.md
 │
-├── get units availability collection/
-│   ├── get units availability collection.json
-│   ├── get units availability collection.md
-│   ├── description.md
-│   ├── requirements.txt
-│   └── test_api.py
-│
-├── get quote collection/
-│   ├── get quote collection.json
-│   ├── get quote collection.md
-│   ├── description.md
-│   └── test_api.py
-│
-├── create quote v2 collection/
-│   ├── create quote v2 collection.json
-│   └── create quote V2 doc.md
-│
-├── create maintenance work order collection/
-│   ├── Create Maintenance Work Order (TrackHS PMS).blueprint.json
-│   ├── create maintenance work order doc.md
+├── list_property_types/
+│   ├── list_property_types.json
+│   ├── Get all Unit Types.md
 │   └── description.md
 │
-└── create housekeeping work order collection/
-    ├── Create Housekeeping Work Order.blueprint.json
-    ├── create housekeeping work order doc.md
-    ├── README.md
-    ├── requirements.txt
-    └── test_create_housekeeping.py
+├── get_availability_calendar/
+│   ├── get_availability_calendar.json
+│   ├── V2 Unit Availability.md
+│   └── description.md
+│
+├── find_available_properties/
+│   ├── find_available_properties.json
+│   ├── Unit Availability Search.md
+│   └── description.md
+│
+├── get_daily_pricing/
+│   ├── get_daily_pricing.json
+│   ├── V2 Get Daily-Pricing on Unit.md
+│   └── description.md
+│
+├── create_booking/
+│   ├── create_booking.json
+│   ├── Create Reservation.md
+│   └── description.md
+│
+├── search_bookings/
+│   ├── search_bookings.json
+│   ├── Search Reservations V2.md
+│   └── readme.md
+│
+├── search_quotes/
+│   ├── search_quotes.json
+│   ├── Quote V2 Reservation.md
+│   └── description.md
+│
+├── calculate_rate/
+│   ├── calculate_rate.json
+│   └── Create Quote V2.md
+│
+├── schedule_maintenance/
+│   ├── schedule_maintenance.json
+│   ├── Create Maintenance Work Order.md
+│   └── description.md
+│
+└── schedule_housekeeping/
+    ├── schedule_housekeeping.json
+    ├── Create Housekeeping Work Order.md
+    └── README.md
 ```
 
 ---
@@ -548,8 +519,9 @@ make.com/
 
 - Cada herramienta tiene su propia carpeta con documentación específica
 - Los archivos `.json` son los blueprints que se pueden importar directamente en Make.com
-- Los archivos `.md` contienen documentación detallada de cada herramienta
-- Algunas herramientas incluyen scripts de prueba en Python para validar la funcionalidad
+- Los archivos `.md` con nombres oficiales contienen la documentación OpenAPI completa de TrackHS
+- Los archivos `description.md` contienen descripciones resumidas de cada herramienta
+- Algunas herramientas incluyen archivos `readme.md` o `README.md` con documentación adicional
 
 ---
 
@@ -560,3 +532,4 @@ Si encuentras problemas con alguna de las herramientas o la API de TrackHS, revi
 ---
 
 **Última actualización:** Noviembre 2025
+

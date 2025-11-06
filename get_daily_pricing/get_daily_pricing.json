@@ -1,0 +1,256 @@
+{
+  "name": "get_daily_pricing",
+  "flow": [
+    {
+      "id": 1,
+      "module": "http:ActionSendData",
+      "version": 3,
+      "parameters": {
+        "handleErrors": true,
+        "useNewZLibDeCompress": true
+      },
+      "mapper": {
+        "url": "https://ihmvacations.trackhs.com/api/v2/pms/units/{{var.input.unitId}}/daily-pricing",
+        "serializeUrl": false,
+        "method": "get",
+        "headers": [
+          { "name": "Accept", "value": "application/json" }
+        ],
+        "qs": [
+          { "name": "rateTypeId", "value": "{{ifempty(var.input.rateTypeId; null)}}" },
+          { "name": "startDate", "value": "{{ifempty(var.input.startDate; null)}}" },
+          { "name": "endDate", "value": "{{ifempty(var.input.endDate; null)}}" }
+        ],
+        "bodyType": "",
+        "parseResponse": true,
+        "authUser": "{{var.organization.user}}",
+        "authPass": "{{var.organization.password}}",
+        "timeout": "",
+        "shareCookies": false,
+        "ca": "",
+        "rejectUnauthorized": true,
+        "followRedirect": true,
+        "useQuerystring": false,
+        "gzip": true,
+        "useMtls": false,
+        "followAllRedirects": false
+      },
+      "metadata": {
+        "designer": { "x": 0, "y": 0, "name": "api:getDailyPricing" },
+        "restore": {
+          "expect": {
+            "method": { "mode": "chose", "label": "GET" },
+            "headers": { "mode": "chose", "items": [ null ] },
+            "qs": { "mode": "chose", "items": [ null ] },
+            "bodyType": { "label": "Empty" }
+          }
+        },
+        "parameters": [
+          { "name": "handleErrors", "type": "boolean", "label": "Evaluate all states as errors (except for 2xx and 3xx )", "required": true },
+          { "name": "useNewZLibDeCompress", "type": "hidden" }
+        ],
+        "expect": [
+          { "name": "url", "type": "url", "label": "URL", "required": true },
+          { "name": "serializeUrl", "type": "boolean", "label": "Serialize URL", "required": true },
+          {
+            "name": "method",
+            "type": "select",
+            "label": "Method",
+            "required": true,
+            "validate": { "enum": [ "get", "head", "post", "put", "patch", "delete", "options" ] }
+          },
+          {
+            "name": "headers",
+            "type": "array",
+            "label": "Headers",
+            "spec": [
+              { "name": "name", "label": "Name", "type": "text", "required": true },
+              { "name": "value", "label": "Value", "type": "text" }
+            ]
+          },
+          {
+            "name": "qs",
+            "type": "array",
+            "label": "Query String",
+            "spec": [
+              { "name": "name", "label": "Name", "type": "text", "required": true },
+              { "name": "value", "label": "Value", "type": "text" }
+            ]
+          },
+          { "name": "bodyType", "type": "select", "label": "Body type", "validate": { "enum": [ "raw", "x_www_form_urlencoded", "multipart_form_data" ] } },
+          { "name": "parseResponse", "type": "boolean", "label": "Parse response", "required": true },
+          { "name": "authUser", "type": "text", "label": "User name" },
+          { "name": "authPass", "type": "password", "label": "Password" },
+          { "name": "timeout", "type": "uinteger", "label": "Timeout", "validate": { "max": 300, "min": 1 } },
+          { "name": "shareCookies", "type": "boolean", "label": "Share cookies with other HTTP modules", "required": true },
+          { "name": "ca", "type": "cert", "label": "Self-signed certificate" },
+          { "name": "rejectUnauthorized", "type": "boolean", "label": "Reject connections that are using unverified (self-signed) certificates", "required": true },
+          { "name": "followRedirect", "type": "boolean", "label": "Follow redirect", "required": true },
+          { "name": "useQuerystring", "type": "boolean", "label": "Disable serialization of multiple same query string keys as arrays", "required": true },
+          { "name": "gzip", "type": "boolean", "label": "Request compressed content", "required": true },
+          { "name": "useMtls", "type": "boolean", "label": "Use Mutual TLS", "required": true },
+          { "name": "followAllRedirects", "type": "boolean", "label": "Follow all redirect", "required": true }
+        ],
+        "advanced": true
+      }
+    },
+    {
+      "id": 2,
+      "module": "scenario-service:ReturnData",
+      "version": 2,
+      "parameters": {},
+      "mapper": {
+        "dailyPricing": "{{1.data}}"
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "restore": {},
+        "expect": [
+          { "name": "dailyPricing", "type": "text", "label": "" }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "slots": null,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": { "orphans": [] },
+    "zone": "us2.make.com",
+    "notes": [
+      "=== CONFIGURACIÓN DE AUTENTICACIÓN ===",
+      "IMPORTANTE: Configurar autenticación Basic Auth en el módulo HTTP",
+      "El módulo HTTP debe tener configurado:",
+      "  - Username: Tu usuario de TrackHS (ej: aba99777416466b6bdc1a25223192ccb)",
+      "  - Password: Tu contraseña de TrackHS",
+      "Si recibes error 403 Forbidden, verifica que las credenciales estén correctamente configuradas",
+      "",
+      "=== ENDPOINT DE PRICING DIARIO ===",
+      "Este endpoint devuelve todos los precios diarios (daily pricing) asignados a una unidad específica.",
+      "La respuesta es un array de objetos, cada uno con rateTypeId y un array de rates por fecha.",
+      "",
+      "=== PARÁMETROS REQUERIDOS ===",
+      "unitId:",
+      "  - Integer (ID de la unidad) - REQUERIDO",
+      "  - Se incluye en la URL como parámetro de path",
+      "  - Ejemplo: unitId=123",
+      "",
+      "=== PARÁMETROS OPCIONALES (Query String) ===",
+      "rateTypeId:",
+      "  - Number (ID del tipo de tarifa)",
+      "  - Filtra los resultados para mostrar solo precios de un tipo de tarifa específico",
+      "  - Si no se especifica, devuelve todos los tipos de tarifa",
+      "  - Ejemplo: rateTypeId=1",
+      "",
+      "startDate:",
+      "  - String en formato ISO 8601 (YYYY-MM-DD)",
+      "  - Fecha de inicio para filtrar el rango de precios",
+      "  - Ejemplo: startDate=2025-10-27",
+      "  - Si no se especifica, no se aplica filtro de fecha de inicio",
+      "",
+      "endDate:",
+      "  - String en formato ISO 8601 (YYYY-MM-DD)",
+      "  - Fecha de fin para filtrar el rango de precios",
+      "  - Ejemplo: endDate=2025-10-31",
+      "  - Si no se especifica, no se aplica filtro de fecha de fin",
+      "",
+      "=== RESPUESTA ===",
+      "La respuesta es un array de objetos, cada uno con:",
+      "  - rateTypeId: Integer - ID del tipo de tarifa",
+      "  - rates: Array de objetos con precios diarios (puede ser null), cada rate incluye:",
+      "    * date: String (ISO 8601 format) - Fecha del precio",
+      "    * rate: Number (float) - Precio para esa fecha",
+      "    * stay: Object con propiedades min y max (nullable) - Restricciones de estadía mínima/máxima",
+      "    * closed: Object con propiedades:",
+      "      - arrival: Boolean - Si la llegada está cerrada para esa fecha",
+      "      - departure: Boolean - Si la salida está cerrada para esa fecha",
+      "    * occupancy: Array de objetos con:",
+      "      - id: Number - ID de ocupación",
+      "      - included: Boolean (nullable) - Si está incluido",
+      "      - rate: Number (float, nullable) - Precio adicional por ocupación",
+      "",
+      "=== CASOS DE USO ===",
+      "1. Obtener todos los precios diarios de una unidad:",
+      "   Input: { \"unitId\": 123 }",
+      "",
+      "2. Obtener precios de un tipo de tarifa específico:",
+      "   Input: { \"unitId\": 123, \"rateTypeId\": 1 }",
+      "",
+      "3. Obtener precios para un rango de fechas:",
+      "   Input: { \"unitId\": 123, \"startDate\": \"2025-10-27\", \"endDate\": \"2025-10-31\" }",
+      "",
+      "4. Obtener precios de un tipo de tarifa en un rango de fechas:",
+      "   Input: { \"unitId\": 123, \"rateTypeId\": 1, \"startDate\": \"2025-10-27\", \"endDate\": \"2025-10-31\" }",
+      "",
+      "=== NOTAS IMPORTANTES ===",
+      "- Este endpoint usa la versión V2 de la API (/v2/pms/units/)",
+      "- El campo 'rates' puede ser null si no hay precios configurados para ese rateTypeId",
+      "- Las fechas deben estar en formato ISO 8601 (YYYY-MM-DD) sin hora ni zona horaria",
+      "- El campo 'stay' puede tener valores null para min y max",
+      "- El campo 'occupancy' puede estar vacío o contener múltiples objetos de ocupación",
+      "- Los precios pueden variar según el tipo de tarifa (rateTypeId) y la fecha",
+      "- El campo 'closed' indica si la unidad está cerrada para llegadas o salidas en fechas específicas"
+    ]
+  },
+  "io": {
+    "input_spec": [
+      {
+        "name": "unitId",
+        "label": "Unit ID",
+        "help": "ID de la unidad para obtener los precios diarios (integer, requerido). Se incluye en la URL como parámetro de path.",
+        "type": "number",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "rateTypeId",
+        "label": "Rate Type ID",
+        "help": "ID del tipo de tarifa para filtrar los resultados (number, opcional). Si no se especifica, devuelve todos los tipos de tarifa.",
+        "type": "number",
+        "default": null,
+        "required": false
+      },
+      {
+        "name": "startDate",
+        "label": "Fecha de Inicio",
+        "help": "Fecha de inicio para filtrar el rango de precios en formato ISO 8601 (YYYY-MM-DD). Ejemplo: 2025-10-27. Si no se especifica, no se aplica filtro de fecha de inicio.",
+        "type": "text",
+        "default": "",
+        "required": false,
+        "multiline": false
+      },
+      {
+        "name": "endDate",
+        "label": "Fecha de Fin",
+        "help": "Fecha de fin para filtrar el rango de precios en formato ISO 8601 (YYYY-MM-DD). Ejemplo: 2025-10-31. Si no se especifica, no se aplica filtro de fecha de fin.",
+        "type": "text",
+        "default": "",
+        "required": false,
+        "multiline": false
+      }
+    ],
+    "output_spec": [
+      {
+        "name": "dailyPricing",
+        "label": "Daily Pricing",
+        "help": "Array de objetos con los precios diarios de la unidad. Cada objeto incluye:\n\n- rateTypeId: Integer - ID del tipo de tarifa\n- rates: Array de objetos con precios diarios (puede ser null), cada rate incluye:\n  * date: String (ISO 8601) - Fecha del precio (ej: \"2025-10-27\")\n  * rate: Number (float) - Precio para esa fecha\n  * stay: Object con min y max (nullable) - Restricciones de estadía mínima/máxima\n  * closed: Object con arrival (boolean) y departure (boolean) - Indica si la llegada/salida está cerrada\n  * occupancy: Array de objetos con id (number), included (boolean, nullable), rate (number, nullable) - Precios adicionales por ocupación\n\nNOTA: El campo 'rates' puede ser null si no hay precios configurados para ese rateTypeId. Las fechas están en formato ISO 8601 (YYYY-MM-DD).",
+        "type": "text",
+        "default": "",
+        "required": false,
+        "multiline": false
+      }
+    ]
+  }
+}
+

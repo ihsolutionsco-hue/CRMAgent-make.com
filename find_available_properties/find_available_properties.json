@@ -1,0 +1,230 @@
+{
+  "name": "find_available_properties",
+  "flow": [
+    {
+      "id": 1,
+      "module": "http:ActionSendData",
+      "version": 3,
+      "parameters": {
+        "handleErrors": true,
+        "useNewZLibDeCompress": true
+      },
+      "mapper": {
+        "url": "https://ihmvacations.trackhs.com/api/pms/units/search",
+        "serializeUrl": false,
+        "method": "get",
+        "headers": [
+          { "name": "Accept", "value": "application/json" }
+        ],
+        "qs": [
+          { "name": "arrival", "value": "{{var.input.arrival}}" },
+          { "name": "departure", "value": "{{var.input.departure}}" },
+          { "name": "useSoftDates", "value": "{{ifempty(var.input.useSoftDates; null)}}" },
+          { "name": "exclude", "value": "{{ifempty(var.input.exclude; null)}}" },
+          { "name": "unitTypeId", "value": "{{ifempty(var.input.unitTypeId; null)}}" },
+          { "name": "nodeId", "value": "{{ifempty(var.input.nodeId; null)}}" }
+        ],
+        "bodyType": "",
+        "parseResponse": true,
+        "authUser": "{{var.organization.user}}",
+        "authPass": "{{var.organization.password}}",
+        "timeout": "",
+        "shareCookies": false,
+        "ca": "",
+        "rejectUnauthorized": true,
+        "followRedirect": true,
+        "useQuerystring": false,
+        "gzip": true,
+        "useMtls": false,
+        "followAllRedirects": false
+      },
+      "metadata": {
+        "designer": { "x": 0, "y": 0, "name": "api:getUnitsAvailability" },
+        "restore": {
+          "expect": {
+            "method": { "mode": "chose", "label": "GET" },
+            "headers": { "mode": "chose", "items": [ null ] },
+            "qs": { "mode": "chose", "items": [ null ] },
+            "bodyType": { "label": "Empty" }
+          }
+        },
+        "parameters": [
+          { "name": "handleErrors", "type": "boolean", "label": "Evaluate all states as errors (except for 2xx and 3xx )", "required": true },
+          { "name": "useNewZLibDeCompress", "type": "hidden" }
+        ],
+        "expect": [
+          { "name": "url", "type": "url", "label": "URL", "required": true },
+          { "name": "serializeUrl", "type": "boolean", "label": "Serialize URL", "required": true },
+          {
+            "name": "method",
+            "type": "select",
+            "label": "Method",
+            "required": true,
+            "validate": { "enum": [ "get", "head", "post", "put", "patch", "delete", "options" ] }
+          },
+          {
+            "name": "headers",
+            "type": "array",
+            "label": "Headers",
+            "spec": [
+              { "name": "name", "label": "Name", "type": "text", "required": true },
+              { "name": "value", "label": "Value", "type": "text" }
+            ]
+          },
+          {
+            "name": "qs",
+            "type": "array",
+            "label": "Query String",
+            "spec": [
+              { "name": "name", "label": "Name", "type": "text", "required": true },
+              { "name": "value", "label": "Value", "type": "text" }
+            ]
+          },
+          { "name": "bodyType", "type": "select", "label": "Body type", "validate": { "enum": [ "raw", "x_www_form_urlencoded", "multipart_form_data" ] } },
+          { "name": "parseResponse", "type": "boolean", "label": "Parse response", "required": true },
+          { "name": "authUser", "type": "text", "label": "User name" },
+          { "name": "authPass", "type": "password", "label": "Password" },
+          { "name": "timeout", "type": "uinteger", "label": "Timeout", "validate": { "max": 300, "min": 1 } },
+          { "name": "shareCookies", "type": "boolean", "label": "Share cookies with other HTTP modules", "required": true },
+          { "name": "ca", "type": "cert", "label": "Self-signed certificate" },
+          { "name": "rejectUnauthorized", "type": "boolean", "label": "Reject connections that are using unverified (self-signed) certificates", "required": true },
+          { "name": "followRedirect", "type": "boolean", "label": "Follow redirect", "required": true },
+          { "name": "useQuerystring", "type": "boolean", "label": "Disable serialization of multiple same query string keys as arrays", "required": true },
+          { "name": "gzip", "type": "boolean", "label": "Request compressed content", "required": true },
+          { "name": "useMtls", "type": "boolean", "label": "Use Mutual TLS", "required": true },
+          { "name": "followAllRedirects", "type": "boolean", "label": "Follow all redirect", "required": true }
+        ],
+        "advanced": true
+      }
+    },
+    {
+      "id": 2,
+      "module": "scenario-service:ReturnData",
+      "version": 2,
+      "parameters": {},
+      "mapper": {
+        "count": "{{1.data.count}}",
+        "results": "{{1.data.results}}"
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "restore": {},
+        "expect": [
+          { "name": "count", "type": "text", "label": "" },
+          { "name": "results", "type": "text", "label": "" }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "slots": null,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": { "orphans": [] },
+    "zone": "us2.make.com",
+    "notes": [
+      "=== CONFIGURACIÓN DE AUTENTICACIÓN ===",
+      "IMPORTANTE: Configurar autenticación Basic Auth en el módulo HTTP",
+      "El módulo HTTP debe tener configurado:",
+      "  - Username: Tu usuario de TrackHS (ej: aba99777416466b6bdc1a25223192ccb)",
+      "  - Password: Tu contraseña de TrackHS",
+      "Si recibes error 403 Forbidden, verifica que las credenciales estén correctamente configuradas",
+      "",
+      "=== ENDPOINT DE DISPONIBILIDAD ===",
+      "Este endpoint busca unidades disponibles para un rango de fechas específico.",
+      "A diferencia de otros endpoints, este NO usa paginación y devuelve directamente:",
+      "  - count: Número total de unidades disponibles",
+      "  - results: Array de unidades disponibles con: id, name, type, count",
+      "",
+      "=== PARÁMETROS REQUERIDOS ===",
+      "arrival y departure:",
+      "  - Fechas en formato ISO 8601 (YYYY-MM-DD) - REQUERIDAS",
+      "  - Ejemplo: arrival=2025-10-27, departure=2025-10-31",
+      "  - La API valida que ambas fechas estén presentes y en formato correcto",
+      "  - Formato: YYYY-MM-DD (sin hora, sin zona horaria)",
+      "  - NOTA: Aunque OpenAPI no marca estos parámetros como 'required', la implementación real",
+      "    de la API los requiere (error 422 si faltan). Esta discrepancia está documentada.",
+      "",
+      "=== PARÁMETROS OPCIONALES ===",
+      "useSoftDates:",
+      "  - Integer: 0 o 1",
+      "  - 0: Usa fechas duras (hard dates) - las fechas no pueden superponerse",
+      "  - 1: Usa fechas suaves (soft dates) - permite superposición",
+      "  - Default: null (sin especificar)",
+      "",
+      "exclude:",
+      "  - String con CSV de reservation IDs a excluir",
+      "  - Ejemplo: exclude=\"123,456,789\"",
+      "  - Útil para excluir reservas específicas de la búsqueda de disponibilidad",
+      "",
+      "unitTypeId:",
+      "  - Array de integers (IDs de tipos de unidad)",
+      "  - Filtra por tipos de unidad específicos",
+      "  - En Make.com, pasar como array JSON: [1, 2, 3]",
+      "  - Make.com serializará automáticamente como: unitTypeId=1&unitTypeId=2&unitTypeId=3",
+      "  - Alternativamente, algunos endpoints aceptan CSV: \"1,2,3\"",
+      "",
+      "nodeId:",
+      "  - Array de integers (IDs de nodos)",
+      "  - Filtra por nodos específicos",
+      "  - En Make.com, pasar como array JSON: [1, 2, 3]",
+      "  - Make.com serializará automáticamente como: nodeId=1&nodeId=2&nodeId=3",
+      "  - Alternativamente, algunos endpoints aceptan CSV: \"1,2,3\"",
+      "",
+      "=== RESPUESTA ===",
+      "La respuesta incluye:",
+      "  - count: Integer con el número total de unidades disponibles",
+      "  - results: Array de objetos con:",
+      "    * id: ID de la unidad (integer)",
+      "    * name: Nombre de la unidad (string)",
+      "    * type: Nombre del tipo de unidad (string)",
+      "    * count: Número de unidades disponibles para este rango (integer)",
+      "",
+      "=== CASOS DE USO ===",
+      "1. Buscar disponibilidad para un rango de fechas:",
+      "   Input: { \"arrival\": \"2025-10-27\", \"departure\": \"2025-10-31\" }",
+      "",
+      "2. Buscar disponibilidad excluyendo reservas específicas:",
+      "   Input: { \"arrival\": \"2025-10-27\", \"departure\": \"2025-10-31\", \"exclude\": \"123,456\" }",
+      "",
+      "3. Buscar disponibilidad para tipos de unidad específicos:",
+      "   Input: { \"arrival\": \"2025-10-27\", \"departure\": \"2025-10-31\", \"unitTypeId\": [1, 2] }",
+      "",
+      "4. Buscar disponibilidad usando fechas suaves:",
+      "   Input: { \"arrival\": \"2025-10-27\", \"departure\": \"2025-10-31\", \"useSoftDates\": 1 }",
+      "",
+      "=== NOTAS IMPORTANTES ===",
+      "- Este endpoint NO devuelve información completa de las unidades, solo disponibilidad básica",
+      "- Para obtener información completa de las unidades, usar el endpoint 'search_properties'",
+      "- El campo 'count' en cada resultado indica cuántas unidades de ese tipo están disponibles",
+      "- Las fechas arrival y departure son REQUERIDAS y deben estar en formato ISO 8601 (YYYY-MM-DD)",
+      "- Si las fechas no están presentes o están en formato incorrecto, la API devuelve error 422",
+      "- Formato de fecha correcto: YYYY-MM-DD (ej: 2025-10-27), NO incluir hora ni zona horaria"
+    ]
+  },
+  "io": {
+    "input_spec": [
+      { "name": "arrival", "label": "Fecha de Llegada", "help": "Fecha de llegada en formato ISO 8601 (YYYY-MM-DD). REQUERIDA. Ejemplo: 2025-10-27. La API valida que esté presente y en formato correcto.", "type": "text", "default": "", "required": true, "multiline": false },
+      { "name": "departure", "label": "Fecha de Salida", "help": "Fecha de salida en formato ISO 8601 (YYYY-MM-DD). REQUERIDA. Ejemplo: 2025-10-31. La API valida que esté presente y en formato correcto.", "type": "text", "default": "", "required": true, "multiline": false },
+      { "name": "useSoftDates", "label": "Usar Fechas Suaves", "help": "Usar fechas suaves (soft dates) en lugar de duras (hard dates). Valores: 0 (fechas duras, no pueden superponerse) o 1 (fechas suaves, permiten superposición). Tipo: integer según OpenAPI", "type": "number", "default": null, "required": false },
+      { "name": "exclude", "label": "Excluir Reservas", "help": "CSV de reservation IDs a excluir de la búsqueda. Ejemplo: \"123,456,789\"", "type": "text", "default": "", "required": false, "multiline": false },
+      { "name": "unitTypeId", "label": "Unit Type ID(s)", "help": "Array de IDs de tipos de unidad para filtrar. En Make.com, pasar como array JSON: [1, 2, 3]. Make.com serializará automáticamente como múltiples parámetros en query string (unitTypeId=1&unitTypeId=2&unitTypeId=3). Alternativamente, puede aceptar CSV: \"1,2,3\"", "type": "text", "default": "", "required": false, "multiline": false },
+      { "name": "nodeId", "label": "Node ID(s)", "help": "Array de IDs de nodos para filtrar. En Make.com, pasar como array JSON: [1, 2, 3]. Make.com serializará automáticamente como múltiples parámetros en query string (nodeId=1&nodeId=2&nodeId=3). Alternativamente, puede aceptar CSV: \"1,2,3\"", "type": "text", "default": "", "required": false, "multiline": false }
+    ],
+    "output_spec": [
+      { "name": "count", "label": "Total de Unidades Disponibles", "help": "Número total de unidades disponibles para el rango de fechas especificado", "type": "text", "default": "", "required": false, "multiline": false },
+      { "name": "results", "label": "Resultados de Disponibilidad", "help": "Array de unidades disponibles. Cada objeto incluye:\n\n- id: ID de la unidad (integer)\n- name: Nombre de la unidad (string)\n- type: Nombre del tipo de unidad (string)\n- count: Número de unidades disponibles para este rango (integer)\n\nNOTA: Este endpoint NO devuelve información completa de las unidades. Para obtener información detallada, usar el endpoint 'search_properties' con los IDs obtenidos aquí.", "type": "text", "default": "", "required": false, "multiline": false }
+    ]
+  }
+}
