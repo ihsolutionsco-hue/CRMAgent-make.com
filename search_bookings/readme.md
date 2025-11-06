@@ -64,16 +64,49 @@ El módulo HTTP debe tener configurado **Basic Authentication**:
 
 **Si recibes error 403 Forbidden**, verifica que las credenciales estén correctamente configuradas en el módulo HTTP de Make.com.
 
-### 2. Límites de Make.com
+### 2. Límites de Make.com - CRÍTICO PARA AGENTES IA
 
 - ⚠️ **Límite de tokens**: Make.com tiene un límite de **200,000 tokens por respuesta**
-- 📦 **Tamaño de página recomendado**: `size=1-5` (default: 5)
-- ❌ **Tamaños grandes (10+) pueden causar error 400**: "This model's maximum context length is 200000 tokens"
+- 🚨 **CRÍTICO para agentes IA**: Usar `size=1-2` máximo (default: 2)
+- 📦 **Tamaño de página recomendado**: 
+  - Para agentes IA: `size=1-2` (default: 2)
+  - Para uso directo: `size=1-5` (default: 5)
+- ❌ **Tamaños grandes (3+) pueden causar error 400**: "This model's maximum context length is 200000 tokens"
+- 💡 **Configuración del agente**:
+  - Reducir "Maximum number of agent runs in thread history" a 3-5
+  - Dejar Thread ID vacío si no necesitas historial
+  - Establecer Max output tokens a 4,000-8,000
+
+### 2.1 Optimización de Tokens para Agentes IA
+
+Si estás usando esta herramienta con un agente de IA y recibes el error:
+```
+400 This model's maximum context length is 200000 tokens
+```
+
+**Soluciones inmediatas:**
+
+1. **Reducir tamaño de página**:
+   - Cambiar `size` de 5 a 1 o 2
+   - Ejemplo: `size=1` o `size=2`
+
+2. **Configurar el agente correctamente**:
+   - En "Agent settings" → "Maximum number of agent runs in thread history": establecer a 3-5
+   - En "Thread ID": dejar vacío si no necesitas historial
+   - En "Max output tokens": establecer a 4,000-8,000
+
+3. **Usar paginación**:
+   - En lugar de `size=10`, usar múltiples llamadas con `size=2` y `page` incrementando
+   - Ejemplo: `page=1&size=2`, luego `page=2&size=2`, etc.
+
+4. **Filtrar antes de pasar al agente**:
+   - Usar filtros específicos (fechas, estados, contactos) para reducir resultados
+   - Ejemplo: `status=Confirmed&arrivalStart=2025-10-01&arrivalEnd=2025-10-31`
 
 ### 3. Paginación
 
 - **`page`**: Página basada en 1 (mínimo 1). `page=0` devuelve 400 Bad Request
-- **`size`**: Tamaño de página (recomendado: 1-5, máximo API: 100)
+- **`size`**: Tamaño de página (recomendado: 1-2 para agentes IA, 1-5 para uso directo, máximo API: 100)
 - **Para grandes volúmenes**: Usar paginación (múltiples llamadas con `page` incrementando)
 
 ## 🔧 Parámetros Disponibles

@@ -51,7 +51,7 @@
             },
             {
               "name": "size",
-              "value": "{{if( lower(ifempty(var.input.mode; \"page\")) = \"page\"; ifempty(var.input.size; 5); null)}}"
+              "value": "{{if( lower(ifempty(var.input.mode; \"page\")) = \"page\"; ifempty(var.input.size; 2); null)}}"
             },
             {
               "name": "scroll",
@@ -193,11 +193,14 @@
         "  - Password: Tu contraseña de TrackHS",
         "Si recibes error 403 Forbidden, verifica que las credenciales estén correctamente configuradas",
         "",
-        "=== LÍMITES DE TAMAÑO ===",
+        "=== LÍMITES DE TAMAÑO - CRÍTICO PARA AGENTES IA ===",
         "Make.com tiene límite de 200,000 tokens por respuesta",
-        "  - Usar size=1-5 para evitar exceder el límite (default: 5)",
-        "  - Tamaños grandes (10+) pueden causar error 400: \"This model's maximum context length is 200000 tokens\"",
+        "  - CRÍTICO: Usar size=1-2 para agentes IA (default: 2)",
+        "  - Tamaños de 3-5 pueden causar error 400 con historial de conversación",
+        "  - Tamaños grandes (5+) causan error: \"This model's maximum context length is 200000 tokens\"",
         "  - Para grandes volúmenes, usar paginación (múltiples llamadas con page incrementando)",
+        "  - Si usas Thread ID, reducir 'Maximum number of agent runs in thread history' a 3-5",
+        "  - Considerar dejar Thread ID vacío si no necesitas historial de conversación",
         "",
         "=== FILTROS BOOLEANOS ===",
         "Los valores booleanos en la API de units aceptan 1 o 0 (no true/false):",
@@ -247,7 +250,7 @@
       "input_spec": [
         { "name": "mode", "label": "Modo de Paginación", "help": "page | scroll", "type": "text", "default": "page", "required": false, "multiline": false },
         { "name": "page", "label": "Número de Página", "help": "Página (1-based, mínimo 1). page=0 devuelve 400 Bad Request. Cuando mode=page", "type": "number", "default": 1, "required": false },
-        { "name": "size", "label": "Tamaño de Página", "help": "Tamaño de página cuando mode=page. Recomendado: 1-5 (respuestas grandes pueden exceder límite de tokens). Máximo API: 100. Default: 5", "type": "number", "default": 5, "required": false },
+        { "name": "size", "label": "Tamaño de Página", "help": "CRÍTICO: Usar 1-2 máximo para evitar exceder límite de 200k tokens. Default: 2. Máximo API: 100, pero NO usar más de 2-3 con agentes IA. Para grandes volúmenes usar paginación.", "type": "number", "default": 2, "required": false },
         { "name": "scroll", "label": "Token de Scroll", "help": "Para scroll: \"1\" en primera llamada, luego el token/índice devuelto", "type": "text", "default": "", "required": false, "multiline": false },
         { "name": "sortColumn", "label": "Columna de Ordenamiento", "help": "Ordenar por columna (solo page mode). Valores: id, name, nodeName, unitTypeName", "type": "text", "default": "name", "required": false, "multiline": false },
         { "name": "sortDirection", "label": "Dirección de Ordenamiento", "help": "Dirección de ordenamiento (solo page mode). asc | desc. Default: asc", "type": "text", "default": "asc", "required": false, "multiline": false },
@@ -286,7 +289,7 @@
         { "name": "unitStatus", "label": "Estado de Unidad", "help": "Filtrar por estado de unidad. Valores: clean, dirty, occupied, inspection, inprogress", "type": "text", "default": "", "required": false, "multiline": false }
       ],
       "output_spec": [
-        { "name": "units", "label": "Unidades", "help": "Array de unidades con información completa. Para servicio al cliente, usar los siguientes campos SEGUROS (NO usar direcciones ni coordenadas):\n\n- Información básica: id, name, unitCode, shortName\n- Ubicación general: locality (ciudad), region (estado), country (país) - NO usar streetAddress, extendedAddress, postal, latitude, longitude\n- Características: bedrooms, fullBathrooms, halfBathrooms, maxOccupancy, area, floors\n- Check-in/out: checkinTime, checkoutTime, timezone, hasEarlyCheckin, earlyCheckinTime, hasLateCheckout, lateCheckoutTime\n- Políticas: petsFriendly, maxPets, smokingAllowed, childrenAllowed, minimumAgeLimit, isAccessible, houseRules\n- Amenities: amenities (array), amenityDescription\n- Descripciones: shortDescription, longDescription, headline\n- Estado: isBookable, isActive, unitStatus\n- Contacto: phone, website (si es público)\n- Tipos: lodgingType (objeto con id, name), unitType (objeto con id, name)\n\n⚠️ CAMPOS EXCLUIDOS POR SEGURIDAD: streetAddress, extendedAddress, postal, latitude, longitude, directions, localOffice", "type": "text", "default": "", "required": false, "multiline": false },
+        { "name": "units", "label": "Unidades", "help": "Array de unidades con información completa. NOTA: Cada unidad puede contener muchos campos. Para reducir tokens, usar size=1-2 y filtrar con parámetros específicos.\n\nPara servicio al cliente, usar los siguientes campos SEGUROS (NO usar direcciones ni coordenadas):\n\n- Información básica: id, name, unitCode, shortName\n- Ubicación general: locality (ciudad), region (estado), country (país) - NO usar streetAddress, extendedAddress, postal, latitude, longitude\n- Características: bedrooms, fullBathrooms, halfBathrooms, maxOccupancy, area, floors\n- Check-in/out: checkinTime, checkoutTime, timezone, hasEarlyCheckin, earlyCheckinTime, hasLateCheckout, lateCheckoutTime\n- Políticas: petsFriendly, maxPets, smokingAllowed, childrenAllowed, minimumAgeLimit, isAccessible, houseRules\n- Amenities: amenities (array), amenityDescription\n- Descripciones: shortDescription, longDescription, headline\n- Estado: isBookable, isActive, unitStatus\n- Contacto: phone, website (si es público)\n- Tipos: lodgingType (objeto con id, name), unitType (objeto con id, name)\n\n⚠️ CAMPOS EXCLUIDOS POR SEGURIDAD: streetAddress, extendedAddress, postal, latitude, longitude, directions, localOffice", "type": "text", "default": "", "required": false, "multiline": false },
         { "name": "page", "label": "Página Actual", "help": "Página actual de resultados", "type": "text", "default": "", "required": false, "multiline": false },
         { "name": "page_count", "label": "Total de Páginas", "help": "Cantidad total de páginas disponibles", "type": "text", "default": "", "required": false, "multiline": false },
         { "name": "page_size", "label": "Tamaño de Página", "help": "Tamaño de página (número de unidades por página)", "type": "text", "default": "", "required": false, "multiline": false },
