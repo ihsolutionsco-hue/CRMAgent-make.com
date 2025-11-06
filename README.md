@@ -28,7 +28,7 @@ Este repositorio contiene una colección de blueprints para Make.com que permite
 
 ## Resumen de Herramientas
 
-Este proyecto contiene **15 colecciones de Make.com**:
+Este proyecto contiene **16 colecciones de Make.com**:
 
 ### CRM (3 herramientas)
 - ✅ `create_guest` - Crear contactos
@@ -43,9 +43,10 @@ Este proyecto contiene **15 colecciones de Make.com**:
 - ✅ `find_available_properties` - Buscar unidades disponibles por fechas
 - ✅ `get_daily_pricing` - Obtener tarifas diarias de una unidad
 
-### PMS - Reservas (2 herramientas)
+### PMS - Reservas (3 herramientas)
 - ✅ `create_booking` - Crear reservas
 - ✅ `search_bookings` - Buscar/listar reservas
+- ✅ `get_reservation` - Obtener reserva por ID
 
 ### PMS - Cotizaciones (2 herramientas)
 - ✅ `search_quotes` - Obtener cotizaciones
@@ -309,6 +310,26 @@ Blueprint para Make.com que integra la API de TrackHS Search Reservations V2 (`G
 
 ---
 
+#### 🔍 get_reservation
+**Nombre Oficial:** Get Reservation by id  
+**Ubicación:** `get_reservation/`
+
+Obtiene los detalles de una reserva específica mediante su ID desde la API de TrackHS PMS (`GET /api/v2/pms/reservations/{reservationId}`).
+
+**Funcionalidades:**
+- Obtiene información completa de una reserva por su ID
+- Requiere autenticación Basic Auth
+- Devuelve la respuesta completa del endpoint Get Reservation V2
+
+**Campos Requeridos:**
+- `reservationId` - ID numérico de la reserva (integer)
+
+**Archivos:**
+- Blueprint: `get_reservation_by_id.json`
+- Descripción: `description.md`
+
+---
+
 ### PMS - Gestión de Cotizaciones
 
 #### 💰 search_quotes
@@ -492,6 +513,10 @@ make.com/
 │   ├── search_bookings.json
 │   ├── Search Reservations V2.md
 │   └── readme.md
+│
+├── get_reservation/
+│   ├── get_reservation_by_id.json
+│   └── description.md
 │
 ├── search_quotes/
 │   ├── search_quotes.json
