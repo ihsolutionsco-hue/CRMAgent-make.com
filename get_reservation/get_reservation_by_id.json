@@ -37,7 +37,8 @@
             "metadata": {
                 "designer": {
                     "x": 0,
-                    "y": 0
+                    "y": 0,
+                    "name": "api:getReservationById"
                 },
                 "restore": {
                     "expect": {
@@ -52,7 +53,10 @@
                             ]
                         },
                         "qs": {
-                            "mode": "chose"
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
                         },
                         "bodyType": {
                             "label": "Empty"
@@ -261,21 +265,61 @@
             "slots": null,
             "confidential": false,
             "dataloss": false,
-            "dlq": true,
+            "dlq": false,
             "freshVariables": false
         },
         "designer": {
             "orphans": []
         },
         "zone": "us2.make.com",
-        "notes": []
+        "notes": [
+            "=== CONFIGURACIÓN DE AUTENTICACIÓN ===",
+            "IMPORTANTE: Configurar autenticación Basic Auth en el módulo HTTP",
+            "El módulo HTTP debe tener configurado:",
+            "  - Username: Tu usuario de TrackHS (ej: aba99777416466b6bdc1a25223192ccb)",
+            "  - Password: Tu contraseña de TrackHS",
+            "Si recibes error 403 Forbidden, verifica que las credenciales estén correctamente configuradas",
+            "",
+            "=== ENDPOINT ===",
+            "GET /api/v2/pms/reservations/{reservationId}",
+            "Obtiene la información completa de una reserva específica por su ID.",
+            "",
+            "=== RESPUESTA ===",
+            "Esta herramienta devuelve la información completa de una reserva, incluyendo:",
+            "  - Información básica: id, altConf (confirmation alternativo), currency",
+            "  - Unidad: unitId, isUnitLocked, isUnitAssigned, isUnitTypeLocked, unitTypeId",
+            "  - Fechas: arrivalDate, departureDate, arrivalTime, departureTime, nights",
+            "  - Estado: status (Hold, Confirmed, Checked Out, Checked In, Cancelled), cancelledAt",
+            "  - Ocupantes: occupants (objeto con adults, children, pets, etc.)",
+            "  - Depósitos: requiredSecurityDeposit, remainingSecurityDeposit",
+            "  - Precios: quoteBreakdown (desglose de cotización con rates, fees, taxes, total)",
+            "  - Folio: folioBreakdown (desglose de folio con cargos y pagos)",
+            "  - Contacto: contactId, contact (objeto con información del huésped)",
+            "  - Pagos: payments (array con información de pagos realizados)",
+            "  - Notas: notes (array con notas de la reserva)",
+            "  - Políticas: policies (objeto con políticas aplicadas)",
+            "  - Metadatos: createdAt, createdBy, updatedAt, updatedBy",
+            "  - Enlaces: _links (self, contact, unit, etc.)",
+            "",
+            "=== ERRORES COMUNES ===",
+            "  - 401 Unauthorized: Credenciales inválidas o faltantes",
+            "  - 403 Forbidden: Sin permisos para acceder al recurso",
+            "  - 404 Not Found: La reserva con el ID especificado no existe",
+            "  - 500 Internal Server Error: Error interno del servidor",
+            "",
+            "=== USO CON AGENTES IA ===",
+            "⚠️ IMPORTANTE: Si usas esta herramienta con un agente de IA y recibes el error:",
+            "\"Array must contain at least 1 element(s)\" en \"config.outputParserFormat.schema\"",
+            "Configura el campo outputParserFormat.schema en el módulo AI Agent con al menos un campo.",
+            "Ver SOLUCION_ERROR_AGENTE.md para más detalles."
+        ]
     },
     "io": {
         "input_spec": [
             {
-                "help": "ID numérico de la reserva.",
+                "help": "[REQUERIDO] ID de la reserva a consultar. Según la especificación OpenAPI, el reservationId es de tipo string en el path parameter, aunque contenga valores numéricos. Make.com acepta números enteros que se convertirán automáticamente a string en la URL.",
                 "name": "reservationId",
-                "type": "integer",
+                "type": "text",
                 "label": "Reservation ID",
                 "default": null,
                 "required": true
@@ -283,10 +327,10 @@
         ],
         "output_spec": [
             {
-                "help": "Respuesta completa del endpoint Get Reservation V2.",
+                "help": "Objeto completo con toda la información de la reserva obtenida de la API TrackHS, incluyendo:\n\n- Información básica: id, altConf (confirmation alternativo), currency\n- Unidad: unitId, isUnitLocked, isUnitAssigned, isUnitTypeLocked, unitTypeId\n- Fechas: arrivalDate (YYYY-MM-DD), departureDate (YYYY-MM-DD), arrivalTime (ISO 8601), departureTime (ISO 8601), nights\n- Estado: status (Hold, Confirmed, Checked Out, Checked In, Cancelled), cancelledAt\n- Ocupantes: occupants (objeto con adults, children, pets, etc.)\n- Depósitos: requiredSecurityDeposit, remainingSecurityDeposit\n- Precios: quoteBreakdown (desglose de cotización con rates, fees, taxes, total, balance)\n- Folio: folioBreakdown (desglose de folio con cargos y pagos)\n- Contacto: contactId, contact (objeto con información del huésped)\n- Pagos: payments (array con información de pagos realizados)\n- Notas: notes (array con notas de la reserva)\n- Políticas: policies (objeto con políticas aplicadas)\n- Metadatos: createdAt, createdBy, updatedAt, updatedBy\n- Enlaces: _links (self, contact, unit, etc.)\n\n⚠️ NOTA: Algunos campos pueden ser null dependiendo del estado y configuración de la reserva.",
                 "name": "return_data",
                 "type": "any",
-                "label": "",
+                "label": "Reserva",
                 "default": "",
                 "required": false
             }
