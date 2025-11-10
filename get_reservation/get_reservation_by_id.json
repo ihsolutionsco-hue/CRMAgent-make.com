@@ -1,5 +1,6 @@
 {
     "name": "get_reservation_by_id",
+    "description": "Obtiene detalles completos de una reserva incluyendo fechas, huésped, unidad, precios, tarifas, impuestos, políticas y estado de la reserva.",
     "flow": [
         {
             "id": 10,
@@ -272,6 +273,62 @@
             "orphans": []
         },
         "zone": "us2.make.com",
+        "agentOutputSchema": [
+            {
+                "name": "reservation_id",
+                "label": "Reservation ID",
+                "type": "text",
+                "help": "ID de la reserva"
+            },
+            {
+                "name": "guest_name",
+                "label": "Guest Name",
+                "type": "text",
+                "help": "Nombre del huésped principal"
+            },
+            {
+                "name": "check_in",
+                "label": "Check-in Date",
+                "type": "text",
+                "help": "Fecha de check-in en formato YYYY-MM-DD"
+            },
+            {
+                "name": "check_out",
+                "label": "Check-out Date",
+                "type": "text",
+                "help": "Fecha de check-out en formato YYYY-MM-DD"
+            },
+            {
+                "name": "status",
+                "label": "Status",
+                "type": "text",
+                "help": "Estado de la reserva: Hold, Confirmed, Checked In, Checked Out, Cancelled"
+            },
+            {
+                "name": "total_amount",
+                "label": "Total Amount",
+                "type": "number",
+                "help": "Monto total de la reserva"
+            },
+            {
+                "name": "unit_id",
+                "label": "Unit ID",
+                "type": "number",
+                "help": "ID de la unidad reservada"
+            },
+            {
+                "name": "nights",
+                "label": "Nights",
+                "type": "number",
+                "help": "Número de noches de la reserva"
+            },
+            {
+                "name": "currency",
+                "label": "Currency",
+                "type": "text",
+                "help": "Moneda de la reserva (ej: USD, EUR)"
+            }
+        ],
         "notes": [
             "=== CONFIGURACIÓN DE AUTENTICACIÓN ===",
             "IMPORTANTE: Configurar autenticación Basic Auth en el módulo HTTP",
@@ -310,8 +367,28 @@
             "=== USO CON AGENTES IA ===",
             "⚠️ IMPORTANTE: Si usas esta herramienta con un agente de IA y recibes el error:",
             "\"Array must contain at least 1 element(s)\" en \"config.outputParserFormat.schema\"",
-            "Configura el campo outputParserFormat.schema en el módulo AI Agent con al menos un campo.",
-            "Ver SOLUCION_ERROR_AGENTE.md para más detalles."
+            "",
+            "SOLUCIÓN: Configura el campo outputSchema en el módulo \"Run an AI Agent\" con el schema",
+            "definido en metadata.agentOutputSchema de este blueprint.",
+            "",
+            "Pasos:",
+            "1. Abre el módulo \"Run an AI Agent\" en tu scenario de Make.com",
+            "2. En \"Output schema\", selecciona \"Make Schema\"",
+            "3. En \"Output structure\", copia el contenido de metadata.agentOutputSchema",
+            "   (o importa directamente desde este blueprint si Make.com lo soporta)",
+            "",
+            "El schema incluye los campos principales de la reserva:",
+            "- reservation_id (text): ID de la reserva",
+            "- guest_name (text): Nombre del huésped principal",
+            "- check_in (text): Fecha de check-in (YYYY-MM-DD)",
+            "- check_out (text): Fecha de check-out (YYYY-MM-DD)",
+            "- status (text): Estado de la reserva",
+            "- total_amount (number): Monto total",
+            "- unit_id (number): ID de la unidad",
+            "- nights (number): Número de noches",
+            "- currency (text): Moneda",
+            "",
+            "Ver SOLUCION_ERROR_AGENTE.md para más detalles y opciones alternativas."
         ]
     },
     "io": {

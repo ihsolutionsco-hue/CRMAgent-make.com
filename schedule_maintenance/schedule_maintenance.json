@@ -1,6 +1,6 @@
 {
     "name": "schedule_maintenance",
-    "description": "Crea una orden de trabajo de mantenimiento en TrackHS PMS. Requiere campos obligatorios: fecha de recepción, prioridad, estado, resumen, costo estimado, tiempo estimado y unidad.",
+    "description": "Crea órdenes de trabajo de mantenimiento con prioridad, estado, costos estimados y asignación. Gestiona reparaciones y mantenimiento de unidades con bloqueo de check-in opcional.",
     "flow": [
         {
             "id": 1,

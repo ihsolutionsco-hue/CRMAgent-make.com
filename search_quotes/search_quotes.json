@@ -1,5 +1,6 @@
 {
   "name": "search_quotes",
+  "description": "Busca cotizaciones con filtros por contacto, unidad, tipo y estado. Incluye paginación y ordenamiento para gestión de cotizaciones activas y futuras.",
   "flow": [
     {
       "id": 1,

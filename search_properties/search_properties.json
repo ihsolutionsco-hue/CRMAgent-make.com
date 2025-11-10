@@ -1,5 +1,6 @@
 {
     "name": "search_properties",
+    "description": "Busca unidades con filtros por características, disponibilidad y estado. Incluye paginación y ordenamiento para gestión de inventario de propiedades.",
     "flow": [
       {
         "id": 1,

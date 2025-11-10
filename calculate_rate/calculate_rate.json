@@ -1,6 +1,6 @@
 {
     "name": "calculate_rate",
-    "description": "Crea una cotización V2 para una unidad con fechas, ocupantes, tarifas y políticas. Retorna precios detallados, disponibilidad y desglose completo de costos.",
+    "description": "Calcula cotizaciones de reserva con precios detallados, tarifas diarias, impuestos, políticas de garantía y cancelación. Retorna disponibilidad y desglose completo de costos para fechas específicas.",
     "flow": [
         {
             "id": 1,

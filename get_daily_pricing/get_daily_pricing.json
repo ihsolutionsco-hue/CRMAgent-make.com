@@ -1,5 +1,6 @@
 {
   "name": "get_daily_pricing",
+  "description": "Obtiene tarifas diarias detalladas de una unidad con precios por fecha, restricciones de estadía mínima/máxima, cierres y tarifas por ocupación.",
   "flow": [
     {
       "id": 1,

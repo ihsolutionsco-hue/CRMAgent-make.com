@@ -1,0 +1,1 @@
+Crea cotizaciones de reserva con precios, tarifas, impuestos y políticas. Genera quotes detallados para unidades específicas con fechas de entrada/salida y configuración de ocupantes.

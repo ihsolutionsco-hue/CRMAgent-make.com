@@ -1,0 +1,58 @@
+---
+alwaysApply: false
+---
+
+# Formatos y Validaciones TrackHS API
+
+## Formatos de Fecha
+
+### Fechas de Llegada/Salida (arrival/departure)
+- **Formato**: `YYYY-MM-DD` (solo fecha, sin hora)
+- **Ejemplo válido**: `2025-10-27`
+- **Ejemplo inválido**: `2025-10-27T00:00:00Z` (NO funciona para arrivalStart/arrivalEnd)
+- **Nota**: Algunos endpoints como `arrivalStart`/`arrivalEnd` SOLO aceptan formato fecha, no ISO-8601 completo
+
+### Fechas con Hora (bookedStart/bookedEnd)
+- **Formato**: `ISO-8601` completo o fecha sola
+- **Ejemplo válido**: `2025-10-27T00:00:00Z` o `2025-10-27`
+- **Recomendado**: Usar estos campos cuando se necesite filtrar por hora específica
+
+### Fechas de Actualización (updatedSince, contentUpdatedSince)
+- **Formato**: `ISO-8601` completo
+- **Ejemplo**: `2025-01-01T00:00:00Z`
+
+### Fechas Programadas (scheduledAt)
+- **Formato**: `ISO-8601` fecha (`YYYY-MM-DD`)
+- **Ejemplo**: `2024-12-25`
+
+## Valores Booleanos
+
+La API de TrackHS acepta:
+- `1` para `true`
+- `0` para `false`
+- `null` para omitir (algunos campos)
+
+**NO usar** `true`/`false` como strings o booleanos JSON en query strings.
+
+## Validaciones Comunes
+
+### Paginación
+- `page`: Mínimo `1` (1-based). `page=0` devuelve 400 Bad Request
+- `size`: Recomendado `1-5` para evitar límites de tokens de Make.com
+- Validar `page >= 1` antes de enviar
+
+### IDs
+- IDs numéricos: Validar que sean números enteros
+- IDs de arrays: Formato CSV para múltiples valores en query strings
+- IDs en body JSON: Arrays de números
+
+### Campos Condicionales
+- Documentar claramente cuando un campo es requerido si otro no está presente
+- Ejemplo: `isInspection` O `cleanTypeId` (uno de los dos es obligatorio)
+
+## Límites de Make.com
+
+- **Límite de tokens**: 200,000 tokens por respuesta
+- **Tamaño de página recomendado**: `size=1-5` (default: 5)
+- **Tamaños grandes (10+)**: Pueden causar error 400
+- **Paginación**: Para grandes volúmenes, usar múltiples llamadas incrementando `page`

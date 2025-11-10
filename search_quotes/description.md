@@ -1,4 +1,3 @@
 # Quote V2 Reservation
 
-Obtiene cotizaciones (quotes) para unidades habilitadas en TrackHS. Incluye paginación, ordenamiento, búsqueda y filtros (contactId, unitId, unitTypeId, futureQuotes, activeQuotes). Requiere Basic Auth. Validaciones: page mínimo 1.
-
+Busca cotizaciones con filtros por contacto, unidad, tipo y estado. Incluye paginación y ordenamiento para gestión de cotizaciones activas y futuras.

@@ -1,0 +1,305 @@
+{
+    "name": "Pricing Agent: Quotes & Rate Calculator",
+    "flow": [
+        {
+            "id": 1,
+            "module": "scenario-service:StartSubscenario",
+            "version": 2,
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {},
+                "interface": [
+                    {
+                        "help": "Enter a thread ID to keep conversation history between module runs. If left empty, a new thread ID will be returned in the module output.",
+                        "name": "threadID",
+                        "type": "text",
+                        "label": "Thread ID",
+                        "validate": {
+                            "max": 256
+                        }
+                    },
+                    {
+                        "help": "Natural language query for the agent. Use this for conversational requests.",
+                        "name": "messages",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Message"
+                        },
+                        "type": "array",
+                        "label": "Messages"
+                    },
+                    {
+                        "help": "Optional: Unit ID for direct pricing lookup. If provided, agent will prioritize this over parsing from messages. Example: 199",
+                        "name": "unitId",
+                        "type": "number",
+                        "label": "Unit ID (Optional)"
+                    },
+                    {
+                        "help": "Optional: Check-in date in ISO format (YYYY-MM-DD). If provided with unitId and checkOut, agent will immediately fetch pricing. Example: 2026-03-05",
+                        "name": "checkIn",
+                        "type": "date",
+                        "label": "Check-in Date (Optional)"
+                    },
+                    {
+                        "help": "Optional: Check-out date in ISO format (YYYY-MM-DD). Required if checkIn is provided. Example: 2026-03-07",
+                        "name": "checkOut",
+                        "type": "date",
+                        "label": "Check-out Date (Optional)"
+                    },
+                    {
+                        "help": "Optional: Number of adult guests. Default: 2",
+                        "name": "adults",
+                        "type": "number",
+                        "label": "Adults (Optional)",
+                        "validate": {
+                            "min": 1,
+                            "max": 20
+                        }
+                    },
+                    {
+                        "help": "Optional: Number of child guests. Default: 0",
+                        "name": "children",
+                        "type": "number",
+                        "label": "Children (Optional)",
+                        "validate": {
+                            "min": 0,
+                            "max": 10
+                        }
+                    },
+                    {
+                        "help": "Provide additional context or instructions for the agent. Example: 'Include all rate types' or 'Customer is VIP - offer best available rate'",
+                        "name": "additionalSystemPrompt",
+                        "type": "text",
+                        "label": "Additional Instructions (Optional)"
+                    },
+                    {
+                        "help": "Timeout in seconds. Defaults to 180 seconds (3 minutes) for pricing queries.",
+                        "name": "timeout",
+                        "type": "number",
+                        "label": "Timeout (Optional)",
+                        "validate": {
+                            "max": 600,
+                            "min": 120
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "ai-agent:RunAnAIAgent",
+            "version": 0,
+            "parameters": {},
+            "mapper": {
+                "agent": "a8c5645e-3ced-493d-a02c-66ce6c5c6a1a",
+                "timeout": "{{if(1.timeout, 1.timeout, 180)}}",
+                "messages": "{{1.messages}}",
+                "threadID": "{{1.threadID}}",
+                "outputType": "text",
+                "additionalSystemPrompt": "{{if(or(1.unitId, 1.checkIn, 1.checkOut, 1.adults, 1.children), 'STRUCTURED_DATA_PROVIDED: ' + if(1.unitId, 'unitId=' + 1.unitId, '') + if(1.checkIn, ', checkIn=' + formatDate(1.checkIn, 'YYYY-MM-DD'), '') + if(1.checkOut, ', checkOut=' + formatDate(1.checkOut, 'YYYY-MM-DD'), '') + if(1.adults, ', adults=' + 1.adults, '') + if(1.children, ', children=' + 1.children, '') + '. Use these values to execute get_daily_pricing immediately without asking for confirmation. ' + if(1.additionalSystemPrompt, 1.additionalSystemPrompt, ''), if(1.additionalSystemPrompt, 1.additionalSystemPrompt, ''))}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "agent": {
+                            "label": "pricingAgent"
+                        },
+                        "messages": {
+                            "mode": "edit"
+                        },
+                        "outputType": {
+                            "label": "Text"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "agent",
+                        "type": "aiagent",
+                        "label": "Agent",
+                        "required": true
+                    },
+                    {
+                        "name": "threadID",
+                        "type": "text",
+                        "label": "Thread ID",
+                        "validate": {
+                            "max": 256
+                        }
+                    },
+                    {
+                        "name": "additionalSystemPrompt",
+                        "type": "text",
+                        "label": "Additional system instructions"
+                    },
+                    {
+                        "name": "messages",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Message"
+                        },
+                        "type": "array",
+                        "label": "Messages"
+                    },
+                    {
+                        "name": "timeout",
+                        "type": "number",
+                        "label": "Timeout"
+                    },
+                    {
+                        "name": "outputType",
+                        "type": "select",
+                        "label": "Output schema",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "make-schema"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "scenario-service:ReturnData",
+            "version": 2,
+            "parameters": {},
+            "mapper": {
+                "tool_output": "{{2}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "restore": {},
+                "expect": [
+                    {
+                        "name": "tool_output",
+                        "type": "dynamicCollection",
+                        "label": ""
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": []
+    },
+    "io": {
+        "input_spec": [
+            {
+                "help": "Enter a thread ID to keep conversation history between module runs. If left empty, a new thread ID will be returned in the module output.",
+                "name": "threadID",
+                "type": "text",
+                "label": "Thread ID",
+                "validate": {
+                    "max": 256
+                }
+            },
+            {
+                "help": "Natural language query for the agent. Use this for conversational requests.",
+                "name": "messages",
+                "spec": {
+                    "name": "value",
+                    "type": "text",
+                    "label": "Message"
+                },
+                "type": "array",
+                "label": "Messages"
+            },
+            {
+                "help": "Optional: Unit ID for direct pricing lookup. If provided, agent will prioritize this over parsing from messages. Example: 199",
+                "name": "unitId",
+                "type": "number",
+                "label": "Unit ID (Optional)"
+            },
+            {
+                "help": "Optional: Check-in date in ISO format (YYYY-MM-DD). If provided with unitId and checkOut, agent will immediately fetch pricing. Example: 2026-03-05",
+                "name": "checkIn",
+                "type": "date",
+                "label": "Check-in Date (Optional)"
+            },
+            {
+                "help": "Optional: Check-out date in ISO format (YYYY-MM-DD). Required if checkIn is provided. Example: 2026-03-07",
+                "name": "checkOut",
+                "type": "date",
+                "label": "Check-out Date (Optional)"
+            },
+            {
+                "help": "Optional: Number of adult guests. Default: 2",
+                "name": "adults",
+                "type": "number",
+                "label": "Adults (Optional)",
+                "validate": {
+                    "min": 1,
+                    "max": 20
+                }
+            },
+            {
+                "help": "Optional: Number of child guests. Default: 0",
+                "name": "children",
+                "type": "number",
+                "label": "Children (Optional)",
+                "validate": {
+                    "min": 0,
+                    "max": 10
+                }
+            },
+            {
+                "help": "Provide additional context or instructions for the agent. Example: 'Include all rate types' or 'Customer is VIP - offer best available rate'",
+                "name": "additionalSystemPrompt",
+                "type": "text",
+                "label": "Additional Instructions (Optional)"
+            },
+            {
+                "help": "Timeout in seconds. Defaults to 180 seconds (3 minutes) for pricing queries.",
+                "name": "timeout",
+                "type": "number",
+                "label": "Timeout (Optional)",
+                "validate": {
+                    "max": 600,
+                    "min": 120
+                }
+            }
+        ],
+        "output_spec": [
+            {
+                "help": "Agent response with pricing information, quotes, or error messages",
+                "name": "tool_output",
+                "type": "dynamicCollection",
+                "label": "Pricing Response",
+                "default": "",
+                "required": false
+            }
+        ]
+    }
+}

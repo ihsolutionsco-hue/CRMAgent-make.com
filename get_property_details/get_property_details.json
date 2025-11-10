@@ -1,5 +1,6 @@
 {
   "name": "get_property_details",
+  "description": "Obtiene detalles completos de una unidad incluyendo atributos, amenities, descripciones, coordenadas, políticas de check-in/out y configuración.",
   "flow": [
     {
       "id": 1,

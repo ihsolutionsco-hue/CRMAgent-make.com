@@ -1,0 +1,54 @@
+{
+  "outputParserFormat": {
+    "type": "structured",
+    "schema": [
+      {
+        "name": "reservation_id",
+        "type": "string",
+        "description": "ID de la reserva"
+      },
+      {
+        "name": "guest_name",
+        "type": "string",
+        "description": "Nombre del huésped principal"
+      },
+      {
+        "name": "check_in",
+        "type": "string",
+        "description": "Fecha de check-in en formato YYYY-MM-DD"
+      },
+      {
+        "name": "check_out",
+        "type": "string",
+        "description": "Fecha de check-out en formato YYYY-MM-DD"
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "description": "Estado de la reserva: Hold, Confirmed, Checked In, Checked Out, Cancelled"
+      },
+      {
+        "name": "total_amount",
+        "type": "number",
+        "description": "Monto total de la reserva"
+      },
+      {
+        "name": "unit_id",
+        "type": "integer",
+        "description": "ID de la unidad reservada"
+      },
+      {
+        "name": "nights",
+        "type": "number",
+        "description": "Número de noches de la reserva"
+      },
+      {
+        "name": "currency",
+        "type": "string",
+        "description": "Moneda de la reserva (ej: USD, EUR)"
+      }
+    ]
+  }
+}
+
+

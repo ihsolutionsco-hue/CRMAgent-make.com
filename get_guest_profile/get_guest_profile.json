@@ -1,5 +1,6 @@
 {
   "name": "get_guest_profile",
+  "description": "Obtiene información completa de un contacto incluyendo datos personales, teléfonos, direcciones, notas, tags, referencias y valores personalizados.",
   "flow": [
     {
       "id": 1,

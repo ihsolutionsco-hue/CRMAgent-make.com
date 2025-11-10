@@ -1,1 +1,3 @@
-Busca unidades en TrackHS. CRÍTICO: usar size=1-2 para evitar exceder límite de 200k tokens. Usar paginación para múltiples resultados. Filtros: características, disponibilidad, estado. Excluye direcciones sensibles por seguridad.
+# Unit Search
+
+Busca unidades con filtros por características, disponibilidad y estado. Incluye paginación y ordenamiento para gestión de inventario de propiedades.

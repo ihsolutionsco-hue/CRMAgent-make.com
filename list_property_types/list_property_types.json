@@ -1,5 +1,6 @@
 {
   "name": "list_property_types",
+  "description": "Obtiene todos los tipos de unidades con información de capacidad, amenities, políticas, descripciones y configuración. Incluye paginación y filtros.",
   "flow": [
     {
       "id": 1,

@@ -1,0 +1,54 @@
+---
+alwaysApply: false
+---
+---
+description: Estándares para documentación y help text en español
+globs: ["**/*.json", "**/*.md"]
+alwaysApply: false
+---
+
+# Estándares de Documentación
+
+## Help Text en Input/Output Spec
+
+### Formato
+- Siempre en **español**
+- Descriptivo y claro
+- Incluir ejemplos cuando sea relevante
+- Indicar formatos requeridos explícitamente
+
+### Campos Requeridos
+- Marcar con `[OBLIGATORIO]` o `[REQUERIDO]` al inicio del help text
+- Explicar qué pasa si falta el campo
+
+### Campos Opcionales
+- Marcar con `[OPCIONAL]` cuando sea relevante
+- Explicar cuándo es útil proporcionarlo
+
+### Formatos Especiales
+- Fechas: Especificar formato exacto (ej: `YYYY-MM-DD`, `ISO-8601`)
+- Booleanos: Indicar valores aceptados (ej: `1` o `0`, `true` o `false`)
+- IDs: Especificar si son numéricos, strings, etc.
+- Arrays: Indicar formato (ej: `CSV para múltiples valores`, `JSON array string`)
+
+### Advertencias Importantes
+- Usar `⚠️` para advertencias críticas
+- Usar `[FORMATO REQUERIDO]` para formatos estrictos
+- Usar `[RECOMENDADO]` para mejores prácticas
+
+## Archivos description.md
+
+Cada carpeta debe tener un `description.md` con:
+- Descripción breve (1-3 líneas)
+- Campos requeridos principales
+- Campos opcionales destacados
+
+## README.md Principal
+
+El README.md principal debe incluir:
+- Descripción general del proyecto
+- Índice de herramientas
+- Resumen por categorías (CRM, PMS, etc.)
+- Configuración general
+- Estructura del proyecto
+- Notas importantes

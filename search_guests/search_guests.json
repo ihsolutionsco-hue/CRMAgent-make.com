@@ -1,5 +1,6 @@
 {
   "name": "search_guests",
+  "description": "Busca contactos con filtros avanzados por nombre, email, teléfono y tags. Incluye búsqueda por texto con coincidencias parciales y paginación.",
   "flow": [
     {
       "id": 1,

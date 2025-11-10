@@ -1,0 +1,1229 @@
+{
+    "name": "create_quote",
+    "description": "Crea cotizaciones de reserva con precios, tarifas, impuestos y políticas. Genera quotes detallados para unidades específicas con fechas de entrada/salida y configuración de ocupantes.",
+    "flow": [
+        {
+            "id": 1,
+            "module": "http:ActionSendData",
+            "version": 3,
+            "parameters": {
+                "handleErrors": true,
+                "useNewZLibDeCompress": true
+            },
+            "mapper": {
+                "ca": "",
+                "qs": [],
+                "url": "https://ihmvacations.trackhs.com/api/v2/pms/quotes",
+                "data": "{\r\n  \"unitId\": {{var.input.unitId}},\r\n  \"arrivalDate\": \"{{var.input.arrivalDate}}\",\r\n  \"departureDate\": \"{{var.input.departureDate}}\"{{if(length(var.input.rateTypeId) > 0; \", \"\"rateTypeId\"\": \" + var.input.rateTypeId; )}}{{if(length(var.input.guaranteePolicyId) > 0; \", \"\"guaranteePolicyId\"\": \" + var.input.guaranteePolicyId; )}}{{if(length(var.input.cancellationPolicyId) > 0; \", \"\"cancellationPolicyId\"\": \" + var.input.cancellationPolicyId; )}}{{if(length(var.input.typeId) > 0; \", \"\"typeId\"\": \" + var.input.typeId; )}}{{if(length(var.input.unitTypeId) > 0; \", \"\"unitTypeId\"\": \" + var.input.unitTypeId; )}}{{if(length(var.input.occupants) > 0; \", \"\"occupants\"\": \" + var.input.occupants; )}}{{if(length(var.input.discount) > 0; \", \"\"discount\"\": \" + var.input.discount; )}}{{if(length(var.input.groupId) > 0; \", \"\"groupId\"\": \" + var.input.groupId; )}}{{if(length(var.input.guestFees) > 0; \", \"\"guestFees\"\": \" + var.input.guestFees; )}}{{if(length(var.input.ownerFees) > 0; \", \"\"ownerFees\"\": \" + var.input.ownerFees; )}}{{if(length(var.input.channelId) > 0; \", \"\"channelId\"\": \" + var.input.channelId; )}}{{if(length(var.input.contactId) > 0; \", \"\"contactId\"\": \" + var.input.contactId; )}}{{if(var.input.guestIntendsInsurance; \", \"\"guestIntendsInsurance\"\": true\"; )}}{{if(var.input.guestIntendsWaiver; \", \"\"guestIntendsWaiver\"\": true\"; )}}{{if(var.input.taxExempt; \", \"\"taxExempt\"\": true\"; )}}{{if(length(var.input.discountReason) > 0; \", \"\"discountReason\"\": \"\"\" + var.input.discountReason + \"\"\"\"; )}}{{if(length(var.input.discountNotes) > 0; \", \"\"discountNotes\"\": \"\"\" + var.input.discountNotes + \"\"\"\"; )}}{{if(length(var.input.source) > 0; \", \"\"source\"\": \"\"\" + var.input.source + \"\"\"\"; )}}{{if(length(var.input.campaignId) > 0; \", \"\"campaignId\"\": \" + var.input.campaignId; )}}{{if(length(var.input.leadId) > 0; \", \"\"leadId\"\": \" + var.input.leadId; )}}\r\n}",
+                "gzip": true,
+                "method": "post",
+                "headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "timeout": "",
+                "useMtls": false,
+                "authPass": "{{var.organization.password}}",
+                "authUser": "{{var.organization.user}}",
+                "bodyType": "raw",
+                "contentType": "application/json",
+                "serializeUrl": false,
+                "shareCookies": false,
+                "parseResponse": true,
+                "followRedirect": true,
+                "useQuerystring": false,
+                "followAllRedirects": false,
+                "rejectUnauthorized": true
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0,
+                    "name": "api:createQuoteV2"
+                },
+                "restore": {
+                    "expect": {
+                        "qs": {
+                            "mode": "chose"
+                        },
+                        "method": {
+                            "mode": "chose",
+                            "label": "POST"
+                        },
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null,
+                                null
+                            ]
+                        },
+                        "bodyType": {
+                            "label": "Raw"
+                        },
+                        "contentType": {
+                            "label": "JSON (application/json)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "handleErrors",
+                        "type": "boolean",
+                        "label": "Evaluate all states as errors (except for 2xx and 3xx )",
+                        "required": true
+                    },
+                    {
+                        "name": "useNewZLibDeCompress",
+                        "type": "hidden"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "serializeUrl",
+                        "type": "boolean",
+                        "label": "Serialize URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "get",
+                                "head",
+                                "post",
+                                "put",
+                                "patch",
+                                "delete",
+                                "options"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Headers"
+                    },
+                    {
+                        "name": "qs",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Query String"
+                    },
+                    {
+                        "name": "bodyType",
+                        "type": "select",
+                        "label": "Body type",
+                        "validate": {
+                            "enum": [
+                                "raw",
+                                "x_www_form_urlencoded",
+                                "multipart_form_data"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "parseResponse",
+                        "type": "boolean",
+                        "label": "Parse response",
+                        "required": true
+                    },
+                    {
+                        "name": "authUser",
+                        "type": "text",
+                        "label": "User name"
+                    },
+                    {
+                        "name": "authPass",
+                        "type": "password",
+                        "label": "Password"
+                    },
+                    {
+                        "name": "timeout",
+                        "type": "uinteger",
+                        "label": "Timeout",
+                        "validate": {
+                            "max": 300,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "shareCookies",
+                        "type": "boolean",
+                        "label": "Share cookies with other HTTP modules",
+                        "required": true
+                    },
+                    {
+                        "name": "ca",
+                        "type": "cert",
+                        "label": "Self-signed certificate"
+                    },
+                    {
+                        "name": "rejectUnauthorized",
+                        "type": "boolean",
+                        "label": "Reject connections that are using unverified (self-signed) certificates",
+                        "required": true
+                    },
+                    {
+                        "name": "followRedirect",
+                        "type": "boolean",
+                        "label": "Follow redirect",
+                        "required": true
+                    },
+                    {
+                        "name": "useQuerystring",
+                        "type": "boolean",
+                        "label": "Disable serialization of multiple same query string keys as arrays",
+                        "required": true
+                    },
+                    {
+                        "name": "gzip",
+                        "type": "boolean",
+                        "label": "Request compressed content",
+                        "required": true
+                    },
+                    {
+                        "name": "useMtls",
+                        "type": "boolean",
+                        "label": "Use Mutual TLS",
+                        "required": true
+                    },
+                    {
+                        "name": "contentType",
+                        "type": "select",
+                        "label": "Content type",
+                        "validate": {
+                            "enum": [
+                                "text/plain",
+                                "application/json",
+                                "application/xml",
+                                "text/xml",
+                                "text/html",
+                                "custom"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "data",
+                        "type": "buffer",
+                        "label": "Request content"
+                    },
+                    {
+                        "name": "followAllRedirects",
+                        "type": "boolean",
+                        "label": "Follow all redirect",
+                        "required": true
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 2,
+            "module": "scenario-service:ReturnData",
+            "version": 2,
+            "parameters": {},
+            "mapper": {
+                "error": "{{1.data.error}}",
+                "rates": "{{1.data.rates}}",
+                "taxes": "{{1.data.taxes}}",
+                "total": "{{1.data.total}}",
+                "typeId": "{{1.data.typeId}}",
+                "unitId": "{{1.data.unitId}}",
+                "isValid": "{{1.data.isValid}}",
+                "netRent": "{{1.data.netRent}}",
+                "currency": "{{1.data.currency}}",
+                "discount": "{{1.data.discount}}",
+                "guestAdr": "{{1.data.guestAdr}}",
+                "rateType": "{{1.data.rateType}}",
+                "warnings": "{{1.data.warnings}}",
+                "actualAdr": "{{1.data.actualAdr}}",
+                "grossRent": "{{1.data.grossRent}}",
+                "guestFees": "{{1.data.guestFees}}",
+                "occupants": "{{1.data.occupants}}",
+                "ownerFees": "{{1.data.ownerFees}}",
+                "promoValue": "{{1.data.promoValue}}",
+                "rateTypeId": "{{1.data.rateTypeId}}",
+                "totalTaxes": "{{1.data.totalTaxes}}",
+                "unitTypeId": "{{1.data.unitTypeId}}",
+                "arrivalDate": "{{1.data.arrivalDate}}",
+                "isAvailable": "{{1.data.isAvailable}}",
+                "paymentPlan": "{{1.data.paymentPlan}}",
+                "promoCodeId": "{{1.data.promoCodeId}}",
+                "totalTaxFees": "{{1.data.totalTaxFees}}",
+                "departureDate": "{{1.data.departureDate}}",
+                "discountTotal": "{{1.data.discountTotal}}",
+                "reservationId": "{{1.data.reservationId}}",
+                "totalFeeTaxes": "{{1.data.totalFeeTaxes}}",
+                "totalRentFees": "{{1.data.totalRentFees}}",
+                "totalGuestFees": "{{1.data.totalGuestFees}}",
+                "totalRentTaxes": "{{1.data.totalRentTaxes}}",
+                "additionalRates": "{{1.data.additionalRates}}",
+                "guaranteePolicy": "{{1.data.guaranteePolicy}}",
+                "securityDeposit": "{{1.data.securityDeposit}}",
+                "totalServiceFees": "{{1.data.totalServiceFees}}",
+                "guaranteePolicyId": "{{1.data.guaranteePolicyId}}",
+                "insuranceProducts": "{{1.data.insuranceProducts}}",
+                "totalItemizedFees": "{{1.data.totalItemizedFees}}",
+                "cancellationPolicy": "{{1.data.cancellationPolicy}}",
+                "totalGuestFeeTaxes": "{{1.data.totalGuestFeeTaxes}}",
+                "additionalGuestFees": "{{1.data.additionalGuestFees}}",
+                "guestNetDisplayRent": "{{1.data.guestNetDisplayRent}}",
+                "ownerAdditionalFees": "{{1.data.ownerAdditionalFees}}",
+                "totalGuestRentTaxes": "{{1.data.totalGuestRentTaxes}}",
+                "cancellationPolicyId": "{{1.data.cancellationPolicyId}}",
+                "guestGrossDisplayRent": "{{1.data.guestGrossDisplayRent}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {},
+                "expect": [
+                    {
+                        "name": "isValid",
+                        "type": "boolean",
+                        "label": ""
+                    },
+                    {
+                        "name": "error",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "warnings",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "isAvailable",
+                        "type": "boolean",
+                        "label": ""
+                    },
+                    {
+                        "name": "reservationId",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "currency",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "arrivalDate",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "departureDate",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "unitId",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "unitTypeId",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "typeId",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "guaranteePolicyId",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "cancellationPolicyId",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "securityDeposit",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "promoCodeId",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "grossRent",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "discount",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "rateTypeId",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "promoValue",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "discountTotal",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "netRent",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "guestNetDisplayRent",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "guestGrossDisplayRent",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "totalGuestFees",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "totalRentFees",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "totalItemizedFees",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "totalTaxFees",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "totalServiceFees",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "totalRentTaxes",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "totalGuestRentTaxes",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "totalFeeTaxes",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "totalGuestFeeTaxes",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "totalTaxes",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "total",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "actualAdr",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "guestAdr",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "guaranteePolicy",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "cancellationPolicy",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "rateType",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "rates",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "occupants",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "additionalRates",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "guestFees",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "additionalGuestFees",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "ownerFees",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "ownerAdditionalFees",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "taxes",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "paymentPlan",
+                        "type": "text",
+                        "label": ""
+                    },
+                    {
+                        "name": "insuranceProducts",
+                        "type": "text",
+                        "label": ""
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": []
+    },
+    "io": {
+        "input_spec": [
+            {
+                "help": "ID de la unidad (number). Campo obligatorio.",
+                "name": "unitId",
+                "type": "number",
+                "label": "Unit ID",
+                "default": "",
+                "required": true
+            },
+            {
+                "help": "Fecha de llegada en formato ISO 8601 (YYYY-MM-DD). Ejemplo: 2024-12-25. Campo obligatorio.",
+                "name": "arrivalDate",
+                "type": "text",
+                "label": "Arrival Date",
+                "default": "",
+                "required": true,
+                "multiline": false
+            },
+            {
+                "help": "Fecha de salida en formato ISO 8601 (YYYY-MM-DD). Ejemplo: 2024-12-28. Campo obligatorio.",
+                "name": "departureDate",
+                "type": "text",
+                "label": "Departure Date",
+                "default": "",
+                "required": true,
+                "multiline": false
+            },
+            {
+                "help": "Override del Best Available Rate automático. Si el rate no se encuentra o no está activo, se lanzará error 422: 'Rate type is invalid or not active.'",
+                "name": "rateTypeId",
+                "type": "number",
+                "label": "Rate Type ID",
+                "default": "",
+                "required": false
+            },
+            {
+                "help": "Override de la selección automática de política de garantía. Solo disponible para Channel Keys. Debe ser una política activa y aplicada a la unidad. Si no se proporciona, se selecciona automáticamente basado en prioridad.",
+                "name": "guaranteePolicyId",
+                "type": "integer",
+                "label": "Guarantee Policy ID",
+                "default": "",
+                "required": false
+            },
+            {
+                "help": "Política de cancelación manual. Si se usa channel, la política se asigna automáticamente basada en la unidad.",
+                "name": "cancellationPolicyId",
+                "type": "integer",
+                "label": "Cancellation Policy ID",
+                "default": "",
+                "required": false
+            },
+            {
+                "help": "Tipo de reserva. Solo disponible para server/unit keys. Por defecto es typeId 1.",
+                "name": "typeId",
+                "type": "integer",
+                "label": "Type ID",
+                "default": "",
+                "required": false
+            },
+            {
+                "help": "ID del tipo de unidad.",
+                "name": "unitTypeId",
+                "type": "number",
+                "label": "Unit Type ID",
+                "default": "",
+                "required": false
+            },
+            {
+                "help": "Array JSON con ocupantes. Cada elemento debe tener: type (string o integer - handle o ID del tipo de ocupante) y count (number). Ejemplo: [{\"type\":\"adults\",\"count\":2},{\"type\":\"children\",\"count\":1}]. Formato: JSON array string.",
+                "name": "occupants",
+                "type": "text",
+                "label": "Occupants (JSON)",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Descuento aplicado (number).",
+                "name": "discount",
+                "type": "number",
+                "label": "Discount",
+                "default": "",
+                "required": false
+            },
+            {
+                "help": "ID de grupo.",
+                "name": "groupId",
+                "type": "number",
+                "label": "Group ID",
+                "default": "",
+                "required": false
+            },
+            {
+                "help": "Array JSON con tarifas de huésped. Cada elemento debe tener: chargeId (integer), quantity (number), unitValue (number), value (number - Total = quantity * unitValue). Ejemplo: [{\"chargeId\":1,\"quantity\":1,\"unitValue\":50.00,\"value\":50.00}]. Formato: JSON array string.",
+                "name": "guestFees",
+                "type": "text",
+                "label": "Guest Fees (JSON)",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Array JSON con tarifas de propietario. Misma estructura que guestFees. Cada elemento debe tener: chargeId (integer), quantity (number), unitValue (number), value (number). Ejemplo: [{\"chargeId\":2,\"quantity\":1,\"unitValue\":25.00,\"value\":25.00}]. Formato: JSON array string.",
+                "name": "ownerFees",
+                "type": "text",
+                "label": "Owner Fees (JSON)",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "ID del canal.",
+                "name": "channelId",
+                "type": "number",
+                "label": "Channel ID",
+                "default": "",
+                "required": false
+            },
+            {
+                "help": "ID del contacto.",
+                "name": "contactId",
+                "type": "number",
+                "label": "Contact ID",
+                "default": "",
+                "required": false
+            },
+            {
+                "help": "Indica si el huésped tiene intención de adquirir seguro (boolean).",
+                "name": "guestIntendsInsurance",
+                "type": "boolean",
+                "label": "Guest Intends Insurance",
+                "default": false,
+                "required": false
+            },
+            {
+                "help": "Indica si el huésped tiene intención de adquirir waiver (boolean).",
+                "name": "guestIntendsWaiver",
+                "type": "boolean",
+                "label": "Guest Intends Waiver",
+                "default": false,
+                "required": false
+            },
+            {
+                "help": "Indica si está exento de impuestos (boolean).",
+                "name": "taxExempt",
+                "type": "boolean",
+                "label": "Tax Exempt",
+                "default": false,
+                "required": false
+            },
+            {
+                "help": "ID de la razón del descuento (number).",
+                "name": "discountReason",
+                "type": "number",
+                "label": "Discount Reason",
+                "default": "",
+                "required": false
+            },
+            {
+                "help": "Notas sobre el descuento (string).",
+                "name": "discountNotes",
+                "type": "text",
+                "label": "Discount Notes",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Origen de la cotización (string).",
+                "name": "source",
+                "type": "text",
+                "label": "Source",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "ID de campaña (number).",
+                "name": "campaignId",
+                "type": "number",
+                "label": "Campaign ID",
+                "default": "",
+                "required": false
+            },
+            {
+                "help": "ID del lead (number).",
+                "name": "leadId",
+                "type": "number",
+                "label": "Lead ID",
+                "default": "",
+                "required": false
+            }
+        ],
+        "output_spec": [
+            {
+                "help": "Indica si la cotización es válida (boolean).",
+                "name": "isValid",
+                "type": "boolean",
+                "label": "Is Valid",
+                "default": false,
+                "required": false
+            },
+            {
+                "help": "Objeto de error si la cotización no es válida. Incluye code y message.",
+                "name": "error",
+                "type": "text",
+                "label": "Error",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Array de advertencias (array de strings).",
+                "name": "warnings",
+                "type": "text",
+                "label": "Warnings",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Indica si la unidad está disponible para las fechas solicitadas (boolean).",
+                "name": "isAvailable",
+                "type": "boolean",
+                "label": "Is Available",
+                "default": false,
+                "required": false
+            },
+            {
+                "help": "ID de la reserva asociada si existe (integer).",
+                "name": "reservationId",
+                "type": "text",
+                "label": "Reservation ID",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Código de moneda ISO de 3 letras (ej: USD, EUR).",
+                "name": "currency",
+                "type": "text",
+                "label": "Currency",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Fecha de llegada de la cotización.",
+                "name": "arrivalDate",
+                "type": "text",
+                "label": "Arrival Date",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Fecha de salida de la cotización.",
+                "name": "departureDate",
+                "type": "text",
+                "label": "Departure Date",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "ID de la unidad cotizada.",
+                "name": "unitId",
+                "type": "text",
+                "label": "Unit ID",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "ID del tipo de unidad.",
+                "name": "unitTypeId",
+                "type": "text",
+                "label": "Unit Type ID",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "ID del tipo de reserva.",
+                "name": "typeId",
+                "type": "text",
+                "label": "Type ID",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "ID de la política de garantía aplicada.",
+                "name": "guaranteePolicyId",
+                "type": "text",
+                "label": "Guarantee Policy ID",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "ID de la política de cancelación aplicada.",
+                "name": "cancellationPolicyId",
+                "type": "text",
+                "label": "Cancellation Policy ID",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Depósito de seguridad (number).",
+                "name": "securityDeposit",
+                "type": "text",
+                "label": "Security Deposit",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "ID del código promocional aplicado.",
+                "name": "promoCodeId",
+                "type": "text",
+                "label": "Promo Code ID",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Renta bruta (string).",
+                "name": "grossRent",
+                "type": "text",
+                "label": "Gross Rent",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Descuento aplicado (number).",
+                "name": "discount",
+                "type": "text",
+                "label": "Discount",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "ID del tipo de tarifa aplicada.",
+                "name": "rateTypeId",
+                "type": "text",
+                "label": "Rate Type ID",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Valor del código promocional (string).",
+                "name": "promoValue",
+                "type": "text",
+                "label": "Promo Value",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Total de descuentos (string).",
+                "name": "discountTotal",
+                "type": "text",
+                "label": "Discount Total",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Renta neta (string).",
+                "name": "netRent",
+                "type": "text",
+                "label": "Net Rent",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Renta neta mostrada al huésped (string).",
+                "name": "guestNetDisplayRent",
+                "type": "text",
+                "label": "Guest Net Display Rent",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Renta bruta mostrada al huésped (string).",
+                "name": "guestGrossDisplayRent",
+                "type": "text",
+                "label": "Guest Gross Display Rent",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Total de tarifas de huésped (string).",
+                "name": "totalGuestFees",
+                "type": "text",
+                "label": "Total Guest Fees",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Total de tarifas de renta (string).",
+                "name": "totalRentFees",
+                "type": "text",
+                "label": "Total Rent Fees",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Total de tarifas detalladas (string).",
+                "name": "totalItemizedFees",
+                "type": "text",
+                "label": "Total Itemized Fees",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Total de impuestos sobre tarifas (string).",
+                "name": "totalTaxFees",
+                "type": "text",
+                "label": "Total Tax Fees",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Total de tarifas de servicio (string).",
+                "name": "totalServiceFees",
+                "type": "text",
+                "label": "Total Service Fees",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Total de impuestos sobre renta (string).",
+                "name": "totalRentTaxes",
+                "type": "text",
+                "label": "Total Rent Taxes",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Total de impuestos sobre renta de huésped (string).",
+                "name": "totalGuestRentTaxes",
+                "type": "text",
+                "label": "Total Guest Rent Taxes",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Total de impuestos sobre tarifas (string).",
+                "name": "totalFeeTaxes",
+                "type": "text",
+                "label": "Total Fee Taxes",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Total de impuestos sobre tarifas de huésped (string).",
+                "name": "totalGuestFeeTaxes",
+                "type": "text",
+                "label": "Total Guest Fee Taxes",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Total de impuestos (string).",
+                "name": "totalTaxes",
+                "type": "text",
+                "label": "Total Taxes",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Total general de la cotización (string).",
+                "name": "total",
+                "type": "text",
+                "label": "Total",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "ADR (Average Daily Rate) real (string).",
+                "name": "actualAdr",
+                "type": "text",
+                "label": "Actual ADR",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "ADR mostrado al huésped (string).",
+                "name": "guestAdr",
+                "type": "text",
+                "label": "Guest ADR",
+                "default": "",
+                "required": false,
+                "multiline": false
+            },
+            {
+                "help": "Objeto con información de la política de garantía. Incluye: id, name, type. Formato: JSON object.",
+                "name": "guaranteePolicy",
+                "type": "text",
+                "label": "Guarantee Policy",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Objeto con información de la política de cancelación. Incluye: id, name, time, timezone, breakpoints. Formato: JSON object.",
+                "name": "cancellationPolicy",
+                "type": "text",
+                "label": "Cancellation Policy",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Objeto con información del tipo de tarifa. Incluye: id, code, name. Formato: JSON object.",
+                "name": "rateType",
+                "type": "text",
+                "label": "Rate Type",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Array con tarifas diarias. Cada elemento incluye: date, nights, rate. Formato: JSON array.",
+                "name": "rates",
+                "type": "text",
+                "label": "Rates",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Array con ocupantes. Cada elemento incluye: id, handle, name, quantity. Formato: JSON array.",
+                "name": "occupants",
+                "type": "text",
+                "label": "Occupants",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Array con tarifas adicionales. Cada elemento incluye: id, code, name, amount, isValid, error. Formato: JSON array.",
+                "name": "additionalRates",
+                "type": "text",
+                "label": "Additional Rates",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Array con tarifas de huésped detalladas. Cada elemento incluye información completa de la tarifa. Formato: JSON array.",
+                "name": "guestFees",
+                "type": "text",
+                "label": "Guest Fees",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Array con tarifas adicionales de huésped. Formato: JSON array.",
+                "name": "additionalGuestFees",
+                "type": "text",
+                "label": "Additional Guest Fees",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Array con tarifas de propietario detalladas. Formato: JSON array.",
+                "name": "ownerFees",
+                "type": "text",
+                "label": "Owner Fees",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Array con tarifas adicionales de propietario. Formato: JSON array.",
+                "name": "ownerAdditionalFees",
+                "type": "text",
+                "label": "Owner Additional Fees",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Array con impuestos detallados. Cada elemento incluye: id, name, rate, value. Formato: JSON array.",
+                "name": "taxes",
+                "type": "text",
+                "label": "Taxes",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Array con plan de pago. Cada elemento incluye: date, amount. Formato: JSON array.",
+                "name": "paymentPlan",
+                "type": "text",
+                "label": "Payment Plan",
+                "default": "",
+                "required": false,
+                "multiline": true
+            },
+            {
+                "help": "Array con productos de seguro. Cada elemento incluye: id, name, type, value. Formato: JSON array.",
+                "name": "insuranceProducts",
+                "type": "text",
+                "label": "Insurance Products",
+                "default": "",
+                "required": false,
+                "multiline": true
+            }
+        ]
+    }
+}

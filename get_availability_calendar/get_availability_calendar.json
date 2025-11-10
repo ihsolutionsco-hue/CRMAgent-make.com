@@ -1,5 +1,6 @@
 {
   "name": "get_availability_calendar",
+  "description": "Obtiene disponibilidad día por día de una unidad específica. Retorna calendario con fechas y conteo de unidades disponibles, sin considerar tarifas.",
   "flow": [
     {
       "id": 1,

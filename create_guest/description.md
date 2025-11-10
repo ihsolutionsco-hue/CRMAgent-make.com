@@ -1,3 +1,3 @@
 # Create Contact
 
-Crea contactos en TrackHS CRM validando datos según OpenAPI. Requiere: nombre, apellido y email. Incluye teléfonos, dirección, notas y campos personalizados.
+Crea contactos en el CRM con información personal, teléfonos, direcciones y campos personalizados. Gestiona huéspedes, propietarios y empleados de proveedores.
