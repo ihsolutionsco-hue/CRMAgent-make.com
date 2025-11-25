@@ -1,0 +1,287 @@
+{
+  "name": "get_unit_pictures_collection",
+  "description": "Obtiene todas las imágenes relacionadas con una unidad, incluyendo las asignadas al tipo de unidad o nodo. Retorna colección paginada con URLs, metadatos y ordenamiento.",
+  "flow": [
+    {
+      "id": 1,
+      "module": "http:ActionSendData",
+      "version": 3,
+      "parameters": {
+        "handleErrors": true,
+        "useNewZLibDeCompress": true
+      },
+      "mapper": {
+        "url": "https://ihmvacations.trackhs.com/api/pms/units/{{var.input.unitId}}/images",
+        "serializeUrl": false,
+        "method": "get",
+        "headers": [
+          { "name": "Accept", "value": "application/json" }
+        ],
+        "qs": [
+          { "name": "page", "value": "{{ifempty(var.input.page; 1)}}" },
+          { "name": "size", "value": "{{ifempty(var.input.size; 1000)}}" },
+          { "name": "sortColumn", "value": "{{ifempty(var.input.sortColumn; null)}}" },
+          { "name": "sortDirection", "value": "{{ifempty(var.input.sortDirection; null)}}" },
+          { "name": "computed", "value": "{{ifempty(var.input.computed; null)}}" },
+          { "name": "search", "value": "{{ifempty(var.input.search; null)}}" }
+        ],
+        "bodyType": "",
+        "parseResponse": true,
+        "authUser": "{{var.organization.user}}",
+        "authPass": "{{var.organization.password}}",
+        "timeout": "",
+        "shareCookies": false,
+        "ca": "",
+        "rejectUnauthorized": true,
+        "followRedirect": true,
+        "useQuerystring": false,
+        "gzip": true,
+        "useMtls": false,
+        "followAllRedirects": false
+      },
+      "metadata": {
+        "designer": { "x": 0, "y": 0, "name": "api:getUnitImages" },
+        "restore": {
+          "expect": {
+            "method": { "mode": "chose", "label": "GET" },
+            "headers": { "mode": "chose", "items": [ null ] },
+            "qs": { "mode": "chose", "items": [ null ] },
+            "bodyType": { "label": "Empty" }
+          }
+        },
+        "parameters": [
+          { "name": "handleErrors", "type": "boolean", "label": "Evaluate all states as errors (except for 2xx and 3xx )", "required": true },
+          { "name": "useNewZLibDeCompress", "type": "hidden" }
+        ],
+        "expect": [
+          { "name": "url", "type": "url", "label": "URL", "required": true },
+          { "name": "serializeUrl", "type": "boolean", "label": "Serialize URL", "required": true },
+          {
+            "name": "method",
+            "type": "select",
+            "label": "Method",
+            "required": true,
+            "validate": { "enum": [ "get", "head", "post", "put", "patch", "delete", "options" ] }
+          },
+          {
+            "name": "headers",
+            "type": "array",
+            "label": "Headers",
+            "spec": [
+              { "name": "name", "label": "Name", "type": "text", "required": true },
+              { "name": "value", "label": "Value", "type": "text" }
+            ]
+          },
+          {
+            "name": "qs",
+            "type": "array",
+            "label": "Query String",
+            "spec": [
+              { "name": "name", "label": "Name", "type": "text", "required": true },
+              { "name": "value", "label": "Value", "type": "text" }
+            ]
+          },
+          { "name": "bodyType", "type": "select", "label": "Body type", "validate": { "enum": [ "raw", "x_www_form_urlencoded", "multipart_form_data" ] } },
+          { "name": "parseResponse", "type": "boolean", "label": "Parse response", "required": true },
+          { "name": "authUser", "type": "text", "label": "User name" },
+          { "name": "authPass", "type": "password", "label": "Password" },
+          { "name": "timeout", "type": "uinteger", "label": "Timeout", "validate": { "max": 300, "min": 1 } },
+          { "name": "shareCookies", "type": "boolean", "label": "Share cookies with other HTTP modules", "required": true },
+          { "name": "ca", "type": "cert", "label": "Self-signed certificate" },
+          { "name": "rejectUnauthorized", "type": "boolean", "label": "Reject connections that are using unverified (self-signed) certificates", "required": true },
+          { "name": "followRedirect", "type": "boolean", "label": "Follow redirect", "required": true },
+          { "name": "useQuerystring", "type": "boolean", "label": "Disable serialization of multiple same query string keys as arrays", "required": true },
+          { "name": "gzip", "type": "boolean", "label": "Request compressed content", "required": true },
+          { "name": "useMtls", "type": "boolean", "label": "Use Mutual TLS", "required": true },
+          { "name": "followAllRedirects", "type": "boolean", "label": "Follow all redirect", "required": true }
+        ],
+        "advanced": true
+      }
+    },
+    {
+      "id": 2,
+      "module": "scenario-service:ReturnData",
+      "version": 2,
+      "parameters": {},
+      "mapper": {
+        "images": "{{1.data}}"
+      },
+      "metadata": {
+        "designer": { "x": 300, "y": 0 },
+        "restore": {},
+        "expect": [
+          { "name": "images", "type": "text", "label": "" }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "instant": false,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "slots": null,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": { "orphans": [] },
+    "zone": "us2.make.com",
+    "notes": [
+      "=== CONFIGURACIÓN DE AUTENTICACIÓN ===",
+      "IMPORTANTE: Configurar autenticación Basic Auth en el módulo HTTP",
+      "El módulo HTTP debe tener configurado:",
+      "  - Username: Tu usuario de TrackHS (ej: aba99777416466b6bdc1a25223192ccb)",
+      "  - Password: Tu contraseña de TrackHS",
+      "Si recibes error 403 Forbidden, verifica que las credenciales estén correctamente configuradas",
+      "",
+      "=== ENDPOINT DE IMÁGENES DE UNIDAD ===",
+      "Este endpoint devuelve todas las imágenes relacionadas con una unidad específica.",
+      "Incluye imágenes asignadas directamente a la unidad, así como las asignadas al tipo de unidad o nodo.",
+      "",
+      "=== PARÁMETRO REQUERIDO ===",
+      "unitId:",
+      "  - ID de la unidad (integer) - REQUERIDO",
+      "  - Se incluye en la URL como parámetro de path",
+      "  - Ejemplo: /api/pms/units/7/images",
+      "",
+      "=== PARÁMETROS OPCIONALES (QUERY STRING) ===",
+      "page:",
+      "  - Número de página del conjunto de resultados (number)",
+      "  - Limitado a 10k resultados totales (page * size)",
+      "  - Valor por defecto: 1",
+      "  - Ejemplo: page=1",
+      "",
+      "size:",
+      "  - Tamaño de página (number)",
+      "  - Limitado a 10k resultados totales (page * size)",
+      "  - Valor por defecto: 1000 (para obtener todas las imágenes en una sola llamada)",
+      "  - Ejemplo: size=1000",
+      "",
+      "sortColumn:",
+      "  - Columna para ordenar los resultados",
+      "  - Valores permitidos: \"id\", \"name\", \"nodeName\", \"unitTypeName\"",
+      "  - Valor por defecto: \"name\"",
+      "  - Ejemplo: sortColumn=name",
+      "",
+      "sortDirection:",
+      "  - Dirección de ordenamiento",
+      "  - Valores permitidos: \"asc\", \"desc\"",
+      "  - Valor por defecto: \"asc\"",
+      "  - Ejemplo: sortDirection=asc",
+      "",
+      "computed:",
+      "  - Parámetro de string para atributos computados",
+      "  - OPCIONAL",
+      "",
+      "search:",
+      "  - Búsqueda por texto en las imágenes",
+      "  - OPCIONAL",
+      "  - Ejemplo: search=fireplace",
+      "",
+      "=== RESPUESTA ===",
+      "La respuesta es un objeto con la siguiente estructura:",
+      "  - _embedded.images: Array de objetos de imagen",
+      "    - id: ID de la imagen (integer)",
+      "    - name: Caption/descripción de la imagen (string)",
+      "    - type: Tipo MIME de la imagen (string, ej: \"image/jpeg\")",
+      "    - original: URL de la imagen original (string)",
+      "    - order: Orden de clasificación de la imagen (integer)",
+      "    - updatedAt: Fecha de última actualización en formato ISO 8601 (date-time)",
+      "    - _links.self: Enlace a la imagen individual",
+      "  - page: Número de página actual (number)",
+      "  - page_count: Total de páginas (number)",
+      "  - page_size: Tamaño de página (number)",
+      "  - total_items: Total de items (number)",
+      "  - _links: Enlaces de paginación (self, first, last, next, prev)",
+      "",
+      "=== NOTAS IMPORTANTES ===",
+      "- Las imágenes proporcionadas deben ser cacheadas y distribuidas por el consumidor",
+      "- TrackHS no soporta distribución directa de imágenes",
+      "- Este endpoint devuelve todas las imágenes, incluso las asignadas al tipo de unidad o nodo",
+      "- Los enlaces de paginación (next, prev) solo se proporcionan si hay una página siguiente o anterior",
+      "- El campo 'order' indica el orden de clasificación de las imágenes",
+      "- El campo 'updatedAt' muestra cuándo se actualizaron los valores de la imagen por última vez"
+    ]
+  },
+  "io": {
+    "input_spec": [
+      {
+        "name": "unitId",
+        "label": "Unit ID",
+        "help": "ID de la unidad para obtener imágenes (integer, requerido). Se incluye en la URL como parámetro de path.",
+        "type": "number",
+        "default": null,
+        "required": true
+      },
+      {
+        "name": "page",
+        "label": "Número de Página",
+        "help": "Número de página del conjunto de resultados (number). Limitado a 10k resultados totales (page * size). OPCIONAL. Default: 1",
+        "type": "number",
+        "default": 1,
+        "required": false
+      },
+      {
+        "name": "size",
+        "label": "Tamaño de Página",
+        "help": "Tamaño de página (number). Limitado a 10k resultados totales (page * size). OPCIONAL. Default: 1000 para obtener todas las imágenes en una sola llamada.",
+        "type": "number",
+        "default": 1000,
+        "required": false
+      },
+      {
+        "name": "sortColumn",
+        "label": "Columna de Ordenamiento",
+        "help": "Columna para ordenar los resultados. Valores permitidos: \"id\", \"name\", \"nodeName\", \"unitTypeName\". Valor por defecto: \"name\". OPCIONAL.",
+        "type": "text",
+        "default": "",
+        "required": false,
+        "multiline": false
+      },
+      {
+        "name": "sortDirection",
+        "label": "Dirección de Ordenamiento",
+        "help": "Dirección de ordenamiento. Valores permitidos: \"asc\" (ascendente) o \"desc\" (descendente). Valor por defecto: \"asc\". OPCIONAL.",
+        "type": "text",
+        "default": "",
+        "required": false,
+        "multiline": false
+      },
+      {
+        "name": "computed",
+        "label": "Atributos Computados",
+        "help": "Parámetro de string para atributos computados. OPCIONAL.",
+        "type": "text",
+        "default": "",
+        "required": false,
+        "multiline": false
+      },
+      {
+        "name": "search",
+        "label": "Búsqueda",
+        "help": "Búsqueda por texto en las imágenes. OPCIONAL. Ejemplo: search=fireplace",
+        "type": "text",
+        "default": "",
+        "required": false,
+        "multiline": false
+      }
+    ],
+    "output_spec": [
+      {
+        "name": "images",
+        "label": "Imágenes",
+        "help": "Objeto completo con colección de imágenes paginada. Incluye:\n\n- _embedded.images: Array de objetos de imagen con:\n  - id: ID de la imagen (integer)\n  - name: Caption/descripción de la imagen (string)\n  - type: Tipo MIME de la imagen (string, ej: \"image/jpeg\")\n  - original: URL de la imagen original (string)\n  - order: Orden de clasificación de la imagen (integer)\n  - updatedAt: Fecha de última actualización en formato ISO 8601 (date-time)\n  - _links.self: Enlace a la imagen individual\n\n- page: Número de página actual (number)\n- page_count: Total de páginas (number)\n- page_size: Tamaño de página (number)\n- total_items: Total de items (number)\n- _links: Enlaces de paginación (self, first, last, next, prev)\n\n⚠️ NOTA: Las imágenes proporcionadas deben ser cacheadas y distribuidas por el consumidor. TrackHS no soporta distribución directa de imágenes. Este endpoint devuelve todas las imágenes, incluso las asignadas al tipo de unidad o nodo.",
+        "type": "text",
+        "default": "",
+        "required": false,
+        "multiline": false
+      }
+    ]
+  }
+}
