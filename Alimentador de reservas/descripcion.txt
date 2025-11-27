@@ -1,0 +1,2 @@
+Blueprint de Make.com que descarga todas las reservas históricas desde TrackHS API usando scrolling, verifica duplicados en Airtable y crea registros únicos con información completa de reservas, huéspedes y propiedades.
+

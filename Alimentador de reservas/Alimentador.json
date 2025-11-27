@@ -1,0 +1,1056 @@
+{
+    "name": "1. allReservations",
+    "flow": [
+        {
+            "id": 41,
+            "module": "util:SetVariables",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "scope": "roundtrip",
+                "variables": [
+                    {
+                        "name": "VAR_customer_domain",
+                        "value": "https://ihmvacations.trackhs.com"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "scope": {
+                            "label": "One cycle"
+                        },
+                        "variables": {
+                            "items": [
+                                null
+                            ]
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "variables",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Variable name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "any",
+                                "label": "Variable value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Variables"
+                    },
+                    {
+                        "name": "scope",
+                        "type": "select",
+                        "label": "Variable lifetime",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "roundtrip",
+                                "execution"
+                            ]
+                        }
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "VAR_customer_domain",
+                        "type": "any",
+                        "label": "VAR_customer_domain"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 4,
+            "module": "http:ActionSendData",
+            "version": 3,
+            "parameters": {
+                "handleErrors": true,
+                "useNewZLibDeCompress": true
+            },
+            "mapper": {
+                "url": "{{41.VAR_customer_domain}}/api/v2/pms/reservations",
+                "serializeUrl": false,
+                "method": "get",
+                "headers": [
+                    {
+                        "name": "accept",
+                        "value": "application/json"
+                    }
+                ],
+                "qs": [
+                    {
+                        "name": "sortDirection",
+                        "value": "asc"
+                    },
+                    {
+                        "name": "sortColumn",
+                        "value": "createdAt"
+                    },
+                    {
+                        "name": "size",
+                        "value": "100"
+                    }
+                ],
+                "bodyType": "",
+                "parseResponse": true,
+                "authUser": "{{var.organization.user}}",
+                "authPass": "{{var.organization.password}}",
+                "timeout": "",
+                "shareCookies": false,
+                "ca": "",
+                "rejectUnauthorized": true,
+                "followRedirect": true,
+                "useQuerystring": false,
+                "gzip": true,
+                "useMtls": false,
+                "followAllRedirects": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0,
+                    "name": "HTTP • Get Reservations (CheckedOut)"
+                },
+                "restore": {
+                    "expect": {
+                        "method": {
+                            "mode": "chose",
+                            "label": "GET"
+                        },
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "qs": {
+                            "mode": "chose",
+                            "items": [
+                                null,
+                                null,
+                                null
+                            ]
+                        },
+                        "bodyType": {
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "handleErrors",
+                        "type": "boolean",
+                        "label": "Evaluate all states as errors (except for 2xx and 3xx )",
+                        "required": true
+                    },
+                    {
+                        "name": "useNewZLibDeCompress",
+                        "type": "hidden"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "serializeUrl",
+                        "type": "boolean",
+                        "label": "Serialize URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "get",
+                                "head",
+                                "post",
+                                "put",
+                                "patch",
+                                "delete",
+                                "options"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "type": "array",
+                        "label": "Headers",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "label": "Name",
+                                "type": "text",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "label": "Value",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "qs",
+                        "type": "array",
+                        "label": "Query String",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "label": "Name",
+                                "type": "text",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "label": "Value",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "bodyType",
+                        "type": "select",
+                        "label": "Body type",
+                        "validate": {
+                            "enum": [
+                                "raw",
+                                "x_www_form_urlencoded",
+                                "multipart_form_data"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "parseResponse",
+                        "type": "boolean",
+                        "label": "Parse response",
+                        "required": true
+                    },
+                    {
+                        "name": "authUser",
+                        "type": "text",
+                        "label": "User name"
+                    },
+                    {
+                        "name": "authPass",
+                        "type": "password",
+                        "label": "Password"
+                    },
+                    {
+                        "name": "timeout",
+                        "type": "uinteger",
+                        "label": "Timeout",
+                        "validate": {
+                            "max": 300,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "shareCookies",
+                        "type": "boolean",
+                        "label": "Share cookies with other HTTP modules",
+                        "required": true
+                    },
+                    {
+                        "name": "ca",
+                        "type": "cert",
+                        "label": "Self-signed certificate"
+                    },
+                    {
+                        "name": "rejectUnauthorized",
+                        "type": "boolean",
+                        "label": "Reject connections that are using unverified (self-signed) certificates",
+                        "required": true
+                    },
+                    {
+                        "name": "followRedirect",
+                        "type": "boolean",
+                        "label": "Follow redirect",
+                        "required": true
+                    },
+                    {
+                        "name": "useQuerystring",
+                        "type": "boolean",
+                        "label": "Disable serialization of multiple same query string keys as arrays",
+                        "required": true
+                    },
+                    {
+                        "name": "gzip",
+                        "type": "boolean",
+                        "label": "Request compressed content",
+                        "required": true
+                    },
+                    {
+                        "name": "useMtls",
+                        "type": "boolean",
+                        "label": "Use Mutual TLS",
+                        "required": true
+                    },
+                    {
+                        "name": "followAllRedirects",
+                        "type": "boolean",
+                        "label": "Follow all redirect",
+                        "required": true
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 5,
+            "module": "builtin:BasicFeeder",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "array": "{{4.data.`_embedded`.reservations}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0,
+                    "name": "Iterator • Reservations[]"
+                },
+                "restore": {
+                    "expect": {
+                        "array": {
+                            "mode": "edit"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "array",
+                        "spec": [],
+                        "type": "array",
+                        "label": "Array"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 28,
+            "module": "airtable:ActionCreateRecord",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 5264568
+            },
+            "mapper": {
+                "base": "appdQR8QQ3pY5fmSX",
+                "table": "tblegthm1sxR8Mb1t",
+                "record": {
+                    "fld12aoFyMYj61f4R": "{{5.`_embedded`.contact.country}}",
+                    "fld19qnPltSyDV0gW": "{{5.`_embedded`.contact.primaryEmail}}",
+                    "fld8j5nLffQdiDdzW": "{{5.`_embedded`.contact.lastName}}",
+                    "fldAMYkGr67Lrw94w": "{{5.currency}}",
+                    "fldCT4jbp6O6gA7DI": "{{5.bookedAt}}",
+                    "fldDsjAaiwFwKfOOi": "{{5.guestBreakdown.total}}",
+                    "fldEbdEFicXgcTqbs": "{{5.`_embedded`.unit.bedrooms}}",
+                    "fldL3DOQF9RR42IbQ": "{{5.`_embedded`.contact.locality}}",
+                    "fldMnpZI5evmBg6MI": "{{5.`_embedded`.contact.cellPhone}}",
+                    "fldPcseBEQUo3KK6w": "{{5.`_embedded`.contact.region}}",
+                    "fldR8TnmuCZSKjvxV": "{{5.`_embedded`.unit.name}}",
+                    "fldRxX8srwup5ClC0": "{{5.`_embedded`.unit.locality}}",
+                    "fldS49uuF2RdKXjHo": "{{5.arrivalDate}}",
+                    "fldUMoHwV8HFClSiY": "{{5.createdAt}}",
+                    "fldZMJQgZ0zxpsigw": "{{5.nights}}",
+                    "fldcHMoKEhQW8Rugb": "{{5.arrivalDate}}",
+                    "fldeuvCiIdvOyf6j7": "{{5.`_embedded`.contact.id}}",
+                    "fldggQEb8UyXeuH7H": "{{5.guestBreakdown.balance}}",
+                    "fldhOipHSFXXUH4WJ": "{{5.ownerBreakdown.netRevenue}}",
+                    "fldjcJVvpe1aD3rPP": "{{5.`_embedded`.contact.isVip}}",
+                    "fldmWvtVx45LiqfGw": "{{5.id}}",
+                    "fldmbo7wb8ijAXyPy": "{{5.`_embedded`.unit.maxOccupancy}}",
+                    "fldsZ8uY6jJvg640g": "{{5.`_embedded`.contact.firstName}}",
+                    "fldtuJDYxVrujb4M7": "{{5.`_embedded`.unit.id}}",
+                    "fldu3oGk7y0PpVS5y": "{{5.status}}",
+                    "fldu4ePVzIrRpPyqI": "{{5.departureDate}}",
+                    "fldv62n4AbKrOvtYM": "{{5.folioId}}",
+                    "fldw5wBgaDcrq9cPf": "{{5.departureDate}}"
+                },
+                "typecast": false,
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0,
+                    "name": "Airtable • Create New Reservation"
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "label": "IHS Reviews System"
+                        },
+                        "table": {
+                            "label": "Bookings",
+                            "nested": [
+                                {
+                                    "name": "record",
+                                    "spec": [
+                                        {
+                                            "name": "fldmWvtVx45LiqfGw",
+                                            "type": "number",
+                                            "label": "Booking ID"
+                                        },
+                                        {
+                                            "name": "fldv62n4AbKrOvtYM",
+                                            "type": "number",
+                                            "label": "Folio ID"
+                                        },
+                                        {
+                                            "name": "fldtuJDYxVrujb4M7",
+                                            "type": "number",
+                                            "label": "Property ID"
+                                        },
+                                        {
+                                            "name": "fldS49uuF2RdKXjHo",
+                                            "time": false,
+                                            "type": "date",
+                                            "label": "Arrival Date"
+                                        },
+                                        {
+                                            "name": "fldu4ePVzIrRpPyqI",
+                                            "time": false,
+                                            "type": "date",
+                                            "label": "Departure Date"
+                                        },
+                                        {
+                                            "name": "fldZMJQgZ0zxpsigw",
+                                            "type": "number",
+                                            "label": "Nights"
+                                        },
+                                        {
+                                            "name": "fldCT4jbp6O6gA7DI",
+                                            "time": false,
+                                            "type": "date",
+                                            "label": "Booked At"
+                                        },
+                                        {
+                                            "name": "fldUMoHwV8HFClSiY",
+                                            "time": false,
+                                            "type": "date",
+                                            "label": "Created At"
+                                        },
+                                        {
+                                            "name": "fldu3oGk7y0PpVS5y",
+                                            "type": "text",
+                                            "label": "Booking Status"
+                                        },
+                                        {
+                                            "name": "fldAMYkGr67Lrw94w",
+                                            "type": "text",
+                                            "label": "Currency"
+                                        },
+                                        {
+                                            "name": "fldDsjAaiwFwKfOOi",
+                                            "type": "number",
+                                            "label": "Total Amount"
+                                        },
+                                        {
+                                            "name": "fldggQEb8UyXeuH7H",
+                                            "type": "number",
+                                            "label": "Current Balance"
+                                        },
+                                        {
+                                            "name": "fldhOipHSFXXUH4WJ",
+                                            "type": "number",
+                                            "label": "Owner Revenue"
+                                        },
+                                        {
+                                            "name": "fldsZ8uY6jJvg640g",
+                                            "type": "text",
+                                            "label": "Guest First Name"
+                                        },
+                                        {
+                                            "name": "fld8j5nLffQdiDdzW",
+                                            "type": "text",
+                                            "label": "Guest Last Name"
+                                        },
+                                        {
+                                            "name": "fld19qnPltSyDV0gW",
+                                            "type": "text",
+                                            "label": "Guest Email"
+                                        },
+                                        {
+                                            "name": "fldMnpZI5evmBg6MI",
+                                            "type": "text",
+                                            "label": "Guest Phone"
+                                        },
+                                        {
+                                            "name": "fld12aoFyMYj61f4R",
+                                            "type": "text",
+                                            "label": "Guest Country"
+                                        },
+                                        {
+                                            "name": "fldPcseBEQUo3KK6w",
+                                            "type": "text",
+                                            "label": "Region"
+                                        },
+                                        {
+                                            "name": "fldL3DOQF9RR42IbQ",
+                                            "type": "text",
+                                            "label": "Locality"
+                                        },
+                                        {
+                                            "name": "fldjcJVvpe1aD3rPP",
+                                            "type": "boolean",
+                                            "label": "Is VIP Guest"
+                                        },
+                                        {
+                                            "name": "fldR8TnmuCZSKjvxV",
+                                            "type": "text",
+                                            "label": "Property Name"
+                                        },
+                                        {
+                                            "name": "fldRxX8srwup5ClC0",
+                                            "type": "text",
+                                            "label": "Property City"
+                                        },
+                                        {
+                                            "name": "fldEbdEFicXgcTqbs",
+                                            "type": "number",
+                                            "label": "Property Bedrooms"
+                                        },
+                                        {
+                                            "name": "fldmbo7wb8ijAXyPy",
+                                            "type": "number",
+                                            "label": "Max Occupancy"
+                                        },
+                                        {
+                                            "name": "fldcHMoKEhQW8Rugb",
+                                            "time": false,
+                                            "type": "date",
+                                            "label": "Check In"
+                                        },
+                                        {
+                                            "name": "fldw5wBgaDcrq9cPf",
+                                            "time": false,
+                                            "type": "date",
+                                            "label": "Check Out"
+                                        },
+                                        {
+                                            "name": "fldeuvCiIdvOyf6j7",
+                                            "type": "text",
+                                            "label": "contactID"
+                                        },
+                                        {
+                                            "name": "flddJdnbR4EWVrVYH",
+                                            "type": "number",
+                                            "label": "Review Rating"
+                                        },
+                                        {
+                                            "name": "fldHI4kWvjvGw5vqd",
+                                            "time": false,
+                                            "type": "date",
+                                            "label": "Review Date"
+                                        },
+                                        {
+                                            "name": "fldxXABNa0OQl4uJY",
+                                            "type": "boolean",
+                                            "label": "Review Responded"
+                                        },
+                                        {
+                                            "name": "fldXKQUvQ7X39PCUC",
+                                            "type": "number",
+                                            "label": "ReviewId"
+                                        },
+                                        {
+                                            "name": "fldz6ZlpnNBaiY5Cr",
+                                            "type": "text",
+                                            "label": "Public Review",
+                                            "multiline": true
+                                        },
+                                        {
+                                            "name": "fldNZi4bmk8VeBSEu",
+                                            "type": "text",
+                                            "label": "Private Feedback",
+                                            "multiline": true
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Record"
+                                }
+                            ]
+                        },
+                        "record": {
+                            "nested": {
+                                "fldjcJVvpe1aD3rPP": {
+                                    "mode": "edit"
+                                },
+                                "fldxXABNa0OQl4uJY": {
+                                    "mode": "edit"
+                                }
+                            }
+                        },
+                        "typecast": {
+                            "mode": "chose"
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable2"
+                            },
+                            "label": "airtable IHM vacations reviewAutomation"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "typecast",
+                        "type": "boolean",
+                        "label": "Smart links",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "record",
+                        "spec": [
+                            {
+                                "name": "fldmWvtVx45LiqfGw",
+                                "type": "number",
+                                "label": "Booking ID"
+                            },
+                            {
+                                "name": "fldv62n4AbKrOvtYM",
+                                "type": "number",
+                                "label": "Folio ID"
+                            },
+                            {
+                                "name": "fldtuJDYxVrujb4M7",
+                                "type": "number",
+                                "label": "Property ID"
+                            },
+                            {
+                                "name": "fldS49uuF2RdKXjHo",
+                                "time": false,
+                                "type": "date",
+                                "label": "Arrival Date"
+                            },
+                            {
+                                "name": "fldu4ePVzIrRpPyqI",
+                                "time": false,
+                                "type": "date",
+                                "label": "Departure Date"
+                            },
+                            {
+                                "name": "fldZMJQgZ0zxpsigw",
+                                "type": "number",
+                                "label": "Nights"
+                            },
+                            {
+                                "name": "fldCT4jbp6O6gA7DI",
+                                "time": false,
+                                "type": "date",
+                                "label": "Booked At"
+                            },
+                            {
+                                "name": "fldUMoHwV8HFClSiY",
+                                "time": false,
+                                "type": "date",
+                                "label": "Created At"
+                            },
+                            {
+                                "name": "fldu3oGk7y0PpVS5y",
+                                "type": "text",
+                                "label": "Booking Status"
+                            },
+                            {
+                                "name": "fldAMYkGr67Lrw94w",
+                                "type": "text",
+                                "label": "Currency"
+                            },
+                            {
+                                "name": "fldDsjAaiwFwKfOOi",
+                                "type": "number",
+                                "label": "Total Amount"
+                            },
+                            {
+                                "name": "fldggQEb8UyXeuH7H",
+                                "type": "number",
+                                "label": "Current Balance"
+                            },
+                            {
+                                "name": "fldhOipHSFXXUH4WJ",
+                                "type": "number",
+                                "label": "Owner Revenue"
+                            },
+                            {
+                                "name": "fldsZ8uY6jJvg640g",
+                                "type": "text",
+                                "label": "Guest First Name"
+                            },
+                            {
+                                "name": "fld8j5nLffQdiDdzW",
+                                "type": "text",
+                                "label": "Guest Last Name"
+                            },
+                            {
+                                "name": "fld19qnPltSyDV0gW",
+                                "type": "text",
+                                "label": "Guest Email"
+                            },
+                            {
+                                "name": "fldMnpZI5evmBg6MI",
+                                "type": "text",
+                                "label": "Guest Phone"
+                            },
+                            {
+                                "name": "fld12aoFyMYj61f4R",
+                                "type": "text",
+                                "label": "Guest Country"
+                            },
+                            {
+                                "name": "fldPcseBEQUo3KK6w",
+                                "type": "text",
+                                "label": "Region"
+                            },
+                            {
+                                "name": "fldL3DOQF9RR42IbQ",
+                                "type": "text",
+                                "label": "Locality"
+                            },
+                            {
+                                "name": "fldjcJVvpe1aD3rPP",
+                                "type": "boolean",
+                                "label": "Is VIP Guest"
+                            },
+                            {
+                                "name": "fldR8TnmuCZSKjvxV",
+                                "type": "text",
+                                "label": "Property Name"
+                            },
+                            {
+                                "name": "fldRxX8srwup5ClC0",
+                                "type": "text",
+                                "label": "Property City"
+                            },
+                            {
+                                "name": "fldEbdEFicXgcTqbs",
+                                "type": "number",
+                                "label": "Property Bedrooms"
+                            },
+                            {
+                                "name": "fldmbo7wb8ijAXyPy",
+                                "type": "number",
+                                "label": "Max Occupancy"
+                            },
+                            {
+                                "name": "fldcHMoKEhQW8Rugb",
+                                "time": false,
+                                "type": "date",
+                                "label": "Check In"
+                            },
+                            {
+                                "name": "fldw5wBgaDcrq9cPf",
+                                "time": false,
+                                "type": "date",
+                                "label": "Check Out"
+                            },
+                            {
+                                "name": "fldeuvCiIdvOyf6j7",
+                                "type": "text",
+                                "label": "contactID"
+                            },
+                            {
+                                "name": "flddJdnbR4EWVrVYH",
+                                "type": "number",
+                                "label": "Review Rating"
+                            },
+                            {
+                                "name": "fldHI4kWvjvGw5vqd",
+                                "time": false,
+                                "type": "date",
+                                "label": "Review Date"
+                            },
+                            {
+                                "name": "fldxXABNa0OQl4uJY",
+                                "type": "boolean",
+                                "label": "Review Responded"
+                            },
+                            {
+                                "name": "fldXKQUvQ7X39PCUC",
+                                "type": "number",
+                                "label": "ReviewId"
+                            },
+                            {
+                                "name": "fldz6ZlpnNBaiY5Cr",
+                                "type": "text",
+                                "label": "Public Review"
+                            },
+                            {
+                                "name": "fldNZi4bmk8VeBSEu",
+                                "type": "text",
+                                "label": "Private Feedback"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "Booking ID",
+                        "type": "number",
+                        "label": "Booking ID"
+                    },
+                    {
+                        "name": "Folio ID",
+                        "type": "number",
+                        "label": "Folio ID"
+                    },
+                    {
+                        "name": "Property ID",
+                        "type": "number",
+                        "label": "Property ID"
+                    },
+                    {
+                        "name": "Arrival Date",
+                        "time": false,
+                        "type": "date",
+                        "label": "Arrival Date"
+                    },
+                    {
+                        "name": "Departure Date",
+                        "time": false,
+                        "type": "date",
+                        "label": "Departure Date"
+                    },
+                    {
+                        "name": "Nights",
+                        "type": "number",
+                        "label": "Nights"
+                    },
+                    {
+                        "name": "Booked At",
+                        "time": false,
+                        "type": "date",
+                        "label": "Booked At"
+                    },
+                    {
+                        "name": "Created At",
+                        "time": false,
+                        "type": "date",
+                        "label": "Created At"
+                    },
+                    {
+                        "name": "Booking Status",
+                        "type": "text",
+                        "label": "Booking Status"
+                    },
+                    {
+                        "name": "Currency",
+                        "type": "text",
+                        "label": "Currency"
+                    },
+                    {
+                        "name": "Total Amount",
+                        "type": "number",
+                        "label": "Total Amount"
+                    },
+                    {
+                        "name": "Current Balance",
+                        "type": "number",
+                        "label": "Current Balance"
+                    },
+                    {
+                        "name": "Owner Revenue",
+                        "type": "number",
+                        "label": "Owner Revenue"
+                    },
+                    {
+                        "name": "Guest First Name",
+                        "type": "text",
+                        "label": "Guest First Name"
+                    },
+                    {
+                        "name": "Guest Last Name",
+                        "type": "text",
+                        "label": "Guest Last Name"
+                    },
+                    {
+                        "name": "Guest Email",
+                        "type": "text",
+                        "label": "Guest Email"
+                    },
+                    {
+                        "name": "Guest Phone",
+                        "type": "text",
+                        "label": "Guest Phone"
+                    },
+                    {
+                        "name": "Guest Country",
+                        "type": "text",
+                        "label": "Guest Country"
+                    },
+                    {
+                        "name": "Region",
+                        "type": "text",
+                        "label": "Region"
+                    },
+                    {
+                        "name": "Locality",
+                        "type": "text",
+                        "label": "Locality"
+                    },
+                    {
+                        "name": "Is VIP Guest",
+                        "type": "boolean",
+                        "label": "Is VIP Guest"
+                    },
+                    {
+                        "name": "Property Name",
+                        "type": "text",
+                        "label": "Property Name"
+                    },
+                    {
+                        "name": "Property City",
+                        "type": "text",
+                        "label": "Property City"
+                    },
+                    {
+                        "name": "Property Bedrooms",
+                        "type": "number",
+                        "label": "Property Bedrooms"
+                    },
+                    {
+                        "name": "Max Occupancy",
+                        "type": "number",
+                        "label": "Max Occupancy"
+                    },
+                    {
+                        "name": "Check In",
+                        "time": false,
+                        "type": "date",
+                        "label": "Check In"
+                    },
+                    {
+                        "name": "Check Out",
+                        "time": false,
+                        "type": "date",
+                        "label": "Check Out"
+                    },
+                    {
+                        "name": "contactID",
+                        "type": "text",
+                        "label": "contactID"
+                    },
+                    {
+                        "name": "Review Rating",
+                        "type": "number",
+                        "label": "Review Rating"
+                    },
+                    {
+                        "name": "Review Date",
+                        "time": false,
+                        "type": "date",
+                        "label": "Review Date"
+                    },
+                    {
+                        "name": "Review Responded",
+                        "type": "boolean",
+                        "label": "Review Responded"
+                    },
+                    {
+                        "name": "ReviewId",
+                        "type": "number",
+                        "label": "ReviewId"
+                    },
+                    {
+                        "name": "Public Review",
+                        "type": "text",
+                        "label": "Public Review",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Private Feedback",
+                        "type": "text",
+                        "label": "Private Feedback",
+                        "multiline": true
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": []
+    }
+}

@@ -1,0 +1,1047 @@
+{
+    "name": "Units loader",
+    "flow": [
+        {
+            "id": 1,
+            "module": "http:ActionSendData",
+            "version": 3,
+            "parameters": {
+                "handleErrors": true,
+                "useNewZLibDeCompress": true
+            },
+            "mapper": {
+                "url": "https://ihmvacations.trackhs.com/api/pms/units",
+                "serializeUrl": false,
+                "method": "get",
+                "headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json"
+                    },
+                    {
+                        "name": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "qs": [
+                    {
+                        "name": "page",
+                        "value": ""
+                    },
+                    {
+                        "name": "size",
+                        "value": ""
+                    },
+                    {
+                        "name": "sortColumn",
+                        "value": "name"
+                    },
+                    {
+                        "name": "sortDirection",
+                        "value": "asc"
+                    },
+                    {
+                        "name": "nodeId",
+                        "value": ""
+                    },
+                    {
+                        "name": "amenityId",
+                        "value": ""
+                    },
+                    {
+                        "name": "unitTypeId",
+                        "value": ""
+                    },
+                    {
+                        "name": "contentUpdatedSince",
+                        "value": ""
+                    },
+                    {
+                        "name": "search",
+                        "value": ""
+                    },
+                    {
+                        "name": "term",
+                        "value": ""
+                    },
+                    {
+                        "name": "unitCode",
+                        "value": ""
+                    },
+                    {
+                        "name": "shortName",
+                        "value": ""
+                    },
+                    {
+                        "name": "minBedrooms",
+                        "value": ""
+                    },
+                    {
+                        "name": "maxBedrooms",
+                        "value": ""
+                    },
+                    {
+                        "name": "bedrooms",
+                        "value": ""
+                    },
+                    {
+                        "name": "minBathrooms",
+                        "value": ""
+                    },
+                    {
+                        "name": "maxBathrooms",
+                        "value": ""
+                    },
+                    {
+                        "name": "bathrooms",
+                        "value": ""
+                    },
+                    {
+                        "name": "calendarId",
+                        "value": ""
+                    },
+                    {
+                        "name": "petsFriendly",
+                        "value": ""
+                    },
+                    {
+                        "name": "allowUnitRates",
+                        "value": ""
+                    },
+                    {
+                        "name": "computed",
+                        "value": ""
+                    },
+                    {
+                        "name": "inherited",
+                        "value": ""
+                    },
+                    {
+                        "name": "limited",
+                        "value": ""
+                    },
+                    {
+                        "name": "isBookable",
+                        "value": ""
+                    },
+                    {
+                        "name": "includeDescriptions",
+                        "value": ""
+                    },
+                    {
+                        "name": "isActive",
+                        "value": ""
+                    },
+                    {
+                        "name": "arrival",
+                        "value": ""
+                    },
+                    {
+                        "name": "departure",
+                        "value": ""
+                    },
+                    {
+                        "name": "roleId",
+                        "value": ""
+                    },
+                    {
+                        "name": "id",
+                        "value": ""
+                    },
+                    {
+                        "name": "unitStatus",
+                        "value": ""
+                    }
+                ],
+                "bodyType": "",
+                "parseResponse": true,
+                "authUser": "{{var.organization.user}}",
+                "authPass": "{{var.organization.password}}",
+                "timeout": "",
+                "shareCookies": false,
+                "ca": "",
+                "rejectUnauthorized": true,
+                "followRedirect": true,
+                "useQuerystring": false,
+                "gzip": true,
+                "useMtls": false,
+                "followAllRedirects": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "method": {
+                            "mode": "chose",
+                            "label": "GET"
+                        },
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null,
+                                null
+                            ]
+                        },
+                        "qs": {
+                            "mode": "chose",
+                            "items": [
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null
+                            ]
+                        },
+                        "bodyType": {
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "handleErrors",
+                        "type": "boolean",
+                        "label": "Evaluate all states as errors (except for 2xx and 3xx )",
+                        "required": true
+                    },
+                    {
+                        "name": "useNewZLibDeCompress",
+                        "type": "hidden"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "serializeUrl",
+                        "type": "boolean",
+                        "label": "Serialize URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "get",
+                                "head",
+                                "post",
+                                "put",
+                                "patch",
+                                "delete",
+                                "options"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "type": "array",
+                        "label": "Headers",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "label": "Name",
+                                "type": "text",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "label": "Value",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "qs",
+                        "type": "array",
+                        "label": "Query String",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "label": "Name",
+                                "type": "text",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "label": "Value",
+                                "type": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "bodyType",
+                        "type": "select",
+                        "label": "Body type",
+                        "validate": {
+                            "enum": [
+                                "raw",
+                                "x_www_form_urlencoded",
+                                "multipart_form_data"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "parseResponse",
+                        "type": "boolean",
+                        "label": "Parse response",
+                        "required": true
+                    },
+                    {
+                        "name": "authUser",
+                        "type": "text",
+                        "label": "User name"
+                    },
+                    {
+                        "name": "authPass",
+                        "type": "password",
+                        "label": "Password"
+                    },
+                    {
+                        "name": "timeout",
+                        "type": "uinteger",
+                        "label": "Timeout",
+                        "validate": {
+                            "max": 300,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "shareCookies",
+                        "type": "boolean",
+                        "label": "Share cookies with other HTTP modules",
+                        "required": true
+                    },
+                    {
+                        "name": "ca",
+                        "type": "cert",
+                        "label": "Self-signed certificate"
+                    },
+                    {
+                        "name": "rejectUnauthorized",
+                        "type": "boolean",
+                        "label": "Reject connections that are using unverified (self-signed) certificates",
+                        "required": true
+                    },
+                    {
+                        "name": "followRedirect",
+                        "type": "boolean",
+                        "label": "Follow redirect",
+                        "required": true
+                    },
+                    {
+                        "name": "useQuerystring",
+                        "type": "boolean",
+                        "label": "Disable serialization of multiple same query string keys as arrays",
+                        "required": true
+                    },
+                    {
+                        "name": "gzip",
+                        "type": "boolean",
+                        "label": "Request compressed content",
+                        "required": true
+                    },
+                    {
+                        "name": "useMtls",
+                        "type": "boolean",
+                        "label": "Use Mutual TLS",
+                        "required": true
+                    },
+                    {
+                        "name": "followAllRedirects",
+                        "type": "boolean",
+                        "label": "Follow all redirect",
+                        "required": true
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 4,
+            "module": "builtin:BasicFeeder",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "array": "{{1.data.`_embedded`.units}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 272,
+                    "y": 4
+                },
+                "restore": {
+                    "expect": {
+                        "array": {
+                            "mode": "edit"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "array",
+                        "type": "array",
+                        "label": "Array",
+                        "mode": "edit",
+                        "spec": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "airtable:upsertRecord",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 5264568
+            },
+            "mapper": {
+                "base": "appjWSHTWArRXWyn0",
+                "typecast": false,
+                "useColumnId": false,
+                "table": "tblFbUZQzBHyGGDB5",
+                "recordId": "",
+                "record": {
+                    "fldfhPEhdQXmzLe7l": "{{4.id}}",
+                    "fldKTIIxPaKXfkIBO": "{{4.unitCode}}",
+                    "fld4TUqZaAGl97KJy": "{{4.name}}",
+                    "fldg99a3VGksrq4J9": "{{4.shortName}}",
+                    "fld38LnQhyatSCrNz": "{{if(4.isActive; \"Active\"; \"Inactive\")}}",
+                    "fldxBtnDUr5k0BQAO": "{{4.nodeId}}",
+                    "fldP6U2lREy4wU8xY": "{{4.updatedAt}}",
+                    "fldgR0dm4n9NEbDTL": "{{4.streetAddress}}",
+                    "fldXcwDYLr3HTB4xD": "{{4.locality}}",
+                    "fld4EJeFIOrLUqN62": "{{4.region}}",
+                    "fld32i0pA7XFmr4Gt": "{{4.postal}}",
+                    "fldzryOIN2dUXsKNO": "{{4.country}}",
+                    "fldg8Gnu3kPpWBYea": "{{4.latitude}}",
+                    "fldFLjel8e2adLldu": "{{4.longitude}}",
+                    "fldOx38l89gRmNl6n": "{{4.timezone}}",
+                    "fldqjqnGQpCr4mklu": "{{4.maxOccupancy}}",
+                    "fldizYewLI2a9tz4g": "{{4.bedrooms}}",
+                    "fldfJ8jqbAZb29LK0": "{{4.fullBathrooms}}",
+                    "fldl3kmuGlTtymPjC": "{{4.halfBathrooms}}",
+                    "fldIQHpzhm7eq76wv": "{{4.area}}",
+                    "fldy2nsncQSauek4A": "{{4.checkinTime}}",
+                    "fldb3hp6CutOSKLQl": "{{4.checkoutTime}}",
+                    "fldmCoJTYIRiJxaYZ": "{{4.hasEarlyCheckin}}",
+                    "fldRFBtqT0JQCiLaA": "{{4.hasLateCheckout}}",
+                    "fld6tM8mZJadvEl8I": "{{4.petFriendly}}",
+                    "fldsVurDKiT2cxZUl": "{{4.maxPets}}",
+                    "fldPboiquFxVDSm4G": "{{4.eventsAllowed}}",
+                    "flddTy2nYWZ6lc20O": "{{4.smokingAllowed}}",
+                    "fldYRK0mOCEfxHeTp": "{{4.childrenAllowed}}",
+                    "fld7UPgEYxpi0Ndw0": "{{4.minimumAgeLimit}}",
+                    "fldzoaXTWSdseK15v": "{{4.shortDescription}}",
+                    "fldoTnSRNISInIWTu": "{{4.longDescription}}",
+                    "fldjbcyCAk6A45eso": "{{4.houseRules}}",
+                    "fldsCN2BZzIFUDSBC": "{{4.website}}",
+                    "fldHiGnzt0waGmfUj": "{{4.phone}}",
+                    "fld4RZKAL3PR1Mtb4": "{{4.amenities}}",
+                    "flde5Tvzh9eYIB1ew": "{{4.bedTypes}}",
+                    "fldp6NC8JLUlrtPqz": "{{4.rooms}}",
+                    "fld5uOCzCdmvSN1ui": "{{4.custom}}",
+                    "fldd6vM0apCl2Yzv6": "{{now}}",
+                    "fld52qkzjtLlKE83x": "Synced"
+                }
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "airtable IHM vacations reviewAutomation",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable2"
+                            }
+                        }
+                    },
+                    "expect": {
+                        "base": {
+                            "label": "UNITS"
+                        },
+                        "typecast": {
+                            "mode": "chose"
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        },
+                        "table": {
+                            "label": "Units"
+                        },
+                        "record": {
+                            "nested": {
+                                "fld38LnQhyatSCrNz": {
+                                    "mode": "edit"
+                                },
+                                "fldmCoJTYIRiJxaYZ": {
+                                    "mode": "chose"
+                                },
+                                "fldRFBtqT0JQCiLaA": {
+                                    "mode": "chose"
+                                },
+                                "fld6tM8mZJadvEl8I": {
+                                    "mode": "chose"
+                                },
+                                "fldPboiquFxVDSm4G": {
+                                    "mode": "chose"
+                                },
+                                "flddTy2nYWZ6lc20O": {
+                                    "mode": "chose"
+                                },
+                                "fldYRK0mOCEfxHeTp": {
+                                    "mode": "chose"
+                                },
+                                "fld52qkzjtLlKE83x": {
+                                    "mode": "edit"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "typecast",
+                        "type": "boolean",
+                        "label": "Smart links",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "recordId",
+                        "type": "text",
+                        "label": "Record ID"
+                    },
+                    {
+                        "name": "record",
+                        "type": "collection",
+                        "label": "Record",
+                        "spec": [
+                            {
+                                "name": "fldfhPEhdQXmzLe7l",
+                                "type": "number",
+                                "label": "Unit ID"
+                            },
+                            {
+                                "name": "fldKTIIxPaKXfkIBO",
+                                "type": "text",
+                                "label": "Unit Code"
+                            },
+                            {
+                                "name": "fld4TUqZaAGl97KJy",
+                                "type": "text",
+                                "label": "Name"
+                            },
+                            {
+                                "name": "fldg99a3VGksrq4J9",
+                                "type": "text",
+                                "label": "Short Name"
+                            },
+                            {
+                                "name": "fld38LnQhyatSCrNz",
+                                "type": "select",
+                                "label": "Status",
+                                "mode": "edit"
+                            },
+                            {
+                                "name": "fldxBtnDUr5k0BQAO",
+                                "type": "number",
+                                "label": "Node ID"
+                            },
+                            {
+                                "name": "fldP6U2lREy4wU8xY",
+                                "type": "date",
+                                "label": "Updated At",
+                                "time": true
+                            },
+                            {
+                                "name": "fldgR0dm4n9NEbDTL",
+                                "type": "text",
+                                "label": "Street Address"
+                            },
+                            {
+                                "name": "fldXcwDYLr3HTB4xD",
+                                "type": "text",
+                                "label": "City"
+                            },
+                            {
+                                "name": "fld4EJeFIOrLUqN62",
+                                "type": "text",
+                                "label": "State"
+                            },
+                            {
+                                "name": "fld32i0pA7XFmr4Gt",
+                                "type": "text",
+                                "label": "Postal Code"
+                            },
+                            {
+                                "name": "fldzryOIN2dUXsKNO",
+                                "type": "text",
+                                "label": "Country"
+                            },
+                            {
+                                "name": "fldg8Gnu3kPpWBYea",
+                                "type": "number",
+                                "label": "Latitude"
+                            },
+                            {
+                                "name": "fldFLjel8e2adLldu",
+                                "type": "number",
+                                "label": "Longitude"
+                            },
+                            {
+                                "name": "fldOx38l89gRmNl6n",
+                                "type": "text",
+                                "label": "Timezone"
+                            },
+                            {
+                                "name": "fldqjqnGQpCr4mklu",
+                                "type": "number",
+                                "label": "Max Occupancy"
+                            },
+                            {
+                                "name": "fldizYewLI2a9tz4g",
+                                "type": "number",
+                                "label": "Bedrooms"
+                            },
+                            {
+                                "name": "fldfJ8jqbAZb29LK0",
+                                "type": "number",
+                                "label": "Full Bathrooms"
+                            },
+                            {
+                                "name": "fldl3kmuGlTtymPjC",
+                                "type": "number",
+                                "label": "Half Bathrooms"
+                            },
+                            {
+                                "name": "fldIQHpzhm7eq76wv",
+                                "type": "number",
+                                "label": "Area"
+                            },
+                            {
+                                "name": "fldy2nsncQSauek4A",
+                                "type": "text",
+                                "label": "Checkin Time"
+                            },
+                            {
+                                "name": "fldb3hp6CutOSKLQl",
+                                "type": "text",
+                                "label": "Checkout Time"
+                            },
+                            {
+                                "name": "fldmCoJTYIRiJxaYZ",
+                                "type": "boolean",
+                                "label": "Early Checkin Available"
+                            },
+                            {
+                                "name": "fldRFBtqT0JQCiLaA",
+                                "type": "boolean",
+                                "label": "Late Checkout Available"
+                            },
+                            {
+                                "name": "fld6tM8mZJadvEl8I",
+                                "type": "boolean",
+                                "label": "Pets Friendly"
+                            },
+                            {
+                                "name": "fldsVurDKiT2cxZUl",
+                                "type": "number",
+                                "label": "Max Pets"
+                            },
+                            {
+                                "name": "fldPboiquFxVDSm4G",
+                                "type": "boolean",
+                                "label": "Events Allowed"
+                            },
+                            {
+                                "name": "flddTy2nYWZ6lc20O",
+                                "type": "boolean",
+                                "label": "Smoking Allowed"
+                            },
+                            {
+                                "name": "fldYRK0mOCEfxHeTp",
+                                "type": "boolean",
+                                "label": "Children Allowed"
+                            },
+                            {
+                                "name": "fld7UPgEYxpi0Ndw0",
+                                "type": "number",
+                                "label": "Minimum Age Limit"
+                            },
+                            {
+                                "name": "fldzoaXTWSdseK15v",
+                                "type": "text",
+                                "label": "Short Description"
+                            },
+                            {
+                                "name": "fldoTnSRNISInIWTu",
+                                "type": "text",
+                                "label": "Long Description"
+                            },
+                            {
+                                "name": "fldjbcyCAk6A45eso",
+                                "type": "text",
+                                "label": "House Rules"
+                            },
+                            {
+                                "name": "fldsCN2BZzIFUDSBC",
+                                "type": "text",
+                                "label": "Website"
+                            },
+                            {
+                                "name": "fldHiGnzt0waGmfUj",
+                                "type": "text",
+                                "label": "Phone"
+                            },
+                            {
+                                "name": "fld4RZKAL3PR1Mtb4",
+                                "type": "text",
+                                "label": "Amenities JSON"
+                            },
+                            {
+                                "name": "flde5Tvzh9eYIB1ew",
+                                "type": "text",
+                                "label": "Bed Types JSON"
+                            },
+                            {
+                                "name": "fldp6NC8JLUlrtPqz",
+                                "type": "text",
+                                "label": "Rooms JSON"
+                            },
+                            {
+                                "name": "fld5uOCzCdmvSN1ui",
+                                "type": "text",
+                                "label": "Custom Fields JSON"
+                            },
+                            {
+                                "name": "fldd6vM0apCl2Yzv6",
+                                "type": "date",
+                                "label": "Last Sync",
+                                "time": true
+                            },
+                            {
+                                "name": "fld52qkzjtLlKE83x",
+                                "type": "select",
+                                "label": "Sync Status",
+                                "mode": "edit"
+                            }
+                        ]
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "Unit ID",
+                        "label": "Unit ID",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Unit Code",
+                        "label": "Unit Code",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Name",
+                        "label": "Name",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Short Name",
+                        "label": "Short Name",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Status",
+                        "label": "Status",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Node ID",
+                        "label": "Node ID",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Updated At",
+                        "label": "Updated At",
+                        "type": "date",
+                        "time": true
+                    },
+                    {
+                        "name": "Street Address",
+                        "label": "Street Address",
+                        "type": "text"
+                    },
+                    {
+                        "name": "City",
+                        "label": "City",
+                        "type": "text"
+                    },
+                    {
+                        "name": "State",
+                        "label": "State",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Postal Code",
+                        "label": "Postal Code",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Country",
+                        "label": "Country",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Latitude",
+                        "label": "Latitude",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Longitude",
+                        "label": "Longitude",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Timezone",
+                        "label": "Timezone",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Max Occupancy",
+                        "label": "Max Occupancy",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Bedrooms",
+                        "label": "Bedrooms",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Full Bathrooms",
+                        "label": "Full Bathrooms",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Half Bathrooms",
+                        "label": "Half Bathrooms",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Area",
+                        "label": "Area",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Checkin Time",
+                        "label": "Checkin Time",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Checkout Time",
+                        "label": "Checkout Time",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Early Checkin Available",
+                        "label": "Early Checkin Available",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "Late Checkout Available",
+                        "label": "Late Checkout Available",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "Pets Friendly",
+                        "label": "Pets Friendly",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "Max Pets",
+                        "label": "Max Pets",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Events Allowed",
+                        "label": "Events Allowed",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "Smoking Allowed",
+                        "label": "Smoking Allowed",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "Children Allowed",
+                        "label": "Children Allowed",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "Minimum Age Limit",
+                        "label": "Minimum Age Limit",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Short Description",
+                        "label": "Short Description",
+                        "type": "text",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Long Description",
+                        "label": "Long Description",
+                        "type": "text",
+                        "multiline": true
+                    },
+                    {
+                        "name": "House Rules",
+                        "label": "House Rules",
+                        "type": "text",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Website",
+                        "label": "Website",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Phone",
+                        "label": "Phone",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Amenities JSON",
+                        "label": "Amenities JSON",
+                        "type": "text",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Bed Types JSON",
+                        "label": "Bed Types JSON",
+                        "type": "text",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Rooms JSON",
+                        "label": "Rooms JSON",
+                        "type": "text",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Custom Fields JSON",
+                        "label": "Custom Fields JSON",
+                        "type": "text",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Last Sync",
+                        "label": "Last Sync",
+                        "type": "date",
+                        "time": true
+                    },
+                    {
+                        "name": "Sync Status",
+                        "label": "Sync Status",
+                        "type": "text"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": []
+    }
+}

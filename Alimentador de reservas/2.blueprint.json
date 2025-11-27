@@ -1,0 +1,1601 @@
+{
+    "name": "2",
+    "flow": [
+        {
+            "id": 38,
+            "module": "datastore:GetRecord",
+            "version": 1,
+            "parameters": {
+                "datastore": 48140
+            },
+            "mapper": {
+                "key": "lastSync",
+                "returnWrapped": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 300,
+                    "name": "ds:GetCheckpoint"
+                },
+                "restore": {
+                    "parameters": {
+                        "datastore": {
+                            "label": "ReviewsCheckpoint"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "datastore",
+                        "type": "datastore",
+                        "label": "Data store",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "key",
+                        "type": "text",
+                        "label": "Key",
+                        "required": true
+                    },
+                    {
+                        "name": "returnWrapped",
+                        "type": "boolean",
+                        "label": "Return Wrapped Output",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "help": "",
+                        "name": "value",
+                        "type": "text",
+                        "label": null,
+                        "default": null,
+                        "required": false,
+                        "multiline": false
+                    }
+                ]
+            },
+            "onerror": [
+                {
+                    "id": 39,
+                    "module": "builtin:Ignore",
+                    "version": 1,
+                    "metadata": {
+                        "designer": {
+                            "x": 300,
+                            "y": 600
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "id": 29,
+            "module": "util:SetVariables",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "scope": "roundtrip",
+                "variables": [
+                    {
+                        "name": "attempts",
+                        "value": "1"
+                    },
+                    {
+                        "name": "VAR_customer_domain",
+                        "value": "https://ihmvacations.trackhs.com"
+                    },
+                    {
+                        "name": "updatedSince",
+                        "value": "{{ifempty(38.value; formatDate(addDays(now; -7); \"YYYY-MM-DD[T]HH:mm:ssZ\"))}}"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 150,
+                    "name": "var:InitGlobals"
+                },
+                "restore": {
+                    "expect": {
+                        "scope": {
+                            "label": "One cycle"
+                        },
+                        "variables": {
+                            "items": [
+                                null,
+                                null,
+                                null
+                            ]
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "variables",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Variable name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "any",
+                                "label": "Variable value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Variables"
+                    },
+                    {
+                        "name": "scope",
+                        "type": "select",
+                        "label": "Variable lifetime",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "roundtrip",
+                                "execution"
+                            ]
+                        }
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "attempts",
+                        "type": "any",
+                        "label": "attempts"
+                    },
+                    {
+                        "name": "VAR_customer_domain",
+                        "type": "any",
+                        "label": "VAR_customer_domain"
+                    },
+                    {
+                        "name": "updatedSince",
+                        "type": "any",
+                        "label": "updatedSince"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 5,
+            "module": "http:ActionSendData",
+            "version": 3,
+            "parameters": {
+                "handleErrors": true,
+                "useNewZLibDeCompress": true
+            },
+            "mapper": {
+                "ca": "",
+                "qs": [
+                    {
+                        "name": "page",
+                        "value": "1"
+                    },
+                    {
+                        "name": "size",
+                        "value": "150"
+                    },
+                    {
+                        "name": "sortDirection",
+                        "value": "desc"
+                    },
+                    {
+                        "name": "sortColumn",
+                        "value": "id"
+                    }
+                ],
+                "url": "{{29.VAR_customer_domain}}/api/channel-management/channel/reviews",
+                "gzip": true,
+                "method": "get",
+                "headers": [
+                    {
+                        "name": "Accept",
+                        "value": "application/json"
+                    }
+                ],
+                "timeout": "",
+                "useMtls": false,
+                "authPass": "{{var.organization.password}}",
+                "authUser": "{{var.organization.user}}",
+                "bodyType": "",
+                "serializeUrl": false,
+                "shareCookies": false,
+                "parseResponse": true,
+                "followRedirect": true,
+                "useQuerystring": false,
+                "followAllRedirects": false,
+                "rejectUnauthorized": true
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 150,
+                    "name": "api:GetReviews"
+                },
+                "restore": {
+                    "expect": {
+                        "qs": {
+                            "mode": "chose",
+                            "items": [
+                                null,
+                                null,
+                                null,
+                                null
+                            ]
+                        },
+                        "method": {
+                            "mode": "chose",
+                            "label": "GET"
+                        },
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null
+                            ]
+                        },
+                        "bodyType": {
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "handleErrors",
+                        "type": "boolean",
+                        "label": "Evaluate all states as errors (except for 2xx and 3xx )",
+                        "required": true
+                    },
+                    {
+                        "name": "useNewZLibDeCompress",
+                        "type": "hidden"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    },
+                    {
+                        "name": "serializeUrl",
+                        "type": "boolean",
+                        "label": "Serialize URL",
+                        "required": true
+                    },
+                    {
+                        "name": "method",
+                        "type": "select",
+                        "label": "Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "get",
+                                "head",
+                                "post",
+                                "put",
+                                "patch",
+                                "delete",
+                                "options"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "headers",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Headers"
+                    },
+                    {
+                        "name": "qs",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Query String"
+                    },
+                    {
+                        "name": "bodyType",
+                        "type": "select",
+                        "label": "Body type",
+                        "validate": {
+                            "enum": [
+                                "raw",
+                                "x_www_form_urlencoded",
+                                "multipart_form_data"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "parseResponse",
+                        "type": "boolean",
+                        "label": "Parse response",
+                        "required": true
+                    },
+                    {
+                        "name": "authUser",
+                        "type": "text",
+                        "label": "User name"
+                    },
+                    {
+                        "name": "authPass",
+                        "type": "password",
+                        "label": "Password"
+                    },
+                    {
+                        "name": "timeout",
+                        "type": "uinteger",
+                        "label": "Timeout",
+                        "validate": {
+                            "max": 300,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "shareCookies",
+                        "type": "boolean",
+                        "label": "Share cookies with other HTTP modules",
+                        "required": true
+                    },
+                    {
+                        "name": "ca",
+                        "type": "cert",
+                        "label": "Self-signed certificate"
+                    },
+                    {
+                        "name": "rejectUnauthorized",
+                        "type": "boolean",
+                        "label": "Reject connections that are using unverified (self-signed) certificates",
+                        "required": true
+                    },
+                    {
+                        "name": "followRedirect",
+                        "type": "boolean",
+                        "label": "Follow redirect",
+                        "required": true
+                    },
+                    {
+                        "name": "useQuerystring",
+                        "type": "boolean",
+                        "label": "Disable serialization of multiple same query string keys as arrays",
+                        "required": true
+                    },
+                    {
+                        "name": "gzip",
+                        "type": "boolean",
+                        "label": "Request compressed content",
+                        "required": true
+                    },
+                    {
+                        "name": "useMtls",
+                        "type": "boolean",
+                        "label": "Use Mutual TLS",
+                        "required": true
+                    },
+                    {
+                        "name": "followAllRedirects",
+                        "type": "boolean",
+                        "label": "Follow all redirect",
+                        "required": true
+                    }
+                ],
+                "advanced": true
+            },
+            "onerror": [
+                {
+                    "id": 28,
+                    "module": "builtin:Break",
+                    "version": 1,
+                    "parameters": {},
+                    "filter": {
+                        "name": "Errores temporales",
+                        "conditions": [
+                            [
+                                {
+                                    "a": " {{5.statusCode}}",
+                                    "b": "500",
+                                    "o": "number:greaterorequal"
+                                }
+                            ],
+                            [
+                                {
+                                    "a": "{{5.statusCode}}",
+                                    "b": "429",
+                                    "o": "text:equal"
+                                }
+                            ]
+                        ]
+                    },
+                    "mapper": {
+                        "count": "{{29.attempts}}",
+                        "retry": true,
+                        "interval": "{{if(29.attempts = 1; 1; if(29.attempts = 2; 2; if(29.attempts = 3; 4; 8)))}}"
+                    },
+                    "metadata": {
+                        "designer": {
+                            "x": 900,
+                            "y": 300,
+                            "name": "onerr:ExponentialRetry"
+                        },
+                        "restore": {
+                            "expect": {
+                                "retry": {
+                                    "mode": "chose"
+                                }
+                            }
+                        },
+                        "expect": [
+                            {
+                                "name": "retry",
+                                "type": "boolean",
+                                "label": "Automatically complete execution",
+                                "required": true
+                            },
+                            {
+                                "name": "count",
+                                "type": "uinteger",
+                                "label": "Number of attempts",
+                                "required": true,
+                                "validate": {
+                                    "max": 10000,
+                                    "min": 1
+                                }
+                            },
+                            {
+                                "name": "interval",
+                                "type": "uinteger",
+                                "label": "Interval between attempts",
+                                "required": true,
+                                "validate": {
+                                    "max": 44640,
+                                    "min": 1
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "module": "json:ParseJSON",
+            "version": 1,
+            "parameters": {
+                "type": 190415
+            },
+            "mapper": {
+                "json": "{{5.data}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0,
+                    "name": "json:ParseReviews"
+                },
+                "restore": {
+                    "parameters": {
+                        "type": {
+                            "label": "My data structure"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "json",
+                        "type": "text",
+                        "label": "JSON string",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "help": "",
+                        "name": "_embedded",
+                        "spec": [
+                            {
+                                "help": "",
+                                "name": "channel_reviews",
+                                "spec": {
+                                    "spec": [
+                                        {
+                                            "help": "",
+                                            "name": "id",
+                                            "type": "number",
+                                            "label": null,
+                                            "default": null,
+                                            "required": false
+                                        },
+                                        {
+                                            "help": "",
+                                            "name": "overAllRating",
+                                            "type": "number",
+                                            "label": null,
+                                            "default": null,
+                                            "required": false
+                                        },
+                                        {
+                                            "help": "",
+                                            "name": "hostResponseExpiresAt",
+                                            "type": "text",
+                                            "label": null,
+                                            "default": null,
+                                            "required": false,
+                                            "multiline": false
+                                        },
+                                        {
+                                            "help": "",
+                                            "name": "hostReviewStatus",
+                                            "type": "text",
+                                            "label": null,
+                                            "default": null,
+                                            "required": false,
+                                            "multiline": false
+                                        },
+                                        {
+                                            "help": "",
+                                            "name": "hostResponseStatus",
+                                            "type": "text",
+                                            "label": null,
+                                            "default": null,
+                                            "required": false,
+                                            "multiline": false
+                                        },
+                                        {
+                                            "help": "",
+                                            "name": "channelReviews",
+                                            "spec": {
+                                                "spec": [
+                                                    {
+                                                        "help": "",
+                                                        "name": "id",
+                                                        "type": "number",
+                                                        "label": null,
+                                                        "default": null,
+                                                        "required": false
+                                                    },
+                                                    {
+                                                        "help": "",
+                                                        "name": "reviewerRole",
+                                                        "type": "text",
+                                                        "label": null,
+                                                        "default": null,
+                                                        "required": false,
+                                                        "multiline": false
+                                                    },
+                                                    {
+                                                        "help": "",
+                                                        "name": "publicReview",
+                                                        "type": "text",
+                                                        "label": null,
+                                                        "default": null,
+                                                        "required": false,
+                                                        "multiline": false
+                                                    },
+                                                    {
+                                                        "help": "",
+                                                        "name": "privateFeedback",
+                                                        "type": "text",
+                                                        "label": null,
+                                                        "default": null,
+                                                        "required": false,
+                                                        "multiline": false
+                                                    },
+                                                    {
+                                                        "help": "",
+                                                        "name": "reviewStatus",
+                                                        "type": "text",
+                                                        "label": null,
+                                                        "default": null,
+                                                        "required": false,
+                                                        "multiline": false
+                                                    },
+                                                    {
+                                                        "help": "",
+                                                        "name": "reviewCreatedAt",
+                                                        "type": "text",
+                                                        "label": null,
+                                                        "default": null,
+                                                        "required": false,
+                                                        "multiline": false
+                                                    },
+                                                    {
+                                                        "help": "",
+                                                        "name": "reviewerSubmittedAt",
+                                                        "type": "text",
+                                                        "label": null,
+                                                        "default": null,
+                                                        "required": false,
+                                                        "multiline": false
+                                                    },
+                                                    {
+                                                        "help": "",
+                                                        "name": "reviewRatings",
+                                                        "spec": {
+                                                            "spec": [
+                                                                {
+                                                                    "help": "",
+                                                                    "name": "id",
+                                                                    "type": "number",
+                                                                    "label": null,
+                                                                    "default": null,
+                                                                    "required": false
+                                                                },
+                                                                {
+                                                                    "help": "",
+                                                                    "name": "category",
+                                                                    "type": "text",
+                                                                    "label": null,
+                                                                    "default": null,
+                                                                    "required": false,
+                                                                    "multiline": false
+                                                                },
+                                                                {
+                                                                    "help": "",
+                                                                    "name": "rating",
+                                                                    "type": "number",
+                                                                    "label": null,
+                                                                    "default": null,
+                                                                    "required": false
+                                                                }
+                                                            ],
+                                                            "type": "collection",
+                                                            "required": false
+                                                        },
+                                                        "type": "array",
+                                                        "label": null,
+                                                        "required": false
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "required": false
+                                            },
+                                            "type": "array",
+                                            "label": null,
+                                            "required": false
+                                        },
+                                        {
+                                            "help": "",
+                                            "name": "channelReviewResponse",
+                                            "spec": {
+                                                "type": "text",
+                                                "default": null,
+                                                "required": false,
+                                                "multiline": false
+                                            },
+                                            "type": "array",
+                                            "label": null,
+                                            "required": false
+                                        },
+                                        {
+                                            "help": "",
+                                            "name": "updatedAt",
+                                            "type": "text",
+                                            "label": null,
+                                            "default": null,
+                                            "required": false,
+                                            "multiline": false
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "required": false
+                                },
+                                "type": "array",
+                                "label": "Channel reviews",
+                                "required": false
+                            }
+                        ],
+                        "type": "collection",
+                        "label": " embedded",
+                        "required": false
+                    },
+                    {
+                        "help": "",
+                        "name": "page",
+                        "type": "number",
+                        "label": "Page",
+                        "default": null,
+                        "required": false
+                    },
+                    {
+                        "help": "",
+                        "name": "page_count",
+                        "type": "number",
+                        "label": "Page count",
+                        "default": null,
+                        "required": false
+                    },
+                    {
+                        "help": "",
+                        "name": "page_size",
+                        "type": "number",
+                        "label": "Page size",
+                        "default": null,
+                        "required": false
+                    },
+                    {
+                        "help": "",
+                        "name": "total_items",
+                        "type": "number",
+                        "label": "Total items",
+                        "default": null,
+                        "required": false
+                    },
+                    {
+                        "help": "",
+                        "name": "_links",
+                        "spec": [
+                            {
+                                "help": "",
+                                "name": "self",
+                                "spec": [
+                                    {
+                                        "help": "",
+                                        "name": "href",
+                                        "type": "text",
+                                        "label": "Href",
+                                        "default": null,
+                                        "required": false,
+                                        "multiline": false
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Self",
+                                "required": false
+                            },
+                            {
+                                "help": "",
+                                "name": "first",
+                                "spec": [
+                                    {
+                                        "help": "",
+                                        "name": "href",
+                                        "type": "text",
+                                        "label": "Href",
+                                        "default": null,
+                                        "required": false,
+                                        "multiline": false
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "First",
+                                "required": false
+                            },
+                            {
+                                "help": "",
+                                "name": "last",
+                                "spec": [
+                                    {
+                                        "help": "",
+                                        "name": "href",
+                                        "type": "text",
+                                        "label": "Href",
+                                        "default": null,
+                                        "required": false,
+                                        "multiline": false
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Last",
+                                "required": false
+                            },
+                            {
+                                "help": "",
+                                "name": "next",
+                                "spec": [
+                                    {
+                                        "help": "",
+                                        "name": "href",
+                                        "type": "text",
+                                        "label": "Href",
+                                        "default": null,
+                                        "required": false,
+                                        "multiline": false
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Next",
+                                "required": false
+                            },
+                            {
+                                "help": "",
+                                "name": "prev",
+                                "type": "text",
+                                "label": "Prev",
+                                "default": null,
+                                "required": false,
+                                "multiline": false
+                            }
+                        ],
+                        "type": "collection",
+                        "label": " links",
+                        "required": false
+                    }
+                ]
+            }
+        },
+        {
+            "id": 9,
+            "module": "builtin:BasicFeeder",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "array": "{{8.`_embedded`.channel_reviews}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1200,
+                    "y": 0,
+                    "name": "feed:Reviews"
+                },
+                "restore": {
+                    "expect": {
+                        "array": {
+                            "mode": "edit"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "array",
+                        "spec": [],
+                        "type": "array",
+                        "label": "Array"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 15,
+            "module": "builtin:BasicFeeder",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "array": "{{9.channelReviews}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1500,
+                    "y": 0,
+                    "name": "feed:Subreviews"
+                },
+                "restore": {
+                    "expect": {
+                        "array": {
+                            "mode": "edit"
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "mode": "edit",
+                        "name": "array",
+                        "spec": [],
+                        "type": "array",
+                        "label": "Array"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 51,
+            "module": "airtable:ActionSearchRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 5264568
+            },
+            "mapper": {
+                "base": "appdQR8QQ3pY5fmSX",
+                "view": "viwMrp1rS3t7zBk0p",
+                "table": "tblegthm1sxR8Mb1t",
+                "fields": [
+                    "Booking ID"
+                ],
+                "formula": "{Booking ID} = {{9.reservationId}}",
+                "maxRecords": "1",
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 1800,
+                    "y": 0,
+                    "name": "at:FindReviewByID"
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "mode": "chose",
+                            "label": "IHS Reviews System"
+                        },
+                        "sort": {
+                            "mode": "chose"
+                        },
+                        "view": {
+                            "mode": "chose",
+                            "label": "Grid view"
+                        },
+                        "table": {
+                            "mode": "chose",
+                            "label": "Bookings"
+                        },
+                        "fields": {
+                            "mode": "chose",
+                            "label": [
+                                "Booking ID"
+                            ]
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable2"
+                            },
+                            "label": "airtable IHM vacations reviewAutomation"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "formula",
+                        "type": "text",
+                        "label": "Formula"
+                    },
+                    {
+                        "name": "maxRecords",
+                        "type": "integer",
+                        "label": "Limit"
+                    },
+                    {
+                        "name": "sort",
+                        "spec": [
+                            {
+                                "name": "field",
+                                "type": "select",
+                                "label": "Field",
+                                "dynamic": true,
+                                "options": []
+                            },
+                            {
+                                "name": "direction",
+                                "type": "select",
+                                "label": "Direction",
+                                "options": [
+                                    {
+                                        "label": "Descending",
+                                        "value": "desc"
+                                    },
+                                    {
+                                        "label": "Ascending",
+                                        "value": "asc"
+                                    }
+                                ]
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Sort"
+                    },
+                    {
+                        "name": "view",
+                        "type": "select",
+                        "label": "View"
+                    },
+                    {
+                        "name": "fields",
+                        "type": "select",
+                        "label": "Output Fields",
+                        "multiple": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "Booking ID",
+                        "type": "number",
+                        "label": "Booking ID"
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 53,
+            "module": "airtable:ActionUpdateRecords",
+            "version": 3,
+            "parameters": {
+                "__IMTCONN__": 5264568
+            },
+            "filter": {
+                "name": "Solo actualizar si se encuentra el registro",
+                "conditions": [
+                    [
+                        {
+                            "a": "{{51.id}}",
+                            "b": "",
+                            "o": "text:notequal"
+                        }
+                    ]
+                ]
+            },
+            "mapper": {
+                "id": "{{51.id}}",
+                "base": "appdQR8QQ3pY5fmSX",
+                "table": "tblegthm1sxR8Mb1t",
+                "record": {
+                    "flddJdnbR4EWVrVYH": "{{9.overAllRating}}",
+                    "fldHI4kWvjvGw5vqd": "{{ifempty(15.reviewerSubmittedAt; 15.reviewCreatedAt)}}",
+                    "fldxXABNa0OQl4uJY": "{{if(9.hostReviewStatus = \"Responded\"; true; false)}}",
+                    "fldXKQUvQ7X39PCUC": "{{15.id}}",
+                    "fldz6ZlpnNBaiY5Cr": "{{15.publicReview}}",
+                    "fldNZi4bmk8VeBSEu": "{{15.privateFeedback}}"
+                },
+                "typecast": false,
+                "useColumnId": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 2100,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "base": {
+                            "label": "IHS Reviews System"
+                        },
+                        "table": {
+                            "label": "Bookings"
+                        },
+                        "record": {
+                            "nested": {
+                                "fldjcJVvpe1aD3rPP": {
+                                    "mode": "chose"
+                                },
+                                "fldxXABNa0OQl4uJY": {
+                                    "mode": "chose"
+                                }
+                            }
+                        },
+                        "typecast": {
+                            "mode": "chose"
+                        },
+                        "useColumnId": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "airtable2"
+                            },
+                            "label": "airtable IHM vacations reviewAutomation"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:airtable3,airtable2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "base",
+                        "type": "select",
+                        "label": "Base",
+                        "required": true
+                    },
+                    {
+                        "name": "typecast",
+                        "type": "boolean",
+                        "label": "Smart links",
+                        "required": true
+                    },
+                    {
+                        "name": "useColumnId",
+                        "type": "boolean",
+                        "label": "Use Column ID",
+                        "required": true
+                    },
+                    {
+                        "name": "table",
+                        "type": "select",
+                        "label": "Table",
+                        "required": true
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "Record ID",
+                        "required": true
+                    },
+                    {
+                        "name": "record",
+                        "spec": [
+                            {
+                                "name": "fldmWvtVx45LiqfGw",
+                                "type": "number",
+                                "label": "Booking ID"
+                            },
+                            {
+                                "name": "fldv62n4AbKrOvtYM",
+                                "type": "number",
+                                "label": "Folio ID"
+                            },
+                            {
+                                "name": "fldtuJDYxVrujb4M7",
+                                "type": "number",
+                                "label": "Property ID"
+                            },
+                            {
+                                "name": "fldS49uuF2RdKXjHo",
+                                "time": false,
+                                "type": "date",
+                                "label": "Arrival Date"
+                            },
+                            {
+                                "name": "fldu4ePVzIrRpPyqI",
+                                "time": false,
+                                "type": "date",
+                                "label": "Departure Date"
+                            },
+                            {
+                                "name": "fldZMJQgZ0zxpsigw",
+                                "type": "number",
+                                "label": "Nights"
+                            },
+                            {
+                                "name": "fldCT4jbp6O6gA7DI",
+                                "time": false,
+                                "type": "date",
+                                "label": "Booked At"
+                            },
+                            {
+                                "name": "fldUMoHwV8HFClSiY",
+                                "time": false,
+                                "type": "date",
+                                "label": "Created At"
+                            },
+                            {
+                                "name": "fldu3oGk7y0PpVS5y",
+                                "type": "text",
+                                "label": "Booking Status"
+                            },
+                            {
+                                "name": "fldAMYkGr67Lrw94w",
+                                "type": "text",
+                                "label": "Currency"
+                            },
+                            {
+                                "name": "fldDsjAaiwFwKfOOi",
+                                "type": "number",
+                                "label": "Total Amount"
+                            },
+                            {
+                                "name": "fldggQEb8UyXeuH7H",
+                                "type": "number",
+                                "label": "Current Balance"
+                            },
+                            {
+                                "name": "fldhOipHSFXXUH4WJ",
+                                "type": "number",
+                                "label": "Owner Revenue"
+                            },
+                            {
+                                "name": "fldsZ8uY6jJvg640g",
+                                "type": "text",
+                                "label": "Guest First Name"
+                            },
+                            {
+                                "name": "fld8j5nLffQdiDdzW",
+                                "type": "text",
+                                "label": "Guest Last Name"
+                            },
+                            {
+                                "name": "fld19qnPltSyDV0gW",
+                                "type": "text",
+                                "label": "Guest Email"
+                            },
+                            {
+                                "name": "fldMnpZI5evmBg6MI",
+                                "type": "text",
+                                "label": "Guest Phone"
+                            },
+                            {
+                                "name": "fld12aoFyMYj61f4R",
+                                "type": "text",
+                                "label": "Guest Country"
+                            },
+                            {
+                                "name": "fldPcseBEQUo3KK6w",
+                                "type": "text",
+                                "label": "Region"
+                            },
+                            {
+                                "name": "fldL3DOQF9RR42IbQ",
+                                "type": "text",
+                                "label": "Locality"
+                            },
+                            {
+                                "name": "fldjcJVvpe1aD3rPP",
+                                "type": "boolean",
+                                "label": "Is VIP Guest"
+                            },
+                            {
+                                "name": "fldR8TnmuCZSKjvxV",
+                                "type": "text",
+                                "label": "Property Name"
+                            },
+                            {
+                                "name": "fldRxX8srwup5ClC0",
+                                "type": "text",
+                                "label": "Property City"
+                            },
+                            {
+                                "name": "fldEbdEFicXgcTqbs",
+                                "type": "number",
+                                "label": "Property Bedrooms"
+                            },
+                            {
+                                "name": "fldmbo7wb8ijAXyPy",
+                                "type": "number",
+                                "label": "Max Occupancy"
+                            },
+                            {
+                                "name": "fldcHMoKEhQW8Rugb",
+                                "time": false,
+                                "type": "date",
+                                "label": "Check In"
+                            },
+                            {
+                                "name": "fldw5wBgaDcrq9cPf",
+                                "time": false,
+                                "type": "date",
+                                "label": "Check Out"
+                            },
+                            {
+                                "name": "fldeuvCiIdvOyf6j7",
+                                "type": "text",
+                                "label": "contactID"
+                            },
+                            {
+                                "name": "flddJdnbR4EWVrVYH",
+                                "type": "number",
+                                "label": "Review Rating"
+                            },
+                            {
+                                "name": "fldHI4kWvjvGw5vqd",
+                                "time": false,
+                                "type": "date",
+                                "label": "Review Date"
+                            },
+                            {
+                                "name": "fldxXABNa0OQl4uJY",
+                                "type": "boolean",
+                                "label": "Review Responded"
+                            },
+                            {
+                                "name": "fldXKQUvQ7X39PCUC",
+                                "type": "number",
+                                "label": "ReviewId"
+                            },
+                            {
+                                "name": "fldz6ZlpnNBaiY5Cr",
+                                "type": "text",
+                                "label": "Public Review"
+                            },
+                            {
+                                "name": "fldNZi4bmk8VeBSEu",
+                                "type": "text",
+                                "label": "Private Feedback"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Record"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "createdTime",
+                        "type": "date",
+                        "label": "Created Time"
+                    },
+                    {
+                        "name": "Booking ID",
+                        "type": "number",
+                        "label": "Booking ID"
+                    },
+                    {
+                        "name": "Folio ID",
+                        "type": "number",
+                        "label": "Folio ID"
+                    },
+                    {
+                        "name": "Property ID",
+                        "type": "number",
+                        "label": "Property ID"
+                    },
+                    {
+                        "name": "Arrival Date",
+                        "time": false,
+                        "type": "date",
+                        "label": "Arrival Date"
+                    },
+                    {
+                        "name": "Departure Date",
+                        "time": false,
+                        "type": "date",
+                        "label": "Departure Date"
+                    },
+                    {
+                        "name": "Nights",
+                        "type": "number",
+                        "label": "Nights"
+                    },
+                    {
+                        "name": "Booked At",
+                        "time": false,
+                        "type": "date",
+                        "label": "Booked At"
+                    },
+                    {
+                        "name": "Created At",
+                        "time": false,
+                        "type": "date",
+                        "label": "Created At"
+                    },
+                    {
+                        "name": "Booking Status",
+                        "type": "text",
+                        "label": "Booking Status"
+                    },
+                    {
+                        "name": "Currency",
+                        "type": "text",
+                        "label": "Currency"
+                    },
+                    {
+                        "name": "Total Amount",
+                        "type": "number",
+                        "label": "Total Amount"
+                    },
+                    {
+                        "name": "Current Balance",
+                        "type": "number",
+                        "label": "Current Balance"
+                    },
+                    {
+                        "name": "Owner Revenue",
+                        "type": "number",
+                        "label": "Owner Revenue"
+                    },
+                    {
+                        "name": "Guest First Name",
+                        "type": "text",
+                        "label": "Guest First Name"
+                    },
+                    {
+                        "name": "Guest Last Name",
+                        "type": "text",
+                        "label": "Guest Last Name"
+                    },
+                    {
+                        "name": "Guest Email",
+                        "type": "text",
+                        "label": "Guest Email"
+                    },
+                    {
+                        "name": "Guest Phone",
+                        "type": "text",
+                        "label": "Guest Phone"
+                    },
+                    {
+                        "name": "Guest Country",
+                        "type": "text",
+                        "label": "Guest Country"
+                    },
+                    {
+                        "name": "Region",
+                        "type": "text",
+                        "label": "Region"
+                    },
+                    {
+                        "name": "Locality",
+                        "type": "text",
+                        "label": "Locality"
+                    },
+                    {
+                        "name": "Is VIP Guest",
+                        "type": "boolean",
+                        "label": "Is VIP Guest"
+                    },
+                    {
+                        "name": "Property Name",
+                        "type": "text",
+                        "label": "Property Name"
+                    },
+                    {
+                        "name": "Property City",
+                        "type": "text",
+                        "label": "Property City"
+                    },
+                    {
+                        "name": "Property Bedrooms",
+                        "type": "number",
+                        "label": "Property Bedrooms"
+                    },
+                    {
+                        "name": "Max Occupancy",
+                        "type": "number",
+                        "label": "Max Occupancy"
+                    },
+                    {
+                        "name": "Check In",
+                        "time": false,
+                        "type": "date",
+                        "label": "Check In"
+                    },
+                    {
+                        "name": "Check Out",
+                        "time": false,
+                        "type": "date",
+                        "label": "Check Out"
+                    },
+                    {
+                        "name": "contactID",
+                        "type": "text",
+                        "label": "contactID"
+                    },
+                    {
+                        "name": "Review Rating",
+                        "type": "number",
+                        "label": "Review Rating"
+                    },
+                    {
+                        "name": "Review Date",
+                        "time": false,
+                        "type": "date",
+                        "label": "Review Date"
+                    },
+                    {
+                        "name": "Review Responded",
+                        "type": "boolean",
+                        "label": "Review Responded"
+                    },
+                    {
+                        "name": "ReviewId",
+                        "type": "number",
+                        "label": "ReviewId"
+                    },
+                    {
+                        "name": "Public Review",
+                        "type": "text",
+                        "label": "Public Review",
+                        "multiline": true
+                    },
+                    {
+                        "name": "Private Feedback",
+                        "type": "text",
+                        "label": "Private Feedback",
+                        "multiline": true
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": true,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": []
+    }
+}
